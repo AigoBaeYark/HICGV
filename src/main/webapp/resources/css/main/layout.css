@@ -103,8 +103,8 @@
 			.nav_menu > li:nth-child(2) > h2{left:80px}
 			.nav_menu > li:nth-child(3) > h2{left:160px}
 			.nav_menu > li:nth-child(4) > h2{left:240px}
-			.nav_menu > li:nth-child(5) > h2{left:335px}
-			.nav_menu > li:last-child > h2{left:430px}
+			.nav_menu > li:nth-child(5) > h2{left:240px}
+			.nav_menu > li:last-child > h2{left:240px}
 
 			.nav_menu > li > h2{position:absolute; top:7px}
 			.nav_menu > li > h2 > a{font-weight:500; font-size:16px; color:#222; line-height:1.500em}

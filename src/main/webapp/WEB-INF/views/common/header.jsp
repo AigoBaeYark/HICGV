@@ -208,13 +208,13 @@
     }
 </script>
 
-${path } <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
+ <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
 <div class="nav">
     <div class="contents">
         <h1><a href="https://www.cgv.co.kr/" tabindex="-1"><img src="" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
-                <h2><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0">영화</a></h2>
+                <h2><a href="movies">영화</a></h2>
                 <dl class="nav_overMenu" style="">
                     <dt><h2><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0" tabindex="-1">영화</a></h2></dt>
                     <dd><h3><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0">무비차트</a></h3></dd>
@@ -261,29 +261,7 @@ ${path } <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
                         
                     <dd><h3><a href="https://brand.naver.com/cgv" class="arrowR" target="_blank">씨네샵</a></h3></dd>
                 </dl>
-            </li>
-            <li>
-                <h2><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx">이벤트</a></h2>
-                <dl class="nav_overMenu" style="">
-                    <dt><h2><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=001" tabindex="-1">이벤트</a></h2></dt>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=001">SPECIAL</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=004">영화/예매</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=008">멤버십/CLUB</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=005">CGV 극장별</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/defaultNew.aspx?mCode=006">제휴할인</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/user/mycgv/event/result_list.aspx">당첨자 발표</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/end-list.aspx">종료된 이벤트</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-                <h2><a href="https://www.cgv.co.kr/discount/discountlist.aspx">혜택</a></h2>
-                <dl class="nav_overMenu" style="">
-                    <dt><h2><a href="https://www.cgv.co.kr/discount/discountlist.aspx" tabindex="-1">혜택</a></h2></dt>
-                    <dd><h3><a href="https://www.cgv.co.kr/discount/discountlist.aspx">CGV 할인정보</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/user/memberShip/ClubService.aspx">CLUB 서비스</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/user/vip-lounge/">VIP 라운지</a></h3></dd>
-                </dl>
-            </li>
+  			</li>
         </ul>
         <div class="totalSearch_wrap">
             <label for="totalSearch">
@@ -292,21 +270,7 @@ ${path } <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
             </label>
             <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
             <iframe src="./영화 그 이상의 감동. CGV_files/main@Search_txt.html" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
-            <!--<div class="totalSearchAutocomplete_wrap">
-                <dl class="totalSearchAutocomplete_list">
-                    <dt>영화</dt>
-                    <dd><a href="#none"><strong>전지</strong>적 작가시점</a></dd>
-                    <dd><a href="#none">내언니 <strong>전지</strong>현과 나</a></dd>
-                    <dd><a href="#none">수호<strong>전지</strong> 영웅본색</a></dd>
-                </dl>
-                <dl class="totalSearchAutocomplete_list">
-                    <dt>인물</dt>
-                    <dd><a href="#none"><strong>전지</strong>현</a></dd>
-                    <dd><a href="#none"><strong>전지</strong>희</a></dd>
-                    <dd><a href="#none">이<strong>전지</strong></a></dd>
-                </dl>
-                <a href="#none" class="btn_totalSearchAutocomplete_close">닫기</a>
-            </div>//-->
+           
         </div>
     </div>
 </div>
