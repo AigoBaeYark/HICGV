@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/movies.css" />
+<link rel="stylesheet" href="resources/css/reset.css" />
+<link rel="stylesheet" href="resources/css/movies/movies.css" />
 <title>hicgv/movies</title>
 </head>
 <body>
