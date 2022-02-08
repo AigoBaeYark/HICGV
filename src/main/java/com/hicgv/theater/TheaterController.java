@@ -14,20 +14,8 @@ public class TheaterController {
 
 	@RequestMapping("/theater")
 	public String theater() {
-		System.out.println("theater");
-		return "theater";
+		System.out.println("======= << theater >> =======");
+		return "/theater/theater";
 
-	}
-
-	@RequestMapping("/theater2")
-	public String theater2() {
-		System.out.println("theater2");
-		return "theater2";
-	}
-	
-	@RequestMapping("/theater3")
-	public String theater3() {
-		System.out.println("theater3");
-		return "theater3";
 	}
 }
