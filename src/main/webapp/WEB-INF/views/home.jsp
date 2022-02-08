@@ -10,6 +10,7 @@
 <h1>
 	Hello world!  
 </h1>
+<a href="movies">movies</a>
 <a href="theater">theater</a>
 <a href="theater2">theater2</a>
 <P>  The time on the server is ${serverTime}. </P>

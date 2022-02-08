@@ -1,0 +1,84 @@
+﻿.tit-heading-wrap {
+    position: relative;
+    height: 60px;
+    margin-top: 30px;
+    border-bottom: 3px solid #241d1e;
+}
+.submenu {
+    position: absolute;
+    top: 18px;
+    right: 0;
+}
+.tit-heading-wrap > .submenu > ul > li:first-child {
+    margin-left: 0;
+}
+.tit-heading-wrap > .submenu > ul > li {
+    float: left;
+    margin-left: 15px;
+}
+.sect-sorting {
+    position: relative;
+    margin-top: 20px;
+    text-align: right;
+}
+.sect-sorting .nowshow {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sect-sorting > select {
+    padding: 3px 5px;
+}
+.sect-sorting > select option {
+    height: 23px;
+    line-height: 23px;
+}
+.round.gray {
+    border: 2px solid #7b7b7b;
+    color: #7b7b7b;
+}
+.round > * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px 0;
+}
+
+
+
+.sect-movie-chart {
+    margin-top: 30px;
+}
+[class|="sect"][class*="chart"] > h4 {
+    margin-top: 30px;
+    color: #222222;
+    font-size: 21px;
+    font-weight: 500;
+}
+[class|="sect"][class*="chart"] .box-image {
+    position: relative;
+    width: 197px;
+    min-height: 272px;
+    margin-bottom: 10px;
+}
+.wrap-movie-chart .box-contents {
+    height: 93px;
+}
+
+
+
+script {
+    display: none;
+}
+.list-more {
+    padding-top: 0px;
+}
+.cols-rank {
+    margin-top: 40px;
+    padding: 0 38px 0 60px;
+    background: #252121;
+    zoom: 1;
+}
+
