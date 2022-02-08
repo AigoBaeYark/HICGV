@@ -12,11 +12,11 @@
 </head>
 <body>
 	<div style="height: 300px;">
-
-		<c:import url="common/header.jsp"></c:import>
-
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-
+	
+	
+	<a href="header">header</a>
 
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
@@ -70,7 +70,7 @@
 	</div>
 	
 	
-	<c:import url="common/footer.jsp"></c:import>
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 
 
 </body>

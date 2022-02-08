@@ -45,7 +45,7 @@
             
 <div class="header_content">
     <div class="contents">
-        <h1><a href="https://www.cgv.co.kr/"><img src="${path }/resources/img/main/logoRed.png" alt="CGV"></a><span>CULTUREPLEX</span></h1>
+        <h1><a href="main"><img src="${path }/resources/img/main/logoRed.png" alt="CGV"></a><span>CULTUREPLEX</span></h1>
         <ul class="memberInfo_wrap">
             <!-- Advertisement -->
             
@@ -211,7 +211,7 @@
 ${path } <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
 <div class="nav">
     <div class="contents">
-        <h1><a href="https://www.cgv.co.kr/" tabindex="-1"><img src="./영화 그 이상의 감동. CGV_files/logoWhite.png" alt="CGV"></a></h1>
+        <h1><a href="https://www.cgv.co.kr/" tabindex="-1"><img src="" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
                 <h2><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0">영화</a></h2>

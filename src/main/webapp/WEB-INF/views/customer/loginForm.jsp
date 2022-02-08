@@ -9,9 +9,9 @@
 </head>
 <body>
 <h1>loginForm.jsp</h1>
-
-<c:import url="../home.jsp"></c:import>
-
+<div style="height: 300px;">
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+	</div>
 
 <div class="sect-login">
 	<ul class="top-menu-round">
@@ -43,7 +43,8 @@
         </div>
 </div>
 
-<c:import url="../home.jsp"></c:import>
+
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 
 
 </body>
