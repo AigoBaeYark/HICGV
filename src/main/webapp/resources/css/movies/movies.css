@@ -1,4 +1,5 @@
-﻿.tit-heading-wrap {
+﻿/* 영화선택 위 클릭란들 */
+.tit-heading-wrap {
     position: relative;
     height: 60px;
     margin-top: 30px;
@@ -57,7 +58,9 @@
     font-size: 21px;
     font-weight: 500;
 }
-[class|="sect"][class*="chart"] .box-image {
+
+/* forEach 시작 */
+.box-image {
     position: relative;
     width: 197px;
     min-height: 272px;
@@ -67,18 +70,89 @@
     height: 93px;
 }
 
-
-
 script {
     display: none;
 }
 .list-more {
     padding-top: 0px;
 }
-.cols-rank {
-    margin-top: 40px;
-    padding: 0 38px 0 60px;
-    background: #252121;
-    zoom: 1;
+.rank {
+    display: block;
+	height: 28px;
+	margin-bottom: 4px;
+	color: #ffffff;
+	font-size: 19px;
+	text-align: center;
+	line-height: 28px
+}
+
+.thumb-image {
+	display: block;
+	position: relative;
+}
+
+.thumb-image img {
+	height: 260px;
+}
+
+/* 00세 이상 */
+.ico-grade {
+	display: block;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 21px;
+	height: 21px;
+	background:
+		url(https://img.cgv.co.kr/R2014/images/sprite/sprite_icon.png)
+		no-repeat;
+	font-style: normal;
+	font-variant-ligatures: normal;
+	font-variant-caps: normal;
+	font-variant-numeric: normal;
+	font-variant-east-asian: normal;
+	font-weight: normal;
+	font-stretch: normal;
+	font-size: 0px;
+	line-height: 0;
+	font-family: a;
+}
+
+.ico-grade.grade-12 {
+	background-position: -51px 0;
+}
+
+.ico-grade.grade-15 {
+	background-position: -51px 0;
+}
+
+.ico-grade.grade-19 {
+	background-position: -51px 0;
+}
+
+/* 예매 */
+.like {
+	display: block;
+	margin-top: 10px;
+	text-align: left !important;
+}
+
+.link-reservation {
+	display: inline-block;
+	width: 91px;
+	height: 35px;
+	background: url(https://img.cgv.co.kr/R2014/images/sprite/sprite_btn.png) 0 0 no-repeat;
+	font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 0px;
+    line-height: 0;
+    font-family: a;
+	zoom: 1;
+	vertical-align: top;
 }
 
