@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,6 +15,9 @@
 </head>
 <body>
 	<h2>theater.jsp</h2>
+<div style="height: 300px;">
+	<c:import url="/WEB-INF/views/common/header.jsp" />
+</div>
 <div class="row" id="theaterName">
   <div class="col-4">
     <div class="list-group" id="list-tab" role="tablist">
@@ -31,7 +34,7 @@
 		<ul>
 			<li><a href="#">HICGV강남 |</a></li>
 			<li><a href="#">HICGV명동 |</a></li>
-			<li><a href="#">HICGV여의도 |</a></li>
+			<li><a href="#">HICGV구로 |</a></li>
 			<li><a href="#">HICGV홍대 |</a></li>
 			<li><a href="#">HICGV강남</a></li>
 		</ul>
@@ -68,5 +71,43 @@
     </div>
   </div>
 </div>
+<div>
+	<h3>
+		<img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="" />
+	</h3>
+	<div>
+		<h4>
+			<span>HICGV강남</span>
+		</h4>
+		<a href="#">
+			<span style="padding: 0 14px;">단체/대관문의</span>
+		</a>
+		<div>
+			<div>
+				<img src="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg" alt="" />
+			</div>
+			<div>
+				<div>
+					<strong>
+						서울특별시 강남구 역삼동 814-6 스타플렉스
+						<br />
+						서울특별시 강남구 강남대로 438 (역삼동)
+					</strong>
+					<span>
+						<strong>
+							1544-1122
+							<br />
+							6관 / 874석
+						</strong>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
+	</div>
+</div>
+<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>
 </html>

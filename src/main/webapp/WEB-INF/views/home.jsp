@@ -10,8 +10,7 @@
 <h1>
 	Hello world!  
 </h1>
-<a href="theater">theater</a>
-<a href="theater2">theater2</a>
+<a href="theater">극장</a>
 <P>  The time on the server is ${serverTime}. </P>
 <a href="loginForm">로그인</a>
 </body>
