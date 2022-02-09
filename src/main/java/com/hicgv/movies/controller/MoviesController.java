@@ -2,6 +2,8 @@ package com.hicgv.movies.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +29,25 @@ public class MoviesController {
 		model.addAttribute("movies",moives); 
 		
 		
-		return "movies/movies";
+		return "movies/movies";	
+	}
+	
+	@RequestMapping("/moviesdetailview")
+	public String moviesdetailview(HttpServletRequest request, Model model) {
+		System.out.println("========= < pass by moviesdetailview() > =========");
 		
+		//테이블이 3~4개 들어가야함
+		//영화정보(영화정보, 감독란, 배우란, 상영관정보)
+		//트레일러, 스틸샷, 평점
+		
+		String movie_id=request.getParameter("movie_id");
+		MoviesDao dao=sqlSession.getMapper(MoviesDao.class);
+		/*model.addAttribute("moviesdetailview", dao.moviesDetailview(movie_id));
+		model.addAttribute(trailer, dao.movieTrailer(movie_id));
+		model.addAttribute(cut, arg1);
+		model.addAttribute(actor, arg1);
+		model.addAttribute(director, arg1);*/
+		return "movies/moviesdetailview";
 		
 	}
 	

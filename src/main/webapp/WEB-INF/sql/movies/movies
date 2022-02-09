@@ -1,0 +1,121 @@
+--&&영화&&--
+CREATE table hicgv_movie( 
+movie_id number(5) PRIMARY KEY NOT NULL, --영화ID(상단바주소에5글자숫자)
+ranking number(11), --순위
+title_kor varchar2(255) NOT NULL,  --영화제목(한글)
+title_eng varchar2(255), --영화제목(영어)
+opening_date DATE, --개봉일
+genre varchar2(40), --장르
+nation varchar2(30), --나라
+running_time number(11), --상영시간
+description varchar2(2555), --영화설명
+company_image_url varchar2(11), --배급사로고
+age_limit varchar2(24), --연령제한
+image_url varchar2(2555), --메인 이미지 경로
+audience_total number(11), --누적관람객
+audience_today number(11), --오늘관람객
+audience_yesterday number(11), --어제관람객
+audience_sex_ratio number(11), --관람객 성 비율
+audience_age10_ratio number(11), --관람객 10대 비율
+audience_age20_ratio number(11), --관람객 20대 비율
+audience_age30_ratio number(11), --관람객 30대 비율
+audience_age40_ratio number(11), --관람객 40대 비율
+audience_rating number(11), --관람평
+booking_rate number(11) --예매율
+)
+
+SELECT * FROM hicgv_movie;
+--DROP TABLE hicgv_movie;
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (84945,'듄','DUNE' ,'SF','미국, 캐나다, 헝가리','12세 관람가',155,'20220209','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000084/84945/84945_320.jpg',
+'“듄을 지배하는 자가 우주를 지배한다!”
+10191년, 아트레이데스 가문의 후계자인 폴(티모시 샬라메)은 시공을 초월한 존재이자 
+전 우주를 구원할 예지된 자의 운명을 타고났다. 
+그리고 어떤 계시처럼 매일 꿈에서 아라키스 행성에 있는 한 여인을 만난다. 
+모래언덕을 뜻하는 ''듄''이라 불리는 아라키스는 물 한 방울 없는 사막이지만 
+우주에서 가장 비싼 물질인 신성한 환각제 스파이스의 유일한 생산지로 이를 차지하기 위한 전쟁이 치열하다. 
+황제의 명령으로 폴과 아트레이데스 가문은 죽음이 기다리는 아라키스로 향하는데…
+위대한 자는 부름에 응답한다, 두려움에 맞서라, 이것은 위대한 시작이다!',1);
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (85603,'극장판 주술회전 0','Jujutsu Kaisen: Zero','애니메이션','일본','15세 관람가',101,'20220217','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000083/83739/83739_320.jpg',
+'어릴 적 소꿉친구인 오리모토 리카를 교통사고로 눈앞에서 잃은 옷코츠 유타.
+
+“약속해, 리카와 유타는 어른이 되면 결혼하기로”
+옷코츠는 원령으로 변한 리카의 저주에 괴로워한 나머지, 자신도 죽기를 바라지만 최강의 주술사인 고죠 사토루에 의해 주술고전에 들어가게 된다. 그리고 동급생인 젠인마키, 이누마키 토게, 판다를 만나면서 굳은 결심을 한다.
+
+“살아도 된다는 자신감이 필요해”
+“나는 주술고전에서 리카의 저주를 풀겠습니다”
+한편, 옷코츠와 친구들 앞에 과거에 일반인을 대량으로 학살해서 고전에서 추방된 최악의 주저사인 게토 스구루가 나타난다.
+
+“12월 24일, 우리는 백귀야행을 결행한다”
+주술사만의 낙원을 만들려는 게토는 비술사를 섬멸하겠다면서, 신주쿠와 교토에 천의 저주를 내리는데…과연 옷코츠는 게토를 막을 수 있을까? 그리고리카의 저주를 풀 수 있을까?',2);
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (85641,'해리 포터와 불사조 기사단','Harry Potter And The Order Of The Phoenix','환타지, 액션, 어드벤처','미국, 영국','전체 관람가',137,'20220209','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85641/85641_320.jpg',
+'호그와트 최대 위기! 볼드모트 그가 돌아왔다!
+어둠의 세력에 빠진 호그와트를 구하기 위해 해리포터와 불사조 기사단, 그들이 손을 잡았다!
+
+호그와트 마법학교에서 5번째 해를 맞이하게 된 해리포터(다니엘 래드클리프). 헤르미온느(엠마 왓슨)와 론(루퍼트 그린트)과의 관계도 소원하고 예언자 일보는 해리에 대해 악의적인 소문을 퍼뜨려 해리를 곤경에 빠뜨린다. 초챙(케이티 렁)과의 로맨스도 힘에 겹다. 게다가 마법부는 볼드모트(랄프 파인즈)가 돌아왔다는 이야기를 애써 모른 체 하려 하고 오히려 호그와트 교장 덤블도어가 헛소문을 퍼트려 마법부의 권위를 실추시킨다며 비난한다. 여기에 마법부 장관 코넬리우스 퍼지는 새로운 어둠의 방어술 교수 자리에 자신의 심복 돌로레스 엄브리지를 임명해 덤블도어와 학생들을 감시하게 한다. 형편없는 그의 수업은 어둠의 마법에 대한 학생들의 방어능력을 한심한 수준으로 격하시킨다.
+
+이제 해리포터는 호그와트로 다시 돌아온 악의 세력 볼드모트에 대항하기 위해 만들어진 마법사들의 비밀단체 불사조기사단과 함께 볼드모트와 죽음의 대결은 준비한다.
+그 와중에 해리는 소중한 사람의 죽음까지 맞이하는 아픔을 겪게 되는데…
+
+위기에 빠진 호그와트!
+해리포터와 불사조 기사단, 모든 것이 그들 손에 달렸다!!',3);
+
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (83739,'나일 강의 죽음','Death on the Nile','범죄, 드라마, 미스터리','미국','12세 관람가',127,'20220209','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000083/83739/83739_320.jpg',
+'영화 <나일 강의 죽음>은 신혼부부를 태운 이집트 나일 강의 초호화 여객선에서 살인 사건이 벌어진 가운데, 
+탐정 ‘에르큘 포와로’가 조사에 착수 하지만 연이은 살인 사건으로 탑승객 모두가 충격과 혼란에 휩싸이게 되는 이야기',4);
+
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (85642,'덩케르크','Dunkirk','액션, 드라마, 스릴러, 전쟁','미국','12세 관람가',106,'20220209','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85642/85642_320.jpg',
+'"우린 끝까지 싸울 것이다"
+살아남는 것이 승리다!
+
+해변: 보이지 않는 적에게 포위된 채 어디서 총알이 날아올지 모르는 위기의 일주일
+바다: 군인들의 탈출을 돕기 위해 배를 몰고 덩케르크로 항해하는 하루
+하늘: 적의 전투기를 공격해 추락시키는 임무,  남은 연료로 비행이 가능한 한 시간
+
+“우리는 해변에서 싸울 것이다. 우리는 상륙지에서 싸울 것이다.
+우리는 들판에서 싸우고 시가에서도 싸울 것이다. 우리는 끝까지 싸울 것이다”',5);
+
+
+Insert into hicgv_movie 
+(movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
+values (85561,'해적-도깨비 깃발','The Pirates : The Last Royal Treasure','어드벤처, 액션, 코미디','한국','12세 관람가',125,'20220126','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85561/85561_320.jpg',
+'“가자, 보물 찾으러!” 
+
+자칭 고려 제일검인 의적단 두목 ‘무치’(강하늘)와 
+바다를 평정한 해적선의 주인 ‘해랑’(한효주).  
+한 배에서 운명을 함께하게 된 이들이지만
+산과 바다, 태생부터 상극으로 사사건건 부딪히며 바람 잘 날 없는 항해를 이어간다. 
+
+그러던 어느 날, 왜구선을 소탕하던 이들은 
+흔적도 없이 사라진 왕실의 보물이 어딘가 숨겨져 있다는 사실을 알게 되고 
+해적 인생에 다시없을 최대 규모의 보물을 찾아 위험천만한 모험에 나서기 시작한다. 
+
+하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니! 
+원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 
+보물을 차지하기 위해 바다에 뛰어드는데...! 
+
+해적과 의적, 그리고 역적 
+사라진 보물! 찾는 자가 주인이다! ',6);
+
+
+
+	
+SELECT * FROM HICGV_MOVIE ORDER BY RANKING ;
+SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=85561 ; 
+
+
+

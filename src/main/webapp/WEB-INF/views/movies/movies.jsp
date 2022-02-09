@@ -14,10 +14,14 @@
 <div style="height: 300px;">
 <c:import url="../common/header.jsp"></c:import>
 </div> 
-<h5>movies.jsp</h5>
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
         
+        <!-- Contents Area -->
+		 <div id="contents" class="">
+		 
+		 <!-- Contents Start -->
+		 
 <!-- 실컨텐츠 시작 -->
     <div class="wrap-movie-chart">
         <!-- Heading Map Multi -->
@@ -49,20 +53,21 @@
         <div class="sect-movie-chart">
             <h4 class="hidden">
                 무비차트 - 예매율순
-            </h4> 
-            <c:forEach items="${movies }" var="mov">
+            </h4>       
             <ol>
+            	 <c:forEach items="${movies }" var="mov">
                 <li>
                     <div class="box-image" >
                         <strong class="rank">No.${mov.ranking }</strong>	
-                        <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movie_id }">
+                        <%-- <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movie_id }"> --%>
+                        <a href="moviesdetailview?movie_id=${mov.movie_id }">
                             <span class="thumb-image">
                                 <img src="${mov.image_url}" alt="포스터" onerror="errorImage(this)"/>
-                                <span class="ico-grade grade-12">${mov.age_limit}</span>
+                                <span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span>
                             </span>
                         </a>
                     <div class="box-contents">
-                        <a href="/movies/detail-view/?midx=${mov.movie_id }">
+                        <a href="moviesdetailview?movie_id=${mov.movie_id }">
                             <strong class="title">${mov.title_kor }</strong>
                         </a>
                         <div class="score">
@@ -85,11 +90,14 @@
                    </div>  
                    
                 </li>
+                
             </ol>
-           </c:forEach>       
+            </c:forEach> 
+                 
        </div>
    </div>         
-
+ </div> 
+  </div> 
 <c:import url="../common/footer.jsp"></c:import>
 
 </body>
