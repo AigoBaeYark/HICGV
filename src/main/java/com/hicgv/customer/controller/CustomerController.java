@@ -1,5 +1,7 @@
 package com.hicgv.customer.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hicgv.customer.dao.CustomerDao;
+import com.hicgv.customer.dto.CustomerDto;
 
 //import com.HICGV.dao.customerDao;
 
@@ -45,10 +48,10 @@ public class CustomerController {
 		System.out.println("password :" + password);
 
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-
-		dao.loginCheck(id, password);
-
-		return "../home";
+		
+		
+		model.addAttribute("login",dao.loginCheck(id, password));
+		return "home";
 		// 로그인이 성공하면 메인 또는 홈.jsp로 이동
 	}
 

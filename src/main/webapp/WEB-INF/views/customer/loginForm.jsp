@@ -19,12 +19,9 @@
 	
 	<form action="loginCheck">
 	<div class="login_sns">
-            <li><a href="">회원로그인</a></li>
-            <li><a href="">비회원로그인</a></li>
-            <li><a href="">비회원 예약확인</a></li>
             </div>
-		아이디 : <input type="text" />
-		비밀번호 : <input type="password" />
+		아이디 : <input type="text" name="id"/>
+		비밀번호 : <input type="password" name="password"/>
 		<input type="submit" value="로그인"/>
 	 <div class="login_etc">
                 <div class="checkbox">
