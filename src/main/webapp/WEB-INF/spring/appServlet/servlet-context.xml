@@ -35,7 +35,7 @@
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 		<beans:property name="mapperLocations"
-			value="classpath:com/hicgv/movies/dao/mapper/*.xml"></beans:property>
+			value="classpath:com/hicgv/*/dao/mapper/*.xml"></beans:property>
 			
 	</beans:bean>
 
