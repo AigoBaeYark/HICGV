@@ -14,6 +14,9 @@
 
 </head>
 <body>
+
+
+
 	<h2>theater.jsp</h2>
 <div style="height: 300px;">
 	<c:import url="/WEB-INF/views/common/header.jsp" />
@@ -31,71 +34,73 @@
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-seoul" role="tabpanel" aria-labelledby="list-seoul-list">
-		<ul>
-			<li><a href="#">HICGV강남 |</a></li>
-			<li><a href="#">HICGV명동 |</a></li>
-			<li><a href="#">HICGV구로 |</a></li>
-			<li><a href="#">HICGV홍대 |</a></li>
-			<li><a href="#">HICGV강남</a></li>
-		</ul>
+		<c:forEach items="${theater }" var="dto">
+			<c:if test="${dto.theater_id eq 1}">
+				<ul>
+					<li><a href="theater?movieid=1&locid=${dto.location_id }" >${dto.location_name } </a></li>
+				</ul>
+			 </c:if> 
+		</c:forEach>
 	  </div>
       <div class="tab-pane fade" id="list-gyeonggi" role="tabpanel" aria-labelledby="list-gyeonggi-list">
-      	<ul>
-			<li><a href="#">HICGV김포 |</a></li>
-			<li><a href="#">HICGV이천 |</a></li>
-			<li><a href="#">HICGV용인 |</a></li>
-			<li><a href="#">HICGV평촌</a></li>
-		</ul>
+      	<c:forEach items="${theater }" var="dto">
+			<c:if test="${dto.theater_id eq 2}">
+				<ul>
+					<li><a href="theater?movieid=2&locid=${dto.location_id }">${dto.location_name } </a></li>
+				</ul>
+			 </c:if> 
+		</c:forEach>
       </div>
       <div class="tab-pane fade" id="list-incheon" role="tabpanel" aria-labelledby="list-incheon-list">
-      	<ul>
-			<li><a href="#">HICGV계양 |</a></li>
-			<li><a href="#">HICGV주안 |</a></li>
-			<li><a href="#">HICGV연수</a></li>
-		</ul>
+      	<c:forEach items="${theater }" var="dto">
+			<c:if test="${dto.theater_id eq 3}">
+				<ul>
+					<li><a href="theater?movieid=3&locid=${dto.location_id }">${dto.location_name } </a></li>
+				</ul>
+			 </c:if> 
+		</c:forEach>
       </div>
       <div class="tab-pane fade" id="list-gangwon" role="tabpanel" aria-labelledby="list-gangwon-list">
-      	<ul>
-			<li><a href="#">HICGV강릉 |</a></li>
-			<li><a href="#">HICGV원주 |</a></li>
-			<li><a href="#">HICGV춘천</a></li>
-		</ul>
+      	<c:forEach items="${theater }" var="dto">
+			<c:if test="${dto.theater_id eq 4}">
+				<ul>
+					<li><a href="theater?movieid=4&locid=${dto.location_id }">${dto.location_name } </a></li>
+				</ul>
+			 </c:if> 
+		</c:forEach>
       </div>
       <div class="tab-pane fade" id="list-chungcheong" role="tabpanel" aria-labelledby="list-chungcheong-list">
-      	<ul>
-			<li><a href="#">HICGV대전 |</a></li>
-			<li><a href="#">HICGV세종 |</a></li>
-			<li><a href="#">HICGV청주</a></li>
-		</ul>
+      	<c:forEach items="${theater }" var="dto">
+			<c:if test="${dto.theater_id eq 5}">
+				<ul>
+					<li><a href="theater?movieid=5&locid=${dto.location_id }">${dto.location_name } </a></li>
+				</ul>
+			 </c:if> 
+		</c:forEach>
       </div>
     </div>
   </div>
 </div>
 <div>
 	<h3>
-		<img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="" />
+		<img src="${img }" alt="" width="980" height="420"/>
 	</h3>
 	<div>
 		<h4>
-			<span>HICGV강남</span>
+			<span>${dto.location_name }</span>
 		</h4>
 		<a href="#">
 			<span style="padding: 0 14px;">단체/대관문의</span>
 		</a>
 		<div>
 			<div>
-				<img src="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg" alt="" />
-			</div>
-			<div>
 				<div>
 					<strong>
-						서울특별시 강남구 역삼동 814-6 스타플렉스
-						<br />
-						서울특별시 강남구 강남대로 438 (역삼동)
+						${dto.location_add }
 					</strong>
 					<span>
 						<strong>
-							1544-1122
+							${dto.location_tel }
 							<br />
 							6관 / 874석
 						</strong>
