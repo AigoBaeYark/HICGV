@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper 주소는 패키지.Dao인터페이스이름 -->
+<mapper namespace="com.hicgv.customer.dao.CustomerDao">
+	<select id="loginCheck" resultType="com.hicgv.customer.dto.CustomerDto">
+		SELECT
+		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT
+		FROM HICGV_CUSTOMER
+		WHERE ID LIKE #{param1} AND PASSWORD LIKE #{param2}
+	</select>
+
+	<!--join -->
+<!-- 	<insert id="joinForm">
+		INSERT INTO HICGV_CUSTOMER
+		VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},
+		#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},
+		SYSDATE)
+	</insert> -->
+</mapper>

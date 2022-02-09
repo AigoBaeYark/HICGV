@@ -50,9 +50,9 @@
 #cgvwrap #header > .head h1 {top:40px; left:0; width:223px; height:85px; padding:18px 0 0 22px; z-index:110;}
 #cgvwrap #header > .head h1 > a {display:block;}
 
-/* S Common */
+/* S Common 예매하기, gototop css*/
 .fixedBtn_wrap{display:flex; justify-content:flex-end; position:fixed; right:0; bottom:80px; min-height:50px; margin-left:440px; text-align:center; z-index:7}
-.fixedBtn_wrap .btn_fixedTicketing{position:absolute; left:auto; right:0px; width:136px; padding:12px 0 14px; font-weight:500; font-size:16px; color:#fff; line-height:1.500em; background-image:linear-gradient(to left, rgb(255, 115, 86), rgb(251, 67, 87)); box-shadow:1px 3px 6px 0 rgba(0, 0, 0, 0.3); border-radius:25px; transition:right 0.4s; opacity:0}
+.fixedBtn_wrap .btn_fixedTicketing{position:absolute; left:auto; right:0px; width:136px; padding:12px 0 14px; font-weight:500; font-size:16px; color:#fff; line-height:1.500em; background-image:linear-gradient(to left, rgb(91 122 237), rgb(32 65 227)); box-shadow:1px 3px 6px 0 rgba(0, 0, 0, 0.3); border-radius:25px; transition:right 0.4s; opacity:0}
 .fixedBtn_wrap .btn_gotoTop{display:flex; align-items:center; justify-content:center; position:relative; right:0; width:48px; height:48px; background-color:#fff; border:1px solid #000; box-shadow:1px 3px 6px 0 rgba(0, 0, 0, 0.3); border-radius:50%; opacity:0; pointer-events:none; ; transition:opacity 0.2s}
 .fixedBtn_wrap .btn_gotoTop img{width:15px; height:21px}
 
@@ -99,7 +99,7 @@
 			.nav_menu > li:first-child{width:137px;}
 			.nav_menu > li:first-child .nav_overMenu{padding-left:0}
 			.nav_menu > li:first-child .nav_overMenu:before{content:none}
-			.nav_menu > li:last-child{width:195px}
+			/* .nav_menu > li:last-child{width:195px} */
 			.nav_menu > li:nth-child(2) > h2{left:80px}
 			.nav_menu > li:nth-child(3) > h2{left:160px}
 			.nav_menu > li:nth-child(4) > h2{left:240px}
@@ -141,9 +141,14 @@
 				.btn_totalSearchAutocomplete_close{float:right; margin:4px 13px 9px; padding-right:15px; font-size:12px; color:#666; line-height:1.417em; background:transparent url('./../images/common/btn/autocompleteClose.png') right center/11px scroll no-repeat}
 
 		.nav.active .nav_overMenu{display:block}
-
+		
+		/* 서브메뉴 일정스크롤 내려가면 고정되는 메뉴 */
 		.nav.fixed{position:fixed; top:0px; min-width:1040px; padding:10px 0}
-		.nav.fixed:after{top:0; bottom:auto; height:60px; background-image:linear-gradient(to right, rgb(215, 67, 87), rgb(241,79,58) 59%, rgb(239, 100, 47)); z-index:1}
+		.nav.fixed:after{top:0; bottom:auto; height:60px; background-image:linear-gradient(to right, rgb(32, 65, 227), rgb(91, 122, 237) 59%, rgb(95, 211, 255)); z-index:1}
+		
+		/* background-image:linear-gradientlinear-gradient(to right, rgb(32, 65, 227), rgb(91, 122, 237) 59%, rgb(95, 211, 255));
+ 		background-image:linear-gradient(to right, rgb(215, 67, 87), rgb(241,79,58) 59%, rgb(239, 100, 47)); */
+ 		
 		.nav.fixed .contents{z-index:2}
 		.nav.fixed .contents h1{display:block; position:absolute; left:0; top:1px; width:70px; height:32px; z-index:3}
 		.nav.fixed .contents h1 a{display:block} 
@@ -153,8 +158,8 @@
 		.nav.fixed .contents .nav_menu > li:nth-child(3) > h2{left:280px}
 		.nav.fixed .contents .nav_menu > li:nth-child(4) > h2{left:360px}
 		.nav.fixed .contents .nav_menu > li:nth-child(5) > h2{left:455px}
-		.nav.fixed .contents .nav_menu > li:last-child > h2{left:550px}
-		.nav.fixed .contents .nav_menu > li > h2 > a{color:#fff}
+/* 		.nav.fixed .contents .nav_menu > li:last-child > h2{left:550px} */
+ 		.nav.fixed .contents .nav_menu > li > h2 > a{color:#fff}
 		.nav.fixed .contents .nav_menu > li > h2 > a strong{color:#fff}
 		.nav.fixed .contents .totalSearch_wrap:before,
 		.nav.fixed .contents .totalSearch_wrap:after{background-color:#000; opacity:0.2}

@@ -22,19 +22,17 @@
 	<a href="https://www.cgv.co.kr/#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
 </div>
 <div id="cgvwrap">
-
-	
-    <div class="cgv-ad-wrap" id="cgv_main_ad">
+<!-- 광고 -->
+    <%-- <div class="cgv-ad-wrap" id="cgv_main_ad">
         <div id="TopBarWrapper" class="sect-head-ad">
             <div class="top_extend_ad_wrap">
                 <div class="adreduce" id="adReduce">                    
-<%--                     <iframe src="${path }/resources/img/main/main@TopBar_EX.html" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
- --%>                </div> 
+                    <iframe src="${path }/resources/img/main/main@TopBar_EX.html" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
+                </div> 
                 <div class="adextend" id="adExtend"></div>
             </div><!-- //.top_extend_ad_wrap -->
         </div>    
-    </div>    
-	
+    </div>     --%>
       <!-- S Header
         Description
         - class 'nav' 에 class 'active' 추가시 서브메뉴노출
@@ -223,7 +221,7 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="theater2">극장</a></h2>
+                <h2><a href="theater">극장</a></h2>
                 <dl class="nav_overMenu" style="">
                     <dt><h2><a href="https://www.cgv.co.kr/theaters/" tabindex="-1">극장</a></h2></dt>
                     <dd><h3><a href="https://www.cgv.co.kr/theaters/">CGV 극장</a></h3></dd>
@@ -274,6 +272,14 @@
         </div>
     </div>
 </div>
+
+	<div class="fixedBtn_wrap">
+        <a href="" class="btn_fixedTicketing">예매하기</a>
+        
+        <a class="btn_gotoTop"><img src="${path }/resources/img/main/gotoTop.png" alt="최상단으로 이동"></a>
+    </div>
+
+
 
 </body>
 </html>
