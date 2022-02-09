@@ -23,8 +23,8 @@ import com.hicgv.movies.dto.MoviesDto;
  */
 @Controller
 public class MainController {
-	//@Autowired
-	//private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -48,15 +48,15 @@ public class MainController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		System.out.println("!MainController!");
-//		MainDao dao = sqlSession.getMapper(MainDao.class);
-//	 
-//		
-//		ArrayList<MoviesDto> list = dao.movieChart();
-//		for (MoviesDto moviesDto : list) {
-//			System.out.println("1"+moviesDto.getTitle_kor());
-//		}
-//		
-//		model.addAttribute("movie",list);
+		MainDao dao = sqlSession.getMapper(MainDao.class);
+	 
+		
+		ArrayList<MoviesDto> list = dao.movieChart();
+		for (MoviesDto moviesDto : list) {
+			System.out.println("1"+moviesDto.getTitle_kor());
+		}
+		
+		model.addAttribute("movie",list);
 		
 		return "main";
 	}
