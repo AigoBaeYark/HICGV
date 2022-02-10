@@ -13,10 +13,21 @@
  	SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=#{param1}
  	</select>
  	
+ 	<select id="mactor" resultType="com.hicgv.movies.dto.MoviesDto">
+ 	
+ 	</select> 
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	<!-- <select id="movieTrailer" resultType="com.hicgv.movies.dto.MovieTrailerDto">
  		select * from movieTrailer where moive_id = #{param1}  
- 		트레일러예시
- 	</select> -->
+ 		트레일러예시  
+ 	</select> 추후추가예정-->
+ 	
+ 	
  	
  	
  	

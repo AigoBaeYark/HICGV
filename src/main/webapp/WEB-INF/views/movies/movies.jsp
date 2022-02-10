@@ -90,9 +90,9 @@
                    </div>  
                    
                 </li>
-                
+                </c:forEach> 
             </ol>
-            </c:forEach> 
+            
                  
        </div>
    </div>         
