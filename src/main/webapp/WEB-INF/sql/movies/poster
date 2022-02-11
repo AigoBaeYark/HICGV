@@ -1,0 +1,24 @@
+--&&영화 포스터, 스틸샷&&--
+CREATE table hicgv_movie_poster(
+movie_poster_id number(20) PRIMARY KEY NOT NULL, 
+movie_id number(20) NOT NULL, --movie KEY
+poster_url varchar2(2555) NOT NULL --포스터 경로
+)
+
+CREATE SEQUENCE poster_seq
+INCREMENT BY 1 --증가
+START WITH 1 
+MINVALUE 1
+MAXVALUE 50
+NOCYCLE
+cache 2;
+
+SELECT * FROM hicgv_movie_poster;
+--DROP TABLE hicgv_movie_poster;
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200171_727.jpg');
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200170_727.jpg');
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200168_727.jpg');
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200167_727.jpg');
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200165_727.jpg');
+INSERT INTO  hicgv_movie_poster VALUES (poster_seq.nextval,85603,'https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200163_727.jpg');
+
