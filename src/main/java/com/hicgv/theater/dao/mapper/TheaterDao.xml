@@ -5,13 +5,37 @@
     "http://myba``tis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.hicgv.theater.dao.TheaterDao">
-	<select id="theater" resultType="com.hicgv.theater.dto.LocationDto">
-	SELECT LOCATION_ID,THEATER_ID,LOCATION_NAME,LOCATION_ADD,LOCATION_TEL
-	FROM HICGV_LOCATION ORDER BY LOCATION_NAME
-	</select>
-	<select id="getImg" resultType="String">
-	SELECT LOCATION_IMG
-	FROM HICGV_LOCATION
-	WHERE LOCATION_ID=#{param1}
-	</select>
+   <select id="theater" resultType="com.hicgv.theater.dto.LocationDto">
+      SELECT LOCATION_ID,THEATER_ID,LOCATION_NAME,LOCATION_ADD,LOCATION_TEL
+      FROM HICGV_THEATER_LOCATION ORDER BY LOCATION_NAME
+   </select>
+   <select id="getImg" resultType="String">
+      SELECT LOCATION_IMG
+      FROM HICGV_THEATER_LOCATION
+      WHERE LOCATION_ID=#{param1}
+   </select>
+   <select id="getMoviesInfo" resultType="com.hicgv.theater.dto.MoviesInfoDto">
+     SELECT TITLE_KOR,OPENING_DATE,GENRE,RUNNING_TIME,AGE_LIMIT,ROOM_NAME,MAX_SEAT,START_DATE,MOVIE_ID
+	 FROM HICGV_MOVIE
+	 LEFT JOIN HICGV_THEATER_ROOM
+	 ON HICGV_MOVIE.MOVIE_ID=HICGV_THEATER_ROOM.MOVIE_ID
+	 LEFT JOIN HICGV_THEATER_SCHEDULE
+	 ON HICGV_THEATER_ROOM.MOVIE_ID=HICGV_THEATER_SCHEDULE.MOVIE_ID
+	 WHERE HICGV_MOVIE.MOVIE_ID=#{param1}
+   </select>
+   
+   	<!-- 수정 중 -->
+   <select id="movietime" resultType="com.hicgv.theater.dto.MoviesInfoDto">
+     SELECT TITLE_KOR,OPENING_DATE,GENRE,RUNNING_TIME,AGE_LIMIT,ROOM_NAME,MAX_SEAT,START_DATE,MOVIE_ID
+	 FROM HICGV_MOVIE
+	 LEFT JOIN HICGV_THEATER_ROOM
+	 ON HICGV_MOVIE.MOVIE_ID=HICGV_THEATER_ROOM.MOVIE_ID
+	 LEFT JOIN HICGV_THEATER_SCHEDULE
+	 ON HICGV_THEATER_ROOM.MOVIE_ID=HICGV_THEATER_SCHEDULE.MOVIE_ID
+	 WHERE HICGV_MOVIE.MOVIE_ID=#{param1}
+   </select>
+   
+   
+   
 </mapper>
+
