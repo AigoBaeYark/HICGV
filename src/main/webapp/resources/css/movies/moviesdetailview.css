@@ -1,0 +1,167 @@
+﻿[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    padding-top: 40px;
+}
+strong {
+    font-weight: 500;
+}
+/* 영화포스터 */
+[class|="sect-base"][class$="movie"] .box-image {
+    margin-right: 30px;
+    width: 185px;
+    height: 260px;
+}
+.thumb-image {
+    display: block;
+    position: relative;
+}
+[class|="sect-base"][class$="movie"] .thumb-image img {
+    width: 185px;
+    height: 260px;
+}
+/* 등급 아이콘 */
+.ico-grade {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 21px;
+    height: 21px;
+    background: url(../images/sprite/sprite_icon.png) no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}
+
+.ico-grade.grade-전체 {
+    background-position: -30px 0;
+}
+
+.ico-grade.grade-12세 {
+	background-position: -51px 0;
+}
+
+.ico-grade.grade-15세 {
+	background-position: -72px 0;
+}
+
+.ico-grade.grade-19세 {
+	background-position: -90px 0;
+}
+/* 영화소개박스 */
+[class|="sect-base"][class$="movie"] .box-contents {
+    width: 765px;
+}
+[class|="sect-base"] .box-contents {
+    float: left;
+    position: relative;
+}
+
+
+
+/* 주요정보 */
+.tab-menu {
+    clear: both;
+    text-align: center;
+}
+ol, ul {
+    list-style: none;
+}
+
+/* 트레일러 */
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    padding-top: 40px;
+}
+
+[class|="wrap-movie"][class$="detail"] .heading {
+    margin-bottom: 20px;
+}
+.heading {
+    position: relative;
+    width: 100%;
+    height: 39px;
+    background: #f6f6f6;
+}
+
+.heading h4 {
+    float: left;
+    margin-left: 16px;
+    line-height: 39px;
+    color: #333333;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -1px;
+}
+
+.heading .count {
+    display: inline-block;
+    margin-left: 4px;
+    font-weight: 300;
+    line-height: 40px;
+}
+
+.heading .count + .link-more {
+    margin-top: 0;
+}
+.heading .link-more {
+    margin-top: 9px;
+    margin-left: 9px;
+}
+.link-more {
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    background: url(https://img.cgv.co.kr/R2014/images/sprite/sprite_btn.png) -50px -62px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 트레일러이미지크기지정 */
+.wrap-movie-detail .sect-trailer li {
+    width: 260px;
+    margin: 0 0 15px 10px;
+}
+.sect-trailer > ul > li {
+    float: left;
+}
+.wrap-movie-detail .sect-trailer li .box-image {
+    width: 260px;
+    height: 142px;
+}
+
+.box-image img {
+    width: 100%;
+}
+
+.wrap-movie-detail .sect-trailer li .thumb-image {
+    width: 260px;
+    height: 142px;
+}
+
+.thumb-image {
+    display: block;
+    position: relative;
+}
+
+input, select, img {
+    vertical-align: middle;
+}
+
+.wrap-movie-detail .sect-trailer li .thumb-image img {
+    width: 260px;
+    height: 142px;
+}
+
+.ico-play {
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+    width: 44px;
+    height: 44px;
+    background: url(https://img.cgv.co.kr/R2014/images/sprite/sprite_icon.png) -60px -21px no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}

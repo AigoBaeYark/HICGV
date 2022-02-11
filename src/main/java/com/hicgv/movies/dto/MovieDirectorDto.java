@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MovieDiretorDto {
+public class MovieDirectorDto {
 	private int movie_diretor_id;
 	private int movie_id;
 	private String name_kor;
