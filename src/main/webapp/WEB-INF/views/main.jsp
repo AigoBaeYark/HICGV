@@ -7,12 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-<link href="${path }/resources/css/main/swiper-bundle.min.css">
-<script src="${path }/resources/js/main/swiper.min.js">
-<!--
+<%-- <link href="${path }/resources/css/main/swiper-bundle.min.css">
+<script src="${path }/resources/js/main/swiper.min.js"> --%>
 
-//-->
-</script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 <title>main</title>
 </head>
@@ -64,10 +64,15 @@
 	</div>
 	<!-- 메뉴 아래 신규영화 영상 끝-->
 
-	<!-- 무비차트 & 상영예정작 -->
 
-	<div class="movieChartBeScreen_wrap" style="clear: none; float: none;">
-		<div class="contents">
+
+
+	<!-- 무비차트 & 상영예정작 -->
+	
+	
+
+	<div class="movieChartBeScreen_wrap" style="clear: none; float: none; position: relative;background-image: linear-gradient(to bottom, rgba(255 181 103), rgba(232, 232, 232, 0.37));">
+		<div class="contents"  style="margin: 0 auto; width: 980px;height: 100%" >
 			<div class="movieChartBeScreen_btn_wrap">
 				<div class="tapBtn_wrap">
 					<!-- 차트, 예정작 선택버튼 -->
@@ -82,14 +87,16 @@
 			</div>
 
 			<!-- 무비차트 스와이퍼 -->
-			<div class="swiper movieChart_list swiper-container-initalized swiper-container-horizontal" id="movieChart_list">
-				<div class="swiper-wrapper" style="tranform: translate3d(0px, 0px, 0px);">
+			
+			
+			<div class="swiper-container swiper " id="movieChart_list" style="position: relative; clear: none;float: none; margin: 0 auto;">
+				<div class="swiper-wrapper" style="tranform: translate3d(0px, 0px, 0px); height: 295px;">
 				<c:forEach items="${movie }" var="mov">
-					<div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170px;margin-right: 32px;">
+					<div class="swiper-slide" style="width: 170px;margin-right: 32px; float: left;">
 
 						<div class="img_wrap" data-scale="false">
 							<!-- 영화 포스터 (포스터이미지, 나이, 특수상영관, 버튼)-->
-							<img src="${mov.image_url }" alt="영화포스터" />
+							<img src="${mov.image_url }" alt="영화포스터" style="width: 100%; height: 234px;" />
 							<div class="movieAgeLimit_wrap">
 								<img src="" alt="${mov.age_limit }" />
 							</div>
@@ -119,15 +126,33 @@
 						<!-- movie_info_wrap 끝 -->
 
 					</div>
-					</c:forEach>
+					</c:forEach>     		 		
 				</div>
+				<div class="swiper-button-prev"></div>
+      			<div class="swiper-button-next"></div>
 			</div>
 		</div>
 	</div>
 
+	<div style="clear: both;">
+		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+	</div>
+	
+		<script>
+		
+		var movieChartSwiper = 	new Swiper("#movieChart_list",{
+			slidesPerView: 5,
+			spaceBetween: 35,
+			slidesPerGroup: 1,
+			//슬라이드 버튼으로
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			}
+		});
+		
+	</script>
 
-	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-
-
+	
 </body>
 </html>
