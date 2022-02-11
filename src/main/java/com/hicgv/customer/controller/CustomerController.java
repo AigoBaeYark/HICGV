@@ -72,7 +72,7 @@ public class CustomerController {
 //		dao.myCGV(); 어떤 방식을 사용해도 무방함
 //		CustomerDto myCGV(String id)에서 리턴받아옴
 		CustomerDto myCGV=dao.myCGV(id);
-//		모델에  "myCGV"이름으로 myCGV담기
+//		모델에  "myCGV"이름으로 myCGV담아서 myCGV.id로 jsp에 뿌려주기 
 		model.addAttribute("myCGV",myCGV);
 		
 		/*String id = request.getParameter("id");
