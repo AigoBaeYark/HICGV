@@ -20,5 +20,8 @@ public class CustomerDto {
 	String date_birth;
 	String location;
 	Timestamp create_at;
+	String email;
+	String question;
+	String answer;
 
 }

@@ -6,16 +6,25 @@
 <mapper namespace="com.hicgv.customer.dao.CustomerDao">
 	<select id="loginCheck" resultType="com.hicgv.customer.dto.CustomerDto">
 		SELECT
-		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT
+		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
 		FROM HICGV_CUSTOMER
 		WHERE ID LIKE #{param1} AND PASSWORD LIKE #{param2}
 	</select>
 
 	<!--join -->
-<!-- 	<insert id="joinForm">
-		INSERT INTO HICGV_CUSTOMER
-		VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},
-		#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},
-		SYSDATE)
-	</insert> -->
+
+
+	<!-- <insert id="joinForm"> INSERT INTO HICGV_CUSTOMERVALUES(HICGV_customer_seq.nextval, 
+		#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE) 
+		</insert> -->
+
+
+	<!--컨트롤러에 있는 추상메서드와 같게 id를 만들어야함 -->
+	<select id="myCGV" resultType="com.hicgv.customer.dto.CustomerDto">
+		SELECT
+		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
+		FROM HICGV_CUSTOMER
+		WHERE ID LIKE #{param1} 
+	</select>
+
 </mapper>
