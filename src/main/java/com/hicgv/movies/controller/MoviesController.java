@@ -68,18 +68,19 @@ public class MoviesController {
 		System.out.println("director : "+director.getName_kor());
 		model.addAttribute("director", director);
 		
-		/*트레일러*/
+		//트레일러
 		ArrayList<MovieTrailerDto> trailer = dao.trailer(movie_id);
 		for (MovieTrailerDto movieTrailerDto : trailer) {
 			System.out.println("trailer : "+movieTrailerDto.getTrailer_title());
 		}
 		model.addAttribute("trailer", trailer);
 		
-		/*스틸컷*/
+		//스틸컷
 		ArrayList<MoviePosterDto> poster = dao.poster(movie_id);
 		for (MoviePosterDto moviePosterDto : poster) {
 			System.out.println("poster : "+moviePosterDto.getMovie_poster_id());
-		}
+			System.out.println("posterurl : "+moviePosterDto.getMovie_poster_url());
+		} 
 		model.addAttribute("poster", poster);
 		
 		

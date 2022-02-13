@@ -8,5 +8,5 @@ import lombok.Setter;
 public class MoviePosterDto {
 	private int movie_poster_id; 
 	private int movie_id ;
-	private String poster_url ;
+	private String movie_poster_url ; 
 }

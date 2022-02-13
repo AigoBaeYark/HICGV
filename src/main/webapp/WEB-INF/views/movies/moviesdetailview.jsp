@@ -28,7 +28,7 @@
     <h3><strong>${moviesdv.title_kor }</strong>기본정보</h3>
     <div class="box-image">
          <span class="thumb-image"> 
-             <img src="${moviesdv.image_url }" alt="극장판 주술회전 0 포스터 새창" onerror="errorImage(this)"/>
+             <img src="${moviesdv.image_url }" alt="포스터 새창" onerror="errorImage(this)"/>
              <span class="ico-grade grade-${moviesdv.age_limit }"> ${moviesdv.age_limit }</span>
          </span>  
     </div>
@@ -66,7 +66,7 @@
                 <dt>&nbsp;/ 기본 :&nbsp;</dt>
                 <dd class="on">${moviesdv.age_limit },&nbsp;${moviesdv.running_time },&nbsp;${moviesdv.nation }</dd>
                 <dt>개봉 :&nbsp;</dt>
-                <dd class="on">2022.02.17</dd>
+                <dd class="on">${moviesdv.opening_date}</dd>
             </dl>
         </div>
       <!--   <span class="screentype">
@@ -74,6 +74,7 @@
                 <a href="#" class="forDX" title="4DX 상세정보 바로가기" data-regioncode="4D14">4DX</a>  
         </span> -->
 
+	
         <span class="like">
             <!-- 2020.05.07 영화찜하기 -> 프리에그 선택 변경(조회하여 노출) -->
             <a class="link-count" href="javascript:void (0);"><i class="sprite_preegg btn_md default"></i>프리에그</a>
@@ -97,19 +98,20 @@
  		</div>
  </div>
 <!-- 트레일러시작 -->
+
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
                     <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">3건</span><a class="link-more" href="trailer.aspx?midx=85603">더보기</a>
                 </div>
+           <c:forEach items="${trailer }" var="tra">
                 <ul>
                 <!-- 사진 동영상 조회 -->
-                
                     <li>
                         <div class="box-image">
                             <!-- TODO : 동영상 팝업 창 작업 후 링크 걸어야 함 //-->
                             <a href="#" title="새창" class="movie_player_popup" data-gallery-idx="200013">
                                 <span class="thumb-image">
-                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Trailer/85603/85603200013_1024.jpg" alt="[극장판 주술회전 0]2차 예고편" onerror="errorImage(this, {'type':'landscape'})"/>
+                                    <img src="${tra.trailer_image_url }" alt="${tra.trailer_title }" onerror="errorImage(this, {'type':'landscape'})"/>
                                     <span class="ico-play">영상보기</span>
                                 </span>
                             </a>
@@ -119,32 +121,33 @@
                                 <strong class="title">
                                     
                                     <span class="ico-trailer hd">HD</span>
-                                    2차 예고편
+                                    ${tra.trailer_title }
                                 </strong>
                             </a>
                             <span class="txt-info">2022.02.03</span>
                         </div>
                     </li>
 				</ul>
-		</div>
-		
+	</c:forEach> 
+	</div>
+	
 		<!-- 스틸컷 -->
 		<div id="ctl00_PlaceHolderContent_Section_Still_Cut" class="sect-stillcut">
                 <div class="heading">
                     <h4>스틸컷</h4><span class="count"><strong id="stillcut_current">1</strong>/25건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
                 </div>
+             <c:forEach items="${poster }" var="pos"> <!-- items="poster" 로 써서 오류남 -->
                 <div class="slider-wrap">
                     <div class="slider" id="still_motion">
-                        
                         <div class="item-wrap">
                             <div class="item">
-                                <img data-src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000085/85603/85603200171_727.jpg" alt="극장판 주술회전 0" onerror="errorImage(this)" />
+                                <img src="${pos.movie_poster_url }" alt="${pos.movie_poster_id }" onerror="errorImage(this)" />
+                              
                             </div>
                         </div>
-      
                     </div>  
-            </div><!-- .sect-stillcut -->
-		
+            	</div><!-- .sect-stillcut -->
+			</c:forEach>
 	</div>
 
 	</div>
