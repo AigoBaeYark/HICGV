@@ -99,8 +99,14 @@ public class CustomerController {
 		return "/customer/myCGV";
 	}
 	@RequestMapping("/modifyForm")
-	public String joinProc(HttpServletRequest request, Model model) {
+	public String modifyForm(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by modifyForm()=============");
+		
+		return "/customer/modifyForm";
+		}
+	@RequestMapping("/modify")
+	public String modify(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by modify()=============");
 		//xml에 있는 쿼리문을 다시 사용해도 됨. 모든 필드값을 새로 가져오는 것이라니라 기존의 id로 다른 모든 필드를 가져왔던 쿼리문을 사용하여 주소값으로 넘김
 		String id = request.getParameter("id");
 		
@@ -108,12 +114,13 @@ public class CustomerController {
 		CustomerDto dto = dao.myCGV(id);
 		
 		System.out.println(id);
+				
 		
+		/*CustomerDto modify=dao.modify
+				(id,dto.getPassword(),dto.getPhone_number(),dto.getNickname(),dto.getGender(),dto.getDate_birth(),dto.getLocation(),dto.getEmail(),"0","0");*/
+	
 		
-		CustomerDto modifyForm=dao.modifyForm
-				(id,dto.getPassword(),dto.getPhone_number(),dto.getNickname(),dto.getGender(),dto.getDate_birth(),dto.getLocation(),dto.getEmail(),"0","0");
-		
-		model.addAttribute("modifyForm",modifyForm);
-		return "/customer/modifyForm";
+		/*model.addAttribute("modify",modify);*/
+		return "/customer/myCGV";
 		}
 }

@@ -26,7 +26,7 @@
 		FROM HICGV_CUSTOMER
 		WHERE ID LIKE #{param1}
 	</select>
-	<update id="modifyForm">
+	<update id="modify">
 		UPDATE HICGV_CUSTOMER
 		SET PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
 		DATE_BIRTH=#{param6},LOCATION=#{param7},EMAIL=#{param8},QUESTION=#{param9},ANSWER=#{param10}

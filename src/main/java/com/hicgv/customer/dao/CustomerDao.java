@@ -16,8 +16,11 @@ public interface CustomerDao {
 	// 한명의 회원정보만을 가져오기때문에 list를 사용할 필요가 없음 list는 게시판에서 처럼 여러줄의 게시글을 가져올때 사용
 	public CustomerDto myCGV(String id);
 
-	public CustomerDto modifyForm(String id,String password, String phone_number, String nickname,
+	public CustomerDto modify(String id,String password, String phone_number, String nickname,
 			String gender, String date_birth, String location, String email, String question,
 			String answer);
+	/*public void modify(String id,String password, String phone_number, String nickname,
+			String gender, String date_birth, String location, String email, String question,
+			String answer);*/
 
 }

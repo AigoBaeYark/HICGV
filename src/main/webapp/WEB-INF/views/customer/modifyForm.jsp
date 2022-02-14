@@ -16,9 +16,9 @@
 	
 	<div style="margin: 50px;"><!--화원정보 수정 폼 시작  -->
 	<!-- joinProc 이라는 이름으로 xml의 쿼리문으로 이동 -->
-<form action="modifyForm" class="row g-3">
+<form action="modify" class="row g-3">
   <div class="col-md-6"> <!--아이디 / 이름은 변경불가  -->
-    <label for="inputid" class="form-label">아이디: ${modifyForm.id } </label>
+    <label for="inputid" class="form-label">아이디: ${modify.id } </label>
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">변경할 비밀번호</label>
