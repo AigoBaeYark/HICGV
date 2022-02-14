@@ -18,13 +18,21 @@
 		#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE) 
 		</insert> -->
 
-
+	<!--회원id를 찾아 myCGV에 출력 -->
 	<!--컨트롤러에 있는 추상메서드와 같게 id를 만들어야함 -->
 	<select id="myCGV" resultType="com.hicgv.customer.dto.CustomerDto">
 		SELECT
 		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
 		FROM HICGV_CUSTOMER
-		WHERE ID LIKE #{param1} 
+		WHERE ID LIKE #{param1}
 	</select>
+	<update id="modifyForm">
+		UPDATE HICGV_CUSTOMER
+		SET PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
+		DATE_BIRTH=#{param6},LOCATION=#{param7},EMAIL=#{param8},QUESTION=#{param9},ANSWER=#{param10}
+		WHERE ID=#{param1}
+
+	</update>
+
 
 </mapper>

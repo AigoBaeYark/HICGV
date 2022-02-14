@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
 
 <link
@@ -102,13 +102,16 @@
 											<div class="forgot_id">
 												<a href="">아이디 찾기</a>
 												<div class="forgot_pw">
-													<a href="">비밀번호 찾기</a> <br /> ${login.id }님 환영합니다. <br />
-													<br />
+													<a href="">비밀번호 찾기</a>
+												</div>
+												<div><a href="joinForm">회원가입</a></div>
+											</div>
+
+										</div>
 								</form>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<!--로그인 끝  -->
@@ -174,7 +177,7 @@
 								<tr>
 									<td scope="row">인증번호 4자리</td>
 									<td><input type="text" />
-									<button type="submit">인증확인</button></td>
+										<button type="submit">인증확인</button></td>
 								</tr>
 								<tr>
 									<td scope="row">비밀번호</td>
@@ -186,7 +189,7 @@
 						<!--비회원 정보 입력꿑  -->
 						<div style="margin-top: 30px; margin-left: 200px; border: solid;">
 							<!--예매하기버튼 시작  -->
-							<button style="position:relative;">
+							<button style="position: relative;">
 								<a href="">예매하기</a>
 							</button>
 						</div>
@@ -194,14 +197,29 @@
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane fade" id="tab3success">Success 3</div>
+			<div class="tab-pane fade" id="tab3success">비회원 예매확인</div>
+			<div>
+				<!--비회원 예매확인 wrap시작  -->
+				<h3>비회원 예매확인</h3>
+				<br /> 비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해주세요)
+				<div>
+					<!--비회원 예매확인 sect 시작-->
+					모든항목은 필수 입력사항입니다. <br /> 법정생년월일(8자리) <input type="text" /> <br />
+					휴대폰번호 <input type="text" /> <br /> 비밀번호(4자리) <input type="text" />
+
+				</div>
+				<!--비회원 예매확인 sect 끝 -->
+				<div>
+					<!--  버튼 스타일 한번에 적용됨..ㄷㄷㄷ -->
+					<button type="submit" style="border: solid; 1 px; color: red;">비회원
+						예매확인</button>
+				</div>
+			</div>
+			<!--비회원 예매확인 wrap끝 -->
 		</div>
 	</div>
 
-	</div>
-	</div>
-	</div>
-	</div>
+
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>
@@ -210,3 +228,4 @@
 
 
 </html>
+
