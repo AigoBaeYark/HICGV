@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hicgv.customer.dao.CustomerDao;
 import com.hicgv.customer.dto.CustomerDto;
 
+
 //import com.HICGV.dao.customerDao;
 
 @Controller
@@ -97,4 +98,22 @@ public class CustomerController {
 		
 		return "/customer/myCGV";
 	}
+	@RequestMapping("/modifyForm")
+	public String joinProc(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by modifyForm()=============");
+		//xml에 있는 쿼리문을 다시 사용해도 됨. 모든 필드값을 새로 가져오는 것이라니라 기존의 id로 다른 모든 필드를 가져왔던 쿼리문을 사용하여 주소값으로 넘김
+		String id = request.getParameter("id");
+		
+		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+		CustomerDto dto = dao.myCGV(id);
+		
+		System.out.println(id);
+		
+		
+		CustomerDto modifyForm=dao.modifyForm
+				(id,dto.getPassword(),dto.getPhone_number(),dto.getNickname(),dto.getGender(),dto.getDate_birth(),dto.getLocation(),dto.getEmail(),"0","0");
+		
+		model.addAttribute("modifyForm",modifyForm);
+		return "/customer/modifyForm";
+		}
 }
