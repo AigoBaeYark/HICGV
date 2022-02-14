@@ -1,4 +1,4 @@
---&&영화&&--
+--$$영화차트$$-- SJ
 CREATE table hicgv_movie( 
 movie_id number(5) PRIMARY KEY NOT NULL, --영화ID(상단바주소에5글자숫자)
 ranking number(11), --순위
@@ -22,11 +22,11 @@ audience_age30_ratio number(11), --관람객 30대 비율
 audience_age40_ratio number(11), --관람객 40대 비율
 audience_rating number(11), --관람평
 booking_rate number(11) --예매율
-)
+);
 
 SELECT * FROM hicgv_movie;
---DROP TABLE hicgv_movie;
 
+--$영화차트디비$--
 Insert into hicgv_movie 
 (movie_id,title_kor, title_eng, genre, nation, age_limit, running_time, opening_date, image_url, description, ranking) 
 values (84945,'듄','DUNE' ,'SF','미국, 캐나다, 헝가리','12세 관람가',155,'20220209','https://img.cgv.co.kr/Movie/Thumbnail/Poster/000084/84945/84945_320.jpg',
@@ -111,11 +111,4 @@ values (85561,'해적-도깨비 깃발','The Pirates : The Last Royal Treasure',
 해적과 의적, 그리고 역적 
 사라진 보물! 찾는 자가 주인이다! ',6);
 
-
-
-	
-SELECT * FROM HICGV_MOVIE ORDER BY RANKING ;
-SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=85561 ; 
-
-
-
+SELECT * FROM hicgv_movie ORDER BY ranking ;

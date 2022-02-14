@@ -18,7 +18,9 @@ public interface MoviesDao {
 	public ArrayList<MovieActorDto> actor(String movie_id); //배우이름란 (movieactor)
 	public MovieDirectorDto director(String movie_id); //감독이름란
 	public ArrayList<MovieTrailerDto> trailer(String movie_id); //트레일러영상
-	public ArrayList<MoviePosterDto> poster(String movie_id);
+	public int trailercnt(String movie_id); //트레일러영상갯수
+	public ArrayList<MoviePosterDto> poster(String movie_id);//포스터
+	public int postercnt(String movie_id);//포스터갯수
 	
 	
 	

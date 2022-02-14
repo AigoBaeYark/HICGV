@@ -75,6 +75,11 @@ public class MoviesController {
 		}
 		model.addAttribute("trailer", trailer);
 		
+		//트레일러(갯수)
+		int trailercnt = dao.trailercnt(movie_id);
+		System.out.println("trailercnt : "+trailercnt);
+		model.addAttribute("trailercnt",trailercnt); 
+		
 		//스틸컷
 		ArrayList<MoviePosterDto> poster = dao.poster(movie_id);
 		for (MoviePosterDto moviePosterDto : poster) {
@@ -83,9 +88,11 @@ public class MoviesController {
 		} 
 		model.addAttribute("poster", poster);
 		
-		
-		
-		
+		//스틸컷(갯수)
+		int postercnt = dao.postercnt(movie_id);
+		System.out.println("postercnt : "+postercnt);
+		model.addAttribute("postercnt", postercnt);
+			
 		return "movies/moviesdetailview";	
 	}
 	

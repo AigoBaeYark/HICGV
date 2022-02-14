@@ -18,6 +18,7 @@ cache 2;
 SELECT * FROM hicgv_movie_trailer;
 --DROP TABLE hicgv_movie_trailer;
 
+-주술회전-
 INSERT INTO  hicgv_movie_trailer VALUES (trailer_seq.nextval,85603,'2차 예고편','','https://img.cgv.co.kr/Movie/Thumbnail/Trailer/85603/85603200013_1024.jpg');
 INSERT INTO  hicgv_movie_trailer VALUES (trailer_seq.nextval,85603,'런칭 예고편','','https://img.cgv.co.kr/Movie/Thumbnail/Trailer/85603/85603199812_1024.jpg');
 INSERT INTO  hicgv_movie_trailer VALUES (trailer_seq.nextval,85603,'1차 예고편','','https://img.cgv.co.kr/Movie/Thumbnail/Trailer/85603/85603199777_1024.jpg');

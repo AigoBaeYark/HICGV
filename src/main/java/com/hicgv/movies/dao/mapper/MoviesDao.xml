@@ -25,11 +25,20 @@
 	<select id="trailer" resultType="com.hicgv.movies.dto.MovieTrailerDto">
 		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{param1}
 	</select>
+	<!-- 트레일러갯수가져오는 sql코드 -->
+	<select id="trailercnt" resultType="Integer">
+		SELECT COUNT(*) FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID = #{param1}
+	</select>
 	<!-- 포스터가져오는 sql코드 -->
 	<select id="poster" resultType="com.hicgv.movies.dto.MoviePosterDto">
 		SELECT * FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID=#{param1}
 	</select>
-		
+	<!-- 포스터갯수가져오는 sql코드 -->
+	<select id="postercnt" resultType="Integer">
+		SELECT COUNT(*) FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID = #{param1}
+	</select>
+	
+	
 			
 			
 	

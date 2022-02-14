@@ -101,7 +101,7 @@
 
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
-                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">3건</span><a class="link-more" href="trailer.aspx?midx=85603">더보기</a>
+                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more" href="trailer.aspx?midx=85603">더보기</a>
                 </div>
            <c:forEach items="${trailer }" var="tra">
                 <ul>
@@ -124,7 +124,6 @@
                                     ${tra.trailer_title }
                                 </strong>
                             </a>
-                            <span class="txt-info">2022.02.03</span>
                         </div>
                     </li>
 				</ul>
@@ -134,15 +133,14 @@
 		<!-- 스틸컷 -->
 		<div id="ctl00_PlaceHolderContent_Section_Still_Cut" class="sect-stillcut">
                 <div class="heading">
-                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current">1</strong>/25건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
+                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current">1</strong>/${postercnt }건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
                 </div>
              <c:forEach items="${poster }" var="pos"> <!-- items="poster" 로 써서 오류남 -->
                 <div class="slider-wrap">
-                    <div class="slider" id="still_motion">
+                    <div class="" id="still_motion">
                         <div class="item-wrap">
                             <div class="item">
                                 <img src="${pos.movie_poster_url }" alt="${pos.movie_poster_id }" onerror="errorImage(this)" />
-                              
                             </div>
                         </div>
                     </div>  
