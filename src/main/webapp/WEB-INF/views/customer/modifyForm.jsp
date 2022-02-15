@@ -12,46 +12,37 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<div style="margin: 30px;"><h1>이곳에서 회원정보를 수정할 수 있습니다.//로그인을 하지 않으면 화면 전환 X</h1></div>
+<div> <!--회원정보 수정 시작  -->
+<div style="border: solid; 1px; margin: 30px;">
 	
-	<div style="margin: 50px;"><!--화원정보 수정 폼 시작  -->
-	<!-- joinProc 이라는 이름으로 xml의 쿼리문으로 이동 -->
-<form action="modify" class="row g-3">
-  <div class="col-md-6"> <!--아이디 / 이름은 변경불가  -->
-    <label for="inputid" class="form-label">아이디: ${modify.id } </label>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">변경할 비밀번호</label>
-    <input type="password" class="form-control" id="inputPassword4">
-  </div>
-  <div class="col-md-6">
-    <label for="inputid" class="form-label">이름: ${modifyForm.name }  </label>
-  </div>
-  <div class="col-md-6">
-     <p>생년월일<input type="date"> <input type="button" value="저장">
-  </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">주소</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="OO특별시 OO구 OO대로 OO길 OO-OO 2층 506호">
-  </div>
-   <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">닉네임</label>
-    <input type="text" class="form-control" id="">
-  </div>
-  <div class="col-md-6">
-    <label for="inputid" class="form-label">전화번호  </label>
-    <input type="text" class="form-control" id="inputEmail4">
-  </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">성별</label>
-    <select id="inputState" class="form-select">
-      <option selected>남자</option>
-      <option selected>여자</option>      
-    </select>
-    <br />
-    <button style="border: solid; 1px;"><input type="submit" value="수정하고 저장하기" /></button>
-    </div><!--화원정보 수정 폼 끝  -->
-    </form>
+	<form action="modify" method="post">
+	${myCGV.id }님의 정보를 수정 할 수 있습니다. <br />
+		
+	비밀번호 <input type="password" name="password"/> <br />
+	전화번호 <input type="text" name="phone_number"/> <br />
+	닉네임 <input type="text" name="nickname"/> <br />
+	성별 <input type="text" name="gender"/> <br />
+	생일 <input type="text" name="date_birth"/> <br />
+	주소 <input type="text" name="location"/> <br />
+	이메일 <input type="text" name="email"/> <br />
+	질문 <input type="text" name="question"/> <br />
+	답 <input type="text" name="answer"/> <br />
+	<div>
+<input type="submit" value="수정"/ style="border: solid; 1px; margin: 10px;">
+	</div>
+	
+	
+	
+	</form>
+
+
+</div>
+
+
+</div> <!--회원정보 수정 시작  -->
+
+
+
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>

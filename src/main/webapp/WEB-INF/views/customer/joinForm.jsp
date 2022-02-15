@@ -18,42 +18,51 @@
 <div align="center">
 <h3>회원가입</h3>
 <div>
-<form class="row g-3">
+
+<form action="join" class="row g-3">
   <div class="col-md-6">
     <label for="inputid" class="form-label">아이디  </label>
-    <input type="text" class="form-control" id="inputEmail4"> <input type="button" value="중복확인" />
+    <input type="text" name = "id" class="form-control" id="inputEmail4"> <input type="button" value="중복확인" />
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">비밀번호</label>
-    <input type="password" class="form-control" id="inputPassword4">
+    <input type="password" name = "password" class="form-control" id="inputPassword4">
+  </div>
+  <div class="col-md-6">
+    <label for="" class="form-label">이메일</label>
+    <input type="text" name = "email" class="form-control" id="inputPassword4">
   </div>
   <div class="col-md-6">
     <label for="inputid" class="form-label">이름  </label>
-    <input type="text" class="form-control" id="inputEmail4">
+    <input type="text"  name = "name" class="form-control" id="inputEmail4">
   </div>
   <div class="col-md-6">
-     <p>생년월일<input type="date"> <input type="button" value="저장">
+     <p>생년월일<input type="text" name="date_birth" placeholder="ex)2020.01.01">
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">주소</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="OO특별시 OO구 OO대로 OO길 OO-OO 2층 506호">
+    <input type="text" name="location" class="form-control" id="inputAddress" placeholder="OO특별시 OO구 OO대로 OO길 OO-OO 2층 506호">
   </div>
    <div class="col-md-6">
     <label for="inputPassword4" class="form-label">닉네임</label>
-    <input type="password" class="form-control" id="inputPassword4">
+    <input type="text" name="nickname" class="form-control" id="inputPassword4">
   </div>
   <div class="col-md-6">
     <label for="inputid" class="form-label">전화번호  </label>
-    <input type="text" class="form-control" id="inputEmail4">
+    <input type="text" name="phone_number" class="form-control" id="inputEmail4">
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">성별</label>
-    <select id="inputState" class="form-select">
+    <select id="inputState"  name="gender" class="form-select">
       <option selected>남자</option>
       <option selected>여자</option>
-      
     </select>
-
+ <div>
+    질문. <input type="text" name="question" value=""/> 
+    </div>
+   <div>
+    답. <input type="text" name="answer" value=""/> 
+    </div>
   <div class="col-12">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">

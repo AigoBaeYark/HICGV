@@ -27,12 +27,19 @@
 		WHERE ID LIKE #{param1}
 	</select>
 	<update id="modify">
-		UPDATE HICGV_CUSTOMER
-		SET PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
+		UPDATE hicgv_customer
+		SET
+		PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
 		DATE_BIRTH=#{param6},LOCATION=#{param7},EMAIL=#{param8},QUESTION=#{param9},ANSWER=#{param10}
-		WHERE ID=#{param1}
+		WHERE ID LIKE #{param1}
 
 	</update>
-
-
+	<insert id="join">
+		INSERT INTO HICGV_CUSTOMER
+		VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},#{param4},
+		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11})
+	</insert>
+	<delete id="delete">
+		DELETE FROM hicgv_customer WHERE id like #{param1}
+	</delete>
 </mapper>
