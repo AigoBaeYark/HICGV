@@ -8,4 +8,15 @@
  <select id="movieChart" resultType="com.hicgv.movies.dto.MoviesDto">
  	SELECT * FROM HICGV_MOVIE ORDER BY RANKING 
  	</select>
+ 	
+ 	<!-- <insert>
+ 		insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, #{param1}, #{param2}) 
+ 	</insert> -->
+ 	
+ 	<!-- <update>
+ 		update set audience_today = #{param1} = (api 가져온 관람객 수)
+ 		where movie_id = #{param2}
+ 	</update> -->
+ 	
+ 	
  </mapper>  

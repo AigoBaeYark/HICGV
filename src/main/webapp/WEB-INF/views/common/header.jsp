@@ -10,6 +10,7 @@
 <title>header</title>       
 
 <link rel="stylesheet" href="${path }/resources/css/main/reset.css" />
+<link rel="stylesheet" href="${path }/resources/css/main/layout.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/jquery-ui-1.10.4.custom.min.css" />
 
 <script src="${path }/resources/js/main/jquery-1.10.2.min.js" ></script>

@@ -8,11 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="${path }/resources/css/reset.css" />
-<link rel="stylesheet" href="${path }/resources/css/main/layout.css" />
-<link rel="stylesheet"
-	href="${path }/resources/css/main/jquery-ui-1.10.4.custom.min.css" />
-
 <title>Insert title here</title>
 </head>
 <body>
