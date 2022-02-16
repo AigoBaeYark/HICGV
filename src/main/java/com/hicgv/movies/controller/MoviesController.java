@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,15 @@ public class MoviesController {
 		model.addAttribute("movies",moives); 
 		
 		
+		// movielist받기(추후작성)
+		String url = "http://www.cgv.co.kr/movies/";
+		Connection connection = Jsoup.connect(url);
+		
+		
+		
 		return "movies/movies";	
+		
+		
 	}
 	
 	/*영화상세보기란*/
@@ -95,6 +105,8 @@ public class MoviesController {
 			
 		return "movies/moviesdetailview";	
 	}
+	
+	
 	
 	
 	
