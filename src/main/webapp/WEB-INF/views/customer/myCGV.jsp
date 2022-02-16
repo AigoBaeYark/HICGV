@@ -62,7 +62,7 @@
 	</div><!--나의예매확인 버튼div 끝 -->
 	<div style="border: solid; 1px;"><!--회원정보 수정 / 회원탈퇴 div 시작 -->
 	<button type="submit"><a href="modifyForm?id=${myCGV.id }">회원정보수정</a></button> <br />
-	<button type="submit"><a href="customerDelete?">회원탈퇴</a></button>customerDelete
+	<button type="submit"><a href="customerDelete?id=${myCGV.id }">회원탈퇴</a></button>
 	</div><!--회원정보 수정 / 회원탈퇴 div 끝 -->
 		</div><!--나의 예매내역 끝  -->
 	

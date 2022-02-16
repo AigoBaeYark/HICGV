@@ -167,7 +167,7 @@ public class CustomerController {
 				question, answer);
 
 		return "/customer/myCGV";
-	}
+	}//회원탈퇴 화면으로 이동
 	@RequestMapping("/customerDelete")
 	public String customerDelete(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by customerDelete()=============");
@@ -175,10 +175,9 @@ public class CustomerController {
 		
 		String id=request.getParameter("id");
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		dao.delete(id);
 		
-		return "customerDelete";
-	}
+		return "/customer/customerDelete";
+	}//회원탈퇴 화면에서 탈퇴 진행
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by delete()=============");
