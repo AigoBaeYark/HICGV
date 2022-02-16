@@ -1,13 +1,33 @@
-
-#movieChart_list .movieChart_btn_wrap{
-	/* display: none; */
+div.movieSelection_wrap {
 	position: relative;
-	font-size: 20px;
-	
+	height: 498px;
+	background-color: #000;
+	border-top: 2041e3;
+}
+div.movieSelection_wrap > .contents {
+	width: 980px; height: 100%; margin: 0 auto;
 }
 
-#movieChart_list  #poster:hover{
+strong.movieSelection_title {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+	color: #fff;
+	font-size: 40px;
+	font-weight: 400;
+}
+span.movieSelection_txt {
+	    color: #fff;top: 100px;left: 0px;position: absolute;
+}
+
+#movieChart_list .movieChart_btn_wrap {
+	display: none;
+	position: absolute;
+	font-size: 20px;
+	top: 180px;
+}
+
+#movieChart_list  #poster:hover {
 	/*영화 포스터 위에 마우스를 올리면*/
 	margin: 10px 0;
-	
 }

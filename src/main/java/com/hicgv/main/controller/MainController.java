@@ -66,8 +66,9 @@ public class MainController {
 		Connection connection = Jsoup.connect(url);
 		ArrayList<String> rankli = new ArrayList<String>();
 		ArrayList<String> titleli = new ArrayList<String>();
-
-		try {
+		
+		/*try {
+			//cgv 홈페이지에서 랭크, 제목 가져오기
 			Document document = connection.get();
 			Elements e = document.select("div.sect-movie-chart");
 			Iterator<Element> rank = e.select("strong.rank").iterator();
@@ -96,7 +97,7 @@ public class MainController {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
+		}*/
 
 		ArrayList<MoviesDto> list = dao.movieChart();
 		for (MoviesDto moviesDto : list) {
@@ -104,10 +105,10 @@ public class MainController {
 		}
 		mainService = new MainServiceImpl();
 		
-		mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
-		mainService.getMovieID();				//cgv에서 movieID 가져오기
+		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
+		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
-		model.addAttribute("trailer", mainService.getTrail());
+		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
 		model.addAttribute("movie", list);
 
 		return "main";
