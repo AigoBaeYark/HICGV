@@ -1,6 +1,8 @@
 package com.hicgv.main.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -14,21 +16,29 @@ public class GetTrailer {
 	//cgv 메인페이지 트레일러 주소 가져오기
 	private String url = "https://www.cgv.co.kr/";
 	Connection connection = Jsoup.connect(url);
+	private Map<String, String> trailMap = new HashMap<String, String>();
 	
-	public String getTrailer() {
+	public Map<String, String> getTrailer() {
 		String trailerUrl=null;
+		String trailerTitle=null;
+		String trailerScr=null;
 		try {
 			
-			ArrayList<String> arrayList = new ArrayList<String>();
 			
 			Document document = connection.get();
-			Elements elements = document.select("video");
+			Elements elements = document.select("div.video_wrap");
 			
 			for (Element element : elements) {
 				System.out.println(element);
-				element.children();
-				trailerUrl = element.select("source").attr("src");
+				
+				trailMap.put("video", trailerUrl = element.select("source").attr("src"));
+				trailMap.put("title", trailerTitle = element.select("strong").toString());
+				trailMap.put("script",trailerScr = element.select("span").toString());
+				
 				//System.out.println(trailerUrl);
+				
+				System.out.println(trailerTitle);
+				System.out.println(trailerScr);
 
 			}
 			
@@ -37,7 +47,7 @@ public class GetTrailer {
 			
 			// TODO: handle exception
 		}
-		return trailerUrl;
+		return trailMap;
 
 	}
 }

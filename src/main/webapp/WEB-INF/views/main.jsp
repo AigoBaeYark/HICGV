@@ -29,21 +29,17 @@
 
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
-		class="movieSelection_wrap" style="position: relative; height: 498px;">
-		<div class="contents"
-			style="width: 980px; height: 100%; margin: 0 auto;">
+		class="movieSelection_wrap" >
+		<div class="contents">
 			<div class="video_wrap"
 				style="overflow: hidden; position: relative; width: 100%; height: 100%;">
 				<video autoplay="" muted=""
-					style="position: relative;width: 100%;height: 100%;transform: scale(1.35);z-index: 1;">
-				<source src="${trailer }" type="video/mp4"></video>
+					style="position: relative;width: 100%;height: 100%;transform: scale(1.35);z-index: 0;">
+				<source src="${trailer.video }" type="video/mp4"></video>
 
-				<strong id="ctl00_PlaceHolderContent_AD_MOVIE_NM"
-					class="movieSelection_title">355</strong> <span
-					id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM"
-					class="movieSelection_txt">&lt;블랙 위도우&gt;&lt;본 시리즈&gt; 제작진<br>2022
-					첫 초대형 액션 블록버스터!
-				</span>
+				${trailer.title }
+				${trailer.script }
+
 				<div class="movieSelection_video_controller_wrap">
 					<a
 						href="http://ad.cgv.co.kr/click/CGV/CGV_201401/main@MovieSelection2021?ads_id%3d46468%26creative_id%3d66008%26click_id%3d86299%26maid%3D%26event%3d"
@@ -95,7 +91,7 @@
 				
 					<div class="swiper-slide" style="width: 170px;margin-right: 32px; float: left;">
 						
-						<div class="img_wrap" data-scale="false" onmouseover = "mover()">
+						<div class="img_wrap" data-scale="false" onmouseover = "mover(${mov.ranking})" onmouseout="mout(${mov.ranking})">
 							<!-- 영화 포스터 (포스터이미지, 나이, 특수상영관, 버튼)-->
 							<img id="poster" src="${mov.image_url }" alt="영화포스터" style="width: 100%; height: 234px;" />
 							<div class="movieAgeLimit_wrap">
@@ -107,9 +103,9 @@
 								<!-- 특수상영관 갯수만큼 반복 4dx, imax 등 -->
 							</div>
 
-							<div class="movieChart_btn_wrap btn_${mov.ranking }">
+							<div class="movieChart_btn_wrap btn_${mov.ranking }" style="display: none;">
 								<!-- 포스터 위에 마우스 올리면 상새보기 및 예매하기버튼 나옴 -->
-								<a href="" class="btn_movieChart_detail">상세보기</a>
+								<a href="moviesdetailview?movie_id=${mov.movie_id }" class="btn_movieChart_detail">상세보기</a>
 								<!-- 영화테이블 참조 -->
 								<a href="" class="btn_movieChart_ticketing">예매하기</a>
 								<!-- 예매테이블 참조 -->
@@ -142,20 +138,30 @@
 	<script>
 		var num;
 		var movieChartSwiper = 	new Swiper("#movieChart_list",{
-			slidesPerView: 5,
-			spaceBetween: 35,
-			slidesPerGroup: 1,
-			//슬라이드 버튼으로
+			slidesPerView: 5,	//한번에 5페이지
+			spaceBetween: 35,	//각 영화포스터 사이간격
+			slidesPerGroup: 1,	//버튼 누르면 바뀌는 갯수
+			//슬라이드 버튼
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
 			}
 		});
 		
-		function mover() {
+		function mover(rank) {
 			//alert("hgi");
-			alert(num);
+			//alert(rank);
 			
+			//마우스올려놓으면 그 포스터의 버튼 선택됨
+			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="inline";
+		}
+		
+		function mout(rank) {
+			//alert("hgi");
+			//alert(rank);
+			
+			//마우스올려놓으면 그 포스터의 버튼 선택됨
+			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="none";
 		}
 		
 		

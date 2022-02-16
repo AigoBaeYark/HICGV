@@ -45,18 +45,8 @@
 <div class="header_content">
     <div class="contents">
         <h1><a href="main"><img src="${path }/resources/img/main/logoRed.png" alt="CGV"></a><span>CULTUREPLEX</span></h1>
-        <ul class="memberInfo_wrap">
-            <!-- Advertisement -->
-            
-			<div class="ad-partner">
-                <a href="http://www.cgv.co.kr/culture-event/event/detailViewUnited.aspx?seq=31426&amp;menu=006">
-                    <img src="${path }/resources/img/main/16417749747880.png" alt="현대M포인트">
-                </a>					
-			</div>
-            
-            <!-- /Advertisement -->
-
-            
+        <ul class="memberInfo_wrap"> 
+                  
             <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
             <li><a href="https://www.cgv.co.kr/user/join/"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
             
@@ -201,10 +191,6 @@
         $('#wrap_main_notice').parent('div').css('top', 280);
     }
 
-    //비즈스프링 클릭로그
-    function setClickLog(title) {
-        // eval("try{trk_clickTrace('EVT', '" + title + "')}catch(_e){}");
-    }
 </script>
 
  <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
@@ -215,17 +201,16 @@
             <li>
                 <h2><a href="movies">영화</a></h2>
                 <dl class="nav_overMenu" style="">
-                    <dt><h2><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0" tabindex="-1">영화</a></h2></dt>
-                    <dd><h3><a href="https://www.cgv.co.kr/movies/?lt=1&amp;ft=0">무비차트</a></h3></dd>
+                    <dt><h2><a href="movies" tabindex="-1">영화</a></h2></dt>
+                    <dd><h3><a href="movies">무비차트</a></h3></dd>
                     <dd><h3><a href="https://www.cgv.co.kr/arthouse/">아트하우스</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/culture-event/event/detailViewUnited.aspx?seq=30717">ICECON</a></h3></dd>
                 </dl>
             </li>
             <li>
                 <h2><a href="theater">극장</a></h2>
                 <dl class="nav_overMenu" style="">
-                    <dt><h2><a href="https://www.cgv.co.kr/theaters/" tabindex="-1">극장</a></h2></dt>
-                    <dd><h3><a href="https://www.cgv.co.kr/theaters/">CGV 극장</a></h3></dd>
+                    <dt><h2><a href="theaters" tabindex="-1">극장</a></h2></dt>
+                    <dd><h3><a href="theater">CGV 극장</a></h3></dd>
                     <dd><h3><a href="https://www.cgv.co.kr/theaters/special/">특별관</a></h3></dd>
                 </dl>
             </li>
@@ -235,19 +220,12 @@
                     <dt><h2><a href="https://www.cgv.co.kr/ticket/" tabindex="-1">예매</a></h2></dt>
                     <dd><h3><a href="https://www.cgv.co.kr/ticket/">빠른예매</a></h3></dd>
                     <dd><h3><a href="https://www.cgv.co.kr/reserve/show-times/">상영스케줄</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/ticket/eng/newdefault.aspx">English Ticketing</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/reserve/show-times/eng/">English Schedule</a></h3></dd>
                 </dl>
             </li>
             <li>
                 <h2><a href="https://www.cgv.co.kr/culture-event/popcorn-store/">스토어</a></h2>
                 <dl class="nav_overMenu" style="">
                     <dt><h2><a href="https://www.cgv.co.kr/culture-event/popcorn-store/" tabindex="-1">스토어</a></h2></dt>
-                    
-                            <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=2">영화관람권</a></h3></dd>
-                        
-                            <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=3">기프트카드</a></h3></dd>
-                        
                             <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=4">콤보</a></h3></dd>
                         
                             <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=5">팝콘</a></h3></dd>
@@ -255,17 +233,15 @@
                             <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=6">음료</a></h3></dd>
                         
                             <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=7">스낵</a></h3></dd>
-                        
-                            <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=10">플레이존</a></h3></dd>
-                        
-                    <dd><h3><a href="https://brand.naver.com/cgv" class="arrowR" target="_blank">씨네샵</a></h3></dd>
+                                                
+                   
                 </dl>
   			</li>
         </ul>
         <div class="totalSearch_wrap">
             <label for="totalSearch">
-                <input type="text" id="header_keyword" value="" placeholder="더 배트맨">
-                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword" value="더 배트맨">
+                <input type="text" id="header_keyword" value="" placeholder="영화검색">
+                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword" value="">
             </label>
             <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
             <iframe src="./영화 그 이상의 감동. CGV_files/main@Search_txt.html" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
@@ -277,7 +253,7 @@
 	<div class="fixedBtn_wrap">
         <a href="" class="btn_fixedTicketing">예매하기</a>
         
-        <a class="btn_gotoTop"><img src="${path }/resources/img/main/gotoTop.png" alt="최상단으로 이동"></a>
+        <a class="btn_gotoTop" style="cursor: pointer;"><img src="${path }/resources/img/main/gotoTop.png" alt="최상단으로 이동" ></a>
     </div>
 
 
