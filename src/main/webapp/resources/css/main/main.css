@@ -1,0 +1,13 @@
+
+#movieChart_list .movieChart_btn_wrap{
+	/* display: none; */
+	position: relative;
+	font-size: 20px;
+	
+}
+
+#movieChart_list  #poster:hover{
+	/*영화 포스터 위에 마우스를 올리면*/
+	margin: 10px 0;
+	
+}

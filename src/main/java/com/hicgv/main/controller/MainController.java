@@ -1,11 +1,20 @@
 package com.hicgv.main.controller;
 
+import java.awt.RenderingHints.Key;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
+import javax.security.auth.Refreshable;
+
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hicgv.main.dao.MainDao;
+import com.hicgv.main.service.MainService;
+import com.hicgv.main.serviceImpl.MainServiceImpl;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
@@ -25,49 +36,102 @@ import com.hicgv.movies.dto.MoviesDto;
 public class MainController {
 	@Autowired
 	private SqlSession sqlSession;
-	
+	private MainServiceImpl mainService;
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		model.addAttribute("serverTime", formattedDate);
+
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		System.out.println("!MainController!");
 		MainDao dao = sqlSession.getMapper(MainDao.class);
-	 
-		
+
+		// jsoup 테스트
+		String url = "http://www.cgv.co.kr/movies/";
+		Connection connection = Jsoup.connect(url);
+		ArrayList<String> rankli = new ArrayList<String>();
+		ArrayList<String> titleli = new ArrayList<String>();
+
+		try {
+			Document document = connection.get();
+			Elements e = document.select("div.sect-movie-chart");
+			Iterator<Element> rank = e.select("strong.rank").iterator();
+			Iterator<Element> title = e.select("strong.title").iterator();
+
+			while (rank.hasNext()) {
+				
+				// rank 앞의 no. 없애기
+				// rankli.add(rank.next().text().substring(3));
+
+				// Iterator 출력, 리스트에 넣기
+				System.out
+						.println(rankli.add(rank.next().text().substring(3)) + "\t" + titleli.add(title.next().text()));
+				// System.out.println(rank.next().text() + "\t" +
+				// titleli.add(title.next().text()));
+
+			}
+
+			for (String li : rankli) {
+				// 리스트에 잘 들어갔는지 확인
+				System.out.println(li + "\t" + titleli.get(Integer.parseInt(li)));
+
+				// dao.insertMovie(li,titleli.get(Integer.parseInt(li)));
+				// dao.dailyViewer(movie_id, api가져온 관람객);
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		ArrayList<MoviesDto> list = dao.movieChart();
 		for (MoviesDto moviesDto : list) {
-			System.out.println("1"+moviesDto.getTitle_kor());
+			System.out.println("1" + moviesDto.getTitle_kor());
 		}
+		mainService = new MainServiceImpl();
 		
-		model.addAttribute("movie",list);
+		mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
+		mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
+		model.addAttribute("trailer", mainService.getTrail());
+		model.addAttribute("movie", list);
+
 		return "main";
 	}
-	
 
 	@RequestMapping(value = "header", method = RequestMethod.GET)
 	public String header(Locale locale, Model model) {
-	
-		
+
+		// 영화를 넣는법
+		// 1. 직접입력
+		// 2. api 가져오기
+
 		return "common/header";
 	}
 	
-	
+	@RequestMapping(value="/seatTest")
+	public String seat(Locale locale, Model model) {
+		System.out.println("!seatTest!");
+		
+		return "common/seatTest";
+	}
+
+	// public String DailyRefresh() {
+	// //dao.dailyViewer(movie_id, api가져온 관람객);
+	// }
+
 }

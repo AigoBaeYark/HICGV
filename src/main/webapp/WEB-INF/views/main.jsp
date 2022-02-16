@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
+<link rel="stylesheet" href="${path }/resources/css/main/main.css" />
+
 <%-- <link href="${path }/resources/css/main/swiper-bundle.min.css">
 <script src="${path }/resources/js/main/swiper.min.js"> --%>
 
@@ -23,6 +25,7 @@
 
 
 	<a href="header">header</a>
+	<a href="seatTest">seatTest</a>
 
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
@@ -33,10 +36,7 @@
 				style="overflow: hidden; position: relative; width: 100%; height: 100%;">
 				<video autoplay="" muted=""
 					style="position: relative;width: 100%;height: 100%;transform: scale(1.35);z-index: 1;">
-				<source
-					src="https://adimg.cgv.co.kr/images/202201/355/355_1080x608_0126.mp4"
-					type="video/mp4"> 이 브라우저는 Video 태그를 지원하지 않습니다. (Your
-				browser does not support the video tag.) </video>
+				<source src="${trailer }" type="video/mp4"></video>
 
 				<strong id="ctl00_PlaceHolderContent_AD_MOVIE_NM"
 					class="movieSelection_title">355</strong> <span
@@ -92,11 +92,12 @@
 			<div class="swiper-container swiper " id="movieChart_list" style="position: relative; clear: none;float: none; margin: 0 auto;">
 				<div class="swiper-wrapper" style="tranform: translate3d(0px, 0px, 0px); height: 295px;">
 				<c:forEach items="${movie }" var="mov">
+				
 					<div class="swiper-slide" style="width: 170px;margin-right: 32px; float: left;">
-
-						<div class="img_wrap" data-scale="false">
+						
+						<div class="img_wrap" data-scale="false" onmouseover = "mover()">
 							<!-- 영화 포스터 (포스터이미지, 나이, 특수상영관, 버튼)-->
-							<img src="${mov.image_url }" alt="영화포스터" style="width: 100%; height: 234px;" />
+							<img id="poster" src="${mov.image_url }" alt="영화포스터" style="width: 100%; height: 234px;" />
 							<div class="movieAgeLimit_wrap">
 								<img src="" alt="${mov.age_limit }" />
 							</div>
@@ -106,7 +107,7 @@
 								<!-- 특수상영관 갯수만큼 반복 4dx, imax 등 -->
 							</div>
 
-							<div class="movieChart_btn_wrap">
+							<div class="movieChart_btn_wrap btn_${mov.ranking }">
 								<!-- 포스터 위에 마우스 올리면 상새보기 및 예매하기버튼 나옴 -->
 								<a href="" class="btn_movieChart_detail">상세보기</a>
 								<!-- 영화테이블 참조 -->
@@ -138,8 +139,8 @@
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>
 	
-		<script>
-		
+	<script>
+		var num;
 		var movieChartSwiper = 	new Swiper("#movieChart_list",{
 			slidesPerView: 5,
 			spaceBetween: 35,
@@ -150,6 +151,13 @@
 				prevEl: '.swiper-button-prev',
 			}
 		});
+		
+		function mover() {
+			//alert("hgi");
+			alert(num);
+			
+		}
+		
 		
 	</script>
 
