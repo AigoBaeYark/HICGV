@@ -92,7 +92,6 @@ public class TheaterController {
 		minute=startTime.substring(14,16);
 		
 		
-		
 		String tempTime = hour + minute;
 		int numTime = Integer.parseInt(tempTime);
 		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); // 상영 시간
