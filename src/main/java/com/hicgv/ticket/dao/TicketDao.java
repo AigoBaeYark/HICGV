@@ -1,5 +1,11 @@
 package com.hicgv.ticket.dao;
 
-public class TicketDao {
+import java.util.ArrayList;
+
+import com.hicgv.ticket.dto.TicketDto;
+
+public interface TicketDao {
+
+	public ArrayList<TicketDto> ticket();
 
 }
