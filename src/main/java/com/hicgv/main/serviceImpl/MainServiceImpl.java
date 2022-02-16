@@ -6,7 +6,6 @@ import com.hicgv.main.service.MainService;
 import com.hicgv.main.util.DailyViewers;
 import com.hicgv.main.util.GetMoiveID;
 import com.hicgv.main.util.GetTrailer;
-import com.hicgv.main.util.GetTrailerScript;
 
 public class MainServiceImpl  implements MainService{
 	public void getDailyViewers(String day) {
