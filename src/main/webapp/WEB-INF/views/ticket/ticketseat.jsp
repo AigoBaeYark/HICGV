@@ -7,6 +7,7 @@
 <title>ticket/ticketseat</title>
 </head>
 <body>
-
+<!-- PayDao 테스트용 -->
+<a href="pay?userid=1&movieid=20210087">pay</a>
 </body>
 </html>

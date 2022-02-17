@@ -121,16 +121,21 @@
 	                        <span>02월</span> 
 	                        <em>목</em> 
 	                        <strong>10</strong>
-	                        <c:forEach items="${timeList }" var="time">
-	                        	<c:forEach items="${time }" var="time2">
-	                        	<c:set></c:set>
-	                        		<div>
-	                        			<%-- 시작 : ${time2.tempTime } --%>
-	                        			종료 : ${time2.key }
-	                        		</div>
-	                        	</c:forEach>
-	                        </c:forEach>
                         </a>
+	                        <c:forEach items="${timeList }" var="list">
+	                        	<div>
+	                        		<ul>
+	                        			<li>
+	                        				<a href="#">
+	                        					<em>${list.tempTime }</em>
+	                        				</a>
+	                        			</li>
+	                        		</ul>
+	                        	</div>
+	                        </c:forEach>
+	                        <c:forEach items="${movieInfo }" var="dto">
+	                        	<span>${dto.max_seat }</span>
+	                        </c:forEach>
                      </div>
                   </li>
                </ul>
