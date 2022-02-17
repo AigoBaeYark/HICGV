@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://myba``tis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.hicgv.pay.dao.PayDao">
+	<select id="getPayInfo" resultType="com.hicgv.pay.dto.PayDto">
+		SELECT * FROM HICGV_PAY
+		WHERE USER_ID=#{param1} AND MOVIE_ID=#{param2}
+	</select>
+
+</mapper>

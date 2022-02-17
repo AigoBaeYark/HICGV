@@ -89,7 +89,7 @@
 								</button>
 								에서 ${login.id }님의 정보를 확인하고 수정할 수 있습니다.
 
-								<form action="loginCheck">
+								<form action="loginCheck" method="post">
 									<div class="login-group">
 										<label for="id">아이디 </label><input type="text" name="id" /> <label
 											for="id">비밀번호 </label> <input type="password" name="password" />

@@ -5,7 +5,7 @@
     "http://myba``tis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.hicgv.theater.dao.TheaterDao">
-	<select id="theater" resultType="com.hicgv.theater.dto.LocationDto">
+	<select id="getTheaterInfo" resultType="com.hicgv.theater.dto.LocationDto">
 		SELECT LOCATION_ID,THEATER_ID,LOCATION_NAME,LOCATION_ADD,LOCATION_TEL
 		FROM HICGV_THEATER_LOCATION ORDER BY LOCATION_NAME
 	</select>

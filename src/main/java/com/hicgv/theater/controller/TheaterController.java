@@ -2,6 +2,7 @@ package com.hicgv.theater.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class TheaterController {
    private SqlSession sqlSession;
 
    @RequestMapping("/theater")
-   public String theater(HttpServletRequest request, Model model) {
+   public String getTheaterInfo(HttpServletRequest request, Model model) {
       System.out.println("======= << theater >> =======");
 
       String theaterid = request.getParameter("theaterid");
@@ -54,7 +55,7 @@ public class TheaterController {
       loc = dao.getLocationInfo(locid);
       System.out.println(loc.getLocation_add());
       
-      model.addAttribute("theater", dao.theater());
+      model.addAttribute("theater", dao.getTheaterInfo());
       model.addAttribute("img" , dao.getImg(locid));
       model.addAttribute("movieinfo",dao.getMoviesInfo(locid));
       model.addAttribute("locinfo",dao.getLocationInfo(locid));
@@ -67,22 +68,23 @@ public class TheaterController {
    public String timeSelect(HttpServletRequest request, Model model) {
 	   System.out.println("======= << timeSelect >> =======");
 	   String locid = request.getParameter("locid");
-	   //String selectDate = request.getParameter("selectDate");
-	   
-	   ArrayList<Map<String, String>> timeList = new ArrayList<Map<String, String>>();
 	   
 	   System.out.println("locid : " + locid);
+	   
 	   TheaterDao dao = sqlSession.getMapper(TheaterDao.class);
 	   
-	   ArrayList<TimeInfoDto> list=dao.getTime("101");
+	   ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
+	   
+	   ArrayList<TimeInfoDto> tList=dao.getTime(locid);
 	   String year="";
 	   String month="";
 	   String day="";
 	   String hour="";
 	   String minute="";
 	   
-	   for (TimeInfoDto timeInfoDto : list) {
-		Map<String, String> tempTimeMap = new HashMap<String, String>();
+	   for (TimeInfoDto timeInfoDto : tList) {
+		
+		// 연, 월, 일, 시, 분 추출
 		String startTime=timeInfoDto.getStart_date();
 		System.out.println("startTime : "+startTime);
 		year=startTime.substring(0,4);
@@ -91,43 +93,40 @@ public class TheaterController {
 		hour=startTime.substring(11,13);
 		minute=startTime.substring(14,16);
 		
-		
+		// 상영 종료시간 계산
 		String tempTime = hour + minute;
 		int numTime = Integer.parseInt(tempTime);
-		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); // 상영 시간
+		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); 
 		
 		numTime = numTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
 		if(numTime%100 >= 60) {
 			numTime -=60;
 		}
 		
-		tempTimeMap.put("year", year);
-		tempTimeMap.put("month", month);
-		tempTimeMap.put("day", day);
-		tempTimeMap.put("hour", hour);
-		tempTimeMap.put("minute", minute);
-		tempTimeMap.put("tempTime", tempTime);
-		tempTimeMap.put("numTime",  Integer.toString(numTime));
+		Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
 		
-		timeList.add(tempTimeMap);
-		
-		
-		
-//		System.out.println("year : "+year);
-//		System.out.println("month : "+month);
-//		System.out.println("day : "+day);
-//		System.out.println("hour : "+hour);
-//		System.out.println("minute : "+minute);
-//		System.out.println("tempTime : "+tempTime);
-//		System.out.println("numTime : "+numTime);
+		timeMap.put("year", year);
+		timeMap.put("month", month);
+		timeMap.put("day", day);
+		timeMap.put("hour", hour);
+		timeMap.put("minute", minute);
+		timeMap.put("tempTime", tempTime);
+		timeMap.put("numTime",  numTime);
+	
+		timeListMap.add(timeMap);
 		
 	}
-	   for (Map<String, String> tempMap : timeList) {
+	   for (Map<String, Object> tempMap : timeListMap) {
 			System.out.println(tempMap.get("year"));
 			System.out.println(tempMap.get("numTime"));
 			
 		}
-	   model.addAttribute("timeList",timeList);
+	   
+	   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(locid);
+	   
+	   
+	   model.addAttribute("timeList",timeListMap);
+	   model.addAttribute("movieInfo",mList);
 	   return "theater/theater";
    }
 
