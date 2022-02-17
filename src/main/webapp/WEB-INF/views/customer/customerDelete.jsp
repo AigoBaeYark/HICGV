@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="resources/css/reset.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,10 +22,17 @@
 					<h3>HICGV 회원 탈퇴하시면 해당 웹사이트의 이용이 중지됩니다.</h3>
 					<div>HICGV 아이디 : ${myCGV.id }</div>
 					<div>
-						<form action="delete" id="delete">
-							<button type="submit">회원탈퇴</button>
+						<form action="delete">
+						<div>
+						회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.
+						</div>
+						<div>
+						아이디 <input type="text" name="id" /> <br />
+						비밀번호 <input type="password" name="password" /> <br />
+						</div>
+							<input type="submit" value="회원탈퇴"/>
 						</form>
-						<form action="myCGV">
+						<form action="home" method="post">
 							<button type="submit">취소</button>
 						</form>
 					</div>
@@ -32,9 +41,7 @@
 
 		</div>
 	</div>
-	!-customerDelete 끝-->
-
-
+	<!-customerDelete 끝-->
 
 
 	<div style="clear: both;">

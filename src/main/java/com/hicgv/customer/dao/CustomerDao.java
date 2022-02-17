@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import com.hicgv.customer.dto.CustomerDto;
 
 public interface CustomerDao {
-	public CustomerDto loginCheck(String id, String password);
-
+	public CustomerDto loginCheck(String id, String password); 
+//	public boolean loginCheck(String id, String password); // if문으로 아이디 비번 체크 불린타입
 	/*public void joinForm(int user_id, String id, String password, String name, String phone_number, String nickname,
 			String gender, String date_birth, String location, Timestamp create_at, String email, String question,
 			String answer);*/
@@ -25,6 +25,8 @@ public interface CustomerDao {
 			String nickname, String gender, String date_birth, String location ,String email, String question,
 			String answer);
 
-	public void delete(String id);
+	public void delete(String id, String password);
+
+	
 
 }
