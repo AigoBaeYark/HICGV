@@ -1,12 +1,14 @@
 package com.hicgv.movies.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MovieActorDto;
 import com.hicgv.movies.dto.MoviesDto;
+import com.hicgv.movies.serviceImpl.MoviesServiceImpl;
 import com.hicgv.movies.dto.MovieDirectorDto;
 import com.hicgv.movies.dto.MoviePosterDto;
 import com.hicgv.movies.dto.MovieTrailerDto;
@@ -25,6 +28,7 @@ public class MoviesController {
 	
 	@Autowired
 	private SqlSession sqlSession; //sqlSession은 트랜젝션(SELECT, UPDATE, INSERT, DELETE 등) 관련하여 해당 기능을 사용하기 쉽게 해주는것
+	private MoviesServiceImpl moviesserviceImpl;
 	
 	/*영화차트란*/
 	@RequestMapping("/movies")
@@ -33,18 +37,32 @@ public class MoviesController {
 
 		MoviesDao dao=sqlSession.getMapper(MoviesDao.class); //sql세션은 트랜젝션 관련하여 해당 기능을 사용하기 쉽게 해주는것
 		ArrayList<MoviesDto> moives=dao.movies(); //1.moives()는 MoviesDao moives()로
+		
+		for (MoviesDto moviesDto : moives) {
+			System.out.println("movies" + moviesDto.getTitle_kor());
+		}
+		moviesserviceImpl = new MoviesServiceImpl();
+		
+		SimpleDateFormat day = new SimpleDateFormat("yyyyMMdd");
+		
+		// 하루 전 날짜 (영화진흥API 랭킹순위에 오늘 날짜는 안떠서)
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1);
+        System.out.println(day.format(cal.getTime()));
+        String strDay = day.format(cal.getTime());
+        
+        
 		model.addAttribute("movies",moives); 
+		model.addAttribute("dv", moviesserviceImpl.getDateViewer(strDay));
+		model.addAttribute("poster", moviesserviceImpl.getMoviePoster());
+	
 		
-		
-		// movielist받기(추후작성)
-		String url = "http://www.cgv.co.kr/movies/";
-		Connection connection = Jsoup.connect(url);
-		
-		
+	/*movielist받기 api, 크롤링*/
+			
 		
 		return "movies/movies";	
-		
-		
+	
 	}
 	
 	/*영화상세보기란*/
@@ -106,6 +124,35 @@ public class MoviesController {
 		return "movies/moviesdetailview";	
 	}
 	
+	
+	
+	
+	//API로 영화 랭킹순으로 영화 내역 가져오기
+	/*@RequestMapping("/refreshMovie")
+	public String refreshMoive() {
+		MovieApi api = new MovieApi();
+		DailyViewers dailyViewers = new
+		cgvCrawl cgv = new cgvCrawl();
+		MoviesDao dao = sqlSession.getMapper(MoviesDao.class);
+		
+		dao.insertRefreshMovies(api.getMoviecd(),api.getMovietiele(), cgv.moviScr(), );
+		dao.refreshRank()
+		
+		return "refresh";
+	}*/
+	
+	/*@RequestMapping("/refreshMovie")
+	public String refreshMoive() {
+		MovieApi api = new MovieApi();
+		DailyViewers dailyViewers = new
+		cgvCrawl cgv = new cgvCrawl();
+		MoviesDao dao = sqlSession.getMapper(MoviesDao.class);
+		
+		dao.insertRefreshMovies(api.getMoviecd(),api.getMovietiele(), cgv.moviScr(), );
+		dao.refreshRank()
+		
+		return "refresh";
+	}*/
 	
 	
 	

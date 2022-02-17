@@ -1,4 +1,4 @@
-package com.hicgv.movies.api;
+package com.hicgv.movies.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class MovieApi {
+public class AAMovieApi {
 	// 상수 설정
     // 요청(Request) 변수
 	private final String MOVIEA_URL  = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -34,7 +34,10 @@ public class MovieApi {
             }
             sb.append(entry.getKey()).append('=').append(entry.getValue());
         });
+        
+        
  
+        //sb = "&key=e65350d6dfb171753380a52de708b7a8&targetDt=20220216&itemPerPage=10"
         return sb.toString();
     }
  
@@ -53,7 +56,8 @@ public class MovieApi {
         paramMap.put("key"          , API_KEY);                        // 발급받은 인증키
         paramMap.put("targetDt"     , DATE_FORM.format(cal.getTime()));  // 조회하고자 하는 날짜
         paramMap.put("itemPerPage"  , "10");                            // 결과 ROW 의 개수( 최대 10개 )
- 
+        //paramMap.put("multiMovieYn", "Y");
+        
         try {
             // Request URL 연결 객체 생성
             URL requestURL = new URL(MOVIEA_URL+"?"+makeQueryString(paramMap));
@@ -96,7 +100,7 @@ public class MovieApi {
  
     public static void main(String[] args) {
         // API 객체 생성
-    	MovieApi api = new MovieApi();
+    	AAMovieApi api = new AAMovieApi();
  
         // API 요청
         api.requestAPI();

@@ -18,17 +18,11 @@ public class MoviesDto {
 	private String nation;
 	private int running_time;
 	private String description;
-	private String company_image_url;
 	private String age_limit;
 	private String image_url;
 	private int audience_total;
 	private int audience_today;
 	private int audience_yesterday;
-	private int audience_sex_ratio;
-	private int audience_age10_ratio;
-	private int audience_age20_ratio;
-	private int audience_age30_ratio;
-	private int audience_age40_ratio;
 	private int audience_rating;
 	private int booking_rate;
 }
