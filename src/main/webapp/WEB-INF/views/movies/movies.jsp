@@ -55,14 +55,15 @@
                 무비차트 - 예매율순
             </h4>       
             <ol>
-            	 <c:forEach items="${movies }" var="mov">
+            	 <c:forEach items="${dv }" var="mov">
+            	 <li>${mov.title }</li>
                 <li>
                     <div class="box-image" >
-                        <strong class="rank">No.${mov.ranking }</strong>	
-                        <%-- <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movie_id }"> --%>
-                        <a href="moviesdetailview?movie_id=${mov.movie_id }">
+                        <strong class="rank">No.${mov.rank }</strong>	
+                        <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movie_id }">
+                        <a href="moviesdetailview?movie_id=${mov.title }">
                             <span class="thumb-image">
-                                <img src="${mov.image_url}" alt="포스터" onerror="errorImage(this)"/>
+                                <img src="${poster}" alt="포스터" onerror="errorImage(this)"/>
                                 <span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span>
                             </span>
                         </a>
@@ -79,9 +80,7 @@
                         </div>
 					</div>
                     <div class="txt-info">
-                         <strong> ${mov.opening_date } <span>재개봉</span>
-                        	 <em class="dday">D-2</em>
-                         </strong>
+                         <strong> ${mov.opening_date } </strong>
                      </div>
             
                      <div class="like"> 
@@ -89,7 +88,7 @@
                      </div>  
                    </div>  
                    
-                </li>
+                </li> 
                 </c:forEach> 
             </ol>
             
