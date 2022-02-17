@@ -38,9 +38,10 @@ import com.hicgv.movies.dto.MoviesDto;
  */
 @Controller
 public class MainController {
+	//bean 객체로 주입되어서 new 로  새로 넣을 필요없음
 	@Autowired
-	private SqlSession sqlSession;
-	private MainServiceImpl mainService;
+	private MainService mainService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	/**
@@ -63,8 +64,7 @@ public class MainController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		System.out.println("!MainController!");
-		MainDao dao = sqlSession.getMapper(MainDao.class);
-
+		
 		// jsoup 테스트
 		String url = "http://www.cgv.co.kr/movies/";
 		Connection connection = Jsoup.connect(url);
@@ -89,12 +89,6 @@ public class MainController {
 			System.out.println("temp "+m.get("temp"));
 			System.out.println("map : "+m.get("map"));
 		}
-		
-		
-		
-		
-		
-		
 		
 		
 		/*try {
@@ -129,17 +123,12 @@ public class MainController {
 			// TODO: handle exception
 		}*/
 
-		ArrayList<MoviesDto> list = dao.movieChart();
-		for (MoviesDto moviesDto : list) {
-			System.out.println("1" + moviesDto.getTitle_kor());
-		}
-		mainService = new MainServiceImpl();
 		
 		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
 		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
 		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
-		model.addAttribute("movie", list);
+		model.addAttribute("movie", mainService.getMoviesList());
 
 		return "main";
 	}
