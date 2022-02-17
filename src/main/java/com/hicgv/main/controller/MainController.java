@@ -61,11 +61,11 @@ public class MainController {
 		System.out.println("!MainController!");
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 
-		// jsoup 테스트
+		/*// jsoup 테스트
 		String url = "http://www.cgv.co.kr/movies/";
 		Connection connection = Jsoup.connect(url);
 		ArrayList<String> rankli = new ArrayList<String>();
-		ArrayList<String> titleli = new ArrayList<String>();
+		ArrayList<String> titleli = new ArrayList<String>();*/
 		
 		/*try {
 			//cgv 홈페이지에서 랭크, 제목 가져오기

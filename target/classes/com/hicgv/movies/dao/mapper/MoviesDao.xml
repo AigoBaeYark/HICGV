@@ -38,6 +38,16 @@
 		SELECT COUNT(*) FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID = #{param1}
 	</select>
 	
+	<insert id = "insertRefreshMovies">
+		insert hicgv_movies values(#{param1})
+	</insert>
+	
+	<update id = "refreshRank">
+		update hicgv_movies
+		on rank = #{param1} <!-- api에서 가져온 랭크 -->
+		where movie_id = #{prama2} <!-- api에서 가져온 코드 -->
+	</update>
+	
 	
 			
 			
