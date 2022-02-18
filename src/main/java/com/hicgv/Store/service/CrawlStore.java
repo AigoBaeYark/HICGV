@@ -1,6 +1,8 @@
 package com.hicgv.store.service;
 
 import org.jsoup.Connection;
+import org.jsoup.Connection.KeyVal;
+import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,15 +28,20 @@ public class CrawlStore {
 	}
 	
 	public void getStoreData(String url) {
-		Connection connection = Jsoup.connect(url);
 		
 		try {
-			Document document = connection.get();
+			Document document = Jsoup.connect("http://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx/GetCategoryProductList")
+					.header("Origin", "http://www.cgv.co.kr")
+					.header("Referer","http://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=5")
+					.data("idx","5").post();
+					
+			//String json = document.select("body").text();
+			
 			System.out.println(document);
-			Elements elements = document.select(".category_product_list_wrap");
+			/*Elements elements = document.select("strong");
 			for (Element element : elements) {
 				System.out.println(element);
-			}
+			}*/
 			
 			
 		} catch (Exception e) {
@@ -42,5 +49,7 @@ public class CrawlStore {
 		}
 
 	}
+	
+	
 	
 }

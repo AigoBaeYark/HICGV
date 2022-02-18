@@ -19,9 +19,7 @@ public class MainDaoImpl implements MainDao{
     //의존관계 주입 느슨한 결합, 제어의 역전
     //@Inject 어노테이션이 있어 sqlSession은 null상태가 아닌 외부에서 객체를 주입받는 형태가 된다.
 	
-	
 	MainDao mainDaoMapper;
-	
 	
 	@Autowired
 	public MainDaoImpl(SqlSession sqlSession) {
@@ -32,7 +30,7 @@ public class MainDaoImpl implements MainDao{
 	//영화순위 (10위까지)
 	@Override
 	public ArrayList<MoviesDto> movieChart(){
-		
-		return mainDaoMapper.movieChart();
+		ArrayList<MoviesDto> dtos  =  mainDaoMapper.movieChart();
+		return dtos;
 	};
 }

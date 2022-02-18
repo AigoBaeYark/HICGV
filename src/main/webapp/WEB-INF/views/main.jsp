@@ -14,14 +14,14 @@
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+<div style="height: 300px;">
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+</div>
 
 <title>main</title>
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
+	
 
 
 	<a href="header">header</a>
@@ -131,9 +131,7 @@
 		</div>
 	</div>
 
-	<div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
+	
 	
 	<script>
 		var num;
@@ -169,4 +167,7 @@
 
 	
 </body>
+<div style="clear: both;">
+		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+	</div>
 </html>

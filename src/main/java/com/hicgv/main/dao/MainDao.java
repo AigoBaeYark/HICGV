@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.hicgv.movies.dto.MoviesDto;
 
-@Repository
 public interface MainDao {
 	
 	

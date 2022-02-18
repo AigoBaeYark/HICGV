@@ -7,8 +7,9 @@ import lombok.Setter;
 @Setter
 public class StoreDto {
 	private int product_id;
-	private int product_price;
+	private int product_categori;
 	private String product_name;
-	private String product_img;
+	private int product_price;
 	private String product_script;
+	private String product_img;
 }

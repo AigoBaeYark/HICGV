@@ -48,7 +48,7 @@
         <ul class="memberInfo_wrap"> 
                   
             <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
-            <li><a href="https://www.cgv.co.kr/user/join/"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+            <li><a href="joinForm"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
             
             
             <li><a href="https://www.cgv.co.kr/user/mycgv/"><img src="${path }/resources/img/main/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>

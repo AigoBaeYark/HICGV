@@ -17,5 +17,6 @@ public interface MainService {
 	public void getMovieID();
 	public Map<String, String> getTrail();
 	public ArrayList<MoviesDto> getMoviesList();
+	public void getToNaver();
 	
 }
