@@ -1,4 +1,4 @@
-package com.hicgv.Store.service;
+package com.hicgv.store.service;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

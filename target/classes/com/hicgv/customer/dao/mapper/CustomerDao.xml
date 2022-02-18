@@ -45,10 +45,7 @@
 	<!--회원탈퇴 -->
 	<delete id="delete">
 		DELETE FROM hicgv_customer WHERE id like #{param1}
-<<<<<<< HEAD
-=======
 		AND PASSWORD LIKE #{param2}
->>>>>>> d9d896faa2f6d79d5d098e5afb4f1d793f971fb3
 	</delete>
 	<!--비밀번호 찾기 / 아이디 이메일 입력하고 해당 질문 뿌려주기 -->
 	<select id="forgetPw" resultType="String">

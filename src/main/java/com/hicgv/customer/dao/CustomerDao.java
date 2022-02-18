@@ -6,17 +6,9 @@ import java.util.ArrayList;
 import com.hicgv.customer.dto.CustomerDto;
 
 public interface CustomerDao {
-<<<<<<< HEAD
-	public CustomerDto loginCheck(String id, String password);
-
-	/*public void joinForm(int user_id, String id, String password, String name, String phone_number, String nickname,
-			String gender, String date_birth, String location, Timestamp create_at, String email, String question,
-			String answer);*/
-=======
 	public CustomerDto loginCheckId(String id);
 
 	public CustomerDto loginCheckPw(String id, String password);
->>>>>>> d9d896faa2f6d79d5d098e5afb4f1d793f971fb3
 
 	// 회원정보를 보여줄 필드를 list로 만들어 줌
 	// 한명의 회원정보만을 가져오기때문에 list를 사용할 필요가 없음 list는 게시판에서 처럼 여러줄의 게시글을 가져올때 사용
@@ -30,9 +22,6 @@ public interface CustomerDao {
 	public void join(String id, String password, String name, String phone_number, String nickname, String gender,
 			String date_birth, String location, String email, String question, String answer);
 
-<<<<<<< HEAD
-	public void delete(String id);
-=======
 	public void delete(String id, String password);
 
 	public CustomerDto forgetId(String id, String email, String question, String answer);
@@ -40,6 +29,5 @@ public interface CustomerDao {
 	public String forgetPw(String id, String email);
 	//비밀번호 분실시 비번 재설정
 	public void resetPw(String id, String password);
->>>>>>> d9d896faa2f6d79d5d098e5afb4f1d793f971fb3
 
 }

@@ -1,4 +1,4 @@
-package com.hicgv.Store.dto;
+package com.hicgv.store.dto;
 
 import lombok.Getter;
 import lombok.Setter;

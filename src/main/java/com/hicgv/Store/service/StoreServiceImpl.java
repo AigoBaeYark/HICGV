@@ -1,4 +1,4 @@
-package com.hicgv.Store.service;
+package com.hicgv.store.service;
 
 public class StoreServiceImpl implements StroreService{
 
