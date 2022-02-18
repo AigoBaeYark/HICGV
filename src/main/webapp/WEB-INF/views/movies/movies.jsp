@@ -56,47 +56,48 @@
             </h4>       
             <ol>
             	 <c:forEach items="${dv }" var="mov">
-            	 <li>${mov.title }</li>
+            	 <!-- 기존디비에서 받던 것에서 수정 -->
                 <li>
                     <div class="box-image" >
                         <strong class="rank">No.${mov.rank }</strong>	
-                        <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movie_id }">
+                        <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movieCd }"></a>
                         <a href="moviesdetailview?movie_id=${mov.title }">
-                            <span class="thumb-image">
+                            </c:forEach>
+                            <span class="thumb-image"> 
+                            <c:forEach items="${movies }" var="mov">
                                 <img src="${poster}" alt="포스터" onerror="errorImage(this)"/>
                                 <span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span>
                             </span>
+                            </c:forEach> 
                         </a>
+                     <c:forEach items="${dv }" var="mov">
                     <div class="box-contents">
-                        <a href="moviesdetailview?movie_id=${mov.movie_id }">
-                            <strong class="title">${mov.title_kor }</strong>
+                        <a href="moviesdetailview?movie_id=${mov.movieCd }">
+                            <strong class="title">${mov.title }</strong>
                         </a>
                         <div class="score">
-                            <strong class="percent">예매율<span>${mov.booking_rate }</span></strong>
-                            <div class='egg-gage small'>
-                                <span class='egg great'></span>
-                                <span class='percent'>92%</span>
-                            </div>
+                            <strong class="percent">전날관객수<span>${mov.audiCnt }</span></strong>
                         </div>
 					</div>
                     <div class="txt-info">
-                         <strong> ${mov.opening_date } </strong>
+                         <strong> ${mov.openDt } </strong>
                      </div>
             
                      <div class="like"> 
                         <a class="link-reservation" href="#">예매</a>
-                     </div>  
+                     </div> 
+                     </c:forEach>  
                    </div>  
                    
                 </li> 
-                </c:forEach> 
+                
             </ol>
             
                  
        </div>
    </div>         
  </div> 
-  </div> 
+
 <c:import url="../common/footer.jsp"></c:import>
 
 </body>

@@ -5,8 +5,31 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hicgv.ticket.dao.TicketDao">
+	<select id="ticket" resultType="com.hicgv.movies.dto.MoviesDto">
+		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR
+	</select> 
 	
-
-
+	<select id="biglocal" resultType="com.hicgv.theater.dto.TheaterDto">
+		SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID
+	</select> 
+	
+	<select id="local" resultType="com.hicgv.ticket.dto.TLocationDto">
+		SELECT T.THEATER_ID, T.THEATER_LOC, TL.LOCATION_ID, TL.LOCATION_NAME 
+		FROM HICGV_THEATER T INNER JOIN HICGV_THEATER_LOCATION TL 
+		ON T.THEATER_ID =TL.THEATER_ID 
+		WHERE T.THEATER_ID = #{param1}
+		ORDER BY T.THEATER_ID, TL.LOCATION_NAME 
+		<!-- 큰지역ID, 큰지역, 영화관ID, 영화관 -->
+	</select>
+	
+	<select id="time" resultType="com.hicgv.ticket.dto.TTimeDto">
+		SELECT R.ROOM_NAME, R.MAX_SEAT, S.START_DATE 
+		FROM HICGV_THEATER_ROOM R INNER JOIN HICGV_THEATER_SCHEDULE S 
+		ON R.THEATER_ROOM_ID =S.THEATER_ROOM_ID 
+		ORDER BY R.ROOM_NAME
+		<!-- 'n'관, 좌석수, 상영시간, 종료시간은 계산식을 구해서 진행 할 예정 -->
+	</select> 
+	
+	
 </mapper> 
  
