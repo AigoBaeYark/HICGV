@@ -1,11 +1,15 @@
 package com.hicgv.main.controller;
 
+import java.awt.List;
 import java.awt.RenderingHints.Key;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.security.auth.Refreshable;
 
@@ -25,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hicgv.main.dao.MainDao;
 import com.hicgv.main.service.MainService;
-import com.hicgv.main.serviceImpl.MainServiceImpl;
+import com.hicgv.main.service.MainServiceImpl;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
@@ -34,9 +38,10 @@ import com.hicgv.movies.dto.MoviesDto;
  */
 @Controller
 public class MainController {
+	//bean 객체로 주입되어서 new 로  새로 넣을 필요없음
 	@Autowired
-	private SqlSession sqlSession;
-	private MainServiceImpl mainService;
+	private MainService mainService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	/**
@@ -58,16 +63,38 @@ public class MainController {
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
-		System.out.println("!MainController!");
-		MainDao dao = sqlSession.getMapper(MainDao.class);
-
-		/*// jsoup 테스트
+		logger.info("before mainContrller main()");
+		
+		
+		// list<map<string, Object>> 테스트
+//		
+//		ArrayList<Map<String, Object>> tempList = new ArrayList<Map<String, Object>>();
+//				
+//		for(int i=0; i<5;i++) {
+//			Map<String, Object> tempMap = new HashMap<String, Object>();
+//
+//			tempMap.put("key", "value"+i);
+//			tempMap.put("temp", "temp"+i);
+//			tempMap.put("map", "map"+i);
+//			tempList.add(tempMap);
+//		}
+//		
+//		for(int i=0; i<tempList.size();i++) {
+//			System.out.println(i + " 번째");
+//			Map<String, Object> m = tempList.get(i);
+//			System.out.println("key : "+m.get("key"));
+//			System.out.println("temp "+m.get("temp"));
+//			System.out.println("map : "+m.get("map"));
+//		}
+		
+		
+		// jsoup 테스트
+		/*
 		String url = "http://www.cgv.co.kr/movies/";
 		Connection connection = Jsoup.connect(url);
 		ArrayList<String> rankli = new ArrayList<String>();
-		ArrayList<String> titleli = new ArrayList<String>();*/
-		
-		/*try {
+		ArrayList<String> titleli = new ArrayList<String>();
+		try {
 			//cgv 홈페이지에서 랭크, 제목 가져오기
 			Document document = connection.get();
 			Elements e = document.select("div.sect-movie-chart");
@@ -97,21 +124,21 @@ public class MainController {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		}*/
-
-		ArrayList<MoviesDto> list = dao.movieChart();
-		for (MoviesDto moviesDto : list) {
-			System.out.println("1" + moviesDto.getTitle_kor());
 		}
-		mainService = new MainServiceImpl();
+		*/
+
 		
 		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
 		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
+		mainService.getToNaver();
 		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
-		model.addAttribute("movie", list);
-
+		model.addAttribute("movie", mainService.getMoviesList());
+		
+		logger.info("after mainContrller main()");
 		return "main";
+		
+
 	}
 
 	@RequestMapping(value = "header", method = RequestMethod.GET)

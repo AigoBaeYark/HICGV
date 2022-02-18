@@ -45,7 +45,7 @@
 	<article class="company_info_wrap"> <section
 		class="company_info">
 	<address>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</address>
-	<dl class="company_info_list">
+	 <dl class="company_info_list">
 		<dt>대표이사</dt>
 		<dd>허민회</dd>
 		<dt>사업자등록번호</dt>
@@ -65,12 +65,16 @@
 		<dd>cjcgvmaster@cj.net</dd>
 		<dt>고객센터</dt>
 		<dd>1544-1122</dd>
-	</dl>
-	<p class="copyright">© CJ CGV. All Rights Reserved</p>
-	</section> <section class="familysite_wrap"> <label for="familysite">CJ그룹
-		계열사 바로가기</label> <select id="familysite">
-		<option value="" class="familysiteTitle">계열사 바로가기</option>
-		<optgroup label="CJ그룹">
+	</dl> 
+	<p class="copyright">©  HICGV. All Rights Reserved</p>
+	</section> <section class="familysite_wrap"> 
+	<label for="familysite">바로가기</label> 
+	<select id="familysite">
+		<option value="" class="familysiteTitle">바로가기</option>
+		<option value="main">메인화면</option>
+		<option value="movies">무비차트</option>	
+		
+		<!-- <optgroup label="CJ그룹">
 			<option value="http://www.cj.net/">CJ주식회사</option>
 		</optgroup>
 		<optgroup label="식품 &amp; 식품서비스">
@@ -98,20 +102,12 @@
 			<option value="http://www.cjem.net/main/?locale=ko">CJ ENM
 				엔터테인먼트부문</option>
 			<option value="http://corp.cgv.co.kr/">CJ CGV</option>
-		</optgroup>
+		</optgroup> -->
 
-	</select> <a href="https://www.cgv.co.kr/#none" class="btn_familysite"
+	</select> <a href="" class="btn_familysite"
 		onclick="goFamilySite()">GO</a> </section> </article>
 	<!-- footer_area (e) -->
 
-	<div class="adFloat2" style="display: none">
-
-		<iframe src="./영화 그 이상의 감동. CGV_files/sub@Popicon.html" width="154"
-			height="182" frameborder="0" scrolling="no" topmargin="0"
-			leftmargin="0" marginwidth="0" marginheight="0"
-			allowtransparency="true" id="ad_float1" title="광고-셰이프 오브 워터 사랑의 모양 "
-			style="display: none;"></iframe>
-	</div>
 	<script type="text/javascript">
 		OpenAD();
 	</script>

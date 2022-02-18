@@ -14,14 +14,14 @@
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+<div style="height: 300px;">
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+</div>
 
 <title>main</title>
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
+	
 
 
 	<a href="header">header</a>
@@ -67,10 +67,10 @@
 	
 	
 
-	<div class="movieChartBeScreen_wrap" style="clear: none; float: none; position: relative;background-image: linear-gradient(to bottom, rgba(255 181 103), rgba(232, 232, 232, 0.37));">
-		<div class="contents"  style="margin: 0 auto; width: 980px;height: 100%" >
-			<div class="movieChartBeScreen_btn_wrap">
-				<div class="tapBtn_wrap">
+	<div class="movieChartBeScreen_wrap" style="clear: none; float: none; position: relative;background-image: linear-gradient(to bottom, rgba(95 211 255), rgba(232, 232, 232, 0.37));">
+		<div class="contents"  style="margin: 0 auto; width: 980px;height: 100%"  >
+			<div class="movieChartBeScreen_btn_wrap" >
+				<div class="tapBtn_wrap" style="display: inline-flex;">
 					<!-- 차트, 예정작 선택버튼 -->
 					<h3>
 						<a href="" class="active" id="btnMovie">무비차트</a>
@@ -79,7 +79,7 @@
 						<a href="" id="btnReserMovie">상영예정작</a>
 					</h3>
 				</div>
-				<a href="movies" class="btn_Allview">전체보기</a>
+				<a href="movies" class="btn_Allview" style="float: right;">전체보기</a>
 			</div>
 
 			<!-- 무비차트 스와이퍼 -->
@@ -131,9 +131,7 @@
 		</div>
 	</div>
 
-	<div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
+	
 	
 	<script>
 		var num;
@@ -169,4 +167,7 @@
 
 	
 </body>
+<div style="clear: both;">
+		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+	</div>
 </html>

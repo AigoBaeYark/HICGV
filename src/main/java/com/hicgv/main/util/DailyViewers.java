@@ -9,9 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DailyViewers {
-	public static void main(String[] args) {
-		
-	}
 	// 영화진흥위원회 Api 사용
 	// 일일 관람객 URL
 	private String apiURL = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -90,6 +87,6 @@ public class DailyViewers {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
+
 	}
 }
