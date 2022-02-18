@@ -4,42 +4,59 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper 주소는 패키지.Dao인터페이스이름 -->
 <mapper namespace="com.hicgv.customer.dao.CustomerDao">
-	<select id="loginCheck" resultType="com.hicgv.customer.dto.CustomerDto">
-		SELECT
-		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
-		FROM HICGV_CUSTOMER
-		WHERE ID LIKE #{param1} AND PASSWORD LIKE #{param2}
+	<!-- <select id="loginCheck" resultType="com.hicgv.customer.dto.CustomerDto"> 
+		SELECT USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER 
+		FROM HICGV_CUSTOMER WHERE ID LIKE #{param1} AND PASSWORD LIKE #{param2} </select> -->
+	<!--아이디 비밀번호 체크 -->
+	<select id="loginCheckId" resultType="com.hicgv.customer.dto.CustomerDto">
+		SELECT ID FROM
+		HICGV_CUSTOMER WHERE ID = #{param1}
 	</select>
-
-	<!--join -->
-
-
-	<!-- <insert id="joinForm"> INSERT INTO HICGV_CUSTOMERVALUES(HICGV_customer_seq.nextval, 
-		#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE) 
-		</insert> -->
-
+	<select id="loginCheckPw" resultType="com.hicgv.customer.dto.CustomerDto">
+		SELECT * FROM
+		HICGV_CUSTOMER
+		WHERE ID = (SELECT ID FROM HICGV_CUSTOMER WHERE ID =
+		#{param1})
+		AND PASSWORD = #{param2}
+	</select>
 	<!--회원id를 찾아 myCGV에 출력 -->
 	<!--컨트롤러에 있는 추상메서드와 같게 id를 만들어야함 -->
+	<!--myCGV 회원정보 보여주기 -->
 	<select id="myCGV" resultType="com.hicgv.customer.dto.CustomerDto">
 		SELECT
 		USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
 		FROM HICGV_CUSTOMER
 		WHERE ID LIKE #{param1}
 	</select>
+	<!--회원정보 수정(업데이트) -->
 	<update id="modify">
 		UPDATE hicgv_customer
 		SET
 		PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
 		DATE_BIRTH=#{param6},LOCATION=#{param7},EMAIL=#{param8},QUESTION=#{param9},ANSWER=#{param10}
 		WHERE ID LIKE #{param1}
-
 	</update>
+	<!--회원가입 -->
 	<insert id="join">
 		INSERT INTO HICGV_CUSTOMER
 		VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},#{param4},
 		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11})
 	</insert>
+	<!--회원탈퇴 -->
 	<delete id="delete">
 		DELETE FROM hicgv_customer WHERE id like #{param1}
+<<<<<<< HEAD
+=======
+		AND PASSWORD LIKE #{param2}
+>>>>>>> d9d896faa2f6d79d5d098e5afb4f1d793f971fb3
 	</delete>
+	<!--비밀번호 찾기 / 아이디 이메일 입력하고 해당 질문 뿌려주기 -->
+	<select id="forgetPw" resultType="String">
+		SELECT QUESTION FROM HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
+	</select>
+	<!--답을 입력하고 질문이 같은지 비교  -->
+	<select id="answer-confirm" resultType="String">
+	SELECT QUESTION FROM HICGV_CUSTOMER WHERE ANSWER=#{param1}
+	</select>
+	
 </mapper>

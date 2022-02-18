@@ -9,11 +9,19 @@
 <title>Insert title here</title>
 
 </head>
+<style>
+<!--
+.container{
+	margin: 10%;
 
+}
+-->
+</style>
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
+<<<<<<< HEAD
 <div style="margin-top: 100px;"><!--myCGV시작  -->
 	<h5>myCGV.jsp</h5>
 	이곳은 회원정보를 확인하고 수정할 수 있는 myCGVProc.jsp로 이동할 수 있습니다.
@@ -28,6 +36,40 @@
 				<div style="width: 100px; height: 100px; position: relative; border: solid 1px;">
 					<!--이미지div시작  -->
 					<img src="" alt="프로필img" />
+=======
+	<div style="margin-top: 100px;">
+		<!--myCGV시작  -->
+		<h5>myCGV.jsp</h5>
+		<div class="container" style="border: solid 1px;">
+			<!--myCGV container 시작  -->
+			myCGV container
+
+			<div style="margin: 50px; border: solid 1px;">
+				<!--myCGV personinfo 시작  -->
+				<div>
+					<!--myCGV personinfo-sect 시작  / 프로필 사진 고객이름 아이디 고객등급-->
+					<div
+						style="width: 100px; height: 100px; position: relative; border: solid 1px;">
+						<!--이미지div시작  -->
+						<img src="" alt="프로필img" />
+					</div>
+					<!--이미지div끝 -->
+					<div>
+						<!-아이디 고객등급 div 시작-->
+						<div style="width: 500px; border: solid 1px;">
+							<!--아이디 시작  -->
+							${id }님 HICGV에 오신것을 환영합니다.
+						</div>
+						<!--이름 닉네임 끝  -->
+						<hr />
+						<div style="border: solid; 1 px; margin-top: 10px;">
+							<!--등급div시작  -->
+							${id }고객님의 등급은 OOO입니다. //테이블 따로??
+						</div>
+						<!--등급div끝  -->
+					</div>
+					<!-아이디 고객등급 div 끝-->
+>>>>>>> d9d896faa2f6d79d5d098e5afb4f1d793f971fb3
 				</div>
 				<!--이미지div끝 -->
 				<div>
