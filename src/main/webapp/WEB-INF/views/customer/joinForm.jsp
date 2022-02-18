@@ -19,7 +19,7 @@
 <h3>회원가입</h3>
 <div>
 
-<form action="join" class="row g-3" method="post">
+<form action="join" class="row g-3">
   <div class="col-md-6">
     <label for="inputid" class="form-label">아이디  </label>
     <input type="text" name = "id" class="form-control" id="inputEmail4"> <input type="button" value="중복확인" />
@@ -53,11 +53,10 @@
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">성별</label>
-    <input type="text" name="gender" placeholder="ex/남자">
-    <!-- <select id="inputState"  name="genselect" class="form-select">
-      <option selected="selected" value="1">남자</option>
-      <option value="2">여자</option>
-    </select> -->
+    <select id="inputState"  name="gender" class="form-select">
+      <option selected>남자</option>
+      <option selected>여자</option>
+    </select>
  <div>
     질문. <input type="text" name="question" value=""/> 
     </div>

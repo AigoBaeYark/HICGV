@@ -1,4 +1,4 @@
-package com.hicgv.theater.controller;
+ package com.hicgv.theater.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,13 +94,13 @@ public class TheaterController {
 		minute=startTime.substring(14,16);
 		
 		// 상영 종료시간 계산
-		String tempTime = hour + minute;
-		int numTime = Integer.parseInt(tempTime);
+		String time = hour + minute;
+		int endTime = Integer.parseInt(time);
 		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); 
 		
-		numTime = numTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
-		if(numTime%100 >= 60) {
-			numTime -=60;
+		endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
+		if(endTime%100 >= 60) {
+			endTime -=60;
 		}
 		
 		Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
@@ -110,9 +110,9 @@ public class TheaterController {
 		timeMap.put("day", day);
 		timeMap.put("hour", hour);
 		timeMap.put("minute", minute);
-		timeMap.put("tempTime", tempTime);
-		timeMap.put("numTime",  numTime);
-	
+		timeMap.put("time", time);
+		timeMap.put("endTime",  endTime);
+		
 		timeListMap.add(timeMap);
 		
 	}
@@ -124,10 +124,24 @@ public class TheaterController {
 	   
 	   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(locid);
 	   
-	   
 	   model.addAttribute("timeList",timeListMap);
 	   model.addAttribute("movieInfo",mList);
+	   
 	   return "theater/theater";
    }
+   @RequestMapping("theaterAdmin")
+   public String theaterAdmin() {
+	   System.out.println("======= << theaterAdmin >> =======");
+	   return "theater/theaterAdmin";
+   }
+   
+   
+   @RequestMapping("theaterList")
+   public String schedule() {
+	   System.out.println("======= << theaterList >> =======");
+	   
+	   return "theater/theaterList";
+   }
+   
 
 }

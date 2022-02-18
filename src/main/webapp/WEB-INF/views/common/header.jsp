@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>header</title>       
 
-<link rel="stylesheet" href="${path }/resources/css/reset.css" />
+<link rel="stylesheet" href="${path }/resources/css/main/reset.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/layout.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/jquery-ui-1.10.4.custom.min.css" />
 
@@ -223,7 +223,7 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="store">스토어</a></h2>
+                <h2><a href="https://www.cgv.co.kr/culture-event/popcorn-store/">스토어</a></h2>
                 <dl class="nav_overMenu" style="">
                     <dt><h2><a href="https://www.cgv.co.kr/culture-event/popcorn-store/" tabindex="-1">스토어</a></h2></dt>
                             <dd><h3><a href="https://www.cgv.co.kr/culture-event/popcorn-store/store-category.aspx?CategoryIdx=4">콤보</a></h3></dd>

@@ -40,6 +40,6 @@
 		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11})
 	</insert>
 	<delete id="delete">
-		DELETE FROM hicgv_customer WHERE id like #{param1} AND PASSWORD LIKE #{param2}
+		DELETE FROM hicgv_customer WHERE id like #{param1}
 	</delete>
 </mapper>

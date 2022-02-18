@@ -16,7 +16,7 @@
 <div style="border: solid; 1px; margin: 30px;">
 	
 	<form action="modify" method="post">
-	${id }님의 정보를 수정 할 수 있습니다. <br />
+	${myCGV.id }님의 정보를 수정 할 수 있습니다. <br />
 		
 	비밀번호 <input type="password" name="password"/> <br />
 	전화번호 <input type="text" name="phone_number"/> <br />
