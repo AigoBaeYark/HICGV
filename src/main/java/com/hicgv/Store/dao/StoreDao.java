@@ -1,4 +1,4 @@
-package com.hicgv.store.dao;
+package com.hicgv.Store.dao;
 
 public interface StoreDao {
 	
