@@ -12,5 +12,4 @@ public class LocationDto {
 	private String location_add;
 	private String location_tel;
 	private String location_img;
-
 }
