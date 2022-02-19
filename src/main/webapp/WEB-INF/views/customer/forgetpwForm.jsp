@@ -34,18 +34,17 @@
 -->
 </style>
 
+</head>
 
-
+<body>
 <div style="height: 300px;">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
-</head>
-<body>
 	<!--  -->
 	<div class="container">
 		<div class="h1-top">
 			<h2 class="h1" align="center">
-				비밀번호가 기억나지 않으세요? <br /> 회원님의 아이디와 이메일 주소를 입력하시면 비밀번호를 재설정하실 수 있습니다.
+				비밀번호가 기억나지 않으세요? <br /> 회원님의 아이디와 이메일 주소를 입력해주세요.
 			</h2>
 		</div>
 		<form action="forgetPw">
@@ -61,15 +60,16 @@
 			</div>
 
 			<button type="submit" class="btn btn-default">입력</button>
+			<button type="button" class="btn btn-default"><a href="loginForm">취소</a></button>
 		</form>
 	</div>
 
-
-
-</body>
 <div style="clear: both;">
 	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </div>
+
+</body>
+
 
 
 </html>

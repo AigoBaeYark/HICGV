@@ -8,7 +8,7 @@
 		SELECT USER_ID,ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER 
 		FROM HICGV_CUSTOMER WHERE ID LIKE #{param1} AND PASSWORD LIKE #{param2} </select> -->
 	<!--아이디 비밀번호 체크 -->
-	<select id="loginCheckId" resultType="com.hicgv.customer.dto.CustomerDto">
+	<select id="loginCheckId" resultType="String">
 		SELECT ID FROM
 		HICGV_CUSTOMER WHERE ID = #{param1}
 	</select>
@@ -47,13 +47,24 @@
 		DELETE FROM hicgv_customer WHERE id like #{param1}
 		AND PASSWORD LIKE #{param2}
 	</delete>
+	<select id="getEmail" resultType="String">
+		SELECT EMAIL FROM HICGV_CUSTOMER WHERE ID=#{param1}
+	</select>
 	<!--비밀번호 찾기 / 아이디 이메일 입력하고 해당 질문 뿌려주기 -->
 	<select id="forgetPw" resultType="String">
 		SELECT QUESTION FROM HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
 	</select>
-	<!--답을 입력하고 질문이 같은지 비교  -->
-	<select id="answer-confirm" resultType="String">
-	SELECT QUESTION FROM HICGV_CUSTOMER WHERE ANSWER=#{param1}
+	<select id="getQuestion" resultType="String">
+		SELECT QUESTION FROM HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
 	</select>
+	<!--답을 입력하고 질문이 같은지 비교  -->
+	<select id="getAnswer" resultType="String">
+	SELECT ANSWER FROM HICGV_CUSTOMER WHERE ID = 
+	(SELECT ID FROM HICGV_CUSTOMER WHERE ANSWER=#{param1})
+	</select>
+	<update id="resetPw">
+		UPDATE hicgv_customer
+		SET	PASSWORD=#{param2} WHERE ID LIKE #{param1}
+	</update>
 	
 </mapper>
