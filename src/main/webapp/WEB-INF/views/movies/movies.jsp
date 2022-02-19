@@ -33,7 +33,7 @@
                	  <li><a href="/movies/pre-movies.aspx">상영예정작</a></li>
              	</ul>
        		</div>
-        </div>
+        </div>ccd
          <!-- //Heading Map Multi -->
         <!-- Sorting -->
         <div class="sect-sorting">
@@ -55,17 +55,16 @@
                 무비차트 - 예매율순
             </h4>       
             <ol>
-            	 <c:forEach items="${dv }" var="mov">
-            	 <!-- 기존디비에서 받던 것에서 수정 -->
                 <li>
                     <div class="box-image" >
+                    <c:forEach items="${dv }" var="mov">
                         <strong class="rank">No.${mov.rank }</strong>	
                         <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movieCd }"></a>
                         <a href="moviesdetailview?movie_id=${mov.title }">
                             </c:forEach>
-                            <span class="thumb-image"> 
                             <c:forEach items="${movies }" var="mov">
-                                <img src="${poster}" alt="포스터" onerror="errorImage(this)"/>
+                            <span class="thumb-image"> 
+                                <img src="${poster}" alt="포스터" />
                                 <span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span>
                             </span>
                             </c:forEach> 
@@ -97,7 +96,7 @@
        </div>
    </div>         
  </div> 
-
+ </div> 
 <c:import url="../common/footer.jsp"></c:import>
 
 </body>

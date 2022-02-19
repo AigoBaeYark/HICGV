@@ -97,10 +97,14 @@ public class TheaterController {
 		String time = hour + minute;
 		int endTime = Integer.parseInt(time);
 		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); 
+		System.out.println("runningTime : "+runningTime);
+		System.out.println("before endtime : "+endTime);
+		System.out.println("math : "+(((runningTime/60)*60)));
 		
 		endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
 		if(endTime%100 >= 60) {
 			endTime -=60;
+			endTime +=100;
 		}
 		
 		Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
@@ -112,6 +116,13 @@ public class TheaterController {
 		timeMap.put("minute", minute);
 		timeMap.put("time", time);
 		timeMap.put("endTime",  endTime);
+		
+		System.out.println("year : "+ year);
+		System.out.println("day"+ day);
+		System.out.println("hour"+ hour);
+		System.out.println("minute"+ minute);
+		System.out.println("time"+ time);
+		System.out.println("endTime"+  endTime);
 		
 		timeListMap.add(timeMap);
 		
