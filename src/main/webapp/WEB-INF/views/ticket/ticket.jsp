@@ -144,14 +144,14 @@
 					      <a class="list-group-item list-group-item-action" id="list-seoul-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
 					      ${ti.start_date}
 					      </a>
-					      <c:forEach items="${timeList }" var="tlist">
+					      <%-- <c:forEach items="${timeList }" var="tlist">
 					      <a href="timeSelect?locid=101" title="현재 선택"> 
 	                        <span>종료시간</span> 
                        		 </a>
 					      <a class="list-group-item list-group-item-action" id="list-seoul-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
 					      ${tlist.endTime}
 					      </a>
-					      </c:forEach>
+					      </c:forEach> --%>
 					    </div>
 					    </c:forEach>
 					  </div>
