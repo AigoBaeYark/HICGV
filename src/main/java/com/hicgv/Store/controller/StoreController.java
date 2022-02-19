@@ -3,6 +3,7 @@ package com.hicgv.store.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,11 +58,12 @@ public class StoreController {
 	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST)
 	public String insertStoreData(HttpServletRequest request, Model model, @ModelAttribute StoreDto storeDto) throws IOException {
 		logger.info("before insertStoreData");
+		
+		HashMap<String, Object> store = new HashMap<String,Object>();
+		
 		System.out.println(storeDto.getProduct_price());
 		System.out.println(storeDto.getProduct_name());
 
-		String name = request.getParameter("product_name");
-		System.out.println(name);
 
 		// upload
 //		String attachPath = "resources\\img\\store\\";
