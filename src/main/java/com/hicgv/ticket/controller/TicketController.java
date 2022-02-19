@@ -65,7 +65,7 @@ public class TicketController {
 
 	/*날짜시간 세분화 및 상영종료 시간 구하기*/
 	
-	@RequestMapping("/timeSelect")
+	/*@RequestMapping("/timeSelect")
 	public String timeSelect(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by timeSelect() > =======");
 		
@@ -86,7 +86,7 @@ public class TicketController {
 			String startTime=timeInfoDto.getStart_date();
 			System.out.println("startTime : "+startTime);
 			//year=startTime.substring(beginIndex, endIndex)
-		}
+		}*/
 		
 		
 		
@@ -95,9 +95,9 @@ public class TicketController {
 		
 		
 		
-		return "ticket/ticket";
-		
-	}
+//		return "ticket/ticket";
+//		
+//	}
 	
 	
 	
