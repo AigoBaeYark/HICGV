@@ -11,9 +11,9 @@
 <title>hicgv/theater</title>
 <link rel="stylesheet" href="resources/css/reset.css" />
 </head>
-
 <body>
-   <h2>theater.jsp</h2>
+
+<a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 <div style="height: 300px;">
    <c:import url="/WEB-INF/views/common/header.jsp" />
 </div>
@@ -130,10 +130,20 @@
 	                        	<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" alt="" />
                      		</c:when>
                      	</c:choose>
-                        <a href="timeSelect?locid=101" title="현재 선택"> 
+                        <a href="timeSelect?locid=101"> 
+	                        <span>02월</span> 
+	                        <em>화</em> 
+	                        <strong>15</strong>
+                        </a>
+                        <a href="timeSelect?locid=101"> 
+	                        <span>02월</span> 
+	                        <em>수</em> 
+	                        <strong>16</strong>
+                        </a>
+                        <a href="timeSelect?locid=101"> 
 	                        <span>02월</span> 
 	                        <em>목</em> 
-	                        <strong>10</strong>
+	                        <strong>17</strong>
                         </a>
                         	<span>${movieInfo[0].title_kor } 
                         		<span class="badge bg-primary">상영중</span>
@@ -149,6 +159,7 @@
                         			<li>
                         				<a href="#">
                         					<em>시작 : ${list.time }</em>
+                        					<em>종료 : ${list.endTime }</em>
                         				</a>
                         			</li>
                         		</ul>
