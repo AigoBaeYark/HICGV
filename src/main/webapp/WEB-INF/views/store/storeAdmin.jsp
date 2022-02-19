@@ -27,7 +27,7 @@
 	-->
 	
 	<div id="contents" style="margin: 0 auto;">
-		<form action="insertStoreData" method="post">
+		<form action="insertStoreData" method="post" enctype="multipart/form-data">
 			<label for="name">상품이름</label>
 			<input type="text" name="product_name" id="product_name"/>
 		

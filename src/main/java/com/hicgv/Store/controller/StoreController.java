@@ -63,6 +63,9 @@ public class StoreController {
 		
 		System.out.println(storeDto.getProduct_price());
 		System.out.println(storeDto.getProduct_name());
+		System.out.println(storeDto.getProduct_categori());
+		System.out.println(storeDto.getProduct_categori_name());
+		System.out.println(storeDto.getProduct_name());
 		
 		storeService.insertProduct(storeDto);
 
@@ -82,17 +85,9 @@ public class StoreController {
 //		int product_price = Integer.parseInt(req.getParameter("price"));
 //		String product_script = req.getParameter("script");
 //		String product_img = req.getFilesystemName("img");
+
 //
-//		System.out.println(product_name);
-//		System.out.println(product_categori);
-//		System.out.println(product_categori_name);
-//		System.out.println(product_price);
-//		System.out.println(product_script);
-//		System.out.println(product_img);
-//		// storeService.insertProduct(product_name, product_categori,
-//		// product_categori_name, product_price, product_script, product_img);
-//
-//		logger.info("after insertStoreData");
+		logger.info("after insertStoreData");
 		return "redirect:store";
 	}
 
