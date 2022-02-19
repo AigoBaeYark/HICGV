@@ -12,12 +12,13 @@
 
 <title>Insert title here</title>
 
-</style>
+
 
 </head>
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+		</div>
 		<style>
 .wrap-login {
 	width: 500px;
@@ -77,7 +78,7 @@ body {
 		<div class="wrap-login">
 			<div class="sect-login">
 				<div class="login-top">
-					<h3 align="center">로그인</h3>
+					<h2 align="center">로그인</h2>
 
 				</div>
 				<div class="box-login">
@@ -88,7 +89,7 @@ body {
 						<div class="login">
 							<div style="margin: 5px;">
 							<input type="text"id="" name="loginid"
-							 required="required" placeholder="아이디를 입력해주세요">
+							 required="required" placeholder="아이디를 입력해주세요" pattern="{3,19}">
 								
 							</div>
 							<div>
@@ -106,7 +107,7 @@ body {
 						</button>
 						<div class="forgot_pw">
 							<a href="">아이디 찾기</a> 
-							<a href="">비밀번호 찾기</a>
+							<a href="forgetpwForm">비밀번호 찾기</a>
 						</div>
 
 					</form>
@@ -123,12 +124,12 @@ body {
 
 
 
+
+
+</body>
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>
-
-</body>
-
 
 </html>
 

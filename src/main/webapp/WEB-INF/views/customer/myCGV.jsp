@@ -9,7 +9,14 @@
 <title>Insert title here</title>
 
 </head>
+<style>
+<!--
+.container{
+	margin: 10%;
 
+}
+-->
+</style>
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
@@ -17,7 +24,6 @@
 	<div style="margin-top: 100px;">
 		<!--myCGV시작  -->
 		<h5>myCGV.jsp</h5>
-		이곳은 회원정보를 확인하고 수정할 수 있는 motify.jsp로 이동할 수 있습니다.
 		<div class="container" style="border: solid 1px;">
 			<!--myCGV container 시작  -->
 			myCGV container

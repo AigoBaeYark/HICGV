@@ -116,26 +116,44 @@
                <ul class="item" style="width: 800px; height: 108.002px;">
                   <li class="on">
                      <div class="day">
-                     
+                     	<c:choose>
+                     		<c:when test="${movieInfo[0].age_limit eq '전체 관람가'}">
+	                        	<img src="/cgv/resources/img/theater/전체관람가.png" width="21" height="21" alt="" />
+                     		</c:when>
+                     		<c:when test="${movieInfo[0].age_limit eq '12세 관람가'}">
+	                        	<img src="/cgv/resources/img/theater/12세관람가.png" width="21" height="21" alt="" />
+                     		</c:when>
+                     		<c:when test="${movieInfo[0].age_limit eq '15세 관람가'}">
+	                        	<img src="/cgv/resources/img/theater/15세관람가.png" width="21" height="21" alt="" />
+                     		</c:when>
+                     		<c:when test="${movieInfo[0].age_limit eq '18세 관람가'}">
+	                        	<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" alt="" />
+                     		</c:when>
+                     	</c:choose>
                         <a href="timeSelect?locid=101" title="현재 선택"> 
 	                        <span>02월</span> 
 	                        <em>목</em> 
 	                        <strong>10</strong>
                         </a>
-	                        <c:forEach items="${timeList }" var="list">
-	                        	<div>
-	                        		<ul>
-	                        			<li>
-	                        				<a href="#">
-	                        					<em>${list.tempTime }</em>
-	                        				</a>
-	                        			</li>
-	                        		</ul>
-	                        	</div>
-	                        </c:forEach>
-	                        <c:forEach items="${movieInfo }" var="dto">
-	                        	<span>${dto.max_seat }</span>
-	                        </c:forEach>
+                        	<span>${movieInfo[0].title_kor } 
+                        		<span class="badge bg-primary">상영중</span>
+                        	</span>
+                        	<span>${movieInfo[0].genre }/</span>
+                        	<span>${movieInfo[0].running_time }분/</span>
+                        	<span>${movieInfo[0].opening_date }</span>
+                        	<span>| ${movieInfo[0].room_name }</span>
+                        	<span>| 총 ${movieInfo[0].max_seat }석</span>
+                        <c:forEach items="${timeList }" var="list">
+                        	<div>
+                        		<ul>
+                        			<li>
+                        				<a href="#">
+                        					<em>시작 : ${list.time }</em>
+                        				</a>
+                        			</li>
+                        		</ul>
+                        	</div>
+                        </c:forEach>
                      </div>
                   </li>
                </ul>
@@ -144,10 +162,6 @@
       </div>
       <div class="sect-guide">
          <div class="descri-timezone">
-            <ul>
-               <li><span class="early">조조</span></li>
-               <li><span class="midnight">심야</span></li>
-            </ul>
             <p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
          </div>
       </div>
