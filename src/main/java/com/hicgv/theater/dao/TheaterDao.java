@@ -12,6 +12,5 @@ public interface TheaterDao {
    public ArrayList<MoviesInfoDto> getMoviesInfo(String location_id);
    public LocationDto getLocationInfo(String location_id);
    public ArrayList<TimeInfoDto> getTime(String location_id);
-   
    public ArrayList<MoviesInfoDto> getAllMoviesInfo();
 }
