@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hicgv.main.dao.MainDao;
@@ -14,6 +15,7 @@ import com.hicgv.main.util.DailyViewers;
 import com.hicgv.main.util.GetMoiveID;
 import com.hicgv.main.util.GetToNaver;
 import com.hicgv.main.util.GetTrailer;
+import com.hicgv.main.util.getMoviesCrawlFinal;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
@@ -23,6 +25,10 @@ public class MainServiceImpl  implements MainService{
 	
 	@Inject 
 	MainDao mainDao;
+	
+	@Autowired(required=false)
+	@Qualifier("crawlFinal")
+	getMoviesCrawlFinal crawlFinal;
 	
 		
 	@Override
@@ -49,8 +55,19 @@ public class MainServiceImpl  implements MainService{
 	}
 
 	@Override
-	public void getToNaver() {
-		GetToNaver naver = new GetToNaver("듄");
+	public void getSearchFinal() {
+		crawlFinal.searchToTitleNaver("듄");
 	}
+
+	@Override
+	public void getSearchFinalDaily(String day) {
+		crawlFinal.searchToDate(day);
+	}
+
+	@Override
+	public void getSearchMovieInfo(String searchTitle) {
+		crawlFinal.searchToTitleMovieInfoApi(searchTitle);
+	}
+
 	
 }

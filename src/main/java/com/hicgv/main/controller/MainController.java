@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.security.auth.Refreshable;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Connection;
@@ -57,12 +59,12 @@ public class MainController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
-
+		
 		return "home";
 	}
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String main(Locale locale, Model model) {
+	public String main(HttpServletRequest req,HttpSession session, Locale locale, Model model) {
 		logger.info("before mainContrller main()");
 		
 		
@@ -131,14 +133,17 @@ public class MainController {
 		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
 		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
-		mainService.getToNaver();
+		mainService.getSearchFinal();
+		mainService.getSearchFinalDaily("20220218");
+		mainService.getSearchMovieInfo("스파이더맨");
 		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
 		model.addAttribute("movie", mainService.getMoviesList());
-		
+		session.setAttribute("t", mainService.getTrail());
 		logger.info("after mainContrller main()");
-		return "main";
 		
 
+		return "main";
+		
 	}
 
 	@RequestMapping(value = "header", method = RequestMethod.GET)
