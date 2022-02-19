@@ -10,12 +10,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Insert title here</title>
 
+
+</head>
+<body>
 <div style="height: 300px;">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
-</head>
-<body>
-<!--  -->
+
+
 <form action="resetPwForm" method="post">
   <div class="form-group">
     <label for="exampleInputPassword1">***질문에 맞는 답을 입력하세요***</label> <br /> 
@@ -27,7 +29,10 @@
   </div>
   <div class="form-group">
 
+	<input type="hidden" name = "modelId" value="${modelId }"/> <!--히든값을 주면 화면이 안나옴  -->
   <button type="submit" class="btn btn-default">입력</button>
+  <button type="button" class="btn btn-default"><a href="home"></a>취소</button>
+  </div>
 </form>
 
 
@@ -37,6 +42,7 @@
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>
+
 
 
 </html>
