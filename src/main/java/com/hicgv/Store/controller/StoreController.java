@@ -63,6 +63,8 @@ public class StoreController {
 		
 		System.out.println(storeDto.getProduct_price());
 		System.out.println(storeDto.getProduct_name());
+		
+		storeService.insertProduct(storeDto);
 
 
 		// upload

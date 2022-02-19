@@ -6,9 +6,9 @@
 
 <mapper namespace="com.hicgv.store.dao.StoreDao">  
 
-	<!-- <insert id="insertProduct" parameterType="com.hicgv.store.dto.StoreDto">
+	<insert id="insertProduct" parameterType="StoreDto">
 		insert into hicgv_store values
 		(hicgv_store_seq.nextval,#{product_name},#{product_categori},#{product_categori_name},#{product_price},#{product_script},#{product_img})
-	</insert> -->
+	</insert>
  	
 </mapper>  
