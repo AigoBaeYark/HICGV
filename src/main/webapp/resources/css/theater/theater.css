@@ -25,3 +25,9 @@ li{
     line-height: 31px;
     text-align: left;
 }
+
+/* 스크린표시 */
+.screen {
+  padding: 10px;
+  background: #ff7200;
+}
