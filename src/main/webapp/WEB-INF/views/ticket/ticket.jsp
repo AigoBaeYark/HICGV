@@ -18,7 +18,7 @@
 </div> 
 <!-- 아래 JSTL추가수정  -->
 <!-- Contaniner -->
-	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
+	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
         
 
 		<!-- Contents Area -->
@@ -27,7 +27,7 @@
         <!-- SECTION -->
 		<section>
 			<div id="sec">
-
+				
 				<div id="secMain">
 					<div class="row">
 						<div class="col-3">
@@ -41,21 +41,22 @@
 					    </c:forEach>
 					  </div>
 					  
-					   <!-- <div class="row justify-content-start" id="list-tab" role="tablist"> -->
 					  <div class="col-2">
 					  <span>극장2</span>
-					    <div class="list-group" id="list-tab" role="tablist">
+					  <!-- 지역 -->
+					  <div class="list-group" id="list-tab" role="tablist">
+					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
 					      <a class="list-group-item list-group-item-action" id="list-seoul-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-seoul">서울</a>
 					      <a class="list-group-item list-group-item-action" id="list-gyeonggi-list" data-bs-toggle="list" href="#list-gyeonggi" role="tab" aria-controls="list-gyeonggi">경기</a>
 					      <a class="list-group-item list-group-item-action" id="list-incheon-list" data-bs-toggle="list" href="#list-incheon" role="tab" aria-controls="list-incheon">인천</a>
 					      <a class="list-group-item list-group-item-action" id="list-gangwon-list" data-bs-toggle="list" href="#list-gangwon" role="tab" aria-controls="list-gangwon">강원도</a>
 					      <a class="list-group-item list-group-item-action" id="list-chungcheong-list" data-bs-toggle="list" href="#list-chungcheong" role="tab" aria-controls="list-chungcheong">충청도</a>
+					    	</div>
 					    </div>
 					  </div>
-					  
-					   <!-- <div class="row justify-content-start" id="nav-tabContent"> --> 
+					  <!-- 상영관 -->
 					  <div class="col-2">
-					  	<div class="tab-content" id="nav-tabContent"> 	
+					    <div class="tab-content" id="nav-tabContent"> 	
 					      	<div class="tab-pane fade show active" id="list-seoul" role="tabpanel" aria-labelledby="list-seoul-list">
 					         <c:forEach items="${local }" var="loc">	
 					         <c:if test="${loc.theater_id eq 1 }">
@@ -102,42 +103,41 @@
 					          </c:forEach> 
 					          </div>
 					    	 </div>
-					      </div>       
+					    </div>					  
+					  <div class="col-2">
+					  <span>날짜선택3</span>
+					  <c:forEach items="${ticket }" var="tic">
+					  <div class="list-group" id="list-tab" role="tablist">
+					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
+					      <a class="list-group-item list-group-item-action" id="list-date15-list" data-bs-toggle="list" href="#list-date15" role="tab" aria-controls="list-seoul">아직공란쓰</a>
 					    </div>
-					     <div class="col-2">
-						<span>날짜선택3</span>
-						<c:forEach items="${ticket }" var="tic">
-					    <!-- <div class="row justify-content-around" id="list-tab" role="tablist"> -->
-					      <li><a class="list-group-item list-group-item-action" id="list-seoul-list" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-seoul">
-					      여긴아직공란 </a></li>
-					   <!--  </div> -->
-					    </c:forEach>
+					   </div>
+					   </c:forEach>
 					  </div>
 					  
-						<div class="col-3">
+						<div class="col-3"> 
 						<span>시간선택4</span>
 						<c:forEach items="${time}" var="ti">
-					   <!--  <div class="row justify-content-around" id="list-tab" role="tablist"> -->
-					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
+					    <div class="row justify-content-around" id="list-tab" role="tablist">
+					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-time" role="tab" aria-controls="list-time">
 					      ${ti.room_name}
 					      </a>
-					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
+					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-time" role="tab" aria-controls="list-time">
 					      ${ti.max_seat}
 					      </a>
-					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
+					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-time" role="tab" aria-controls="list-time">
 					      ${ti.start_date}
 					      </a>
-					      <c:forEach items="${ttimeList }" var="tlist">
-					      <a href="tictimeSelect?locid=101" title="현재 선택"> 
+					      <c:forEach items="${timeList }" var="tlist">
+					      <a href="timeSelect?locid=101" title="현재 선택"> 
 	                        <span>종료시간</span> 
                        		 </a>
-					      <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
+					      <a class="list-group-item list-group-item-action" id="list-seoul-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
 					      ${tlist.endTime}
 					      </a>
-					      </c:forEach> 
-					   
+					      </c:forEach>
+					    </div>
 					    </c:forEach>
-					  </div>
 					  </div>
 					  </div>
 					</div>
@@ -148,11 +148,11 @@
 
 
 				</div>
-			
+			</div>
 		</section>    
            	
 		</div>
-		
+	</div>		
 								
 							
 <div style="clear: both;">

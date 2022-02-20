@@ -14,7 +14,7 @@ public interface TicketDao {
 	public ArrayList<TheaterDto> biglocal();
 	public ArrayList<TLocationDto> local();
 	public ArrayList<TTimeDto> time();
-	public ArrayList<TimeInfoDto> getTime();
+	public ArrayList<TimeInfoDto> gettictime();
 	
 
 }
