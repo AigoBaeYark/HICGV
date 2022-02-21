@@ -36,18 +36,6 @@ public class TicketController {
 		System.out.println("theaterid : " + theaterid);
 		System.out.println("locid : " + locid);
 		
-<<<<<<< HEAD
-		/*1.영화선택*/
-		TicketDao dao=sqlSession.getMapper(TicketDao.class);
-		ArrayList<MoviesDto> ticket=dao.ticket();
-		model.addAttribute("ticket", ticket);
-		
-		/*2.지역선택*/
-		//2-1.지역(도별)
-		ArrayList<TheaterDto> biglocal=dao.biglocal();
-		for (TheaterDto theaterDto : biglocal) {
-			System.out.println("theid : "+theaterDto.getTheater_id());
-=======
 		if (movieid == null)
 			movieid = "20223278"; //극장판주술회전 (가나다 순 중 젤 위)
 		if (theaterid == null)
@@ -71,47 +59,23 @@ public class TicketController {
 		ArrayList<TicketListDto> tickettheater1=dao.tickettheater1(movieid, theaterid);
 		for (TicketListDto ticketListDto : tickettheater1) {
 			System.out.println("theid1 : "+ticketListDto.getTheater_id());
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		}
 		model.addAttribute("tickettheater1", tickettheater1);
 		/*@@모델을 안 써서 값이 안 나왔음*/
 		
 		//2-2.영화관
-<<<<<<< HEAD
-		ArrayList<TLocationDto> local=dao.local();
-		for (TLocationDto tLocationDto : local) {
-			System.out.println("loc : " + tLocationDto.getLocation_id());
-=======
 		ArrayList<TicketListDto> tickettheater2=dao.tickettheater2(movieid, theaterid, locid);
 		for (TicketListDto ticketListDto : tickettheater2) {
 			System.out.println("theid2 : " + ticketListDto.getLocation_id());
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		}
 		model.addAttribute("tickettheater2", tickettheater2);
 		
-<<<<<<< HEAD
-		//4. 시간선택 (종료시간구하는건 아래 메소드에)
-		ArrayList<TTimeDto> time=dao.time();
-		for (TTimeDto tTimeDto : time) {
-			System.out.println("time : " + tTimeDto.getStart_date());
-		}
-=======
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		
 		
 		return "ticket/ticket";
 		
 	}
 
-<<<<<<< HEAD
-	/*3.영화 상영날짜, 4.영화 종료시간*/
-	/*날짜시간 세분화 및 상영종료 시간 구하기*/
-	@RequestMapping("/tictimeSelect")
-	public String timeSelect(HttpServletRequest request, Model model) {
-		System.out.println("======= < pass by timeSelect() > =======");
-		
-		//request.getParameter(" "); 영화날짜만 받아오기
-=======
 	/*3.영화 상영날짜, 4.영화 시간선택 */
 	//3번
 	/*날짜시간 세분화 및 상영종료 시간 구하기*/
@@ -123,17 +87,12 @@ public class TicketController {
 		String theaterid = request.getParameter("theaterid");
 		String locid = request.getParameter("locid");
 		String tday = request.getParameter("day");
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		
 		TicketDao dao = sqlSession.getMapper(TicketDao.class);
 		
 		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
 		
-<<<<<<< HEAD
-		ArrayList<TimeInfoDto> tList=dao.gettictime(); //괄호안에 다가 날짜 쓸 예정
-=======
 		ArrayList<TicketListDto> ticketday=dao.ticketday(movieid, theaterid, locid, tday); //괄호안에 다가 날짜 쓸 예정
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		String year="";
 		String month="";
 		String day="";
@@ -156,11 +115,7 @@ public class TicketController {
 			String time = hour + minute; //ex)10시45분 10+45 => 1045(string이기때문)
 			int endTime = Integer.parseInt(time);
 			
-<<<<<<< HEAD
-			int runningTime = timeInfoDto.getRunning_time();	
-=======
 			int runningTime = ticketListDto.getRunning_time();	
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 			
 			endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
 			if(endTime%100 >= 60) {
@@ -193,9 +148,6 @@ public class TicketController {
 				System.out.println(timeMaplist.get("endTime"));
 			}
 		
-<<<<<<< HEAD
-			model.addAttribute("ttimeList",timeListMap);
-=======
 			model.addAttribute("ticketday",timeListMap);
 	
 		return "ticket/ticket";
@@ -212,7 +164,6 @@ public class TicketController {
 		String starttime = request.getParameter("starttime");
 		
 		TicketDao dao = sqlSession.getMapper(TicketDao.class);
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 		
 		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
 		
@@ -272,29 +223,14 @@ public class TicketController {
 				System.out.println(timeMaplist.get("endTime"));
 			}
 		
-<<<<<<< HEAD
-		return "ticket/ticket";
-		
-	}
-=======
 			model.addAttribute("tickettime",timeListMap);
 	
 		return "ticket/ticket";
 	}
 	
 	
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 	
 	
-	/*좌석예매란*/
-	@RequestMapping("/seat")
-	public String tSeat(HttpServletRequest request, Model model) {
-		
-		
-		
-		return "ticket/ticketseat";
-		
-	}
 	
 	
 	

@@ -16,10 +16,6 @@ public interface TicketDao {
 	public ArrayList<MoviesDto> ticket();
 /*	public ArrayList<TheaterDto> biglocal();
 	public ArrayList<TLocationDto> local();
-<<<<<<< HEAD
-	public ArrayList<TTimeDto> time();
-	public ArrayList<TimeInfoDto> gettictime();
-=======
 	public ArrayList<TTimeDto> time(); //나중에지우기
 	public ArrayList<TimeInfoDto> gettictime(); //나중에지우기
 */	
@@ -30,7 +26,6 @@ public interface TicketDao {
 	public ArrayList<TicketListDto> tickettheater2(String movie_id, String theater_id, String location_id);
 	public ArrayList<TicketListDto> ticketday(String movie_id, String theater_id, String location_id, String day);
 	public ArrayList<TicketListDto> tickettime(String movie_id, String theater_id, String location_id, String day, String starttime);
->>>>>>> baaf7481cd591224e72cf7bb02f301e56a50b2c6
 	
 
 }
