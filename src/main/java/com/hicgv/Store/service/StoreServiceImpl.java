@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hicgv.store.dao.StoreDao;
+import com.hicgv.store.dto.StoreDto;
 
 @Service
 public class StoreServiceImpl implements StroreService {
@@ -18,9 +19,10 @@ public class StoreServiceImpl implements StroreService {
 	}
 
 	@Override
-	public void insertProduct(String product_name, int product_categori, String product_categori_name,
-			int product_price, String product_script, String product_img) {
-		dao.insertProduct(product_name, product_categori, product_categori_name, product_price, product_script, product_img);
+	public void insertProduct(StoreDto storeDto) {
+		dao.insertProduct(storeDto);
 	}
+
+
 
 }

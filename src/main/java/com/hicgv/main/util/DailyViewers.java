@@ -58,7 +58,6 @@ public class DailyViewers {
 			return responseBody.toString();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new RuntimeException("API 불러오기 실패");
 		}
 	}

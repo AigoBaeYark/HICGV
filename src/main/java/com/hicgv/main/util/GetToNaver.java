@@ -24,12 +24,12 @@ public class GetToNaver {
 	public GetToNaver(String movieTitle) {
 		String tempBody = null;
 		try {
-			
-			//naver API 는 검색어를 uff-8로 변환하여 보내야함 
+
+			// naver API 는 검색어를 uff-8로 변환하여 보내야함
 			text = URLEncoder.encode(movieTitle, "utf-8");
 			System.out.println(text);
-			
-			//검색어를 입력받아 가장 처음나오는 영화만 받아오기 display = 1 은 여러개중에 가장 처음값만 보여줌
+
+			// 검색어를 입력받아 가장 처음나오는 영화만 받아오기 display = 1 은 여러개중에 가장 처음값만 보여줌
 			String url = APIURL + "?query=" + text + "&start=1&display=1";
 			tempBody = exam(url);
 

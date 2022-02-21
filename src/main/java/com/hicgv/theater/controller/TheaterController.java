@@ -96,11 +96,14 @@ public class TheaterController {
 		// 상영 종료시간 계산
 		String time = hour + minute;
 		int endTime = Integer.parseInt(time);
-		int runningTime = Integer.parseInt(timeInfoDto.getRunning_time()); 
-		
+
+		int runningTime = timeInfoDto.getRunning_time();		
+
 		endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
 		if(endTime%100 >= 60) {
+			System.out.println(endTime%100);
 			endTime -=60;
+			endTime +=100;
 		}
 		
 		Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
@@ -112,6 +115,13 @@ public class TheaterController {
 		timeMap.put("minute", minute);
 		timeMap.put("time", time);
 		timeMap.put("endTime",  endTime);
+		
+		System.out.println("year : "+ year);
+		System.out.println("day"+ day);
+		System.out.println("hour"+ hour);
+		System.out.println("minute"+ minute);
+		System.out.println("time"+ time);
+		System.out.println("endTime"+  endTime);
 		
 		timeListMap.add(timeMap);
 		
@@ -129,16 +139,29 @@ public class TheaterController {
 	   
 	   return "theater/theater";
    }
+   
    @RequestMapping("theaterAdmin")
    public String theaterAdmin() {
 	   System.out.println("======= << theaterAdmin >> =======");
 	   return "theater/theaterAdmin";
    }
-   
-   
+
    @RequestMapping("theaterList")
-   public String schedule() {
+   public String schedule(HttpServletRequest request, Model model) {
 	   System.out.println("======= << theaterList >> =======");
+	   String movieid=request.getParameter("movie_id");
+	   String roomid=request.getParameter("theater_room_id");
+	   String locationid=request.getParameter("location_id");
+	   String startdate=request.getParameter("start_date");
+	   
+	   System.out.println("movieid : "+movieid);
+	   System.out.println("roomid : "+roomid);
+	   System.out.println("locationid : "+locationid);
+	   System.out.println("startdate : "+startdate);
+	   
+	   /*TheaterDao dao=sqlSession.getMapper(TheaterDao.class);
+	   dao.getAllMoviesInfo();*/
+	   
 	   
 	   return "theater/theaterList";
    }

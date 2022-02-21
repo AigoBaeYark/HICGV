@@ -38,9 +38,6 @@
     </select>
     
     <select id="getAllMoviesInfo" resultType="com.hicgv.theater.dto.MoviesInfoDto">
-    	insert into THEATER_SCHEDULE_ID, M.MOVIE_ID, R.THEATER_ROOM_ID, START_DATE, S.LOCATION_ID
-		FROM HICGV_MOVIE M , HICGV_THEATER_ROOM R , HICGV_THEATER_SCHEDULE S
-		WHERE R.THEATER_ROOM_ID= S.THEATER_ROOM_ID
-		AND M.MOVIE_ID=S.MOVIE_ID
+   
     </select>
 </mapper>

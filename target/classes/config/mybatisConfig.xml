@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  	<typeAliases> 
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
+		<typeAlias type="java.lang.String" alias="String"/>
+  		<typeAlias type="com.hicgv.movies.dto.MovieActorDto" alias="MovieActorDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MovieDirectorDto" alias="MovieDirectorDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MoviePosterDto" alias="MoviePosterDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MoviesDto" alias="MoviesDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MovieSystemDto" alias="MovieSystemDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MovieTrailerDto" alias="MovieTrailerDto"/>
+  		<typeAlias type="com.hicgv.movies.dto.MovieTrailerDto" alias="MovieTrailerDto"/>
+  		<typeAlias type="com.hicgv.pay.dto.PayDto" alias="PayDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.LocationDto" alias="LocationDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.MoviesInfoDto" alias="MoviesInfoDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.TheaterDto" alias="TheaterDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.TimeInfoDto" alias="TimeInfoDto"/>
+  		<typeAlias type="com.hicgv.ticket.dto.TicketSeatDto" alias="TicketSeatDto"/>
+  		<typeAlias type="com.hicgv.ticket.dto.TLocationDto" alias="TLocationDto"/>
+  		<typeAlias type="com.hicgv.ticket.dto.TTimeDto" alias="TTimeDto"/>
+  		<typeAlias type="com.hicgv.store.dto.StoreDto" alias="StoreDto"/>
+  		
+  	</typeAliases>
+  </configuration>

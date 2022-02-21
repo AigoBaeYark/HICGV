@@ -15,6 +15,69 @@ public class GetMoiveID {
 	Connection connection = Jsoup.connect(movieIDURL);
 	//private String url = "www.cgv.co.kr/search/?query="+title_kor;
 	
+	// list<map<string, Object>> 테스트
+//	
+//	ArrayList<Map<String, Object>> tempList = new ArrayList<Map<String, Object>>();
+//			
+//	for(int i=0; i<5;i++) {
+//		Map<String, Object> tempMap = new HashMap<String, Object>();
+//
+//		tempMap.put("key", "value"+i);
+//		tempMap.put("temp", "temp"+i);
+//		tempMap.put("map", "map"+i);
+//		tempList.add(tempMap);
+//	}
+//	
+//	for(int i=0; i<tempList.size();i++) {
+//		System.out.println(i + " 번째");
+//		Map<String, Object> m = tempList.get(i);
+//		System.out.println("key : "+m.get("key"));
+//		System.out.println("temp "+m.get("temp"));
+//		System.out.println("map : "+m.get("map"));
+//	}
+	
+	
+	// jsoup 테스트
+	/*
+	String url = "http://www.cgv.co.kr/movies/";
+	Connection connection = Jsoup.connect(url);
+	ArrayList<String> rankli = new ArrayList<String>();
+	ArrayList<String> titleli = new ArrayList<String>();
+	try {
+		//cgv 홈페이지에서 랭크, 제목 가져오기
+		Document document = connection.get();
+		Elements e = document.select("div.sect-movie-chart");
+		Iterator<Element> rank = e.select("strong.rank").iterator();
+		Iterator<Element> title = e.select("strong.title").iterator();
+
+		while (rank.hasNext()) {
+			
+			// rank 앞의 no. 없애기
+			// rankli.add(rank.next().text().substring(3));
+
+			// Iterator 출력, 리스트에 넣기
+			System.out
+					.println(rankli.add(rank.next().text().substring(3)) + "\t" + titleli.add(title.next().text()));
+			// System.out.println(rank.next().text() + "\t" +
+			// titleli.add(title.next().text()));
+
+		}
+
+		for (String li : rankli) {
+			// 리스트에 잘 들어갔는지 확인
+			System.out.println(li + "\t" + titleli.get(Integer.parseInt(li)));
+
+			// dao.insertMovie(li,titleli.get(Integer.parseInt(li)));
+			// dao.dailyViewer(movie_id, api가져온 관람객);
+
+		}
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	*/
+	
+	
+	
 	public void getMoviesID() {
 		ArrayList<String> idstr = new ArrayList<String>();
 		ArrayList<Integer> idIntegers = new ArrayList<Integer>();

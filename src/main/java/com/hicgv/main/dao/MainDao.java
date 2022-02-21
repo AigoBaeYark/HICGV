@@ -12,7 +12,6 @@ import com.hicgv.movies.dto.MoviesDto;
 
 public interface MainDao {
 	
-	
 	//영화순위 (10위까지)
 	public ArrayList<MoviesDto> movieChart();
 }

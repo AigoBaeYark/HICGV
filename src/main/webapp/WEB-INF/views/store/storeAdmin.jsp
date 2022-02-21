@@ -27,18 +27,18 @@
 	-->
 	
 	<div id="contents" style="margin: 0 auto;">
-		<form action="insertStoreData" method="post">
+		<form action="insertStoreData" method="post" enctype="multipart/form-data">
 			<label for="name">상품이름</label>
-			<input type="text" name="name" id="name"/>
+			<input type="text" name="product_name" id="product_name"/>
 		
 			<label for="price">상품가격</label>
 			<!-- 숫자만 입력되게 -->
-			<input type="text" name="price" id="price" onkeyup="this.value=this.value.replace(/[^-0-9]/g,'');"/>
+			<input type="text" name="product_price" id="product_price" onkeyup="this.value=this.value.replace(/[^-0-9]/g,'');"/>
 		
 			<label for="img">상품이미지</label>
-			<input type="file" name="img" id="img" value="임시"/>
+			<input type="file" name="product_img" id="product_img" value="상품이미지"/>
 			<br />
-			<textarea name="script" id="" cols="30" rows="10" placeholder="상품설명" style="position:relative; float: left; margin-top: 10px;"></textarea>
+			<textarea name="product_script" id="product_script" cols="30" rows="10" placeholder="상품설명" style="position:relative; float: left; margin-top: 10px;"></textarea>
 		
 			<label for="categoriList">상품카테고리</label>
 			
@@ -52,8 +52,8 @@
 			</select>
 			
 			<input type="submit" id = "submitBtn"value="입력"/>
-			<input type="hidden" name="categoriVal" id="categoriVal"/>
-			<input type="hidden" name="categoriName" id="categoriName"/>
+			<input type="hidden" name="product_categori" id="product_categori"/>
+			<input type="hidden" name="product_categori_name" id="product_categori_name"/>
 		</form>
 	</div>
 	
@@ -64,8 +64,8 @@
  		var categoriVal;
 		$(document).on('click','#submitBtn', function(e) {
 			categoriVal  = document.getElementById("categoriList").options[document.getElementById("categoriList").selectedIndex].value;
-			$('#categoriVal').val(categoriVal);
-			$('#categoriName').val($("#categoriList option:selected").text());
+			$('#product_categori').val(categoriVal);
+			$('#product_categori_name').val($("#categoriList option:selected").text());
 
 			console.log(categoriVal);
 		});

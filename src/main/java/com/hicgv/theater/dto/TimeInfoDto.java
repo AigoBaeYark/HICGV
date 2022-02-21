@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TimeInfoDto {
-	private String running_time;
+	private int running_time;
 	private String start_date;
 	private String movie_id;
 	private int location_id;
