@@ -22,6 +22,7 @@
   		<typeAlias type="com.hicgv.ticket.dto.TicketSeatDto" alias="TicketSeatDto"/>
   		<typeAlias type="com.hicgv.ticket.dto.TLocationDto" alias="TLocationDto"/>
   		<typeAlias type="com.hicgv.ticket.dto.TTimeDto" alias="TTimeDto"/>
+  		<typeAlias type="com.hicgv.ticket.dto.TicketListDto" alias="TicketListDto"/>
   		<typeAlias type="com.hicgv.store.dto.StoreDto" alias="StoreDto"/>
   		
   	</typeAliases>

@@ -9,7 +9,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
-<!-- <link rel="stylesheet" href="resources/css/ticket/ticket.css" /> -->
+<link rel="stylesheet" href="resources/css/ticket/ticket.css" />
+
 <title>ticket/ticketseat</title>
 </head>
 <body>
@@ -20,27 +21,36 @@
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
         
-
+		
 		<!-- Contents Area -->
 		 <div id="contents" class="">
     
+    <div class="container">
+	  <div class="row">
+	    <div class="col-6">
+			<span>인원수</span>
+		   <select class="form-select" aria-label="Default select example">
+		  	<option selected>인원수를 선택해주세요 (명)</option>
+		  	<option value="1">1</option>
+		 	 <option value="2">2</option>
+		  	<option value="3">3</option>
+		  	<option value="4">4</option>
+		 	 <option value="5">5</option>
+		  	<option value="6">6</option>
+			</select> 
+		</div>
+	    <div class="col-6">
+			<span>선택정보</span>
+			<p>  ex) CGV강남 | 4관 <br/>
+			  2022. 02. 21 (월) 17:50 ~ 19:56(종료날짜받기) </p>
+		</div>
+	  </div>
+	</div>
     
-    
-    <span>인원수</span>
-   <select class="form-select" aria-label="Default select example">
-  	<option selected>인원수를 선택해주세요 (명)</option>
-  	<option value="1">1</option>
- 	 <option value="2">2</option>
-  	<option value="3">3</option>
-  	<option value="4">4</option>
- 	 <option value="5">5</option>
-  	<option value="6">6</option>
-	</select>  
+     
 	
 	   
-	  <span>선택정보</span>
-	  ex) CGV강남 | 4관
-	  2022. 02. 21 (월) 17:50 ~ 19:56(종료날짜받기)
+	  
 	  
 	   
 	   
