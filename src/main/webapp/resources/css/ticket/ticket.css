@@ -6,7 +6,7 @@ body{
 #sec{
 	/* width: 70%; */
 	width:900px;
-	height: 1000px;
+	height: 400px;
 	/* background-color: #fef8dc; */
 	background-color: white;
 	margin: 50px auto;
@@ -83,9 +83,62 @@ body{
 	background-position: -90px 0;
 } 
 
-
-/* 스크린표시 */
+/* <------------------------좌석예약-------------------------> */
 .screen {
   padding: 10px;
   background: gray;
 }
+
+
+
+
+/* <------------------------결제배너란-------------------------> */
+#ticket_tnb {
+    position: relative;
+    width: 100%;
+    min-width: 996px;
+    height: 128px;
+    background-color: #1d1d1c;
+}
+
+.tnb {
+    margin: 0 auto;
+    width: 996px;
+    height: 108px;
+    padding: 10px 0;
+    position: relative;
+}
+.tnb.step1 .btn-left {
+    /* display: none; */
+}
+.tnb .btn-left, .tnb .btn-right {
+    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_buttons.png) no-repeat;
+    background-position: 0 0;
+    overflow: hidden;
+    text-indent: -1000px;
+}
+
+.tnb .info.movie {
+    width: 210px;
+}
+.tnb .info {
+    float: left;
+    height: 108px;
+    padding-right: 2px;
+    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/split.png) no-repeat right;
+    position: relative;
+    color: #cccccc;
+    font-size: 12px;
+}
+
+#ticket_bottom_banner {
+    position: relative;
+    width: 100%;
+    min-width: 996px;
+    height: 140px;
+    overflow: hidden;
+    text-align: center;
+    margin: 30px 0;
+}
+
+

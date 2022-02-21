@@ -64,7 +64,7 @@
 
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
   <div class="arow">
-  <span> A열   </span> 
+  &nbsp;&nbsp; <span> A열   </span> &nbsp;&nbsp; 
   <input type="checkbox" class="btn-check" id="btncheckA1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheckA1">1</label>
   <input type="checkbox" class="btn-check" id="btncheckA2" autocomplete="off">
@@ -80,7 +80,7 @@
  <br>
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 	<div class="brow">
-	<span> B열   </span> 
+	&nbsp;&nbsp; <span> B열   </span> &nbsp;&nbsp; 
   <input type="checkbox" class="btn-check" id="btncheckB1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheckB1">1</label>
   <input type="checkbox" class="btn-check" id="btncheckB2" autocomplete="off">
@@ -96,7 +96,7 @@
 <br>
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 	<div class="crow">
-	<span> C열   </span> 
+	&nbsp;&nbsp; <span> C열   </span> &nbsp;&nbsp; 
   <input type="checkbox" class="btn-check" id="btncheckC1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheckC1">1</label>
   <input type="checkbox" class="btn-check" id="btncheckC2" autocomplete="off">
@@ -112,7 +112,7 @@
 <br>
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 	<div class="drow">
-	<span> D열   </span> 
+	&nbsp;&nbsp; <span> D열   </span> &nbsp;&nbsp; 
   <input type="checkbox" class="btn-check" id="btncheckD1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheckD1">1</label>
   <input type="checkbox" class="btn-check" id="btncheckD2" autocomplete="off">
@@ -128,7 +128,7 @@
 <br>
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 	<div class="erow">
-	<span> E열   </span> 
+	&nbsp;&nbsp; <span> E열   </span> &nbsp;&nbsp; 
   <input type="checkbox" class="btn-check" id="btncheckE1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheckE1">1</label>
   <input type="checkbox" class="btn-check" id="btncheckE2" autocomplete="off">
@@ -148,11 +148,22 @@
 <br>
 <br>
 <!-- PayDao 테스트용 -->
+
 <a href="pay?userid=1&movieid=20210087">pay</a>
 
 			</div>
 		</section>
 	</div>
+	
+	<div style="clear: both;">
+		<c:import url="../ticket/ticketbuy.jsp"></c:import>
+	</div>
+           	
+			
+	<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
+		<!-- 흰 배경 -->
+	</div>
+	
 </div>
 
 
