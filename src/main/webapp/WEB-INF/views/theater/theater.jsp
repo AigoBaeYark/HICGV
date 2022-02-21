@@ -91,13 +91,9 @@
          <div>
             <div>
                <strong>
-                  ${locinfo.location_add }
+                  ${locinfo.location_add } <br />
+                  ${locinfo.location_tel }
                </strong>
-               <span>
-                  <strong>
-                     ${locinfo.location_tel }
-                  </strong>
-               </span>
             </div>
          </div>
       </div>
@@ -108,104 +104,9 @@
       <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
    </div>
    
-  
-   <div class="showtimes-wrap">
-      <div class="sect-schedule">
-         <div id="slider">
-            <div class="item-wrap">
-               <ul class="item" style="width: 800px; height: 108.002px;">
-                  <li class="on">
-                     <div class="day">
-                     	<c:choose>
-                     		<c:when test="${movieInfo[0].age_limit eq '전체 관람가'}">
-	                        	<img src="/cgv/resources/img/theater/전체관람가.png" width="21" height="21" alt="" />
-                     		</c:when>
-                     		<c:when test="${movieInfo[0].age_limit eq '12세 관람가'}">
-	                        	<img src="/cgv/resources/img/theater/12세관람가.png" width="21" height="21" alt="" />
-                     		</c:when>
-                     		<c:when test="${movieInfo[0].age_limit eq '15세 관람가'}">
-	                        	<img src="/cgv/resources/img/theater/15세관람가.png" width="21" height="21" alt="" />
-                     		</c:when>
-                     		<c:when test="${movieInfo[0].age_limit eq '18세 관람가'}">
-	                        	<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" alt="" />
-                     		</c:when>
-                     	</c:choose>
-                        <a href="timeSelect?locid=101"> 
-	                        <span>02월</span> 
-	                        <em>화</em> 
-	                        <strong>15</strong>
-                        </a>
-                        <a href="timeSelect?locid=101"> 
-	                        <span>02월</span> 
-	                        <em>수</em> 
-	                        <strong>16</strong>
-                        </a>
-                        <a href="timeSelect?locid=101"> 
-	                        <span>02월</span> 
-	                        <em>목</em> 
-	                        <strong>17</strong>
-                        </a>
-                        	<span>${movieInfo[0].title_kor } 
-                        		<span class="badge bg-primary">상영중</span>
-                        	</span>
-                        	<span>${movieInfo[0].genre }/</span>
-                        	<span>${movieInfo[0].running_time }분/</span>
-                        	<span>${movieInfo[0].opening_date }</span>
-                        	<span>| ${movieInfo[0].room_name }</span>
-                        	<span>| 총 ${movieInfo[0].max_seat }석</span>
-                        <c:forEach items="${timeList }" var="list">
-                        	<div>
-                        		<ul>
-                        			<li>
-                        				<a href="#">
-                        					<em>시작 : ${list.time }</em>
-                        					<em>종료 : ${list.endTime }</em>
-                        				</a>
-                        			</li>
-                        		</ul>
-                        	</div>
-                        </c:forEach>
-                     </div>
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-      <div class="sect-guide">
-         <div class="descri-timezone">
-            <p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
-         </div>
-      </div>
-      <div class="sect-showtimes">
-         <ul>
-            <li>
-               <div class="col-times">
-                  <c:forEach items="${movieinfo }" var="dto">
-                  <div class="info-movie">
-                     <span class="ico-grade grade-15"> ${dto.age_limit }</span> <a
-                        href="" target="_parent"><strong>
-                           ${dto.title_kor }</strong></a> <span class="round lightblue"> 
-                     </span><span class=""> <em> </em>
-                     </span><i>${dto.genre }</i>/ <i> ${dto.running_time }분</i>/ <i> ${dto.opening_date } 개봉</i>
-                  </div>
-
-                  <div class="type-hall">
-                     <div class="info-hall">
-                        <ul>
-                           <li>${dto.room_name }</li>
-                           <li>총 ${dto.max_seat }석</li>
-                        </ul>
-                     </div>
-                  </div>
-                  </c:forEach>
-               </div>
-            </li>
-         </ul>
-      </div>
-      <p class="info-noti"></p>
-      <p>ㆍ입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</p>
-      <p></p>
-   </div>
+   <jsp:include page="theaterTimeList.jsp" flush="false"/> 
+   
+     
  
    <c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>
