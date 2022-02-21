@@ -24,7 +24,8 @@
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 
-
+	
+	
 	<a href="header">header</a>
 	<a href="seatTest">seatTest</a>
 	<a href="moviesAdmin">moviesAdmin</a>
@@ -32,11 +33,14 @@
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
 		class="movieSelection_wrap">
-		<div class="contents">
+			<div class="contents">
+		<% if(session.getAttribute("id")!=null){ %>
+		<p style="color: #fff;"><%=session.getAttribute("id") %> 님 안녕하세요</p>
+		<%} %>
 			<div class="video_wrap"
-				style="overflow: hidden; position: relative; width: 100%; height: 100%;">
+				style="overflow: hidden; position: relative; width: 100%; height: 100%;clear:both;">
 				<video autoplay="" muted=""
-					style="position: relative;width: 100%;height: 100%;transform: scale(1.35);z-index: 0;">
+					style=" position: relative;width: 100%;height: 100%;z-index: 0;">
 				<source src="${trailer.video }" type="video/mp4"></video>
 
 				${trailer.title } ${trailer.script }

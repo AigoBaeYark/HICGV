@@ -46,12 +46,16 @@
     <div class="contents">
         <h1><a href="main"><img src="${path }/resources/img/main/logoRed.png" alt="CGV"></a><span>CULTUREPLEX</span></h1>
         <ul class="memberInfo_wrap"> 
-                  
+			
+			<!-- 로그인 상태면 로그아웃 버튼만 보이게 -->
+			<%if(session.getAttribute("id")==null) {%>                  
             <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
             <li><a href="joinForm"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+            <%} else {%>  
+              <li><a href="logout"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그아웃</span></a></li>
+            <%} %>
             
-            
-            <li><a href="https://www.cgv.co.kr/user/mycgv/"><img src="${path }/resources/img/main/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
+            <li><a href="myCGV"><img src="${path }/resources/img/main/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
             <li><a href="https://www.cgv.co.kr/support/default.aspx"><img src="${path }/resources/img/main/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
         </ul>
     </div>

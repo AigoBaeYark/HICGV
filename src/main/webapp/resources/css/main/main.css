@@ -10,14 +10,14 @@ div.movieSelection_wrap > .contents {
 
 strong.movieSelection_title {
 	position: absolute;
-	top: 10px;
+	top: 150px;
 	left: 0px;
 	color: #fff;
 	font-size: 40px;
 	font-weight: 400;
 }
 span.movieSelection_txt {
-	    color: #fff;top: 100px;left: 0px;position: absolute;
+	    color: #fff;top: 230px;left: 0px;position: absolute;
 }
 
 #movieChart_list .movieChart_btn_wrap {
