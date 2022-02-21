@@ -1,6 +1,5 @@
 package com.hicgv.main.controller;
 
-import java.awt.List;
 import java.awt.RenderingHints.Key;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -27,8 +27,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hicgv.main.dao.MainDao;
 import com.hicgv.main.service.MainService;
@@ -67,26 +71,27 @@ public class MainController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(HttpServletRequest req,HttpSession session, Locale locale, Model model) {
 		logger.info("before mainContrller main()");
-		LinkedList<HashMap<String, String>> finalSearchList = new LinkedList<HashMap<String, String>>();
+		//LinkedList<HashMap<String, String>> finalSearchList = new LinkedList<HashMap<String, String>>();
 		
 		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
 		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
-		try {
-			finalSearchList = mainService.getSearchFinal("스파이더맨");
-			for (HashMap<String, String> hashMap : finalSearchList) {
-				System.out.println("title : "+hashMap.get("title_kor"));
-			}
-		} catch (Exception e) {
-			throw new RuntimeException("검색실패",e);
-		}
+		//데이터 들어오는거 테스트 완료
+//		try {
+//			finalSearchList = mainService.getSearchFinal("스파이더맨");
+//			for (HashMap<String, String> hashMap : finalSearchList) {
+//				System.out.println("title : "+hashMap.get("title_kor"));
+//			}
+//		} catch (Exception e) {
+//			throw new RuntimeException("검색실패",e);
+//		}
 	
 		
-		mainService.getSearchFinalDaily("20220218");
+		//mainService.getSearchFinalDaily("20220218");
 		//mainService.getSearchMovieInfo("듄");
 		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
 		model.addAttribute("movie", mainService.getMoviesList());
-		model.addAttribute("movieList",finalSearchList);
+		//model.addAttribute("movieList",finalSearchList);
 		session.setAttribute("t", mainService.getTrail());
 		logger.info("after mainContrller main()");
 		
@@ -111,7 +116,25 @@ public class MainController {
 		
 		return "common/seatTest";
 	}
-
+	
+	@RequestMapping(value="/moviesAdmin")
+	public String moviesAdmin(Model model) {
+		logger.info("befroe moviesAdmin");
+		
+		return "common/moviesAdmin";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/moviesResult", produces = "application/json; charset=utf8")
+	public List<HashMap<String, String>> moviesResult(HttpServletRequest request, Model model,@RequestParam String searchTitle) {
+		logger.info("postSearch");
+		System.out.println(searchTitle);
+		List<HashMap<String, String>> finalSearchList = mainService.getSearchFinal(searchTitle);
+		return finalSearchList;
+	}
+	
+	
 	// public String DailyRefresh() {
 	// //dao.dailyViewer(movie_id, api가져온 관람객);
 	// }

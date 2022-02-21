@@ -196,7 +196,7 @@
  <!-- 서브메뉴, 메뉴에 마우스 올리면 나오는 메뉴 -->
 <div class="nav">
     <div class="contents">
-        <h1><a href="https://www.cgv.co.kr/" tabindex="-1"><img src="" alt="CGV"></a></h1>
+        <h1><a href="main" tabindex="-1"><img src="" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
                 <h2><a href="movies">영화</a></h2>
@@ -215,7 +215,7 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="https://www.cgv.co.kr/ticket/"><strong>예매</strong></a></h2>
+                <h2><a href="ticket"><strong>예매</strong></a></h2>
                 <dl class="nav_overMenu" style="">
                     <dt><h2><a href="https://www.cgv.co.kr/ticket/" tabindex="-1">예매</a></h2></dt>
                     <dd><h3><a href="https://www.cgv.co.kr/ticket/">빠른예매</a></h3></dd>

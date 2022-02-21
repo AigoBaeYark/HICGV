@@ -13,12 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hicgv.main.controller.MainController;
 import com.hicgv.store.dto.StoreDto;
@@ -55,8 +57,8 @@ public class StoreController {
 		return "store/storeAdmin";
 	}
 
-	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST)
-	public String insertStoreData(HttpServletRequest request, Model model, @ModelAttribute StoreDto storeDto) throws IOException {
+	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST, consumes= { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public String insertStoreData(MultipartRequest request,HttpServletRequest req, Model model, @ModelAttribute StoreDto storeDto) throws IOException {
 		logger.info("before insertStoreData");
 		
 		HashMap<String, Object> store = new HashMap<String,Object>();
@@ -91,7 +93,7 @@ public class StoreController {
 		return "redirect:store";
 	}
 
-//	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST)
+//	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST, consumes = "multipart/form-data")
 //	public String name(@ModelAttribute StoreDto vo, BindingResult errors) throws Exception {
 //		if (errors.hasErrors()) {
 //			System.out.println(":::::::::::::::::: 에러확인 시작 :::::::::::::::::");

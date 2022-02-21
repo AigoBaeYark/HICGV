@@ -12,24 +12,26 @@
 <%-- <link href="${path }/resources/css/main/swiper-bundle.min.css">
 <script src="${path }/resources/js/main/swiper.min.js"> --%>
 
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-</div>
+
 
 <title>main</title>
 </head>
 <body>
-	
+	<div style="height: 300px;">
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+	</div>
 
 
 	<a href="header">header</a>
 	<a href="seatTest">seatTest</a>
+	<a href="moviesAdmin">moviesAdmin</a>
 
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
-		class="movieSelection_wrap" >
+		class="movieSelection_wrap">
 		<div class="contents">
 			<div class="video_wrap"
 				style="overflow: hidden; position: relative; width: 100%; height: 100%;">
@@ -37,8 +39,7 @@
 					style="position: relative;width: 100%;height: 100%;transform: scale(1.35);z-index: 0;">
 				<source src="${trailer.video }" type="video/mp4"></video>
 
-				${trailer.title }
-				${trailer.script }
+				${trailer.title } ${trailer.script }
 
 				<div class="movieSelection_video_controller_wrap">
 					<a
@@ -64,12 +65,14 @@
 
 
 	<!-- 무비차트 & 상영예정작 -->
-	
-	
 
-	<div class="movieChartBeScreen_wrap" style="clear: none; float: none; position: relative;background-image: linear-gradient(to bottom, rgba(95 211 255), rgba(232, 232, 232, 0.37));">
-		<div class="contents"  style="margin: 0 auto; width: 980px;height: 100%"  >
-			<div class="movieChartBeScreen_btn_wrap" >
+
+
+	<div class="movieChartBeScreen_wrap"
+		style="clear: none; float: none; position: relative; background-image: linear-gradient(to bottom, rgba(95 211 255), rgba(232, 232, 232, 0.37));">
+		<div class="contents"
+			style="margin: 0 auto; width: 980px; height: 100%">
+			<div class="movieChartBeScreen_btn_wrap">
 				<div class="tapBtn_wrap" style="display: inline-flex;">
 					<!-- 차트, 예정작 선택버튼 -->
 					<h3>
@@ -83,63 +86,72 @@
 			</div>
 
 			<!-- 무비차트 스와이퍼 -->
-			
-			
-			<div class="swiper-container swiper " id="movieChart_list" style="position: relative; clear: none;float: none; margin: 0 auto;">
-				<div class="swiper-wrapper" style="tranform: translate3d(0px, 0px, 0px); height: 295px;">
-				<c:forEach items="${movie }" var="mov">
-				
-					<div class="swiper-slide" style="width: 170px;margin-right: 32px; float: left;">
-						
-						<div class="img_wrap" data-scale="false" onmouseover = "mover(${mov.ranking})" onmouseout="mout(${mov.ranking})">
-							<!-- 영화 포스터 (포스터이미지, 나이, 특수상영관, 버튼)-->
-							<img id="poster" src="${mov.image_url }" alt="영화포스터" style="width: 100%; height: 234px;" />
-							<div class="movieAgeLimit_wrap">
-								<img src="" alt="${mov.age_limit }" />
-							</div>
 
-							<div class="screenType_wrap">
-								<i class="screenType"><img src="" alt="특수상영관" /></i>
-								<!-- 특수상영관 갯수만큼 반복 4dx, imax 등 -->
-							</div>
 
-							<div class="movieChart_btn_wrap btn_${mov.ranking }" style="display: none;">
-								<!-- 포스터 위에 마우스 올리면 상새보기 및 예매하기버튼 나옴 -->
-								<a href="moviesdetailview?movie_id=${mov.movie_id }" class="btn_movieChart_detail">상세보기</a>
+			<div class="swiper-container swiper " id="movieChart_list"
+				style="position: relative; clear: none; float: none; margin: 0 auto;">
+				<div class="swiper-wrapper"
+					style="tranform: translate3d(0px, 0px, 0px); height: 295px;">
+					<c:forEach items="${movie }" var="mov">
+
+						<div class="swiper-slide"
+							style="width: 170px; margin-right: 32px; float: left;">
+
+							<div class="img_wrap" data-scale="false"
+								onmouseover="mover(${mov.ranking})"
+								onmouseout="mout(${mov.ranking})">
+								<!-- 영화 포스터 (포스터이미지, 나이, 특수상영관, 버튼)-->
+								<img id="poster" src="${mov.image_url }" alt="영화포스터"
+									style="width: 100%; height: 234px;" />
+								<div class="movieAgeLimit_wrap">
+									<img src="" alt="${mov.age_limit }" />
+								</div>
+
+								<div class="screenType_wrap">
+									<i class="screenType"><img src="" alt="특수상영관" /></i>
+									<!-- 특수상영관 갯수만큼 반복 4dx, imax 등 -->
+								</div>
+
+								<div class="movieChart_btn_wrap btn_${mov.ranking }"
+									style="display: none;">
+									<!-- 포스터 위에 마우스 올리면 상새보기 및 예매하기버튼 나옴 -->
+									<a href="moviesdetailview?movie_id=${mov.movie_id }"
+										class="btn_movieChart_detail">상세보기</a>
+									<!-- 영화테이블 참조 -->
+									<a href="" class="btn_movieChart_ticketing">예매하기</a>
+									<!-- 예매테이블 참조 -->
+								</div>
+							</div>
+							<!-- img_wrap 끝 -->
+
+							<!-- movie_info_wrap 시작 -->
+							<div class="movie_info_wrap">
+								<!-- 영화 이름, 에그(추천?), 예매율 -->
+								<strong class="movieName">${mov.title_kor }</strong>
 								<!-- 영화테이블 참조 -->
-								<a href="" class="btn_movieChart_ticketing">예매하기</a>
-								<!-- 예매테이블 참조 -->
+								<span><img src="" alt="골든에그/에그" />에그퍼센트</span> <span>예매율
+									${mov.booking_rate }%</span>
 							</div>
-						</div>
-						<!-- img_wrap 끝 -->
+							<!-- movie_info_wrap 끝 -->
 
-						<!-- movie_info_wrap 시작 -->
-						<div class="movie_info_wrap">
-							<!-- 영화 이름, 에그(추천?), 예매율 -->
-							<strong class="movieName">${mov.title_kor }</strong>
-							<!-- 영화테이블 참조 -->
-							<span><img src="" alt="골든에그/에그" />에그퍼센트</span> <span>예매율 ${mov.booking_rate }%</span>
 						</div>
-						<!-- movie_info_wrap 끝 -->
-
-					</div>
-					</c:forEach>     		 		
+					</c:forEach>
 				</div>
 				<div class="swiper-button-prev"></div>
-      			<div class="swiper-button-next"></div>
+				<div class="swiper-button-next"></div>
 			</div>
 		</div>
 	</div>
-	
-	<c:forEach items="${movieList }" var="list">
+
+	<%-- <c:forEach items="${movieList }" var="list">
 		<div>
 			<img src="${list.poster }" alt="" /> <span>${list.description }</span>
 		</div>
-	
-	</c:forEach>
 
-	
-	
+	</c:forEach> --%>
+
+
+
 	<script>
 		var num;
 		var movieChartSwiper = 	new Swiper("#movieChart_list",{
@@ -172,9 +184,9 @@
 		
 	</script>
 
-	
+
 </body>
 <div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+</div>
 </html>
