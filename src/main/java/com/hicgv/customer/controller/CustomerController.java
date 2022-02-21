@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.tiles.template.AddAttributeModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class CustomerController {
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		System.out.println("=========pass by loginForm()=============");
-
+		session.invalidate();
 		return "/customer/loginForm";
 		// 로그인 후 main.jsp로 돌아가야함 리턴 값수정하기
 
@@ -44,27 +45,20 @@ public class CustomerController {
 
 	// 로그인페이지
 	// method=RequestMethod.POST,value=
-	@RequestMapping(method = RequestMethod.POST, value = "/loginCheck") 
+	@RequestMapping(method = RequestMethod.POST, value = "/loginCheck")
 	public String loginCheck(HttpServletRequest request, Model model, HttpSession session, HttpServletResponse response)
 			throws Exception {
 		System.out.println("=========pass by loginCheck()=============");
-		// Map<String, Object> rs = new HashMap<String, Object>();
-		/* response.setCharacterEncoding("EUC-KR"); */
 
 		String id = request.getParameter("loginid");
 		String password = request.getParameter("loginpw");
 		System.out.println("id :" + id);
 		System.out.println("password :" + password);
 
-		// CustomerDto dto = new CustomerDto();
-		// dto.setId(id);
-		// dto.setPassword(password);
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		//쿼리문을 실행해서 없는 값 dto_id,dto_pw
+		// 쿼리문을 실행해서 없는 값 dto_id,dto_pw
 		String dto_id = dao.loginCheckId(id);
 		CustomerDto dto_pw = dao.loginCheckPw(id, password);
-
-		// PrintWriter writer = response.getWriter();
 
 		// 로그인 성공 1
 		if (dto_id == null) { // 로그인했을때 ID나 비밀번호가 달라서 아무값도 넘겨받지 못함
@@ -276,16 +270,17 @@ public class CustomerController {
 		return "home";
 	} // 비밀번호 찾기 폼으로 이동
 
-	@RequestMapping("/forgetpwForm")
+	@RequestMapping("/forgetPwForm")
 	public String forgetPwForm(HttpServletRequest request, Model model) {
-		System.out.println("=========pass by forgetPw()=============");
-		return "/customer/forgetpwForm";
-	} 
+		System.out.println("=========pass by forgetPwForm()=============");
+		return "/customer/forgetPwForm";
+	}
+
 	// 회원정보 입력으로 이동
 	@RequestMapping("/forgetPw")
 	public String forgetPw(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by forgetPw()=============");
-		
+
 		// 비밀번호는 아이디를 기억하고 있다는 전제하에 진행 > 아이디와 이메일 입력후 일치하는 질문 뿌려주기
 		// 아이디와 이메일 입력받기
 		String id = request.getParameter("id");
@@ -296,84 +291,98 @@ public class CustomerController {
 		// 디비에 접속과 동시에 비교
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		// 위의 아이디체크 Dao 재활용 / 이메일꺼내오기 / 질문꺼내오기
+		// dto_getId 쿼리문의결과 값
 		String dto_getId = dao.loginCheckId(id);
 		String dto_getEmail = dao.getEmail(id);
-		//xml에서 받아오는 question 값 = dao.dao.forgetPw(쿼리에 사용하는 필드명으로 보내줌)
+		// xml에서 받아오는 question 값 = dao.dao.forgetPw(쿼리에 사용하는 필드명으로 보내줌)
 		String dto_getQuestion = dao.getQuestion(id, email);
 		System.out.println("getid :" + dto_getId);
 		System.out.println("getemail :" + dto_getEmail);
 		System.out.println("getQuestion :" + dto_getQuestion);
-		if(email.equals(dto_getEmail) && id.equals(dto_getId)){
+		if (email.equals(dto_getEmail) && id.equals(dto_getId)) {
 			System.out.println("회원정보가 일치합니다. 질문으로 이동합니다.");
-			request.getSession().setAttribute("question",dto_getQuestion);
-			model.addAttribute("modelId",id);
+			model.addAttribute("getQuestion", dto_getQuestion);
+			// request.getSession().setAttribute("question",dto_getQuestion);
+			// 아이디와 질문비교를 위해 confirmAnswerForm 으로 넘기려고 모델에 담아줌
+			model.addAttribute("getId", dto_getId);
+			model.addAttribute("getQuestion", dto_getQuestion);
+			System.out.println("getId :" + dto_getId);
+			System.out.println("getgetQuestion :" + dto_getQuestion);
 			return "/customer/confirmAnswerForm";
-		} System.out.println("회원정보가 일치하지 않습니다.");
+		}
+		System.out.println("회원정보가 일치하지 않습니다.");
 		return "/customer/loginForm";
-		//집에서 연습용으로 다른 코드로 짜보기
-		
-	/*	if (dto_getId == null) {
-			System.out.println("아이디가 없습니다. 아이디 찾기를 먼저 진행해주세요.");
-			return "/customer/loginForm";
-		} else if (dto_getEmail == null) {
-			System.out.println("이메일 정보가 다릅니다. 다시 입력해주세요");
-			return "/customer/forgetpwForm";		
-		} else {
-			System.out.println("회원정보가 일치합니다. 질문으로 이동합니다.");
-		}*/
-	//  세션에 불러올 질문을 담아서 가지고 질문확인 폼으로 이동(질문폼에서 사용해야하니까 세션사용)
-	/*	request.getSession().setAttribute("question",dto_getQuestion);*/
-	/*	return "/customer/confirmAnswerForm";*/
-//		session.setAttribute("question", session);
-		//	String question = (String) session.getAttribute("question");
-		//	System.out.println("question : " + session.getAttribute("question"));
+		// 집에서 연습용으로 다른 코드로 짜보기
+
+		/*
+		 * if (dto_getId == null) {
+		 * System.out.println("아이디가 없습니다. 아이디 찾기를 먼저 진행해주세요."); return
+		 * "/customer/loginForm"; } else if (dto_getEmail == null) {
+		 * System.out.println("이메일 정보가 다릅니다. 다시 입력해주세요"); return
+		 * "/customer/forgetPwForm"; } else {
+		 * System.out.println("회원정보가 일치합니다. 질문으로 이동합니다."); }
+		 */
+		// 세션에 불러올 질문을 담아서 가지고 질문확인 폼으로 이동(질문폼에서 사용해야하니까 세션사용)
+		/* request.getSession().setAttribute("question",dto_getQuestion); */
+		/* return "/customer/confirmAnswerForm"; */
+		// session.setAttribute("question", session);
+		// String question = (String) session.getAttribute("question");
+		// System.out.println("question : " + session.getAttribute("question"));
 	}
+
 	//
 	@RequestMapping(method = RequestMethod.POST, value = "/resetPwForm")
-	public String confirmAnswerForm(HttpServletRequest request, Model model)throws Exception {
+	public String confirmAnswerForm(HttpServletRequest request, Model model) throws Exception {
 		System.out.println("=========pass by confirmAnswerForm(질문에 답을 입력하세요)=============");
-		//답을 입력받음
+		// 답을 입력받음(jsp에서 'answer'이름으로 입력한 값을 받아 getAnswer의 변수 생성)
 		String getAnswer = request.getParameter("answer");
-		String modelId = request.getParameter("modelId");
-		System.out.println("answer :" + getAnswer );
-		System.out.println("modelId :" + modelId );
+		// forgetPw에서 히든값으로 보내준 getId를 getId라는 이름으로 input
+		String getId = request.getParameter("getId");
+		System.out.println("answer :" + getAnswer);
+		System.out.println("getId :" + getId);
 
 		// 디비에 접속과 동시에 비교
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		// 위의 아이디체크 Dao 재활용 / 이메일꺼내오기 / 질문꺼내오기
 		String dto_getAnswer = dao.getAnswer(getAnswer);
-		//xml에서 받아오는 question 값 = dao.dao.forgetPw(쿼리에 사용하는 필드명으로 보내줌)
+		// xml에서 받아오는 question 값 = dao.dao.forgetPw(쿼리에 사용하는 필드명으로 보내줌)
 		System.out.println("dto_getAnswer :" + dto_getAnswer);
-		if(getAnswer.equals(dto_getAnswer)){
+		if (getAnswer.equals(dto_getAnswer)) {
 			System.out.println("정답입니다. 비밀번호 재설정으로 이동합니다.");
-			request.getSession().setAttribute("getAnswer",dto_getAnswer);
-			model.addAttribute("modelId",modelId);
-			//request.getSession().setAttribute("id",);
+			// request.getSession().setAttribute("getAnswer",dto_getAnswer);
+			model.addAttribute("getId", getId);
+			// request.getSession().setAttribute("id",);
 			return "/customer/resetPwForm";
-		} System.out.println("정답이 아닙니다.");
-		return "/customer/confirmAnswerForm";
 		}
-	// 비밀번호 재설정 폼으로 이동} 
+		System.out.println("정답이 아닙니다.");
+		return "/customer/confirmAnswerForm";
+	}
+	// 비밀번호 재설정 폼으로 이동}
 
-	/*@RequestMapping(method = RequestMethod.POST, value = "/resetPwForm")
-	public String resetPwForm(HttpServletRequest request, Model model) throws Exception {
-		System.out.println("=========pass by resetPwForm()=============");
-		System.out.println("=========질문에 답을 입력하고 비밀번호 재설정으로 이동해주세요=============");
-		// 디비에 있는 질문
-		String question = (String) session.getAttribute("question");
-
-		return "/customer/resetPwForm";
-	}// 새비밀번호 저장하면 로그인페이지로 돌아감 / 재설정하지 않으면 세션지워지고 홈으로..*/
+	/*
+	 * @RequestMapping(method = RequestMethod.POST, value = "/resetPwForm")
+	 * public String resetPwForm(HttpServletRequest request, Model model) throws
+	 * Exception {
+	 * System.out.println("=========pass by resetPwForm()=============");
+	 * System.out.println("=========질문에 답을 입력하고 비밀번호 재설정으로 이동해주세요============="
+	 * ); // 디비에 있는 질문 String question = (String)
+	 * session.getAttribute("question");
+	 * 
+	 * return "/customer/resetPwForm"; }// 새비밀번호 저장하면 로그인페이지로 돌아감 / 재설정하지 않으면
+	 * 세션지워지고 홈으로..
+	 */
 
 	@RequestMapping(method = RequestMethod.POST, value = "resetPw")
 	public String resetPw(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by resetPw()=============");
 		// 세션을 가져오고 그중에서 id세션을 통해 비밀번호 업데이트
-/*		HttpSession session = request.getSession();
-		// id세션을 불러옴
-		String id = (String) session.getAttribute("id");
-		// jsp에서 입력한 값을 받음
-		request.getAttribute(id);*/
+		/*
+		 * HttpSession session = request.getSession(); // id세션을 불러옴 String id =
+		 * (String) session.getAttribute("id"); // jsp에서 입력한 값을 받음
+		 * request.getAttribute(id);
+		 */
+
+		String getId = request.getParameter("getId");
 		String newPw = request.getParameter("newPw");
 		String newPwConfirm = request.getParameter("newPwConfirm");
 		System.out.println("newPw :" + newPw);
@@ -384,13 +393,49 @@ public class CustomerController {
 			return "/customer/resetPwForm";
 		} else {
 			System.out.println("비밀번호가 일치합니다. 비밀번호를 재설정합니다.");
-			
+
 		}
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		//dao.resetPw(id, newPw);
+		dao.resetPw(getId, newPw);
 		System.out.println("성공적으로 비밀번호를 재설정하였습니다. 다시 로그인해주세요.");
 		session.invalidate();
 		return "/customer/loginForm";
 	}
 
+	@RequestMapping("/forgetIdForm")
+	public String forgetIdForm(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by forgetIdForm()=============");
+		return "/customer/forgetIdForm";
+	}
+
+	// 아이디 찾기
+	@RequestMapping("/forgetId")
+	public String forgetId(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by forgetId()=============");
+
+		String phone_number = request.getParameter("phone_number");
+		String date_birth = request.getParameter("date_birth");
+
+		System.out.println("getphone_number :" + phone_number);
+		System.out.println("getdate_birth :" + date_birth);
+
+		// 디비에 접속과 동시에 비교
+		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+		// getId로 아이디를 찾는 쿼리의 결과 값을 담는다. dao.에는 위에서 입력한 값을 임력해서 쿼리를 실행
+		String getPhone_number = dao.getPhone_number(phone_number);
+		String getId = dao.forgetId(phone_number, date_birth);
+		System.out.println("id :" + getId);
+		
+		
+		if (getPhone_number != null && getId !=null) {
+			System.out.println("회원정보가 일치합니다.");
+			model.addAttribute("getId", getId);
+			System.out.println("회원님의 아이디는 "+ getId + "입니다.");
+			return "home";
+			//아이디만 뿌려주기 위해서 모델에 담음
+		}else {
+			System.out.println("입력한 회원정보가 다릅니다.");
+		}
+		return "/customer/loginForm";
+	}
 }

@@ -38,7 +38,8 @@
 		<!--container 시작  -->
 		
 		<form action="resetPw" method="post">
-			<h1 class="h1" align="center">${id }님 반갑습니니다. 비밀번호를 재설정해주세요.</h1>
+			<h1 class="h1" align="center">${getId }님 반갑습니니다. 비밀번호를 재설정해주세요.</h1>
+			<input type="hidden" name = "getId" value="${getId }"/>
 			<div class="form-group">
 				<label for="exampleInputPassword1">새 비밀번호를 입력하세요.</label> <input
 					name="newPw" type="password" class="form-control"

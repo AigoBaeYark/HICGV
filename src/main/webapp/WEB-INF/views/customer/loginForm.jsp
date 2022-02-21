@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <title>Insert title here</title>
@@ -18,8 +19,8 @@
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-		</div>
-		<style>
+	</div>
+	<style>
 .wrap-login {
 	width: 500px;
 	position: relative;
@@ -27,7 +28,9 @@
 	margin-left: 30%;
 	margin-top: 10%;
 	margin-bottom: 10%;
-	border: solid; 1px;
+	border: solid;
+	1
+	px;
 }
 
 div {
@@ -54,7 +57,8 @@ body {
 	margin: 5px;
 	text-align: center;
 }
- .forgot_pw {
+
+.forgot_pw {
 	margin: 5px;
 	width: 200px;
 	height: 30px;
@@ -62,74 +66,79 @@ body {
 }
 
 .logbtn {
-	border: solid; 1px; color:white;
+	border: solid; 1 px;
+	color: white;
 	width: 165px;
 	height: 30px;
 	background-color: red;
-
 }
 </style>
-<script type="text/javascript">
+	<script type="text/javascript">
+		
+	</script>
 
 
-</script>
+	<div class="wrap-login">
+		<div class="sect-login">
+			<div class="login-top">
+				<h2 align="center">로그인</h2>
 
+			</div>
+			<div class="box-login">
+				<h3 class="hidden">회원 로그인</h3>
+				<form method="post" action="loginCheck">
 
-		<div class="wrap-login">
-			<div class="sect-login">
-				<div class="login-top">
-					<h2 align="center">로그인</h2>
+					<h5 align="center">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</h5>
+					<div class="login">
+						<div style="margin: 5px;">
+							<input type="text" id="" name="loginid" required="required"
+								placeholder="아이디를 입력해주세요" pattern="{3,19}">
 
-				</div>
-				<div class="box-login">
-					<h3 class="hidden">회원 로그인</h3>
-					<form id="" method="post" action="loginCheck">
-
-						<h5 align="center">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</h5>
-						<div class="login">
-							<div style="margin: 5px;">
-							<input type="text"id="" name="loginid"
-							 required="required" placeholder="아이디를 입력해주세요" pattern="{3,19}">
-								
-							</div>
-							<div>
-							<input type="password"id="" name="loginpw"
-									required="required" placeholder="패스워드를 입력해주세요">
-							</div>
-							<div class="loginbtn">
-							<button type="submit" class="logbtn"><span>로그인</span></button>
-							</div>
 						</div>
-						<div class="save-id" align="center">
-							<input type="checkbox" id="loginSet"><label for="save_id">
+						<div>
+							<input type="password" id="" name="loginpw" required="required"
+								placeholder="패스워드를 입력해주세요">
+						</div>
+						<div class="loginbtn">
+							<button type="submit" class="logbtn">
+								<span>로그인</span>
+							</button>
+						</div>
+					</div>
+					<div class="save-id" align="center">
+						<input type="checkbox" id="loginSet"><label for="save_id">
 							아이디 저장</label>
-						</div>
-						</button>
-						<div class="forgot_pw">
-							<a href="">아이디 찾기</a> 
-							<a href="forgetpwForm">비밀번호 찾기</a>
-						</div>
+					</div>
+					<div class="forgot_pw">
+						<a href="forgetIdForm">아이디 찾기</a> 
+						<a href="forgetPwForm">비밀번호찾기</a>
+					</div>
 
+				</form>
+				<div>
+					<!--홈으로 옮길 메뉴  -->
+
+					<br /> 홈으로 옮길 메뉴 <br />
+					<button type="submit">
+						<a href="myCGV?id=${id }">myCGV</a>
+					</button>
+					<br />
+					<form action="logout" method="post">
+						<button type="submit">로그아웃</button>
 					</form>
-	<div> <!--홈으로 옮길 메뉴  -->
-	<h3 align="center">${id }님 환영합니다.</h3> 
-	<br />
-	홈으로 옮길 메뉴 <br />
-	<button type="submit"><a href="myCGV?id=${id }">myCGV</a></button>	<br />
-	<form action="logout" method="post"><button type="submit">로그아웃</button></form>
-	</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
 
 
 
 </body>
-	<div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
+<div style="clear: both;">
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+</div>
 
 </html>
 

@@ -10,22 +10,14 @@
 
 </head>
 <style>
-<!--
-.container{
-	margin: 10%;
 
-}
--->
 </style>
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<div style="margin-top: 100px;">
-		<!--myCGV시작  -->
-		<h5>myCGV.jsp</h5>
-		<div class="container" style="border: solid 1px;">
-			<!--myCGV container 시작  -->
+	<div class="container" style="border: solid 1px;">
+			<!--myCGV container-top 시작  -->
 			myCGV container
 
 			<div style="margin: 50px; border: solid 1px;">
@@ -61,10 +53,19 @@
 			<!--myCGV personinfo 끝  -->
 
 
+		</div>	<!--myCGV container-top 끝  -->
+		
+		<!-- <!--myCGV container-leftmenu 시작  -->
+		<div style="border: 1px solid;height: 700px; ">
+		<div>
+		
 		</div>
-		<!--myCGV container 끝  -->
-		<div
-			style="border: solid; 1 px; margin: 10px; height: 100px vertical-align: baseline;">
+		
+		</div>myCGV container-leftmenu 끝  -->
+		
+		<!--myCGV container-down 시작-->
+		<div style="border: solid; 1px; margin: 50px;" > 
+		
 			<!--나의 예매내역 시작  -->
 			<div style="margin: 30px;">
 				<!--나의예매확인 버튼div  -->
@@ -87,7 +88,11 @@
 			</div>
 			<!--회원정보 수정 / 회원탈퇴 div 끝 -->
 		</div>
-		<!--나의 예매내역 끝  -->
+		<!--myCGV container-down 끝-->
+		<div style="border: solid 1px; flex:1;"></div>
+	<div ><!--myCGV시작  -->
+
+		
 
 	</div>
 	<!--myCGV끝  -->
