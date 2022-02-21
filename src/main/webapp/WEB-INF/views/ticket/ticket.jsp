@@ -146,16 +146,22 @@
 					  </div>
 					</div>
 					  	
-					<!-- <form action="../member/movieLogin" id="frm" method="post">
-						 <img id="btn" alt="" src="../resources/images/movieSelect/seat.png"> 
-					</form> -->
-
-
+				
 				</div>
-			</div>
-		</section>    
-           	
+				<a href="ticketseat">ticketseat</a>
+		</section>   
+		 	
 		</div>
+		
+			<div style="clear: both;">
+				<c:import url="../ticket/ticketbuy.jsp"></c:import>
+			</div>
+           	
+			
+			<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
+			<!-- 흰 배경 -->
+			</div>
+			
 	</div>		
 								
 							

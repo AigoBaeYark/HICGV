@@ -242,6 +242,17 @@ public class TicketController {
 		
 		return "ticket/ticketseat";
 		
+		
+	}
+	
+	/*예매란 배너*/
+		@RequestMapping("/ticketbuy")
+		public String bTicket(HttpServletRequest request, Model model) {
+			
+			
+			
+			return "ticket/ticketbuy";
+		
 	}
 	
 	
