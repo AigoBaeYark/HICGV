@@ -1,6 +1,8 @@
 package com.hicgv.main.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -55,8 +57,9 @@ public class MainServiceImpl  implements MainService{
 	}
 
 	@Override
-	public void getSearchFinal() {
-		crawlFinal.searchToTitleNaver("듄");
+	public LinkedList<HashMap<String, String>> getSearchFinal(String searchTitle) {
+		//crawlFinal.searchToTitleNaver("듄");
+		return crawlFinal.searchToTitleMovieInfoApi(searchTitle);
 	}
 
 	@Override

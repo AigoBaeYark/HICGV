@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -66,16 +67,26 @@ public class MainController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(HttpServletRequest req,HttpSession session, Locale locale, Model model) {
 		logger.info("before mainContrller main()");
-		
+		LinkedList<HashMap<String, String>> finalSearchList = new LinkedList<HashMap<String, String>>();
 		
 		//mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
 		//mainService.getMovieID();				//cgv에서 movieID 가져오기
 		
-		mainService.getSearchFinal();
+		try {
+			finalSearchList = mainService.getSearchFinal("스파이더맨");
+			for (HashMap<String, String> hashMap : finalSearchList) {
+				System.out.println("title : "+hashMap.get("title_kor"));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("검색실패",e);
+		}
+	
+		
 		mainService.getSearchFinalDaily("20220218");
-		mainService.getSearchMovieInfo("스파이더맨");
+		//mainService.getSearchMovieInfo("듄");
 		model.addAttribute("trailer", mainService.getTrail());	//트레일러 영상 제목 설명 가져옴
 		model.addAttribute("movie", mainService.getMoviesList());
+		model.addAttribute("movieList",finalSearchList);
 		session.setAttribute("t", mainService.getTrail());
 		logger.info("after mainContrller main()");
 		

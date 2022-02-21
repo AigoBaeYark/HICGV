@@ -17,6 +17,11 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import oracle.net.aso.p;
 import oracle.security.crypto.core.Padding.ID;
@@ -85,28 +90,42 @@ public class getMoviesCrawlFinal {
 	private static final String NAVERAPIURL = "https://openapi.naver.com/v1/search/movie.json";
 	private static String NAVERID = "reYcpdl2OMmpJINXgbNk";
 	private static String NAVERSECRET = "27N9KP87tK";
+	private static String NAVERVIDEO = "https://movie.naver.com/movie/bi/mi/media.naver?code="; // 뒤에 코드만 붙이면 그 링크로 가서
+																								// 가져오기
+	private static String NAVERPHOTO = "https://movie.naver.com/movie/bi/mi/photoView.naver?code=";
 
+	// 검색 내용
 	private String searchTitle;
 	private String day;
 
+	// 결과 담기
+	private ArrayList<HashMap<String, Object>> resultMoviesList = new ArrayList<HashMap<String, Object>>();
+
 	// 제목으로 검색 (영화API, 네이버API 둘 다 UTF-8로 변경해줘야함)
-	public void searchToTitleNaver(String searchTitle) {
+	private LinkedList<HashMap<String, String>> searchToTitleNaver(String searchTitle, LinkedList<HashMap<String, String>> movieListData) {
 		String naverResult = null;
 		try {
 			this.searchTitle = URLEncoder.encode(searchTitle, "UTF-8");
-			naverResult = readyNaver(this.searchTitle);
+			System.out.println("size : "+movieListData.size());
+			naverResult = readyNaver(this.searchTitle, movieListData.size());
 		} catch (Exception e) {
 			throw new RuntimeException("영화타이틀 변환 실패", e);
 		}
-		parseNaverData(naverResult);
+		return parseNaverData(naverResult, movieListData);
+	}
+
+	public void getTrailers(String searchTitle) {
 
 	}
 
-
 	// 네이버 API 시작
-	private String readyNaver(String searchTitle) {
-		// 검색할 내용
-		String naverUrl = NAVERAPIURL + "?query=" + searchTitle;
+	private String readyNaver(String searchTitle,int displayVal) {
+		// 검색할 내용 //타이틀과 제작년도 같이 받
+		int display = 10;
+		if(displayVal>10)
+			display=displayVal;
+		System.out.println("disply size : "+display);
+		String naverUrl = NAVERAPIURL + "?query=" + searchTitle + "&display="+(display*2);
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		// 네이버 API는 request를 해야 사용가능
 		requestHeaders.put("X-Naver-Client-Id", NAVERID);
@@ -174,26 +193,128 @@ public class getMoviesCrawlFinal {
 
 	}
 
-	private void parseNaverData(String responseBody) {
-		// 받은 json 내용을 여기서 정리
-		String title; // 영화 제목
-		String link; // 영화 링크
-		String image; // 영화 포스터링크
-
+	private LinkedList<HashMap<String, String>> parseNaverData(String responseBody, LinkedList<HashMap<String, String>> movieListData) {
+		// 받은 json 내용을 여기서 정리	여기서 최종적으로 데이터 비교해서 합침
+		String title = null; // 영화 제목
+		String link = null; // 영화 링크
+		String year = null;
+		String naverMovieCd = null; // 네이버 영화코드
+		String image = null; // 영화 포스터링크
+		String description = null; // 영화 줄거리
+		int lengthBig = 2;
+		int lengthSmall = 2;
+		int flag = 0; // 어떤 api가 주체가 되어 비교할지 //0 네이버 1위원회
+		
+		LinkedList<HashMap<String, String>> finalResultList = new LinkedList<HashMap<String, String>>();
+		
 		try {
 			JSONObject jsonObject = new JSONObject(responseBody);
 			// System.out.println(jsonObject.get("items"));
-			JSONArray obj = jsonObject.getJSONArray("items");
-			System.out.println(obj);
-			for (int i = 0; i < obj.length(); i++) {
-				JSONObject item = obj.getJSONObject(i);
+			JSONArray objNaver = jsonObject.getJSONArray("items");
+			System.out.println(objNaver);
+			String[] strArr = null;
 
-				title = item.getString("title");
-				link = item.getString("link");
-				image = item.getString("image");
-
-				System.out.println("title : " + title + " link : " + link + " image : " + image);
+			// 네이버 API 정보가 크면 네이버가 큰사이즈로 아니면 위원회 API가 큰사이즈로
+			if (objNaver.length() > movieListData.size()) {
+				lengthBig = objNaver.length();
+				lengthSmall = movieListData.size();
+				flag = 1;
+			} else {
+				lengthBig = movieListData.size();
+				lengthSmall = objNaver.length();
+				flag = 0;
 			}
+
+			// 네이버가 주체(네이버의 정보가 더적음)
+			if (flag == 0) {
+				for (int i = 0; i < lengthSmall; i++) {
+					JSONObject item = objNaver.getJSONObject(i);
+
+					title = item.getString("title");
+					title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""); // 제목에 있는 hmtl태그를
+																										// 제외한 문자열
+					System.out.println("title : " + title);
+					link = item.getString("link");
+					year = item.getString("pubDate"); // 제작년도 가져옴
+					System.out.println("pubDate : " + year);
+					naverMovieCd = link.substring(link.lastIndexOf("=") + 1); // 영화 코드만 가져오기
+					strArr = (link.split("=")); // https://movie.naver.com/movie/bi/mi/basic.nhn?code='영화코드'
+					image = item.getString("image");
+					HashMap<String, String> naverLinkTempMap = parseNaverLink(link); // 링크로 들어가서 가져오기
+
+					for (int j = 0; j < lengthBig; j++) {
+						HashMap<String, String> movieListMap = movieListData.get(j);
+					
+						if (title.equals(movieListMap.get("title_kor")) && year.equals(movieListMap.get("year"))) {
+							System.out.println("같은영화 : " + movieListMap.get("title"));
+							HashMap<String, String> finalMap = new HashMap<String,String>();
+							finalMap.put("movie_id", movieListMap.get("movieCd"));			//영화 고유코드
+							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
+							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
+							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
+							finalMap.put("genre", movieListMap.get("genre"));				//영화 장르
+							finalMap.put("year", year);										//영화 제작년도
+							finalMap.put("poster", naverLinkTempMap.get("poset")); // 링크로 들어가서 가져오기
+							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
+							
+							finalResultList.add(finalMap);	//최종으로 보낼 리스트
+							break;
+						}
+					}
+
+					System.out.println("title : " + title + " link : " + link + " image : " + image);
+					System.out.println("naverMovieCd : " + naverMovieCd);
+				}
+			}
+
+			// 위원회가 주체(위원회의 정보가 더적음)
+			else if (flag == 1) {
+				for (int i = 0; i < lengthSmall; i++) {
+					HashMap<String, String> movieListMap = movieListData.get(i);
+
+					for (int j = 0; j < lengthBig; j++) {
+						JSONObject item = objNaver.getJSONObject(j);
+
+						title = item.getString("title");
+						title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""); // 제목에 있는
+																											// hmtl태그를
+																											// 제외한 문자열
+						System.out.println("title : " + title);
+						year = item.getString("pubDate"); // 제작년도 가져옴
+
+						if (movieListMap.get("title_kor").equals(title) && movieListMap.get("year").equals(year)) {
+							HashMap<String, String> finalMap = new HashMap<String,String>();
+							
+							System.out.println("같은영화2 : " + title);
+							link = item.getString("link");
+							System.out.println("pubDate : " + year);
+							naverMovieCd = link.substring(link.lastIndexOf("=") + 1); // 영화 코드만 가져오기
+							strArr = (link.split("=")); // https://movie.naver.com/movie/bi/mi/basic.nhn?code='영화코드'
+							image = item.getString("image");
+							HashMap<String, String> naverLinkTempMap = parseNaverLink(link);
+							
+							
+							finalMap.put("movie_id", movieListMap.get("movieCd"));			//영화 고유코드
+							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
+							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
+							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
+							finalMap.put("genre", movieListMap.get("genre"));				//영화 장르
+							finalMap.put("year", year);										//영화 제작년도
+							finalMap.put("poster", naverLinkTempMap.get("poset")); 			// 링크로 들어가서 가져오기
+							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
+							
+							finalResultList.add(finalMap);
+							break;
+						}
+
+					}
+				}
+			}
+			return finalResultList;
+
+			// for (String string : strArr) {
+			// System.out.println(string);
+			// }
 
 		} catch (Exception e) {
 			throw new RuntimeException("데이터 불러오기 실패", e);
@@ -203,39 +324,74 @@ public class getMoviesCrawlFinal {
 
 	// 네이버 API 끝 //링크따라가서 이미지, 영상 같은거 따올려면 내용 더 추가
 
+	private HashMap<String, String> parseNaverLink(String link) {
+		HashMap<String, String> naverLinkMap = new HashMap<String,String>();
+		String description=null; // 영화 줄거리
+		String poster; // 영화 포스터
+		Connection connection = Jsoup.connect(link);
+		
+
+		try {
+
+			Document document = connection.get();
+			Elements posterElements = document.select("div.mv_info_area");
+			description = document.select("div.story_area").select("p.con_tx").toString();
+			
+//			for (Element element : descriptionElements) {
+//				System.out.println(element);
+//			}
+
+			for (Element element : posterElements) {
+				poster = element.select("img").attr("src").toString();
+				System.out.println("poster : " + poster);
+				naverLinkMap.put("poset", poster);
+				
+				
+			}
+			naverLinkMap.put("description", description);
+			
+			return naverLinkMap;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("네이버링크 불러오기 실패", e);
+		}
+	}
+
 	// 영화진흥위원회
 
 	public void searchToDate(String day) {
 		// 일별 관람객 및 랭크를 가져오고싶은 날짜 (오늘날짜 제외)
 		this.day = day;
 		String dailyResult = getMovieUrlJson(getDailyMovieApiUrl());
-		System.out.println("daily : "+dailyResult);
+		System.out.println("daily : " + dailyResult);
 		parseDailyData(dailyResult);
 	}
-	
-	public void searchToTitleMovieInfoApi(String searchTitle) {
-		
-		this.searchTitle = searchTitle; 
-		String movieInfoResult = getMovieUrlJson(getMovieInfoApiUrl());
-		System.out.println("movieInfo : "+movieInfoResult);
-		//parseMovieInfoData(movieInfoResult);
-		
-	}
 
-	
+	public LinkedList<HashMap<String, String>> searchToTitleMovieInfoApi(String searchTitle) {
+		try {
+			this.searchTitle = URLEncoder.encode(searchTitle, "UTF-8");
+			String movieInfoResult = getMovieUrlJson(getMovieInfoApiUrl());
+			System.out.println("movieInfo : " + movieInfoResult);
+			return searchToTitleNaver(searchTitle, parseMovieListData(movieInfoResult));
+
+		} catch (Exception e) {
+			throw new RuntimeException("검색 실패", e);
+		}
+
+	}
 
 	private String getDailyMovieApiUrl() {
 		String movieUrl = DAILYURL + "?key=" + MOVIEAPIKEY + "&targetDt=" + day;
 
 		return movieUrl;
 	}
+
 	private String getMovieInfoApiUrl() {
 		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + searchTitle;
 
 		return movieUrl;
 	}
 
-	
 	private String getMovieUrlJson(String movieApiUrl) {
 		String dailyResult = null;
 		try {
@@ -250,7 +406,7 @@ public class getMoviesCrawlFinal {
 	}
 
 	private String readUrlyBody(InputStream inputStream) {
-		//url을 읽어들여서 나온 json 을 넘겨줌
+		// url을 읽어들여서 나온 json 을 넘겨줌
 		InputStreamReader reader = new InputStreamReader(inputStream);
 		try (BufferedReader lineReader = new BufferedReader(reader)) {
 
@@ -265,42 +421,42 @@ public class getMoviesCrawlFinal {
 		} catch (Exception e) {
 			throw new RuntimeException("API 불러오기 실패");
 		}
-		
+
 	}
-	
+
 	private void parseDailyData(String dailyResult) {
 		LinkedList<HashMap<String, String>> dailyDataList = new LinkedList<HashMap<String, String>>();
 		System.out.println(dailyResult);
-		
+
 		JSONObject jsonObject = null;
-		
+
 		String title; // 영화제목
+		
 		String movieCd; // 영화 코드
 		String audiCnt; // 당일 관람객
 		try {
 			jsonObject = new JSONObject(dailyResult.toString());
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("boxOfficeResult");
-
 			JSONArray jsonArray = jsonObject1.getJSONArray("dailyBoxOfficeList");
-			
-			//1위부터 10위까지 순차적으로 넣음
+
+			// 1위부터 10위까지 순차적으로 넣음
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject item = jsonArray.getJSONObject(i);
 				HashMap<String, String> dailyDataMap = new HashMap<String, String>();
 
-				
 				movieCd = item.getString("movieCd");
 				title = item.getString("movieNm");
 				audiCnt = item.getString("audiCnt");
-				
-				System.out.println("rank : "+item.getString("rank")+"movieCd : " + movieCd + " movieNm : " + title + " audiCnt : " + audiCnt);
+
+				System.out.println("rank : " + item.getString("rank") + "movieCd : " + movieCd + " movieNm : " + title
+						+ " audiCnt : " + audiCnt);
 				dailyDataMap.put("movieCd", movieCd);
 				dailyDataMap.put("title", title);
 				dailyDataMap.put("rank", item.getString("rank"));
 				dailyDataMap.put("audiCnt", audiCnt);
-				
+
 				dailyDataList.add(dailyDataMap);
-				
+
 			}
 			for (HashMap<String, String> hashMap : dailyDataList) {
 				System.out.println(hashMap.get("movieCd"));
@@ -313,54 +469,68 @@ public class getMoviesCrawlFinal {
 		}
 
 	}
-	
-	
-	
-	private void parseMovieInfoData(String movieInfoResult) {
-		LinkedList<HashMap<String, String>> dailyDataList = new LinkedList<HashMap<String, String>>();
+
+	// 비교할 타이틀, 년도
+	private LinkedList<HashMap<String, String>> parseMovieListData(String movieInfoResult) {
+		LinkedList<HashMap<String, String>> movieListData = new LinkedList<HashMap<String, String>>();
 		System.out.println(movieInfoResult);
-		
+
 		JSONObject jsonObject = null;
-		
+
 		String title; // 영화제목
+		String titleEn;//영화제목 (영문)
 		String movieCd; // 영화 코드
-		String audiCnt; // 당일 관람객
+		String openDt;	//개봉날짜
+		String year; // 제작년도
+		String genreAlt;	//장르
 		try {
 			jsonObject = new JSONObject(movieInfoResult.toString());
-			JSONObject jsonObject1 = (JSONObject) jsonObject.get("boxOfficeResult");
+			JSONObject jsonObject1 = (JSONObject) jsonObject.get("movieListResult");
+			JSONArray jsonArray = jsonObject1.getJSONArray("movieList");
 
-			JSONArray jsonArray = jsonObject1.getJSONArray("dailyBoxOfficeList");
-			
-			//1위부터 10위까지 순차적으로 넣음
+			// 1위부터 10위까지 순차적으로 넣음
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject item = jsonArray.getJSONObject(i);
 				HashMap<String, String> dailyDataMap = new HashMap<String, String>();
 
-				
 				movieCd = item.getString("movieCd");
 				title = item.getString("movieNm");
-				audiCnt = item.getString("audiCnt");
+				titleEn = item.getString("movieNmEn");
+				openDt = item.getString("openDt");
+				genreAlt = item.getString("genreAlt");
+				year = item.getString("prdtYear");
 				
-				System.out.println("rank : "+item.getString("rank")+"movieCd : " + movieCd + " movieNm : " + title + " audiCnt : " + audiCnt);
-				dailyDataMap.put("movieCd", movieCd);
-				dailyDataMap.put("title", title);
-				dailyDataMap.put("rank", item.getString("rank"));
-				dailyDataMap.put("audiCnt", audiCnt);
-				
-				dailyDataList.add(dailyDataMap);
-				
+
+				System.out.println("movieCd : " + movieCd + " movieNm : " + title + " prdtYear : " + year);
+				dailyDataMap.put("movie_id", movieCd);	//영화고유코드
+				dailyDataMap.put("title_kor", title);	//영화 한글제목
+				dailyDataMap.put("title_eng", titleEn);	//영화 영문제목
+				dailyDataMap.put("year", year);			//영화 제작년도
+				dailyDataMap.put("opening_date", openDt);	//영화 개봉일
+				dailyDataMap.put("genre", genreAlt);		//영화 장르
+				movieListData.add(dailyDataMap);
+
 			}
-			for (HashMap<String, String> hashMap : dailyDataList) {
-				System.out.println(hashMap.get("movieCd"));
-				System.out.println(hashMap.get("title"));
-				System.out.println(hashMap.get("rank"));
-				System.out.println(hashMap.get("audiCnt"));
+			for (HashMap<String, String> hashMap : movieListData) {
+				System.out.println("movie_id "+hashMap.get("movie_id"));
+				System.out.println("title_kor "+hashMap.get("title_kor"));
+				System.out.println("title_eng "+hashMap.get("title_eng"));
+				System.out.println("year "+hashMap.get("year"));
+				System.out.println("opening_date "+hashMap.get("opening_date"));
+				System.out.println("genre "+hashMap.get("genre"));
 			}
+			System.out.println("movieListDataSize : " + movieListData.size());
+			return movieListData;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("JSON 데이터 읽기 실패", e);
 		}
 
 	}
 
-	
+	private void mergeData() {
+		// 위원회 APi 제목(movieNm) = 네이버 API 제목(title), 위원회 API 개봉연도 (prdtYear) = 네이버 API
+		// 개봉연도(pubDate)
+
+	}
+
 }

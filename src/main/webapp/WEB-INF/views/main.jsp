@@ -130,6 +130,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:forEach items="${movieList }" var="list">
+		<div>
+			<img src="${list.poster }" alt="" /> <span>${list.description }</span>
+		</div>
+	
+	</c:forEach>
 
 	
 	
