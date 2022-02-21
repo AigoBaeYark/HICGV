@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hicgv.theater.dao.TheaterDao;
 import com.hicgv.theater.dto.LocationDto;
@@ -164,6 +166,95 @@ public class TheaterController {
 	   
 	   
 	   return "theater/theaterList";
+   }
+   @RequestMapping(value="theaterTimeList" , produces = "application/text; charset=utf8")
+   @ResponseBody
+   public String theaterTimeList(HttpServletRequest request, Model model, @RequestParam String date) {
+	   System.out.println("======= << theaterTimeList >> =======");
+	   String theaterid = request.getParameter("theaterid");
+	   String locid = request.getParameter("locid");
+	   System.out.println("date : "+date);
+	   
+	      if (theaterid == null)
+	         theaterid = "1";
+	      if (locid == null)
+	         locid = "101";
+
+	      TheaterDao dao = sqlSession.getMapper(TheaterDao.class);
+	      
+	      model.addAttribute("theater", dao.getTheaterInfo());
+	      model.addAttribute("img" , dao.getImg(locid));
+	      model.addAttribute("movieinfo",dao.getMoviesInfo(locid));
+	      model.addAttribute("locinfo",dao.getLocationInfo(locid));
+	     
+		   ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
+		   
+		   ArrayList<TimeInfoDto> tList=dao.getTime(locid);
+		   String year="";
+		   String month="";
+		   String day="";
+		   String hour="";
+		   String minute="";
+		   String startTime="";
+		   
+		   for (TimeInfoDto timeInfoDto : tList) {
+			
+			// 연, 월, 일, 시, 분 추출
+			startTime=timeInfoDto.getStart_date();
+			System.out.println("startTime : "+startTime);
+			year=startTime.substring(0,4);
+			month=startTime.substring(5,7);
+			day=startTime.substring(8,10);
+			hour=startTime.substring(11,13);
+			minute=startTime.substring(14,16);
+			
+			// 상영 종료시간 계산
+			String time = hour + minute;
+			int endTime = Integer.parseInt(time);
+
+			int runningTime = timeInfoDto.getRunning_time();		
+
+			endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
+			if(endTime%100 >= 60) {
+				System.out.println(endTime%100);
+				endTime -=60;
+				endTime +=100;
+			}
+			
+			Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
+			
+			timeMap.put("year", year);
+			timeMap.put("month", month);
+			timeMap.put("day", day);
+			timeMap.put("hour", hour);
+			timeMap.put("minute", minute);
+			timeMap.put("time", time);
+			timeMap.put("endTime",  endTime);
+			
+			timeListMap.add(timeMap);
+			
+		}
+		   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(locid);
+		   
+		   TimeInfoDto tDto=new TimeInfoDto();
+		   String nowDate=year+month+day;
+		   System.out.println("nowDate : "+nowDate);
+		  
+		   
+		   if (date.equals("20220215")) {
+			   model.addAttribute("timeList1",timeListMap);
+		} else if (date.equals("20220216")) {
+			model.addAttribute("timeList12",timeListMap);
+			
+		} else if (date.equals("20220217")) {
+			model.addAttribute("timeList3",timeListMap);
+			
+		}
+		  
+		   model.addAttribute("nowDate",nowDate);
+		   model.addAttribute("movieInfo",mList);
+	   
+	   return "";
    }
    
 
