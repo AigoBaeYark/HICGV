@@ -16,7 +16,7 @@
 <div style="height: 300px;">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
-
+${getId }
 
 <form action="resetPwForm" method="post">
   <div class="form-group">
@@ -29,7 +29,7 @@
   </div>
   <div class="form-group">
 
-	<input type="hidden" name = "modelId" value="${modelId }"/> <!--히든값을 주면 화면이 안나옴  -->
+	<input type="hidden" name = "getId" value="${getId }"/> <!--히든값을 주면 화면에서 표시되지 않음  -->
   <button type="submit" class="btn btn-default">입력</button>
   <button type="button" class="btn btn-default"><a href="home"></a>취소</button>
   </div>

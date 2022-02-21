@@ -30,11 +30,13 @@ public interface CustomerDao {
 
 	public void delete(String id, String password);
 
-	public CustomerDto forgetId(String id, String email, String question, String answer);
 
 	//비밀번호 분실시 비번 재설정
 	public void resetPw(String id, String password);
-	//질문받아올 필드 알려주기 xml에서 id email받아서 값을 반환하게됨
 	public String getQuestion(String id, String email);
 	public String getAnswer(String answer);
+	//아이디찾기를 위한 쿼리문  > 입력한 전화번호로 디비의 전화번호를 찾고 그 전화번호와 생년월일을 비교하여 아이디를 찾음 
+	public String getPhone_number(String phone_number);
+	public String forgetId(String phone_number, String date_birth);
+
 }
