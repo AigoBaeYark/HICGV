@@ -55,16 +55,16 @@
 
 		</div>	<!--myCGV container-top 끝  -->
 		
-		<!--myCGV container-leftmenu 시작  -->
-		<div style="border: 1px solid; flex: 1; height: 700px; ">
+		<!-- <!--myCGV container-leftmenu 시작  -->
+		<div style="border: 1px solid;height: 700px; ">
 		<div>
 		
 		</div>
 		
-		</div><!--myCGV container-leftmenu 끝  -->
+		</div>myCGV container-leftmenu 끝  -->
 		
 		<!--myCGV container-down 시작-->
-		<div style="border: solid; 1px; margin: 50px; flex: 2;" > 
+		<div style="border: solid; 1px; margin: 50px;" > 
 		
 			<!--나의 예매내역 시작  -->
 			<div style="margin: 30px;">
