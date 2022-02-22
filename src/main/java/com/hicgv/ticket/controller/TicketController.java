@@ -52,44 +52,23 @@ public class TicketController {
 		System.out.println("locid2 : " + locid);
 		
 		/*1.영화선택*/
-		;
-		model.addAttribute("ticketmovie", ticketService.getMoviesList());
+		model.addAttribute("moviesList", ticketService.getMoviesList());
 		
-		/*TicketDao dao=sqlSession.getMapper(TicketDao.class);
-		ArrayList<TicketListDto> ticketmovie=dao.ticketmovie();
-		ArrayList<TicketListDto> ticketmovie=dao.ticketmovie(movieid);
-		model.addAttribute("ticketmovie", ticketmovie);
-		*/
 		/*2.지역선택*/
 		
-		//2-0.지역리스트정리
-		//지역(도별)
-		/*ArrayList<TheaterDto> biglocal=dao.biglocal();
-		for (TheaterDto tLocationDto : biglocal) {
-			System.out.println("biglocal : "+tLocationDto.getTheater_loc());
-		}
-		model.addAttribute("biglocal", biglocal);
-		//(상영관별)
-		ArrayList<TLocationDto> local=dao.local();
-		for (TLocationDto tLocationDto : local) {
-			System.out.println("local : "+tLocationDto.getLocation_name());
-		}
-		model.addAttribute("local", local);*/
+		//2-1. 지역(도별)
 		
-		//2-1.지역(도별) //이거 우선 보류
-//		ArrayList<TicketListDto> biglocal=dao.biglocal();
-//		for (TicketListDto ticketListDto : biglocal) {
-//			System.out.println("biglocal : "+ticketListDto.getTheater_id());
-//		}
-//		model.addAttribute("biglocal", biglocal);
-//		/*@@모델을 안 써서 값이 안 나왔음*/
-//		
-//		//2-2.영화관 //이거 우선 보류
-//		ArrayList<TicketListDto> local=dao.local();
-//		for (TicketListDto ticketListDto : local) {
-//			System.out.println("local : " + ticketListDto.getLocation_id());
-//		}
-//		model.addAttribute("local", local);
+		for (TheaterDto theaterDto : ticketService.getLocal()) {
+			System.out.println("getLocal : "+theaterDto.getTheater_loc());
+		}
+		model.addAttribute("local", ticketService.getLocal());
+		
+		//2-2. 상영관별
+		for (TLocationDto tLocationDto : ticketService.getTheaterLocal()) {
+			System.out.println("getTheaterLocal : "+tLocationDto.getLocation_name());
+		}
+		model.addAttribute("theaterlocal", ticketService.getTheaterLocal());
+	
 		
 		
 		return "ticket/ticket";

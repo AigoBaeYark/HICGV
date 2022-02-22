@@ -22,12 +22,12 @@
 		SELECT * FROM HICGV_MOVIE_DIRECTOR WHERE MOVIE_ID=#{movie_id}
 	</select>	
 	<!-- 트레일러가져오는 sql코드 -->
-	<select id="trailer" resultType="MovieTrailerDto">
-		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{param1}
+	<select id="trailer" parameterType="String" resultType="MovieTrailerDto">
+		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{movie_id}
 	</select>
 	<!-- 트레일러갯수가져오는 sql코드 -->
-	<select id="trailercnt" resultType="Integer">
-		SELECT COUNT(*) FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID = #{param1}
+	<select id="trailercnt" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID = #{movie_id}
 	</select>
 	<!-- 포스터가져오는 sql코드 -->
 	<select id="poster" resultType="MoviePosterDto">
@@ -45,7 +45,7 @@
 	<update id = "refreshRank">
 		update hicgv_movies
 		on rank = #{param1} <!-- api에서 가져온 랭크 -->
-		where movie_id = #{prama2} <!-- api에서 가져온 코드 -->
+		where movie_id = #{param2} <!-- api에서 가져온 코드 -->
 	</update>
 	
 	

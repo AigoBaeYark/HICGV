@@ -35,21 +35,15 @@ public class TicketDaoImpl implements TicketDao{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> ticketmovie(String movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TheaterDto> getLocal() {
+		List<TheaterDto> dto = sqlSession.selectList(nameSpace+".getLocal");
+		return (ArrayList<TheaterDto>) dto;
 	}
-
+	
 	@Override
-	public ArrayList<TicketListDto> biglocal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<TicketListDto> local() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TLocationDto> getTheaterLocal() {
+		List<TLocationDto> dto = sqlSession.selectList(nameSpace+".getTheaterLocal");
+		return (ArrayList<TLocationDto>) dto;
 	}
 
 	@Override
@@ -69,6 +63,12 @@ public class TicketDaoImpl implements TicketDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
+
+
+	
 
 	
 
