@@ -5,22 +5,23 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.hicgv.ticket.dao.TicketDao">
-<!--	<select id="ticket" resultType="MoviesDto">
+	<select id="ticket" resultType="MoviesDto">
 		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR
 	</select> 
 	
-	<select id="biglocal" resultType="TheaterDto">
+<!--	<select id="biglocal" resultType="TheaterDto">
 		SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID
 	</select> 
-	
+-->	
 	<select id="local" resultType="TLocationDto">
 		SELECT T.THEATER_ID, T.THEATER_LOC, TL.LOCATION_ID, TL.LOCATION_NAME 
 		FROM HICGV_THEATER T INNER JOIN HICGV_THEATER_LOCATION TL 
 		ON T.THEATER_ID =TL.THEATER_ID 
+		WHERE T.THEATER_ID = #{param1}
 		ORDER BY T.THEATER_ID, TL.LOCATION_NAME 
-		큰지역ID, 큰지역, 영화관ID, 영화관
+		<!-- 큰지역ID, 큰지역, 영화관ID, 영화관 -->
 	</select>
-	
+<!--	
 	<select id="time" resultType="TTimeDto"> 나중에 빼깅
 		SELECT R.ROOM_NAME, R.MAX_SEAT, S.START_DATE 
 		FROM HICGV_THEATER_ROOM R INNER JOIN HICGV_THEATER_SCHEDULE S 
@@ -32,9 +33,6 @@
 	<select id="gettictime" resultType="TimeInfoDto"> 나중에 빼깅
       </select> -->
       
-      <select id="ticket" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR
-		</select> 
 	
       <!-- 여기수정 -->
       <!-- <select id="ticketmovie" resultType="TicketListDto">

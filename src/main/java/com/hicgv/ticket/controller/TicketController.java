@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hicgv.movies.dto.MoviesDto;
 import com.hicgv.ticket.dao.TicketDao;
+import com.hicgv.ticket.dto.TLocationDto;
 import com.hicgv.ticket.dto.TicketListDto;
 
 @Controller
@@ -32,7 +33,7 @@ public class TicketController {
 		String theaterid = request.getParameter("theaterid");
 		String locid = request.getParameter("locid");
 		
-		System.out.println("theaterid : " + movieid);
+		System.out.println("movieid : " + movieid);
 		System.out.println("theaterid : " + theaterid);
 		System.out.println("locid : " + locid);
 		
@@ -42,7 +43,7 @@ public class TicketController {
 	        theaterid = "1"; //서울코드 (지역순)
 	    if (locid == null)
 	        locid = "101"; //서울 강남 (가나다 순 젤 위)
-	      
+	    
 		
 		/*1.영화선택*/
 		TicketDao dao=sqlSession.getMapper(TicketDao.class);
@@ -55,6 +56,14 @@ public class TicketController {
 		model.addAttribute("ticketmovie", ticketmovie);
 		*/
 		/*2.지역선택*/
+		
+		//2-0.지역리스트정리
+		ArrayList<TLocationDto> local=dao.local(theaterid);
+		for (TLocationDto tLocationDto : local) {
+			System.out.println("thelist : "+tLocationDto.getLocation_name());
+		}
+		model.addAttribute("thelist", local);
+		
 		//2-1.지역(도별)
 		ArrayList<TicketListDto> tickettheater1=dao.tickettheater1(movieid, theaterid);
 		for (TicketListDto ticketListDto : tickettheater1) {
@@ -69,6 +78,7 @@ public class TicketController {
 			System.out.println("theid2 : " + ticketListDto.getLocation_id());
 		}
 		model.addAttribute("tickettheater2", tickettheater2);
+		
 		
 		
 		
