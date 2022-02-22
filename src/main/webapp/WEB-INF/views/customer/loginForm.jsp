@@ -6,9 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
-
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+<link rel="stylesheet" href="resources/css/customer/customer.css" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <title>Insert title here</title>
@@ -20,63 +19,6 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<style>
-.wrap-login {
-	width: 500px;
-	position: relative;
-	padding: 30px 30px 0;
-	margin-left: 30%;
-	margin-top: 10%;
-	margin-bottom: 10%;
-	border: solid;
-	1
-	px;
-}
-
-div {
-	font-size: 100%;
-	vertical-align: baseline;
-	word-break: break-all;
-	display: block;
-}
-
-body {
-	font-size: 13px;
-	line-height: 1.2;
-	color: #666;
-	font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum,
-		sans-serif;
-	font-weight: 400;
-}
-
-.login-top {
-	border-bottom: solid 3px purple;
-}
-
-.login {
-	margin: 5px;
-	text-align: center;
-}
-
-.forgot_pw {
-	margin: 5px;
-	width: 200px;
-	height: 30px;
-	margin-left: 30%;
-}
-
-.logbtn {
-	border: solid; 1 px;
-	color: white;
-	width: 165px;
-	height: 30px;
-	background-color: red;
-}
-</style>
-	<script type="text/javascript">
-		
-	</script>
-
 
 	<div class="wrap-login">
 		<div class="sect-login">
