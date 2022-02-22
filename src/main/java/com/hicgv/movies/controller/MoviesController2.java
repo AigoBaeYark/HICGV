@@ -24,19 +24,29 @@ import com.hicgv.movies.dto.MoviePosterDto;
 import com.hicgv.movies.dto.MovieTrailerDto;
 
 
-@Controller
-public class MoviesController {
+
+public class MoviesController2 {
 	
 	
 	@Autowired
 	MoviesService moviesService;
 	
+	@Autowired
+	private SqlSession sqlSession; //sqlSession은 트랜젝션(SELECT, UPDATE, INSERT, DELETE 등) 관련하여 해당 기능을 사용하기 쉽게 해주는것
 	
 	/*영화차트란*/
-	@RequestMapping("/movies")
+	
 	public String movies(Model model) {
 		System.out.println("========= < pass by movies() > =========");
 
+		MoviesDao dao=sqlSession.getMapper(MoviesDao.class); //sql세션은 트랜젝션 관련하여 해당 기능을 사용하기 쉽게 해주는것
+		ArrayList<MoviesDto> moives=dao.movies(); //1.moives()는 MoviesDao moives()로
+		
+		for (MoviesDto moviesDto : moives) {
+			System.out.println("movies" + moviesDto.getTitle_kor());
+		}
+		
+		
 		SimpleDateFormat day = new SimpleDateFormat("yyyyMMdd");
 		
 		// 하루 전 날짜 (영화진흥API 랭킹순위에 오늘 날짜는 안떠서)
@@ -45,9 +55,9 @@ public class MoviesController {
         cal.add(Calendar.DATE, -1);
         System.out.println(day.format(cal.getTime()));
         String strDay = day.format(cal.getTime());
-
         
-		model.addAttribute("movies",moviesService.getMoviesList()); 
+        
+		model.addAttribute("movies",moives); 
 		model.addAttribute("dv", moviesService.getDateViewer(strDay));
 		model.addAttribute("poster", moviesService.getMoviePoster());
 	
@@ -60,7 +70,6 @@ public class MoviesController {
 	}
 	
 	/*영화상세보기란*/
-	@RequestMapping("/moviesdetailview")
 	public String moviesdetailview(HttpServletRequest request, Model model) {
 		System.out.println("========= < pass by moviesdetailview() > =========");
 		
@@ -68,46 +77,52 @@ public class MoviesController {
 		//영화정보(영화정보, 감독란, 배우란, 상영관정보)
 		//트레일러, 스틸샷, 평점
 		
+		MoviesDao dao=sqlSession.getMapper(MoviesDao.class);
 		/*영화상세내역*/
 		//해당영화상세정보이동하기(경로)
 		String movie_id=request.getParameter("movie_id");
 		
 		//영화상세정보
-		model.addAttribute("moviesdv",moviesService.getMoviesDailyViewer(movie_id));  
+		MoviesDto moviesdv=dao.moviesdv(movie_id);
+		System.out.println("moviesdv : "+moviesdv.getTitle_kor());
+		model.addAttribute("moviesdv",moviesdv);  
 		
 		//영화배우정보
-		
-		model.addAttribute("actor", moviesService.getActors(movie_id));
+		ArrayList<MovieActorDto> actor=dao.actor(movie_id);
+		for (MovieActorDto movieActorDto : actor) {
+			System.out.println("actor : "+movieActorDto.getName_kor());	
+		} //디비내용확인차 foreach를 입력함
+		model.addAttribute("actor", actor);
 		
 		//감독정보
-		
-//		System.out.println("director : "+director.getName_kor());
-		model.addAttribute("director", moviesService.getDirector(movie_id));
+		MovieDirectorDto director = dao.director(movie_id);
+		System.out.println("director : "+director.getName_kor());
+		model.addAttribute("director", director);
 		
 		//트레일러
-		//ArrayList<MovieTrailerDto> trailer = dao.trailer(movie_id);
-//		for (MovieTrailerDto movieTrailerDto : trailer) {
-//			System.out.println("trailer : "+movieTrailerDto.getTrailer_title());
-//		}
-		//model.addAttribute("trailer", trailer);
+		ArrayList<MovieTrailerDto> trailer = dao.trailer(movie_id);
+		for (MovieTrailerDto movieTrailerDto : trailer) {
+			System.out.println("trailer : "+movieTrailerDto.getTrailer_title());
+		}
+		model.addAttribute("trailer", trailer);
 		
 		//트레일러(갯수)
-		//int trailercnt = dao.trailercnt(movie_id);
-//		System.out.println("trailercnt : "+trailercnt);
-//		model.addAttribute("trailercnt",trailercnt); 
+		int trailercnt = dao.trailercnt(movie_id);
+		System.out.println("trailercnt : "+trailercnt);
+		model.addAttribute("trailercnt",trailercnt); 
 		
 		//스틸컷
-		//ArrayList<MoviePosterDto> poster = dao.poster(movie_id);
-//		for (MoviePosterDto moviePosterDto : poster) {
-//			System.out.println("poster : "+moviePosterDto.getMovie_poster_id());
-//			System.out.println("posterurl : "+moviePosterDto.getMovie_poster_url());
-//		} 
-		//model.addAttribute("poster", poster);
+		ArrayList<MoviePosterDto> poster = dao.poster(movie_id);
+		for (MoviePosterDto moviePosterDto : poster) {
+			System.out.println("poster : "+moviePosterDto.getMovie_poster_id());
+			System.out.println("posterurl : "+moviePosterDto.getMovie_poster_url());
+		} 
+		model.addAttribute("poster", poster);
 		
 		//스틸컷(갯수)
-		//int postercnt = dao.postercnt(movie_id);
-		//System.out.println("postercnt : "+postercnt);
-		//model.addAttribute("postercnt", postercnt);
+		int postercnt = dao.postercnt(movie_id);
+		System.out.println("postercnt : "+postercnt);
+		model.addAttribute("postercnt", postercnt);
 			
 		return "movies/moviesdetailview";	
 	}
