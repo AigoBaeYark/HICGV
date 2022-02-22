@@ -32,19 +32,19 @@
 	                        	<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" alt="" />
                      		</c:when>
                      	</c:choose>
-                        <a href="theaterTimeList?locid=101" class="selTime"> 
+                        <a href="theaterTimeList?" class="selTime"> 
 	                        <span>02월</span> 
 	                        <em>화</em> 
 	                        <strong>15</strong>
 	                        <input type="hidden" class="hiddenDate" value="20220215"/>
                         </a>
-                        <a href="theaterTimeList?locid=101" class="selTime"> 
+                        <a href="theaterTimeList?" class="selTime"> 
 	                        <span>02월</span> 
 	                        <em>수</em> 
 	                        <strong>16</strong>
 	                        <input type="hidden" class="hiddenDate" value="20220216"/>
                         </a>
-                        <a href="theaterTimeList?locid=101" class="selTime"> 
+                        <a href="theaterTimeList?" class="selTime"> 
 	                        <span>02월</span> 
 	                        <em>목</em> 
 	                        <strong>17</strong>
@@ -75,7 +75,7 @@
          <ul>
             <li>
                <div class="col-times">
-                  <c:forEach items="${movieinfo }" var="dto">
+                  <c:forEach items="${movieInfo }" var="dto">
                   <div class="info-movie">
                      <span class="ico-grade grade-15"> ${dto.age_limit }</span> 
                      <a href="" target="_parent">
@@ -104,8 +104,7 @@
    </div>
 
    <div id="dataArea">
-   <c:if test="${nowDate eq '20220216'}">
-   <c:forEach items="${timeListMap }" var="list">
+   <c:forEach items="${timeList }" var="list">
     	<div>
     		<ul>
     			<li>
@@ -118,7 +117,6 @@
     		</ul>
     	</div>
     </c:forEach>
-    </c:if>
    </div>
    
    
