@@ -486,6 +486,8 @@ public class getMoviesCrawlFinal {
 		try {
 			jsonObject = new JSONObject(movieInfoResult.toString());
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("movieListResult");
+			String totCnt = jsonObject1.get("totCnt").toString();
+			System.out.println("totCnt : "+totCnt);
 			JSONArray jsonArray = jsonObject1.getJSONArray("movieList");
 
 			// 1위부터 10위까지 순차적으로 넣음

@@ -15,6 +15,9 @@
 
 <script src="${path }/resources/js/main/jquery-1.10.2.min.js" ></script>
 <script src="${path }/resources/js/main/jquery-ui-1.10.4.custom.min.js" ></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
@@ -22,7 +25,12 @@
 <div class="skipnaiv" tabindex="0">
 	<a href="https://www.cgv.co.kr/#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
 </div>
-<div id="cgvwrap">
+
+<style>
+		a {
+			text-decoration: none;
+		}
+	</style>
 <!-- 광고 -->
     <%-- <div class="cgv-ad-wrap" id="cgv_main_ad">
         <div id="TopBarWrapper" class="sect-head-ad">
@@ -201,7 +209,7 @@
 <div class="nav">
     <div class="contents">
         <h1><a href="main" tabindex="-1"><img src="" alt="CGV"></a></h1>
-        <ul class="nav_menu">
+        <ul class="nav_menu" style="margin-bottom: 0rem; padding-left: 0;">
             <li>
                 <h2><a href="movies">영화</a></h2>
                 <dl class="nav_overMenu" style="">
