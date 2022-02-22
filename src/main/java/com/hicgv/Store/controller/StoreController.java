@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,11 +41,15 @@ public class StoreController {
 	@RequestMapping("store")
 	public String viewStore(Model model) {
 		logger.info("berfore viewStore");
-
+		List<StoreDto> storeDtos = storeService.getStoreList();
+		for (StoreDto storeDto : storeDtos) {
+			System.out.println(storeDto.getProduct_categori());
+		}
+		
 		// 최초의 실행
 		// storeService = new StoreServiceImpl();
 		// storeService.getPopcorn();
-
+		model.addAttribute("list",storeDtos);
 		logger.info("after viewStore");
 		return "store/store";
 	}
@@ -57,8 +62,8 @@ public class StoreController {
 		return "store/storeAdmin";
 	}
 
-	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST, consumes= { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public String insertStoreData(MultipartRequest request,HttpServletRequest req, Model model, @ModelAttribute StoreDto storeDto) throws IOException {
+	@RequestMapping(value = "insertStoreData", method = RequestMethod.POST)
+	public String insertStoreData(HttpServletRequest req, Model model, @ModelAttribute StoreDto storeDto) throws IOException {
 		logger.info("before insertStoreData");
 		
 		HashMap<String, Object> store = new HashMap<String,Object>();
@@ -68,7 +73,15 @@ public class StoreController {
 		System.out.println(storeDto.getProduct_categori());
 		System.out.println(storeDto.getProduct_categori_name());
 		System.out.println(storeDto.getProduct_name());
+		System.out.println(storeDto.getProduct_img()); 
+		System.out.println(storeDto.getProduct_script()); 
 		
+		if(storeDto.getProduct_img().equals(null) || storeDto.getProduct_img().equals("")) {
+			System.out.println("이미지없음");
+			storeDto.setProduct_img("이미지없음");
+		}
+		System.out.println(storeDto.getProduct_img()); 
+
 		storeService.insertProduct(storeDto);
 
 
