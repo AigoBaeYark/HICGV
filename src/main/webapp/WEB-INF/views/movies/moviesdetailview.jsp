@@ -6,11 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
+
+<div style="z-index: 0;">
+	<c:import url="../common/header.jsp"></c:import>
+</div>
+
+
 <link rel="stylesheet" href="resources/css/movies/moviesdetailview.css" />
 <title>hicgv/moviesdetailview</title> 
 </head>
 <body>
-<c:import url="../common/header.jsp"></c:import>
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
         
