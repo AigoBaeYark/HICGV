@@ -27,7 +27,7 @@
 	-->
 	
 	<div id="contents" style="margin: 0 auto;">
-		<form action="insertStoreData" method="post">
+		<form action="insertStoreData" method="post" enctype="multipart/form-data">
 			<label for="name">상품이름</label>
 			<input type="text" name="product_name" id="product_name"/>
 		
@@ -36,7 +36,7 @@
 			<input type="text" name="product_price" id="product_price" onkeyup="this.value=this.value.replace(/[^-0-9]/g,'');"/>
 		
 			<label for="img">상품이미지</label>
-			<input type="text" name="product_img" id="product_img" value="상품이미지"/>
+			<input type="file" name="product_img" id="product_img" value="상품이미지"/>
 			<br />
 			<textarea name="product_script" id="product_script" cols="30" rows="10" placeholder="상품설명" style="position:relative; float: left; margin-top: 10px;"></textarea>
 		

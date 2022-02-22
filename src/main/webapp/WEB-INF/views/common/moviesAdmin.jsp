@@ -22,25 +22,14 @@
 		<br />
 		<strong>검색결과</strong>
 		<br />
-		
-	</div>
-	
-	<div id="searchResult" style="display: inline; margin: 0 auto;">
-			<div class="result_Wrap">
-				<table class="table">
-						<tr style="text-align: center;">
-							<th>제목</th>
-							<th>포스터</th>
-							<th>줄거리</th>
-							<th>DB등록</th>
-						</tr>
-					<tbody id="resultTbody">
-					
-					</tbody>
-					
-				</table>
+		<div id="searchResult" style="display: inline;">
+			<div >
+			
+			
 			</div>
 		</div>
+	
+	</div>
 	
 	
 	
@@ -56,7 +45,7 @@
 		function searchTitle() {
 			alert($('#searchTitle').val());
 			var sendTitle = $('#searchTitle').val();
-			$('#resultTbody').empty();
+			$('#searchResult').empty();
 			$.ajax({
 				type: "get",
 				url: "moviesResult",
@@ -66,16 +55,21 @@
 					'searchTitle' : sendTitle
 				},
 				success: function (param) {
-
-					console.log(param[0].title_kor);
-					 {for (var i = 0 in param) {
-							$('#resultTbody').append("<tr> <td>"+param[i].title_kor +"</td> <td>"+"<img src="+param[i].poster+" />" +"</td> <td>"+param[i].description +"</td>"+"</tr>");
+					alert('성공');
+					
+					console.log(param[1].title_kor);
+					if(param.data === null){
+						$('#searchResult').append("검색 결과가 없습니다.");
+					}
+						else {for (var i = 0 in param) {
+							$('#searchResult').append("<div class = 'result_Wrap'>제목 : "+param[i].title_kor +"<img src="+param[i].poster+" />" +"<span>"+param[i].description +"</span>"+"</div> </br>");
 						}
 					}
 				},
 				error: function () {
-					$('#resultTbody').append("검색 결과가 없습니다.");
-
+					alert('실패');
+					
+					
 				}
 			});
 			

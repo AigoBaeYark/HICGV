@@ -11,8 +11,4 @@
 		(hicgv_store_seq.nextval,#{product_name},#{product_categori},#{product_categori_name},#{product_price},#{product_script},#{product_img})
 	</insert>
  	
- 	<select id="selectStoreList" resultType="StoreDto">
- 		SELECT * FROM HICGV_STORE
- 	</select>
- 	
 </mapper>  
