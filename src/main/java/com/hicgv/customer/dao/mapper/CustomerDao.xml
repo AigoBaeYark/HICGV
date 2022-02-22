@@ -74,16 +74,55 @@
 	</update>
 	<!-- 아이디 찾기 -->
 	<select id="getPhone_number" resultType="String">
-		SELECT PHONE_NUMBER FROM HICGV_CUSTOMER WHERE
+		SELECT PHONE_NUMBER FROM
+		HICGV_CUSTOMER WHERE
 		PHONE_NUMBER= #{param1}
 
 	</select>
 	<select id="forgetId" resultType="String">
-		SELECT ID FROM HICGV_CUSTOMER WHERE PHONE_NUMBER
+		SELECT ID FROM HICGV_CUSTOMER
+		WHERE PHONE_NUMBER
 		=(SELECT PHONE_NUMBER FROM HICGV_CUSTOMER WHERE
 		PHONE_NUMBER= #{param1})
-		AND DATE_BIRTH =  #{param2}
+		AND DATE_BIRTH = #{param2}
 
 	</select>
+	<select id="name" resultType="String">
+		SELECT
+		NAME
+		FROM HICGV_CUSTOMER
+		WHERE ID=#{param1} AND PASSWORD=#{param2}
+	</select>
+	<select id="nickname" resultType="String">
+		SELECT
+		NICKNAME
+		FROM HICGV_CUSTOMER
+		WHERE ID=#{param1} AND PASSWORD=#{param2}
 
+	</select>
+	<select id="grade" resultType="String">
+		SELECT
+		GRADE
+		FROM HICGV_CUSTOMER
+		WHERE ID=#{param1} AND PASSWORD=#{param2}
+
+	</select>
+	<!-- <select id="img" resultType="String">
+		SELECT
+		PROFILE_IMGE
+		FROM HICGV_CUSTOMER
+		WHERE ID=#{param1} AND PASSWORD=#{param2}
+
+	</select>  -->
+	
+	<select id="getCustomerDto" resultType="CustomerDto">
+		SELECT *
+		FROM HICGV_CUSTOMER
+		WHERE ID LIKE #{param1}
+	</select>
+	
+	<insert id="insertCustomer" parameterType="CustomerDto">
+		INSERT INTO HICGV_CUSTOMER(user_id, ID) VALUES(hicgv_customer_seq.nextval,#{id})
+	</insert>
+	
 </mapper>

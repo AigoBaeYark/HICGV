@@ -7,11 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <title>Insert title here</title>
-
 
 
 </head>
@@ -30,7 +30,7 @@
 				<h3 class="hidden">회원 로그인</h3>
 				<form method="post" action="loginCheck">
 
-					<h5 align="center">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</h5>
+					<h5 align="center">아이디 비밀번호를 입력하신 후 <br /> 로그인 버튼을 클릭해 주세요.</h5>
 					<div class="login">
 						<div style="margin: 5px;">
 							<input type="text" id="" name="loginid" required="required"
@@ -52,23 +52,10 @@
 							아이디 저장</label>
 					</div>
 					<div class="forgot_pw">
-						<a href="forgetIdForm">아이디 찾기</a> 
-						<a href="forgetPwForm">비밀번호찾기</a>
+						<a href="forgetIdForm">아이디 찾기</a> <a href="forgetPwForm">비밀번호찾기</a>
 					</div>
-
-				</form>
-				<div>
-					<!--홈으로 옮길 메뉴  -->
-
-					<br /> 홈으로 옮길 메뉴 <br />
-					<button type="submit">
-						<a href="myCGV?id=${id }">myCGV</a>
-					</button>
-					<br />
-					<form action="logout" method="post">
-						<button type="submit">로그아웃</button>
-					</form>
-				</div>
+	<a href="myCGV">myCGV</a>
+		</form>
 			</div>
 		</div>
 	</div>

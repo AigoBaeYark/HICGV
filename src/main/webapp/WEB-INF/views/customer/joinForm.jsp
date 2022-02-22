@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
+<link rel="stylesheet" href="resources/css/customer/customer.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,73 +16,131 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-
-	<div align="center">
-		<h3>회원가입</h3>
+	<div align="center" style="width: 600px; position: relative;left: 600px;">
 		<div>
+			<div>
 
-			<form action="join" class="row g-3" method="post">
-				<div class="col-md-6">
-					<label for="inputid" class="form-label">아이디 </label> <input
-						type="text" name="id" class="form-control" id="inputEmail4">
-					<input type="button" value="중복확인" />
-				</div>
-				<div class="col-md-6">
-					<label for="inputPassword4" class="form-label">비밀번호</label> <input
-						type="password" name="password" class="form-control"
-						id="inputPassword4">
-				</div>
-				<div class="col-md-6">
-					<label for="" class="form-label">이메일</label> <input type="text"
-						name="email" class="form-control" id="inputPassword4">
-				</div>
-				<div class="col-md-6">
-					<label for="inputid" class="form-label">이름 </label> <input
-						type="text" name="name" class="form-control" id="inputEmail4">
-				</div>
-				<div class="col-md-6">
-					<p>
-						생년월일<input type="text" name="date_birth"
-							placeholder="ex)2020.01.01">
-				</div>
-				<div class="col-12">
-					<label for="inputAddress" class="form-label">주소</label> <input
-						type="text" name="location" class="form-control" id="inputAddress"
-						placeholder="OO특별시 OO구 OO대로 OO길 OO-OO 2층 506호">
-				</div>
-				<div class="col-md-6">
-					<label for="inputPassword4" class="form-label">닉네임</label> <input
-						type="text" name="nickname" class="form-control"
-						id="inputPassword4">
-				</div>
-				<div class="col-md-6">
-					<label for="inputid" class="form-label">전화번호 </label> <input
-						type="text" name="phone_number" class="form-control"
-						id="inputEmail4">
-				</div>
-				<div class="col-md-4">
-					<label for="inputState" class="form-label">성별</label> <input
-						type="text" name="gender" placeholder="ex/남자">
-					<!-- <select id="inputState"  name="genselect" class="form-select">
-      <option selected="selected" value="1">남자</option>
-      <option value="2">여자</option>
-    </select> -->
-					<div>
-						질문. <input type="text" name="question" value="" />
+				<form action="join" class="row g-3" method="post">
+				<!-- name을 dto의 필드명과 동일하게 -->
+					<div class="wrap wd668">
+						<div class="container">
+							<div class="form_txtInput">
+								<h2 class="sub_tit_txt">회원가입</h2>
+								<p class="exTxt">
+									회원정보 수정 시 아이디는 변경이 불가능합니다. <br />
+								</p>
+								<div class="join_form">
+									<table>
+										<colgroup>
+											<col width="30%" />
+											<col width="auto" />
+										</colgroup>
+										<tbody>
+											<tr>
+												<th><span>아이디</span></th>
+												<td><input type="text" name="id"
+													placeholder="사용할 아이디를 입력하세요."></td>
+												<td><input type="button" value="중복확인" /></td>
+											</tr>
+											<tr>
+												<th><span>비밀번호</span></th>
+												<td><input type="password" name="password"
+													placeholder="password 를 입력하세요."></td>
+											</tr>
+											<tr>
+												<th><span>이릉</span></th>
+												<td><input type="text" name="name" placeholder=""></td>
+											</tr>
+											<tr>
+												<th><span>닉네임</span></th>
+												<td><input type="text" name="nickname"
+													placeholder="최대 한글 8글자 영문 16글자"></td>
+											</tr>
+											<tr>
+												<th><span>생년월일</span></th>
+												<td><input type="text" name="date_birth"
+													placeholder="생일을 입력해주세요.ex)2020.01.01"></td>
+											</tr>
+											<tr>
+												<th><span>주소</span></th>
+												<td><input type="text" name="location"
+													placeholder="주소을 입력해주세요.ex)서울특별시 oo구 "></td>
+											</tr>
+											<tr>
+												<th><span>성별</span></th>
+												<td><input type="text" name="gender"
+													placeholder="남자/여자"></td>
+											</tr>
+											<tr>
+												<th><span>질문</span></th>
+												<td><input type="text" name="question"
+													placeholder="질문을 입력해주세요.ex)가장 좋아하는 색상은?"></td>
+											</tr>
+											<tr>
+												<th><span>답</span></th>
+												<td><input type="text" name="answer"
+													placeholder="답을 입력해주세요.ex)파랑"></td>
+											</tr>
+											<tr class="email">
+												<th><span>이메일</span></th>
+												<td><input type="text" name="email" class="email"
+													placeholder=""><span class="mar10">@</span> <input
+													type="text" class="email email2" placeholder=""> <a
+													href="javascript:;" class="btn_confirm">인증번호 발송</a></td>
+											</tr>
+											<tr>
+												<th><span>인증번호 확인</span></th>
+												<td><span><input type="text" class="send_number"
+													placeholder="10:00"></span><a href="javascript:;"
+													class="btn_confirm">인증번호 확인</a></td>
+											</tr>
+											<tr>
+												<th><span>휴대폰 번호</span></th>
+												<td><input type="text" name="phone_number"
+													placeholder="휴대폰 번호를 입력하세요."></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="exform_txt">
+										<span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span>
+									</div>
+								</div>
+								<!-- join_form E  -->
+								<div class="agree_wrap">
+									<div class="checkbox_wrap">
+										<input type="checkbox" id="news_letter" name="news_letter"
+											class="agree_chk"> <label for="news_letter">[선택]뉴스레터
+											수신동의</label>
+									</div>
+									<div class="checkbox_wrap mar27">
+										<input type="checkbox" id="marketing" name="marketing"
+											class="agree_chk"> <label for="marketing">[선택]마케팅
+											목적 개인정보 수집 및 이용에 대한 동의</label>
+										<ul class="explan_txt">
+											<li><span class="red_txt">항목 : 성별, 생년월일</span></li>
+											<li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 추가로 수집하는 개인정보에<br />
+												대해 동의하지 않거나 개인정보를 기재하지 않음으로써 거부하실 수 있습니다.<br /> 다만 이때 회원 대상
+												서비스가 제한될 수 있습니다.
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- form_txtInput E -->
+						</div>
+						<!-- content E-->
 					</div>
-					<div>
-						답. <input type="text" name="answer" value="" />
-					</div>
-					<div class="col-12">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="gridCheck">
-							<label class="form-check-label" for="gridCheck"> 회원가입 동의
-							</label>
+					<!-- container E -->
+
+					<div align="center" style="margin-top: 10px; margin-bottom: 10px;">
+						<div
+							style="width: 100px; height: 50px; border: 1px solid blue; border-radius: 10px; background: linear-gradient(45deg, aqua, #2041e3);">
+							<button type="submit">
+								<h5 style="color: white; font-size: 20px;">회원가입</h5>
+							</button>
 						</div>
 					</div>
-					<div class="col-12">
-						<button type="submit" class="btn btn-primary">Sign in</button>
-					</div>
+			</div>
 			</form>
 		</div>
 	</div>

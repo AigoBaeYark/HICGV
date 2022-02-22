@@ -1,3 +1,4 @@
+<%@page import="com.hicgv.customer.dto.CustomerDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,14 +18,20 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<div class="container">
+	
+	<%CustomerDto dto = (CustomerDto) session.getAttribute("dto");%>
+	
+	<%=dto.getId() %> 남 안녕하세요
+	
+	<div><!--container 시작--> 
+	<div class="container-top">
 		<!--myCGV container-top 시작  -->
 		<div align="center"  style="margin-top: 50px;">
 		<h1 align="center" style="font-size: 50px;">HICGV_myCGV!!</h1>
 		<!-아이디 고객등급 div 시작-->
 					<div style="width: 500px; border: solid 1px;margin-top: 10px; font-size: 20px;">
 						<!--아이디 시작  -->
-						${id }님 HICGV에 오신것을 환영합니다.
+						HICGV에 오신것을 환영합니다.
 					</div>
 					<!--이름 닉네임 끝  -->
 		</div>
@@ -35,20 +42,20 @@
 			<div id="personinfo" >
 				<!--myCGV personinfo-img 시작  / 프로필 사진 고객이름 아이디 고객등급-->
 				<div id="personinfo-img "
-						style="width: 200px; height: 200px; border: solid 1px; float: left; margin-left: 100px;">
+						style="width: 200px; height: 200px; border: solid 1px; float: left; margin-left: 100px; margin-top: 50px;'">
 					<!--이미지div시작  -->
 					<img src="" alt="프로필.img" class="img-circle">
 				</div>
 				<!--이미지div끝 -->
 				<div>
 					
-					<div>
-					<div align="left" style="width: 500px; height:30px; margin-top: 50px; margin-left:30px ;float: left;">
+					<div style="float: left;">
+					<div align="left" style="position:static; width: 500px; height:30px; margin-top: 50px; margin-left:30px ;float: left; border-bottom: 1px solid blue;">
 						<!--등급div시작  -->
 						${name }님 (아이디: ${id }) 닉네임:${nickname }
 					</div>
 		
-					<div align="left" style="width: 500px; height:30px;border: solid; 1 px; margin-top: 10px; margin-left:30px ;float: left;">
+					<div align="left" style="width: 500px; height:30px; margin-top: 10px; margin-left:30px ;">
 						<!--등급div시작  -->
 						고객님은 일반회원입니다.
 					</div>
@@ -67,14 +74,14 @@
 		<!--myCGVcontainer-down 시작  -->
 		<!--myCGVcontainer-down-left 시작  -->
 		<div class="container-down-left"
-			style="border: 1px solid; height: 500px; width: 250px;float: left;">
+			style="border: 1px solid; height: 350px; width: 250px;float: left;">
 			<div>
-			<div style="border: solid; 1px;">
+			<div align="left" style="margin-left: 50px">
 				<!--회원정보 수정 / 회원탈퇴 div 시작 -->
-				<form action="modifyForm" method="post">
-					<button type="submit">개인정보 변경</button>
-				</form>
 				<br />
+				<form action="modifyForm" method="post">
+				<button type="submit">개인정보 변경</button>
+				</form>				
 				<button type="submit">
 					<a href="customerDelete?id=${id }">회원탈퇴</a>
 				</button>
@@ -98,19 +105,24 @@
 		<div class="container-down-center"
 			style="border: solid; 1 px; width:800px; float: left; margin-left: 50px;">
 
-			<!--나의 예매내역 시작  -->
+			<!--나의 예매내역/내가본영화 container 시작  -->
 			<div style="margin: 30px;">
-				<!--나의예매확인 버튼div  -->
-				<button type="submit" style="border: solid; 1px;">나의 예매내역</button>
-				<div>이곳에는 내가 본영화 / 예매내역/ 문의내역을 표현할 곳임</div>
+				<!--나의예매확인 버튼div 시작 -->
+				<div style="float: left; width: 200px; height: 200px;margin-left: 50px;">
+				<button type="submit" style="border: 1px solid; width: 150px; height: 150px">나의 예매내역</button>
+				</div><!--나의예매확인 버튼div 끝 -->
+				<div style="float: left;width: 200px; height: 200px;margin-left: 100px;">
+				<button style="border: 1px solid; width: 150px; height: 150px">내가본영화</button>
+				</div>
 			</div>
-			<!--나의예매확인 버튼div 끝 -->
+			<!--나의 예매내역/내가본영화 container 시작  -->
+			
 			
 		</div>
 		<!--myCGVcontainer-down-center 끝-->
 	</div>
 	<!--myCGVcontainer-down 끝  -->
-
+</div><!--container 끝-->
 
 
 	</div>

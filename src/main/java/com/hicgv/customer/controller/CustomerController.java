@@ -18,11 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hicgv.customer.dao.CustomerDao;
 import com.hicgv.customer.dto.CustomerDto;
+import com.hicgv.customer.service.CustomerService;
 
 //import com.HICGV.dao.customerDao;
 
@@ -31,6 +34,9 @@ public class CustomerController {
 	// DB접속
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	CustomerService cusomerService;
+	
 	@Autowired
 	private HttpSession session; // 세션을 주입받을 수 있도록 세팅1
 
@@ -52,43 +58,59 @@ public class CustomerController {
 
 		String id = request.getParameter("loginid");
 		String password = request.getParameter("loginpw");
+		// String name = request.getParameter("name");
+		// String grade = request.getParameter("grade");
 		System.out.println("id :" + id);
 		System.out.println("password :" + password);
 
-		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+		//CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		// 쿼리문을 실행해서 없는 값 dto_id,dto_pw
-		String dto_id = dao.loginCheckId(id);
-		CustomerDto dto_pw = dao.loginCheckPw(id, password);
+		
+		
+//		String dto_id = dao.loginCheckId(id);
+//		CustomerDto dto_pw = dao.loginCheckPw(id, password);
+		// myCGV로 넘겨주기 위한 이름과 닉네임 결과값을 받는다. (추가 작업+이미지와 등급을 추가할것)
+		// CustomerDto dto_Profile = dao.Profile(id, password);
+//		String getname = dao.name(id, password);
+//		String getnickName = dao.nickname(id, password);
+//		String getgrade = dao.grade(id, password);
+		// 이미지 null값일 때 오류남
+		// String dto_img = dao.img(id, password);
 
 		// 로그인 성공 1
-		if (dto_id == null) { // 로그인했을때 ID나 비밀번호가 달라서 아무값도 넘겨받지 못함
+		
+		cusomerService.checkLogin(id, password);
+		
+		if (cusomerService.checkLogin(id, password).equals("아이디없음")) { // 로그인했을때 ID나 비밀번호가 달라서 아무값도 넘겨받지 못함
 			System.out.println("없는 아이디이거나 회원이 아닙니다.");
 			return "/customer/loginForm";
-		} else if (dto_pw == null) {
+		} else if (cusomerService.checkLogin(id, password).equals("비밀번호 틀림")) {
 			System.out.println("비밀번호를 확인해주세요");
 			return "/customer/loginForm";
 		} else {
 			System.out.println("정상적으로 로그인이 되었습니다.");
 			// 로그인할 때 id password 세션에 세팅
 			session.setAttribute("id", id);
+			session.setAttribute("name", getname);
+			session.setAttribute("nickname", getnickName);
+			session.setAttribute("grade", getgrade);
+//			if () {
+//				
+//			}
+			//model.addAttribute("name", getname);
+			//model.addAttribute("nickname", getnickName);
+			//model.addAttribute("grade", getgrade);
+			// model.addAttribute("img", dto_img);
+
 			System.out.println("Sid :" + id);
-			model.addAttribute("id", id);
-			model.addAttribute("msg", "정상적으로 로그인이 되었습니다.");
+			System.out.println("id : " + id);
+			System.out.println("name : " + getname);
+			System.out.println("nickname : " + getnickName);
+			System.out.println("grade :" + getgrade);
+			// System.out.println("img :"+ dto_img);
+			// model.addAttribute("msg", "정상적으로 로그인이 되었습니다.");
 		}
-		/*
-		 * 로그인 성공2 if (dto == null) { rs.put("rs1", "F1"); rs.put("msg",
-		 * "아이디와 비밀번호를 확인해주세요"); model.addAttribute("alertms", rs.get("msg"));
-		 * }else{ rs.put("rs2", "S2"); rs.put("msg", "HICGV에 오신것을 환영합니다.");
-		 * model.addAttribute("alertms", rs.get("msg")); }
-		 */
-		// id와 password를 세션에 저장 세션에 담아두면 jsp를 이동해도 세션을 통해 아이디를 받아서 사용할 수 있다.
-
-		/*
-		 * CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		 * model.addAttribute("login", dao.loginCheck(id, password));
-		 */
-
-		return "home";
+		return "main";
 		// 로그인이 성공하면 메인 또는 홈.jsp로 이동하게 수정
 		// 아이디 비번이 다르거나 없으면 발생하는 이벤트 코딩하기
 	}
@@ -109,7 +131,7 @@ public class CustomerController {
 		// session.removeAttribute("id");
 		// 세션초기화
 		session.invalidate();
-		return "home";
+		return "main";
 	}
 
 	// 로그인을 클릭하면 로그인 페이지로 이동
@@ -121,36 +143,37 @@ public class CustomerController {
 	}// 회원가입
 
 	@RequestMapping(method = RequestMethod.POST, value = "/join")
-	public String join(HttpServletRequest request, Model model) throws Exception {
+	public String join(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto) throws Exception {
 		{
 			System.out.println("=========pass by join()=============");
 
-			String id = request.getParameter("id");
-			String password = request.getParameter("password");
-			String name = request.getParameter("name");
-			String phone_number = request.getParameter("phone_number");
-			String nickname = request.getParameter("nickname");
-			String gender = request.getParameter("gender");
-			String date_birth = request.getParameter("date_birth");
-			String location = request.getParameter("location");
-			String email = request.getParameter("email");
-			String question = request.getParameter("question");
-			String answer = request.getParameter("answer");
+//			String id = request.getParameter("id");
+//			String password = request.getParameter("password");
+//			String name = request.getParameter("name");
+//			String phone_number = request.getParameter("phone_number");
+//			String nickname = request.getParameter("nickname");
+//			String gender = request.getParameter("gender");
+//			String date_birth = request.getParameter("date_birth");
+//			String location = request.getParameter("location");
+//			String email = request.getParameter("email");
+//			String question = request.getParameter("question");
+//			String answer = request.getParameter("answer");
 
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(name);
-			System.out.println(phone_number);
-			System.out.println(nickname);
-			System.out.println(gender);
-			System.out.println(date_birth);
-			System.out.println(location);
-			System.out.println(email);
-			System.out.println(question);
-			System.out.println(answer);
-
-			CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-			dao.join(id, password, name, phone_number, nickname, gender, date_birth, location, email, question, answer);
+			System.out.println(customerDto.getId());
+			cusomerService.insertCustomer(customerDto);
+//			System.out.println(password);
+//			System.out.println(name);
+//			System.out.println(phone_number);
+//			System.out.println(nickname);
+//			System.out.println(gender);
+//			System.out.println(date_birth);
+//			System.out.println(location);
+//			System.out.println(email);
+//			System.out.println(question);
+//			System.out.println(answer);
+			
+//			CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+//			dao.join(id, password, name, phone_number, nickname, gender, date_birth, location, email, question, answer);
 			// model.addAttribute("id", id);
 
 			return "/customer/loginForm";
@@ -161,10 +184,18 @@ public class CustomerController {
 	@RequestMapping("/myCGV")
 	public String myCGV(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("=========pass by myCGV()=============");
+		ModelAndView mav = new ModelAndView();
+		if (session.getAttribute("id") == null) {
+			System.out.println("로그인 후 이용해주세요");
+			mav.addObject("msg", "로그인 후 이용해주세요");
+			return "/customer/loginForm";
+		}
 		session.getAttribute("id");
 		// String id = request.getParameter("id");
 		/* Object id = session.getAttribute("id"); */
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+		session.setAttribute("dto", dao.getCustomerDto(session.getAttribute("id").toString()));
+		//model.addAttribute("customerDto",dao.getCustomerDto(session.getAttribute("id").toString()))
 
 		// dao.myCGV(); 어떤 방식을 사용해도 무방함
 		// CustomerDto myCGV(String id)에서 리턴받아옴
@@ -425,15 +456,14 @@ public class CustomerController {
 		String getPhone_number = dao.getPhone_number(phone_number);
 		String getId = dao.forgetId(phone_number, date_birth);
 		System.out.println("id :" + getId);
-		
-		
-		if (getPhone_number != null && getId !=null) {
+
+		if (getPhone_number != null && getId != null) {
 			System.out.println("회원정보가 일치합니다.");
 			model.addAttribute("getId", getId);
-			System.out.println("회원님의 아이디는 "+ getId + "입니다.");
+			System.out.println("회원님의 아이디는 " + getId + "입니다.");
 			return "home";
-			//아이디만 뿌려주기 위해서 모델에 담음
-		}else {
+			// 아이디만 뿌려주기 위해서 모델에 담음
+		} else {
 			System.out.println("입력한 회원정보가 다릅니다.");
 		}
 		return "/customer/loginForm";
