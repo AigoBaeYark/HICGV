@@ -131,6 +131,16 @@ public class MainController {
 		logger.info("postSearch");
 		System.out.println(searchTitle);
 		List<HashMap<String, String>> finalSearchList = mainService.getSearchFinal(searchTitle);
+		
+		for (HashMap<String, String> hashMap : finalSearchList) {
+			System.out.println(hashMap.get("movie_id"));
+		}
+		
+		if(finalSearchList.size()==0)
+		{
+			return null;
+		}
+		
 		return finalSearchList;
 	}
 	

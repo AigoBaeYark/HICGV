@@ -1,5 +1,8 @@
 package com.hicgv.store.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,6 +27,14 @@ public class StoreDaoImpl implements StoreDao{
 	@Override
 	public void insertProduct(StoreDto storeDto) {
 		session.insert(nameSpace+".insertProduct",storeDto);
+	}
+
+	@Override
+	public ArrayList<StoreDto> selectStoreList() {
+		
+		List<StoreDto> storeDtos = new ArrayList<StoreDto>();
+		storeDtos = session.selectList(nameSpace+".selectStoreList");
+		return (ArrayList<StoreDto>) storeDtos;
 	}
 	
 	

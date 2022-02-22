@@ -97,21 +97,50 @@ public class getMoviesCrawlFinal {
 	// 검색 내용
 	private String searchTitle;
 	private String day;
+	private int startYear;	//검색할 시작연도
+	private int totCnt;
+	private int curPage; //curPage 
 
 	// 결과 담기
-	private ArrayList<HashMap<String, Object>> resultMoviesList = new ArrayList<HashMap<String, Object>>();
+	private LinkedList<HashMap<String, String>> resultMoviesList = new LinkedList<HashMap<String, String>>();
 
 	// 제목으로 검색 (영화API, 네이버API 둘 다 UTF-8로 변경해줘야함)
 	private LinkedList<HashMap<String, String>> searchToTitleNaver(String searchTitle, LinkedList<HashMap<String, String>> movieListData) {
-		String naverResult = null;
+		System.out.println("searchTitle2 : "+this.searchTitle);
+		
 		try {
-			this.searchTitle = URLEncoder.encode(searchTitle, "UTF-8");
-			System.out.println("size : "+movieListData.size());
-			naverResult = readyNaver(this.searchTitle, movieListData.size());
+			String naverResult = null;
+			if(totCnt>10) {
+				System.out.println("tot 10 넘음");
+				int totCntPerPage=totCnt/10;
+				System.out.println("totCnt/10 : "+totCnt);
+				//첫번째 한번은 무조건 for문 밖에서
+				System.out.println("size : "+movieListData.size());
+				naverResult = readyNaver(this.searchTitle, movieListData.size());
+				parseNaverData(naverResult, movieListData);	//데이터 변환해서 resultMoviesList 에 넣기
+				
+				for(this.curPage=2; this.curPage<=totCntPerPage+1 ; this.curPage++) {
+					
+					//두번째 페이지부터는 for문 안에서
+					LinkedList<HashMap<String, String>> tempList = searchToTitleMovieInfoApi(this.searchTitle,this.curPage);
+					System.out.println("searchTitle : "+this.searchTitle);
+					naverResult = readyNaver(this.searchTitle, totCnt);
+					parseNaverData(naverResult, tempList);	//데이터 변환해서 resultMoviesList 에 넣기
+				}
+			}else {
+				//this.searchTitle = URLEncoder.encode(searchTitle, "UTF-8");
+				System.out.println("size : "+movieListData.size());
+				naverResult = readyNaver(this.searchTitle, movieListData.size());
+				parseNaverData(naverResult, movieListData);	//데이터 변환해서 resultMoviesList 에 넣기
+			}
+			
+			
 		} catch (Exception e) {
 			throw new RuntimeException("영화타이틀 변환 실패", e);
 		}
-		return parseNaverData(naverResult, movieListData);
+		
+		
+		return this.resultMoviesList;	//최종적으로 넘김
 	}
 
 	public void getTrailers(String searchTitle) {
@@ -125,7 +154,8 @@ public class getMoviesCrawlFinal {
 		if(displayVal>10)
 			display=displayVal;
 		System.out.println("disply size : "+display);
-		String naverUrl = NAVERAPIURL + "?query=" + searchTitle + "&display="+(display*2);
+		String naverUrl = NAVERAPIURL + "?query=" + searchTitle + "&display="+100+"&yearfrom="+this.startYear;
+		System.out.println("readNaver : "+naverUrl);
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		// 네이버 API는 request를 해야 사용가능
 		requestHeaders.put("X-Naver-Client-Id", NAVERID);
@@ -210,7 +240,12 @@ public class getMoviesCrawlFinal {
 		try {
 			JSONObject jsonObject = new JSONObject(responseBody);
 			// System.out.println(jsonObject.get("items"));
+			if(jsonObject.getJSONArray("items")==null)
+				return null;
+			
+			
 			JSONArray objNaver = jsonObject.getJSONArray("items");
+			
 			System.out.println(objNaver);
 			String[] strArr = null;
 
@@ -245,10 +280,10 @@ public class getMoviesCrawlFinal {
 					for (int j = 0; j < lengthBig; j++) {
 						HashMap<String, String> movieListMap = movieListData.get(j);
 					
-						if (title.equals(movieListMap.get("title_kor")) && year.equals(movieListMap.get("year"))) {
+						if (title.equals(movieListMap.get("title_kor")) && (year.equals(movieListMap.get("year")) || year.equals(movieListMap.get("opening_date").substring(0,4)))) {
 							System.out.println("같은영화 : " + movieListMap.get("title"));
 							HashMap<String, String> finalMap = new HashMap<String,String>();
-							finalMap.put("movie_id", movieListMap.get("movieCd"));			//영화 고유코드
+							finalMap.put("movie_id", movieListMap.get("movie_id"));			//영화 고유코드
 							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
 							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
 							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
@@ -257,8 +292,8 @@ public class getMoviesCrawlFinal {
 							finalMap.put("poster", naverLinkTempMap.get("poset")); // 링크로 들어가서 가져오기
 							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
 							
-							finalResultList.add(finalMap);	//최종으로 보낼 리스트
-							break;
+							this.resultMoviesList.add(finalMap);	//최종으로 보낼 리스트
+							continue;
 						}
 					}
 
@@ -282,7 +317,7 @@ public class getMoviesCrawlFinal {
 						System.out.println("title : " + title);
 						year = item.getString("pubDate"); // 제작년도 가져옴
 
-						if (movieListMap.get("title_kor").equals(title) && movieListMap.get("year").equals(year)) {
+						if (movieListMap.get("title_kor").equals(title) && (movieListMap.get("year").equals(year) || movieListMap.get("opening_date").substring(0,4).equals(year))) {
 							HashMap<String, String> finalMap = new HashMap<String,String>();
 							
 							System.out.println("같은영화2 : " + title);
@@ -294,7 +329,7 @@ public class getMoviesCrawlFinal {
 							HashMap<String, String> naverLinkTempMap = parseNaverLink(link);
 							
 							
-							finalMap.put("movie_id", movieListMap.get("movieCd"));			//영화 고유코드
+							finalMap.put("movie_id", movieListMap.get("movie_id"));			//영화 고유코드
 							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
 							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
 							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
@@ -303,8 +338,8 @@ public class getMoviesCrawlFinal {
 							finalMap.put("poster", naverLinkTempMap.get("poset")); 			// 링크로 들어가서 가져오기
 							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
 							
-							finalResultList.add(finalMap);
-							break;
+							this.resultMoviesList.add(finalMap);	//최종으로 보낼 리스트
+							continue;
 						}
 
 					}
@@ -369,10 +404,24 @@ public class getMoviesCrawlFinal {
 
 	public LinkedList<HashMap<String, String>> searchToTitleMovieInfoApi(String searchTitle) {
 		try {
+			this.resultMoviesList = new LinkedList<HashMap<String, String>>();
 			this.searchTitle = URLEncoder.encode(searchTitle, "UTF-8");
 			String movieInfoResult = getMovieUrlJson(getMovieInfoApiUrl());
 			System.out.println("movieInfo : " + movieInfoResult);
-			return searchToTitleNaver(searchTitle, parseMovieListData(movieInfoResult));
+			return searchToTitleNaver(searchTitle, parseMovieListData(movieInfoResult));	
+
+		} catch (Exception e) {
+			throw new RuntimeException("검색 실패", e);
+		}
+
+	}
+	
+	//검색했는데 10개의 데이터가 넘어서 페이지를 넘겨야 할 때, curPage 값은 최소 2 이상
+	public LinkedList<HashMap<String, String>> searchToTitleMovieInfoApi(String searchTitle, int curPage) {
+		try {
+			String movieInfoResult = getMovieUrlJson(getMovieInfoApiUrl(curPage));
+			System.out.println("movieInfo : " + movieInfoResult);
+			return parseMovieListData(movieInfoResult);
 
 		} catch (Exception e) {
 			throw new RuntimeException("검색 실패", e);
@@ -387,10 +436,19 @@ public class getMoviesCrawlFinal {
 	}
 
 	private String getMovieInfoApiUrl() {
-		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + searchTitle;
+		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + this.searchTitle;
+		System.out.println("api URL : "+movieUrl);
 
 		return movieUrl;
 	}
+	
+	private String getMovieInfoApiUrl(int curPage) {
+		
+		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + this.searchTitle+"&curPage="+curPage;
+		System.out.println("2페이지 이상 : "+movieUrl);
+		return movieUrl;
+	}
+
 
 	private String getMovieUrlJson(String movieApiUrl) {
 		String dailyResult = null;
@@ -474,7 +532,7 @@ public class getMoviesCrawlFinal {
 	private LinkedList<HashMap<String, String>> parseMovieListData(String movieInfoResult) {
 		LinkedList<HashMap<String, String>> movieListData = new LinkedList<HashMap<String, String>>();
 		System.out.println(movieInfoResult);
-
+		
 		JSONObject jsonObject = null;
 
 		String title; // 영화제목
@@ -483,20 +541,36 @@ public class getMoviesCrawlFinal {
 		String openDt;	//개봉날짜
 		String year; // 제작년도
 		String genreAlt;	//장르
+		this.startYear=2022; //검색할 최소연도
 		try {
 			jsonObject = new JSONObject(movieInfoResult.toString());
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("movieListResult");
+			this.totCnt = Integer.parseInt(jsonObject1.get("totCnt").toString());
+			System.out.println("totCnt : "+this.totCnt);
 			JSONArray jsonArray = jsonObject1.getJSONArray("movieList");
 
 			// 1위부터 10위까지 순차적으로 넣음
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject item = jsonArray.getJSONObject(i);
 				HashMap<String, String> dailyDataMap = new HashMap<String, String>();
-
+				
+				if(item.getString("prdtYear").equals("") || item.getString("prdtYear")==null) {
+					System.out.println("년도 없음");
+				}else if(startYear>item.getInt("prdtYear")) {
+					System.out.println("년도 변경 : "+item.getInt("prdtYear"));
+					this.startYear = item.getInt("prdtYear");
+					System.out.println(this.startYear );
+				}
+				
+				
+				
 				movieCd = item.getString("movieCd");
 				title = item.getString("movieNm");
 				titleEn = item.getString("movieNmEn");
 				openDt = item.getString("openDt");
+				if (item.getString("openDt").equals("") || item.getString("openDt").equals(null) ) {
+					openDt="00000000";
+				}
 				genreAlt = item.getString("genreAlt");
 				year = item.getString("prdtYear");
 				
@@ -506,11 +580,14 @@ public class getMoviesCrawlFinal {
 				dailyDataMap.put("title_kor", title);	//영화 한글제목
 				dailyDataMap.put("title_eng", titleEn);	//영화 영문제목
 				dailyDataMap.put("year", year);			//영화 제작년도
+				
 				dailyDataMap.put("opening_date", openDt);	//영화 개봉일
 				dailyDataMap.put("genre", genreAlt);		//영화 장르
+				
 				movieListData.add(dailyDataMap);
 
 			}
+			
 			for (HashMap<String, String> hashMap : movieListData) {
 				System.out.println("movie_id "+hashMap.get("movie_id"));
 				System.out.println("title_kor "+hashMap.get("title_kor"));
