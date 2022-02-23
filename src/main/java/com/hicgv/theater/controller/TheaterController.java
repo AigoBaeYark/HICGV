@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hicgv.theater.dao.TheaterDao;
 import com.hicgv.theater.dto.LocationDto;
 import com.hicgv.theater.dto.MoviesInfoDto;
-import com.hicgv.theater.dto.TimeInfoDto;
+import com.hicgv.theater.dto.ScheduleDto;
 
 @Controller
 public class TheaterController {
@@ -57,8 +57,26 @@ public class TheaterController {
    }
    
    @RequestMapping("theaterAdmin")
-   public String theaterAdmin() {
+   public String theaterAdmin(HttpServletRequest request, Model model) {
 	   System.out.println("======= << theaterAdmin >> =======");
+	   String locid=request.getParameter("locid");
+	   String roomid=request.getParameter("roomid");
+	   String movieid=request.getParameter("movieid");
+	   String startdate=request.getParameter("startdate");
+	   
+	   if (locid==null || roomid==null || movieid==null || startdate==null) {
+		
+		   
+	}
+	   
+	   System.out.println("locid : "+locid);
+	   System.out.println("roomid : "+roomid);
+	   System.out.println("movieid : "+movieid);
+	   System.out.println("startdate : "+startdate);
+	   
+	   TheaterDao dao=sqlSession.getMapper(TheaterDao.class);
+	   dao.setScheduleInfo(movieid, locid, roomid, startdate);
+	   
 	   return "theater/theaterAdmin";
    }
 

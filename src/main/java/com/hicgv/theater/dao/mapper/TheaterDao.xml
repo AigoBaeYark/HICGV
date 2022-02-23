@@ -41,7 +41,9 @@
 		WHERE L.LOCATION_ID=#{param1}
     </select>
    
-    <select id="getAllMoviesInfo" resultType="MoviesInfoDto">
-   
+    <select id="setScheduleInfo" resultType="ScheduleDto">
+   		INSERT INTO HICGV_THEATER_SCHEDULE 
+   		VALUES(THEATER_SCHEDULE_ID_SEQ.NEXTVAL,
+   		#{param1},#{param2},#{param3},#{param4})
     </select>
 </mapper>

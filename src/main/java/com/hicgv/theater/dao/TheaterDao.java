@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.hicgv.theater.dto.LocationDto;
 import com.hicgv.theater.dto.MoviesInfoDto;
-import com.hicgv.theater.dto.TimeInfoDto;
+import com.hicgv.theater.dto.ScheduleDto;
 
 public interface TheaterDao {
    public ArrayList<LocationDto> getTheaterInfo();
@@ -12,5 +12,5 @@ public interface TheaterDao {
    public ArrayList<MoviesInfoDto> getMoviesInfo(String theater_id,String location_id,String date);
    public LocationDto getLocationInfo(String location_id);
 
-   public ArrayList<MoviesInfoDto> getAllMoviesInfo();
+   public ScheduleDto setScheduleInfo(String movieid,String locid,String roomid,String startdate);
 }

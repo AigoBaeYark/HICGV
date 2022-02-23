@@ -18,7 +18,7 @@
   		<typeAlias type="com.hicgv.theater.dto.LocationDto" alias="LocationDto"/>
   		<typeAlias type="com.hicgv.theater.dto.MoviesInfoDto" alias="MoviesInfoDto"/>
   		<typeAlias type="com.hicgv.theater.dto.TheaterDto" alias="TheaterDto"/>
-  		<typeAlias type="com.hicgv.theater.dto.TimeInfoDto" alias="TimeInfoDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.ScheduleDto" alias="ScheduleDto"/>
   		<typeAlias type="com.hicgv.ticket.dto.TicketSeatDto" alias="TicketSeatDto"/>
   		<typeAlias type="com.hicgv.ticket.dto.TLocationDto" alias="TLocationDto"/>
   		<typeAlias type="com.hicgv.ticket.dto.TTimeDto" alias="TTimeDto"/>
