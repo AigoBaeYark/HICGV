@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hicgv.customer.dao.CustomerDao;
 import com.hicgv.customer.dto.CustomerDto;
-import com.hicgv.store.dto.StoreDto;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
