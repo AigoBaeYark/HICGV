@@ -156,19 +156,19 @@
 		$(document).ready(function() {
 			$('.movieAgeLimit_wrap').each( function(i) {
 				if($(this).children('img').attr('alt') === '12세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/12세관람가.png');
+					$(this).children('img').attr('src', 'resources/img/theater/12세관람가.PNG');
 					$(this).children('img').css('width', '30px');
 				}
 				if($(this).children('img').attr('alt') === '15세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/15세관람가.png');
+					$(this).children('img').attr('src', 'resources/img/theater/15세관람가.PNG');
 					$(this).children('img').css('width', '30px');
 				}
 				if($(this).children('img').attr('alt') === '18세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/18세관람가.png');
+					$(this).children('img').attr('src', 'resources/img/theater/18세관람가.PNG');
 					$(this).children('img').css('width', '30px');
 				}
 				if($(this).children('img').attr('alt') === '전체 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/전체관람가.png');
+					$(this).children('img').attr('src', 'resources/img/theater/전체관람가.PNG');
 					$(this).children('img').css('width', '30px');
 				}
 				

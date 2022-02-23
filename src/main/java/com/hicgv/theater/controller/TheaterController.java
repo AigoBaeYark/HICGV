@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hicgv.theater.dao.TheaterDao;
 import com.hicgv.theater.dto.LocationDto;
@@ -33,22 +34,19 @@ public class TheaterController {
       String theaterid = request.getParameter("theaterid");
       String locid = request.getParameter("locid");
 
-      System.out.println("theaterid : " + theaterid);
-      System.out.println("locid : " + locid);
-
       if (theaterid == null)
          theaterid = "1";
       if (locid == null)
          locid = "101";
 
-      System.out.println("theaterid2 : " + theaterid);
-      System.out.println("locid2 : " + locid);
+      System.out.println("theaterid : " + theaterid);
+      System.out.println("locid : " + locid);
 
       TheaterDao dao = sqlSession.getMapper(TheaterDao.class);
       
       
       LocationDto loc = dao.getLocationInfo(locid);
-      System.out.println(loc.getLocation_add());
+      System.out.println(loc.getLocation_id());
       
       model.addAttribute("theater", dao.getTheaterInfo());
       model.addAttribute("img" , dao.getImg(locid));
@@ -87,27 +85,28 @@ public class TheaterController {
    
    
    @RequestMapping(value="theaterTimeList" , produces = "application/text; charset=utf8")
-   public String theaterTimeList(HttpServletRequest request, Model model, @RequestParam String date) {
+   public ModelAndView theaterTimeList(HttpServletRequest request, Model model) {
 	   System.out.println("======= << theaterTimeList >> =======");
 	   String theaterid = request.getParameter("theaterid");
 	   String locid = request.getParameter("locid");
+	   String date=request.getParameter("date");
+	   
 	   System.out.println("date : "+date);
-	   System.out.println("theaterid : "+theaterid);
-	   System.out.println("locid : "+locid);
 	   
 	      if (theaterid == null)
 	         theaterid = "1";
 	      if (locid == null)
 	         locid = "101";
 
-	   System.out.println("theaterid2 : "+theaterid);
-	   System.out.println("locid2 : "+locid);
+	   System.out.println("theaterid : "+theaterid);
+	   System.out.println("locid : "+locid);
 	   
 	      TheaterDao dao = sqlSession.getMapper(TheaterDao.class);
 	  
 		   ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
 		   
-		   ArrayList<TimeInfoDto> tList=dao.getTime(locid,date);
+		   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(theaterid, locid, date);
+		   
 		   String year="";
 		   String month="";
 		   String day="";
@@ -115,10 +114,10 @@ public class TheaterController {
 		   String minute="";
 		   String startTime="";
 		   
-		   for (TimeInfoDto timeInfoDto : tList) {
+		   for (MoviesInfoDto moviesInfoDto : mList) {
 			
 			// 연, 월, 일, 시, 분 추출
-			startTime=timeInfoDto.getStart_date();
+			startTime=moviesInfoDto.getStart_date();
 			year=startTime.substring(0,4);
 			month=startTime.substring(5,7);
 			day=startTime.substring(8,10);
@@ -130,7 +129,7 @@ public class TheaterController {
 			String time = hour + minute;
 			int endTime = Integer.parseInt(time);
 
-			int runningTime = timeInfoDto.getRunning_time();		
+			int runningTime = moviesInfoDto.getRunning_time();		
 
 			endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
 			if(endTime%100 >= 60) {
@@ -138,6 +137,10 @@ public class TheaterController {
 				endTime -=60;
 				endTime +=100;
 			}
+			String endHour=Integer.toString(endTime).substring(0,2);
+			String endMinute=Integer.toString(endTime).substring(2,4);
+			
+			System.out.println("연령제한 : "+moviesInfoDto.getAge_limit());
 			
 			 /*for (Map<String, Object> tempMap : timeListMap) {
 					System.out.println(tempMap.get("year"));
@@ -151,18 +154,26 @@ public class TheaterController {
 			timeMap.put("day", day);
 			timeMap.put("hour", hour);
 			timeMap.put("minute", minute);
-			timeMap.put("time", time);
-			timeMap.put("endTime",  endTime);
+			timeMap.put("endHour", endHour);
+			timeMap.put("endMinute", endMinute);
+			timeMap.put("age_limit", moviesInfoDto.getAge_limit());
+			timeMap.put("title_kor", moviesInfoDto.getTitle_kor());
+			timeMap.put("genre", moviesInfoDto.getGenre());
+			timeMap.put("running_time", moviesInfoDto.getRunning_time());
+			timeMap.put("opening_date", moviesInfoDto.getOpening_date());
+			timeMap.put("room_name", moviesInfoDto.getRoom_name());
+			timeMap.put("max_seat", moviesInfoDto.getMax_seat());
+			timeMap.put("movie_id", moviesInfoDto.getMovie_id());
 			
 			timeListMap.add(timeMap);
-			
 		}
-		   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(theaterid,locid,date);
-		  
-		   model.addAttribute("timeList",timeListMap);
-		   model.addAttribute("movieInfo",mList);
+		   
+		   
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("movieInfo",timeListMap);
+		   mv.setViewName("theater/schList");
 	   
-	   return "theater/theaterTimeList";
+	   return mv;
    }
 
 }

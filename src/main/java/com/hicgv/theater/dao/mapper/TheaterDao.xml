@@ -34,21 +34,13 @@
 	    ORDER BY S.START_DATE
     </select>
     <select id="getLocationInfo" resultType="LocationDto">
-		SELECT DISTINCT LOCATION_NAME,LOCATION_ADD,LOCATION_TEL
+		SELECT DISTINCT LOCATION_NAME,LOCATION_ADD,LOCATION_TEL,L.LOCATION_ID
 		FROM HICGV_THEATER_LOCATION L
 		LEFT JOIN HICGV_THEATER_ROOM R
 		ON L.LOCATION_ID=R.LOCATION_ID
 		WHERE L.LOCATION_ID=#{param1}
     </select>
    
-    <select id="getTime" resultType="TimeInfoDto">
-		SELECT RUNNING_TIME,START_DATE,LOCATION_ID,M.MOVIE_ID
-		FROM HICGV_MOVIE M
-		LEFT JOIN HICGV_THEATER_SCHEDULE S
-		ON M.MOVIE_ID=S.MOVIE_ID
-		WHERE LOCATION_ID=#{param1} AND TO_CHAR(START_DATE,'YYYYMMDD')=#{param2}
-    </select>
-    
     <select id="getAllMoviesInfo" resultType="MoviesInfoDto">
    
     </select>

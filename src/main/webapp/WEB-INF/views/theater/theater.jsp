@@ -4,19 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<c:import url="/WEB-INF/views/common/header.jsp" />
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>hicgv/theater</title>
-<link rel="stylesheet" href="resources/css/reset.css" />
 </head>
 <body>
 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
-<div style="height: 300px;">
-   <c:import url="/WEB-INF/views/common/header.jsp" />
-</div>
+
 <div class="row" id="theaterName">
   <div class="col-4">
     <div class="list-group" id="list-tab" role="tablist">
@@ -78,15 +75,12 @@
   </div>
 </div>
 <div>
-   <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="" />
+   <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
       <h4>
          <span>${locinfo.location_name }</span>
       </h4>
 <div id="theaterimg" style="background-image: url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
    <div style="background: url('https://img.cgv.co.kr/R2014/images/common/bg/bg_dim80.png') 0 0 repeat; width: 980px; height: 420px;">
-      <a href="#">
-         <span style="padding: 0 14px;">단체/대관문의</span>
-      </a>
       <div>
          <div>
             <div>
@@ -103,11 +97,68 @@
    <div>
       <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
    </div>
-   
-   <jsp:include page="theaterTimeList.jsp" flush="false"/> 
-   
+    <div class="day">
+        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+         <strong>02월 15일 화</strong>
+         <input type="hidden" class="hiddenDate" value="20220215"/>
+        </a>
+        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+         <strong>02월 16일 수</strong>
+         <input type="hidden" class="hiddenDate" value="20220216"/>
+        </a>
+        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+         <strong>02월 17일 목</strong>
+         <input type="hidden" class="hiddenDate" value="20220217"/>
+        </a>
+     </div>
      
- 
+   <div id="schTest">
+   
+   </div>
+   
+      <div class="showtimes-wrap">
+ <div class="sect-guide">
+    <div class="descri-timezone">
+       <p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
+    </div>
+ </div>
+    <p class="info-noti"></p>
+    <p>ㆍ입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</p>
+   </div>
+   
+	
+	<script>
+		
+		$('a.selTime').click(function(e) {
+			e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미	//이거 안넣으면 a태그 페이지 바뀜
+	
+		})
+	
+		$(function() {
+			$('a.selTime').on('click', schTest);
+		});
+		
+		function schTest() {
+			var param = $(this).children('input.hiddenDate').val();
+			var url_href=window.location.href;
+			var url=new URL(url_href);
+			var locid=url.searchParams.get('locid');
+			if(locid == null)
+				locid = '101';
+			console.log(param);
+			
+			$.ajax({
+				type : "GET",
+				url : "theaterTimeList?date="+param+"&locid="+locid,
+				contentType: "application/json; charset=UTF-8",
+				success : function(data) {
+					$("#schTest").html(data);
+				}
+			})
+		}
+		
+	</script>
+
    <c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>
 </html>

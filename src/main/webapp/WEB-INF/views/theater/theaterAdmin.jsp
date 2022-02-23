@@ -31,6 +31,28 @@
     </span>
   </div>
 </div>
+location_name
+<select class="form-select" name="location_id" aria-label="Default select example" style="width: 200px">
+  <option>HICGV강남</option>
+  <option>HICGV명동</option>
+  <option>HICGV구로</option>
+  <option>HICGV홍대</option>
+  <option>HICGV송파</option>
+  <option>HICGV김포</option>
+  <option>HICGV이천</option>
+  <option>HICGV용인</option>
+  <option>HICGV평촌</option>
+  <option>HICGV계양</option>
+  <option>HICGV주안</option>
+  <option>HICGV연수</option>
+  <option>HICGV강릉</option>
+  <option>HICGV원주</option>
+  <option>HICGV춘천</option>
+  <option>HICGV대전</option>
+  <option>HICGV세종</option>
+  <option>HICGV청주</option>
+</select>
+
 room_name 
 <select class="form-select" name="theater_room_id" aria-label="Default select example" style="width: 200px">
   <option>강남1관</option>
@@ -43,14 +65,7 @@ room_name
   <option>구로2관</option>
   <option>구로3관</option>
 </select>
-location_id 
-<select class="form-select" name="location_id" aria-label="Default select example" style="width: 200px">
-  <option>101</option>
-  <option>102</option>
-  <option>103</option>
-  <option>104</option>
-  <option>105</option>
-</select>
+
 start_date
 <input type="datetime-local" name="start_date" required/>
 <input type="submit" id="submitBtn" value="입력"/>
