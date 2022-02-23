@@ -47,26 +47,26 @@ public class MoviesDaoImpl implements MoviesDao{
 
 	@Override
 	public ArrayList<MovieTrailerDto> trailer(String movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<MovieTrailerDto> dto = sqlsession.selectList(nameSpace+".trailer", movie_id);
+		return (ArrayList<MovieTrailerDto>) dto;
 	}
 
 	@Override
 	public int trailercnt(String movie_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.selectOne(nameSpace+".trailercnt", movie_id);
 	}
 
 	@Override
 	public ArrayList<MoviePosterDto> poster(String movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<MoviePosterDto> dto = sqlsession.selectList(nameSpace+".poster", movie_id);
+		return (ArrayList<MoviePosterDto>) dto;
 	}
 
 	@Override
 	public int postercnt(String movie_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.selectOne(nameSpace+".postercnt", movie_id);
 	}
+	
+
 
 }

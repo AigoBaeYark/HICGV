@@ -10,7 +10,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hicgv.movies.dto.MoviesDto;
+import com.hicgv.theater.dto.TheaterDto;
 import com.hicgv.ticket.dao.TicketDao;
+import com.hicgv.ticket.dto.TLocationDto;
 import com.hicgv.ticket.dto.TicketListDto;
 
 @Service
@@ -26,15 +28,15 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> getBiglocal() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TheaterDto> getLocal() {
+		
+		return dao.getLocal();
 	}
 
 	@Override
-	public ArrayList<TicketListDto> getLocal() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TLocationDto> getTheaterLocal() {
+		
+		return dao.getTheaterLocal();
 	}
 
 	@Override

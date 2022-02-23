@@ -24,11 +24,17 @@ span.movieSelection_txt {
 #movieChart_list .movieChart_btn_wrap {
 	display: none;
 	position: absolute;
+	left: 48px;
 	font-size: 20px;
-	top: 180px;
+	top: 75px;
+}
+#movieChart_list .movieChart_btn_wrap .btn_movieChart_detail{
+	color: #eee;
+	margin-bottom: 35px;
+}
+#movieChart_list .movieAgeLimit_wrap{
+	position: absolute;
+	top: 5px;
+	left: 5px;
 }
 
-#movieChart_list  #poster:hover {
-	/*영화 포스터 위에 마우스를 올리면*/
-	margin: 10px 0;
-}

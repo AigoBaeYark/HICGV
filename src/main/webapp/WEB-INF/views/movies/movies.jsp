@@ -57,10 +57,10 @@
             <ol>
                 <li>
                     <div class="box-image" >
-                    <c:forEach items="${dv }" var="mov">
-                        <strong class="rank">No.${mov.rank }</strong>	
+                    <c:forEach items="${dateviewer }" var="dv">
+                        <strong class="rank">No.${dv.rank }</strong>	
                         <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movieCd }"></a>
-                        <a href="moviesdetailview?movie_id=${mov.title }">
+                        <a href="moviesdetailview?movie_id=${dv.title }">
                             </c:forEach>
                             <c:forEach items="${movies }" var="mov">
                             <span class="thumb-image"> 
@@ -69,17 +69,17 @@
                             </span>
                             </c:forEach> 
                         </a>
-                     <c:forEach items="${dv }" var="mov">
+                     <c:forEach items="${dateviewer }" var="dv">
                     <div class="box-contents">
-                        <a href="moviesdetailview?movie_id=${mov.movieCd }">
-                            <strong class="title">${mov.title }</strong>
+                        <a href="moviesdetailview?movie_id=${dv.movieCd }">
+                            <strong class="title">${dv.title }</strong>
                         </a>
                         <div class="score">
-                            <strong class="percent">전날관객수<span>${mov.audiCnt }</span></strong>
+                            <strong class="percent">전날관객수<span>${dv.audiCnt }</span></strong>
                         </div>
 					</div>
                     <div class="txt-info">
-                         <strong> ${mov.openDt } </strong>
+                         <strong> ${dv.openDt } </strong>
                      </div>
             
                      <div class="like"> 

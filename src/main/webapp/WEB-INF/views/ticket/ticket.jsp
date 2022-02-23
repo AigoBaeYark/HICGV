@@ -32,7 +32,7 @@
 					<div class="row">
 						<div class="col-3">
 						<span>영화1</span>
-						<c:forEach items="${ticketmovie }" var="tic">
+						<c:forEach items="${moviesList }" var="tic">
 					    <div class="row justify-content-around" id="myTab" role="tablist">
 					      <a class="list-group-item list-group-item-action" id="list-movie-list" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
 					      <span class="ico-grade grade-${tic.age_limit }">${tic.age_limit}</span> 
@@ -59,7 +59,7 @@
 					  <div class="col-2">
 					    <div class="tab-content" id="nav-tabContent listLoc"> 	
 					      	<div class="tab-pane fade show active" id="list-seoul" role="tabpanel" aria-labelledby="list-seoul-list">
-					         <c:forEach items="${local }" var="loc">	
+					         <c:forEach items="${theaterlocal }" var="loc">	
 					         <c:if test="${loc.theater_id eq 1 }">
 					            <ul>
 					               <li><a href="ticket?theaterid=1&locid=${loc.location_id }" >${loc.location_name } </a></li>
@@ -68,37 +68,37 @@
 					          </c:forEach>
 					    	 </div>
 					    	 <div class="tab-pane fade " id="list-gyeonggi" role="tabpanel" aria-labelledby="list-gyeonggi-list">
-					         <c:forEach items="${local }" var="loc">
-					         <c:if test="${loc.theater_id eq 2 }">
+					         <c:forEach items="${theaterlocal }" var="theloc">
+					         <c:if test="${theloc.theater_id eq 2 }">
 					            <ul>
-					               <li><a href="ticket?theaterid=2&locid=${loc.location_id }" >${loc.location_name } </a></li>
+					               <li><a href="ticket?theaterid=2&locid=${theloc.location_id }" >${theloc.location_name } </a></li>
 					            </ul>
 					          </c:if> 
 					          </c:forEach>
 					    	 </div>
 					    	 <div class="tab-pane fade" id="list-incheon" role="tabpanel" aria-labelledby="list-incheon-list">
-					         <c:forEach items="${local }" var="loc">
-					         <c:if test="${loc.theater_id eq 3 }">
+					         <c:forEach items="${theaterlocal }" var="theloc">
+					         <c:if test="${theloc.theater_id eq 3 }">
 					            <ul>
-					               <li><a href="ticket?theaterid=3&locid=${loc.location_id }" >${loc.location_name } </a></li>
+					               <li><a href="ticket?theaterid=3&locid=${theloc.location_id }" >${theloc.location_name } </a></li>
 					            </ul>
 					          </c:if> 
 					          </c:forEach>
 					    	 </div>
 					    	 <div class="tab-pane fade" id="list-gangwon" role="tabpanel" aria-labelledby="list-gangwon-list">
-					         <c:forEach items="${local }" var="loc">
-					         <c:if test="${loc.theater_id eq 4 }">
+					         <c:forEach items="${theaterlocal }" var="loc">
+					         <c:if test="${theloc.theater_id eq 4 }">
 					            <ul>
-					               <li><a href="ticket?theaterid=4&locid=${loc.location_id }" >${loc.location_name } </a></li>
+					               <li><a href="ticket?theaterid=4&locid=${theloc.location_id }" >${theloc.location_name } </a></li>
 					            </ul>
 					          </c:if> 
 					          </c:forEach>
 					    	 </div>
 					    	 <div class="tab-pane fade" id="list-chungcheong" role="tabpanel" aria-labelledby="list-chungcheong-list">
-					        <c:forEach items="${local }" var="loc"> 
-					        <c:if test="${loc.theater_id eq 5 }">
+					        <c:forEach items="${theaterlocal }" var="theloc"> 
+					        <c:if test="${theloc.theater_id eq 5 }">
 					            <ul>
-					               <li><a href="ticket?theaterid=5&locid=${loc.location_id }" >${loc.location_name } </a></li>
+					               <li><a href="ticket?theaterid=5&locid=${theloc.location_id }" >${theloc.location_name } </a></li>
 					            </ul>
 					          </c:if>
 					          </c:forEach>
