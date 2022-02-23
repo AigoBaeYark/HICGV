@@ -12,19 +12,14 @@
 <%-- <link href="${path }/resources/css/main/swiper-bundle.min.css">
 <script src="${path }/resources/js/main/swiper.min.js"> --%>
 
+<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
 <title>main</title>
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
-	
-
 	
 	
 	<a href="header">header</a>
@@ -121,9 +116,9 @@
 									style="display: none;">
 									<!-- 포스터 위에 마우스 올리면 상새보기 및 예매하기버튼 나옴 -->
 									<a href="moviesdetailview?movie_id=${mov.movie_id }"
-										class="btn_movieChart_detail">상세보기</a>
+										class="btn_movieChart_detail" >상세보기</a>
 									<!-- 영화테이블 참조 -->
-									<a href="" class="btn_movieChart_ticketing">예매하기</a>
+									<a href="" class="btn_movieChart_ticketing" >예매하기</a>
 									<!-- 예매테이블 참조 -->
 								</div>
 							</div>
@@ -134,8 +129,7 @@
 								<!-- 영화 이름, 에그(추천?), 예매율 -->
 								<strong class="movieName">${mov.title_kor }</strong>
 								<!-- 영화테이블 참조 -->
-								<span><img src="" alt="골든에그/에그" />에그퍼센트</span> <span>예매율
-									${mov.booking_rate }%</span>
+								<span>예매율 ${mov.booking_rate }%</span>
 							</div>
 							<!-- movie_info_wrap 끝 -->
 
@@ -158,6 +152,30 @@
 
 
 	<script>
+	
+		$(document).ready(function() {
+			$('.movieAgeLimit_wrap').each( function(i) {
+				if($(this).children('img').attr('alt') === '12세 관람가'){
+					$(this).children('img').attr('src', 'resources/img/theater/12세관람가.png');
+					$(this).children('img').css('width', '30px');
+				}
+				if($(this).children('img').attr('alt') === '15세 관람가'){
+					$(this).children('img').attr('src', 'resources/img/theater/15세관람가.png');
+					$(this).children('img').css('width', '30px');
+				}
+				if($(this).children('img').attr('alt') === '18세 관람가'){
+					$(this).children('img').attr('src', 'resources/img/theater/18세관람가.png');
+					$(this).children('img').css('width', '30px');
+				}
+				if($(this).children('img').attr('alt') === '전체 관람가'){
+					$(this).children('img').attr('src', 'resources/img/theater/전체관람가.png');
+					$(this).children('img').css('width', '30px');
+				}
+				
+				
+			})
+		})
+	
 		var num;
 		var movieChartSwiper = 	new Swiper("#movieChart_list",{
 			slidesPerView: 5,	//한번에 5페이지
@@ -170,20 +188,28 @@
 			}
 		});
 		
+		$('.img_wrap').on('mouseenter',function() {
+			$(this).children('.movieAgeLimit_wrap').css("margin", "10px 0");
+			$(this).children('#poster').css("margin", "10px 0");
+			//console.log($(this).children('.movieAgeLimit_wrap').children('img[alt]'));
+		})
+		
+		
+		$('.img_wrap').on('mouseleave', function () {
+			console.log();
+			$(this).children('.movieAgeLimit_wrap').css("margin", "0 auto");
+			$(this).children('#poster').css("margin", "0 auto");
+		});
+		
 		function mover(rank) {
-			//alert("hgi");
-			//alert(rank);
-			
-			//마우스올려놓으면 그 포스터의 버튼 선택됨
-			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="inline";
+		
+			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="inline-grid";
 		}
 		
 		function mout(rank) {
-			//alert("hgi");
-			//alert(rank);
 			
-			//마우스올려놓으면 그 포스터의 버튼 선택됨
 			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="none";
+			
 		}
 		
 		

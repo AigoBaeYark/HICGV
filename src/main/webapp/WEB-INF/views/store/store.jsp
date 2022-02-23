@@ -12,9 +12,8 @@
 </head>
 <body>
 
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
+	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+	
 	
 	<a href="storeAdmin">goStoreAdmin</a>
 	<div id="contents">

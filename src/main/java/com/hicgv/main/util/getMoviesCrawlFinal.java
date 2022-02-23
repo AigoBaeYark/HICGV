@@ -266,8 +266,11 @@ public class getMoviesCrawlFinal {
 					JSONObject item = objNaver.getJSONObject(i);
 
 					title = item.getString("title");
-					title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""); // 제목에 있는 hmtl태그를
-																										// 제외한 문자열
+					
+					// 제목에 있는 hmtl태그를 제외한 문자열
+					//title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+					
+					title = Jsoup.parse(title).text();
 					System.out.println("title : " + title);
 					link = item.getString("link");
 					year = item.getString("pubDate"); // 제작년도 가져옴
@@ -279,8 +282,20 @@ public class getMoviesCrawlFinal {
 
 					for (int j = 0; j < lengthBig; j++) {
 						HashMap<String, String> movieListMap = movieListData.get(j);
-					
-						if (title.equals(movieListMap.get("title_kor")) && (year.equals(movieListMap.get("year")) || year.equals(movieListMap.get("opening_date").substring(0,4)))) {
+						
+						
+						
+						
+						//자바태그 특수문자 등 제거한 한글, 영어, 숫자만 가져옴
+						String match = "[^\uAC00-\uD7A30-9a-zA-Z]";
+						String aftertitle_korMatch =  movieListMap.get("title_kor");
+						aftertitle_korMatch = aftertitle_korMatch.replaceAll(match,"");
+						String afterTitleMatch = title.replaceAll(match,"");
+						
+						System.out.println("replace 후 : " + aftertitle_korMatch);
+						System.out.println("title replace 후 : " + title.replaceAll(match,""));
+						
+						if (afterTitleMatch.equals(aftertitle_korMatch) && (year.equals(movieListMap.get("year")) || year.equals(movieListMap.get("opening_date").substring(0,4)))) {
 							System.out.println("같은영화 : " + movieListMap.get("title"));
 							HashMap<String, String> finalMap = new HashMap<String,String>();
 							finalMap.put("movie_id", movieListMap.get("movie_id"));			//영화 고유코드
@@ -311,13 +326,23 @@ public class getMoviesCrawlFinal {
 						JSONObject item = objNaver.getJSONObject(j);
 
 						title = item.getString("title");
-						title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""); // 제목에 있는
-																											// hmtl태그를
-																											// 제외한 문자열
-						System.out.println("title : " + title);
+					
+						//  제목에 있는 hmtl태그를 제외한 문자열
+						//title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "")
+						
+						title = Jsoup.parse(title).text();	//html 태그 제거
 						year = item.getString("pubDate"); // 제작년도 가져옴
+						
+						//자바태그 특수문자 등 제거한 한글, 영어, 숫자만 가져옴
+						String match = "[^\uAC00-\uD7A30-9a-zA-Z]";
+						String aftertitle_korMatch =  movieListMap.get("title_kor");
+						aftertitle_korMatch = aftertitle_korMatch.replaceAll(match,"");
+						String afterTitleMatch = title.replaceAll(match,"");
+						
+						System.out.println("replace 후 : " + aftertitle_korMatch);
+						System.out.println("title replace 후 : " + title.replaceAll(match,""));
 
-						if (movieListMap.get("title_kor").equals(title) && (movieListMap.get("year").equals(year) || movieListMap.get("opening_date").substring(0,4).equals(year))) {
+						if (aftertitle_korMatch.equals(afterTitleMatch) && (movieListMap.get("year").equals(year) || movieListMap.get("opening_date").substring(0,4).equals(year))) {
 							HashMap<String, String> finalMap = new HashMap<String,String>();
 							
 							System.out.println("같은영화2 : " + title);
