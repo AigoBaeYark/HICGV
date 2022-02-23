@@ -77,10 +77,10 @@ public class TicketController {
 
 	/*3.영화 상영날짜, 4.영화 시간선택 */
 	//3번
-	/*날짜시간 세분화 및 상영종료 시간 구하기*/
-	@RequestMapping("/tictimeSelect1")
-	public String timeSelect1(HttpServletRequest request, Model model) {
-		System.out.println("======= < pass by tictimeSelect1() > =======");
+	/*날짜시간 세분화*/
+	@RequestMapping("/getdate")
+	public String getdate(HttpServletRequest request, Model model) {
+		System.out.println("======= < pass by getdate() > =======");
 		
 		String movieid = request.getParameter("movieid");
 		String theaterid = request.getParameter("theaterid");
@@ -91,12 +91,13 @@ public class TicketController {
 		sendDataMap.put("movieid", "20210087");
 		sendDataMap.put("theaterid", "1");
 		sendDataMap.put("locid", "101");
-		sendDataMap.put("tday", "15");
+		sendDataMap.put("tday", "16");
+		
 		
 		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
 		
 		//영화 선택시간
-		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectTime(sendDataMap);
+		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectDate(sendDataMap);
 		
 		
 			for (Map<String, Object> timeMaplist : timeListMap) {
@@ -108,7 +109,9 @@ public class TicketController {
 	
 		return "ticket/ticket";
 	}
-	//4번
+
+	
+	//상영종료 시간 구하기
 	@RequestMapping("/tictimeSelect2")
 	public String timeSelect2(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by tictimeSelect2() > =======");
@@ -181,7 +184,7 @@ public class TicketController {
 		
 			model.addAttribute("tickettime",timeListMap);
 	
-		return "ticket/ticket";
+		return "ticket/ticketseat";
 	}
 	
 	
@@ -190,8 +193,6 @@ public class TicketController {
 	/*좌석예매란*/
 	@RequestMapping("/ticketseat")
 	public String tSeat(HttpServletRequest request, Model model) {
-		
-		
 		
 		return "ticket/ticketseat";
 		
@@ -202,8 +203,7 @@ public class TicketController {
 		@RequestMapping("/ticketbuy")
 		public String bTicket(HttpServletRequest request, Model model) {
 			
-			
-			
+
 			return "ticket/ticketbuy";
 		
 	}

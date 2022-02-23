@@ -11,7 +11,7 @@ import com.hicgv.movies.dto.MoviesDto;
 
 public interface MoviesService {
 	public ArrayList<MoviesDto> getMoviesList();
-	public ArrayList<Map<String, String>> getDateViewer(String day);
+	public ArrayList<Map<String, String>> getDateViewer();
 	public String getMoviePoster();
 	public MoviesDto getMoviesDailyViewer(String movie_id);
 	public ArrayList<MovieActorDto> getActors(String movie_id);
@@ -20,5 +20,6 @@ public interface MoviesService {
 	public int getTrailercnt(String movie_id);
 	public ArrayList<MoviePosterDto> getPoster(String movie_id);
 	public int getPostercnt(String movie_id);
+	
 	
 }

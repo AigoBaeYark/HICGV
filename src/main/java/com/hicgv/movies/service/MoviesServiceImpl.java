@@ -2,6 +2,8 @@ package com.hicgv.movies.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -25,14 +27,25 @@ public class MoviesServiceImpl implements MoviesService{
 	
 	@Override
 	public ArrayList<MoviesDto> getMoviesList() {
+		
 		return dao.movies();
 	}
 	
 	@Override
-	public ArrayList<Map<String, String>> getDateViewer(String day) {
+	public ArrayList<Map<String, String>> getDateViewer() {
 		GetDateViewer getDateViewer = new GetDateViewer(); //겟데이터뷰에 생성자 없애서 여기 공란
-		System.out.println("impl day : "+ day);
-		return getDateViewer.getDateViewer(day);
+		
+		SimpleDateFormat day = new SimpleDateFormat("yyyyMMdd");
+		
+		// 하루 전 날짜 (영화진흥API 랭킹순위에 오늘 날짜는 안떠서)
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1);
+        System.out.println(day.format(cal.getTime()));
+        String strDay = day.format(cal.getTime());
+		
+		
+		return getDateViewer.getDateViewer(strDay);
 	}
 
 	@Override

@@ -40,11 +40,12 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public ArrayList<Map<String, Object>> getSelectTime(Map<String, String> sendDataMap) {
-	
+	public ArrayList<Map<String, Object>> getSelectDate(Map<String, String> sendDataMap) {
+		
+		System.out.println("getSelectDate : "+sendDataMap.get("movieid"));
 		ArrayList<Map<String, Object>> timeListMap =  new ArrayList<Map<String, Object>>();
 		
-		ArrayList<TicketListDto> requestList = dao.ticketday(sendDataMap);
+		ArrayList<TicketListDto> requestList = dao.getTicketday(sendDataMap);
 		for (TicketListDto ticketListDto : requestList) {
 			System.out.println("시간 : "+ticketListDto.getDay());
 		}

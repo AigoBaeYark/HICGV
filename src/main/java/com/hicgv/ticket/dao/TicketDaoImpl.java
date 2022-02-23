@@ -47,9 +47,9 @@ public class TicketDaoImpl implements TicketDao{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> ticketday(Map<String, String> sendDataMap) {
-		List<TicketListDto> dto = sqlSession.selectList(nameSpace+".ticketday",sendDataMap);
-		
+	public ArrayList<TicketListDto> getTicketday(Map<String, String> sendDataMap) {
+		List<TicketListDto> dto = sqlSession.selectList(nameSpace+".getTicketday",sendDataMap);
+		System.out.println("sendData : "+sendDataMap.get("movieid"));
 		for (TicketListDto ticketListDto : dto) {
 			System.out.println(ticketListDto.getAge_limit());
 		}
@@ -58,7 +58,7 @@ public class TicketDaoImpl implements TicketDao{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> tickettime(String movie_id, String theater_id, String location_id, String day,
+	public ArrayList<TicketListDto> getTickettime(String movie_id, String theater_id, String location_id, String day,
 			String starttime) {
 		// TODO Auto-generated method stub
 		return null;

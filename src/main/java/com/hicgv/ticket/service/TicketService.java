@@ -13,7 +13,7 @@ public interface TicketService {
 	public ArrayList<MoviesDto> getMoviesList();
 	public ArrayList<TheaterDto> getLocal();
 	public ArrayList<TLocationDto> getTheaterLocal();
-	public ArrayList<Map<String, Object>> getSelectTime(Map<String, String> sendDataMap);
+	public ArrayList<Map<String, Object>> getSelectDate(Map<String, String> sendDataMap);
 
 
 }

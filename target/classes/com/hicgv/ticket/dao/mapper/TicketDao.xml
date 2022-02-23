@@ -23,7 +23,7 @@
 		<!--@@ id명칭을 수정하는 중 gettheaterLocal로 잘못써서 오류남 -->
 
 
-	<select id="ticketday" parameterType="Map" resultType="TicketListDto">
+	<select id="getTicketday" parameterType="Map" resultType="TicketListDto">
 		SELECT S.THEATER_SCHEDULE_ID, S.MOVIE_ID, M.TITLE_KOR, M.AGE_LIMIT,
 		T.THEATER_ID ,T.THEATER_LOC, L.LOCATION_ID, L.LOCATION_NAME,
 		SUBSTR(START_DATE, 9, 2) AS DAY, S.START_DATE, R.ROOM_NAME,
@@ -42,7 +42,8 @@
 		ORDER BY S.START_DATE
 	</select>
 
-	<select id="tickettime" resultType="TicketListDto">
+	<!-- 시트내역으로 쓸거임 -->
+	<select id="getTickettime" resultType="TicketListDto">
 		SELECT S.THEATER_SCHEDULE_ID, S.MOVIE_ID, M.TITLE_KOR, M.AGE_LIMIT,
 		T.THEATER_ID ,T.THEATER_LOC, L.LOCATION_ID, L.LOCATION_NAME,
 		SUBSTR(START_DATE, 9, 2) AS DAY, S.START_DATE, R.ROOM_NAME,
