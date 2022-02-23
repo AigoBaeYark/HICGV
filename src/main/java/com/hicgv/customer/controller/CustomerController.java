@@ -34,6 +34,7 @@ public class CustomerController {
 	// DB접속
 	@Autowired
 	private SqlSession sqlSession;
+	//서비스 연결
 	@Autowired
 	CustomerService cusomerService;
 	
@@ -50,74 +51,32 @@ public class CustomerController {
 	}
 
 	// 로그인페이지
-	// method=RequestMethod.POST,value=
 	@RequestMapping(method = RequestMethod.POST, value = "/loginCheck")
-	public String loginCheck(HttpServletRequest request, Model model, HttpSession session, HttpServletResponse response)
+	public String loginCheck(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto, 
+			HttpSession session, HttpServletResponse response)
 			throws Exception {
 		System.out.println("=========pass by loginCheck()=============");
-
+		
+		
 		String id = request.getParameter("loginid");
 		String password = request.getParameter("loginpw");
-		// String name = request.getParameter("name");
-		// String grade = request.getParameter("grade");
-		System.out.println("id :" + id);
-		System.out.println("password :" + password);
+		System.out.println("id:"+id);
+		System.out.println("password:"+password);
 
-		//CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		// 쿼리문을 실행해서 없는 값 dto_id,dto_pw
-		
-		
-//		String dto_id = dao.loginCheckId(id);
-//		CustomerDto dto_pw = dao.loginCheckPw(id, password);
-		// myCGV로 넘겨주기 위한 이름과 닉네임 결과값을 받는다. (추가 작업+이미지와 등급을 추가할것)
-		// CustomerDto dto_Profile = dao.Profile(id, password);
-//		String getname = dao.name(id, password);
-//		String getnickName = dao.nickname(id, password);
-//		String getgrade = dao.grade(id, password);
-		// 이미지 null값일 때 오류남
-		// String dto_img = dao.img(id, password);
-
-		// 로그인 성공 1
-		
-		cusomerService.checkLogin(id, password);
-		
-		if (cusomerService.checkLogin(id, password).equals("아이디없음")) { // 로그인했을때 ID나 비밀번호가 달라서 아무값도 넘겨받지 못함
+		//아이디 패스워드 체크
+		cusomerService.loginCheck(id, password);
+		if (cusomerService.loginCheck(id, password).equals("아이디없음")) { 
 			System.out.println("없는 아이디이거나 회원이 아닙니다.");
 			return "/customer/loginForm";
-		} else if (cusomerService.checkLogin(id, password).equals("비밀번호 틀림")) {
+		} else if (cusomerService.loginCheck(id, password).equals("비밀번호 틀림")) {
 			System.out.println("비밀번호를 확인해주세요");
 			return "/customer/loginForm";
 		} else {
 			System.out.println("정상적으로 로그인이 되었습니다.");
 			// 로그인할 때 id password 세션에 세팅
-<<<<<<< HEAD
 			session.setAttribute("id", id);
-		
-=======
-			/*session.setAttribute("id", id);
-			session.setAttribute("name", getname);
-			session.setAttribute("nickname", getnickName);
-			session.setAttribute("grade", getgrade);
->>>>>>> 743cfc9d6e94c457c515966a2e318e086b949696
-//			if () {
-//				
-//			}
-			//model.addAttribute("name", getname);
-			//model.addAttribute("nickname", getnickName);
-			//model.addAttribute("grade", getgrade);
-			// model.addAttribute("img", dto_img);
-
 			System.out.println("Sid :" + id);
 			System.out.println("id : " + id);
-<<<<<<< HEAD
-		
-=======
-			System.out.println("name : " + getname);
-			System.out.println("nickname : " + getnickName);
-			System.out.println("grade :" + getgrade);*/
->>>>>>> 743cfc9d6e94c457c515966a2e318e086b949696
-			// System.out.println("img :"+ dto_img);
-			// model.addAttribute("msg", "정상적으로 로그인이 되었습니다.");
 		}
 		return "main";
 		// 로그인이 성공하면 메인 또는 홈.jsp로 이동하게 수정
@@ -127,17 +86,9 @@ public class CustomerController {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		System.out.println("=========pass by logout()=============");
-		// 새션 변수 개별 삭제
-		// HttpSession s = request.getSession();
-		// System.out.println("id : " + s.getAttribute("id"));
-		// session.getAttribute("id") 지정된 세션값만 불러옴
-		// HttpSession session = request.getSession(); 모든 세션값을 불러옴
 		System.out.println("id : " + session.getAttribute("id"));
-		// s.removeAttribute("id");
 		HttpSession session = request.getSession();
 		System.out.println("id");
-		// 새션 변수 개별 삭제
-		// session.removeAttribute("id");
 		// 세션초기화
 		session.invalidate();
 		return "main";
@@ -151,39 +102,23 @@ public class CustomerController {
 		return "/customer/joinForm";
 	}// 회원가입
 
-	@RequestMapping(method = RequestMethod.POST, value = "/join")
-	public String join(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto) throws Exception {
+	@RequestMapping(method = RequestMethod.POST, value = "/joinCustomer")
+	public String joinCustomer(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto) throws Exception {
 		{
-			System.out.println("=========pass by join()=============");
-
-//			String id = request.getParameter("id");
-//			String password = request.getParameter("password");
-//			String name = request.getParameter("name");
-//			String phone_number = request.getParameter("phone_number");
-//			String nickname = request.getParameter("nickname");
-//			String gender = request.getParameter("gender");
-//			String date_birth = request.getParameter("date_birth");
-//			String location = request.getParameter("location");
-//			String email = request.getParameter("email");
-//			String question = request.getParameter("question");
-//			String answer = request.getParameter("answer");
+			System.out.println("=========pass by joinCustomer()=============");
 
 			System.out.println(customerDto.getId());
-			cusomerService.insertCustomer(customerDto);
-//			System.out.println(password);
-//			System.out.println(name);
-//			System.out.println(phone_number);
-//			System.out.println(nickname);
-//			System.out.println(gender);
-//			System.out.println(date_birth);
-//			System.out.println(location);
-//			System.out.println(email);
-//			System.out.println(question);
-//			System.out.println(answer);
+			System.out.println(customerDto.getPassword());
+			System.out.println(customerDto.getGender());
+			System.out.println(customerDto.getName());
+			System.out.println(customerDto.getPhone_number());
+			System.out.println(customerDto.getNickname());
+			System.out.println(customerDto.getDate_birth());
+			System.out.println(customerDto.getLocation());
+			System.out.println(customerDto.getEmail());
+			System.out.println(customerDto.getGrade());
 			
-//			CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-//			dao.join(id, password, name, phone_number, nickname, gender, date_birth, location, email, question, answer);
-			// model.addAttribute("id", id);
+			cusomerService.joinCustomer(customerDto);
 
 			return "/customer/loginForm";
 		}
@@ -193,36 +128,25 @@ public class CustomerController {
 	@RequestMapping("/myCGV")
 	public String myCGV(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("=========pass by myCGV()=============");
+		
+		session.getAttribute("id");
+		System.out.println("getsession_id :"+ session.getAttribute("id"));
+		
+		
 		ModelAndView mav = new ModelAndView();
 		if (session.getAttribute("id") == null) {
 			System.out.println("로그인 후 이용해주세요");
 			mav.addObject("msg", "로그인 후 이용해주세요");
 			return "/customer/loginForm";
 		}
+		/*CustomerDto dto = cusomerService.myCGV(id);*/
+		
 		session.getAttribute("id");
-		// String id = request.getParameter("id");
-		/* Object id = session.getAttribute("id"); */
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		session.setAttribute("dto", dao.getCustomerDto(session.getAttribute("id").toString()));
-		//model.addAttribute("customerDto",dao.getCustomerDto(session.getAttribute("id").toString()))
-
-		// dao.myCGV(); 어떤 방식을 사용해도 무방함
-		// CustomerDto myCGV(String id)에서 리턴받아옴
-		// CustomerDto myCGV = dao.myCGV(id);
-		// 모델에 "myCGV"이름으로 myCGV담아서 myCGV.id로 jsp에 뿌려주기
-		// 세션에 담아서 모델로 보내지 않아도 됨
-		/*
-		 * model.addAttribute("myCGV", myCGV);
-		 * System.out.println(myCGV.getId());
-		 * System.out.println(myCGV.getName());
-		 * System.out.println(myCGV.getNickname());
-		 * System.out.println(myCGV.getPhone_number());
-		 * System.out.println(myCGV.getGender());
-		 * System.out.println(myCGV.getDate_birth());
-		 * System.out.println(myCGV.getLocation());
-		 */
-
+		
 		return "/customer/myCGV";
+		
 	}
 
 	@RequestMapping("/modifyForm")
@@ -476,5 +400,9 @@ public class CustomerController {
 			System.out.println("입력한 회원정보가 다릅니다.");
 		}
 		return "/customer/loginForm";
+	}@RequestMapping("/customerList")
+	public String customerList(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by customerList()=============");
+		return "/customer/customerList";
 	}
 }

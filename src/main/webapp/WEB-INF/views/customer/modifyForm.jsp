@@ -79,7 +79,7 @@
                 </tr>
               </tbody>
             </table>
-            <div class="exform_txt"><span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span></div>
+            <div class="exform_txt"><span>표시는 필수적으로 입력해주셔야 수정이 가능합니다.</span></div>
           </div><!-- join_form E  -->
           <div class="agree_wrap">
             <div class="checkbox_wrap">
@@ -118,15 +118,5 @@
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>
-<!-- 비밀번호 <input type="password" name="password"/> <br />
-	전화번호 <input type="text" name="phone_number"/> <br />
-	닉네임 <input type="text" name="nickname"/> <br />
-	성별 <input type="text" name="gender"/> <br />
-	생일 <input type="text" name="date_birth"/> <br />
-	주소 <input type="text" name="location"/> <br />
-	이메일 <input type="text" name="email"/> <br />
-	질문 <input type="text" name="question"/> <br />
-	답 <input type="text" name="answer"/> <br />
-	<div> -->
 </body>
 </html>
