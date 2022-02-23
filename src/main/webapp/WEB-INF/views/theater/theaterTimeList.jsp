@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>theaterTimeList.jsp</h2>
-
 <div class="showtimes-wrap">
       <div class="sect-schedule">
          <div id="slider">
@@ -32,6 +30,7 @@
 	                        	<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" alt="" />
                      		</c:when>
                      	</c:choose>
+                     	
                         <a href="theaterTimeList?" class="selTime"> 
 	                        <span>02월</span> 
 	                        <em>화</em> 

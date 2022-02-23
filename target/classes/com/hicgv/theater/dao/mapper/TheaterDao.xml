@@ -46,7 +46,7 @@
 		FROM HICGV_MOVIE M
 		LEFT JOIN HICGV_THEATER_SCHEDULE S
 		ON M.MOVIE_ID=S.MOVIE_ID
-		WHERE LOCATION_ID=#{param1}
+		WHERE LOCATION_ID=#{param1} AND TO_CHAR(START_DATE,'YYYYMMDD')=#{param2}
     </select>
     
     <select id="getAllMoviesInfo" resultType="MoviesInfoDto">

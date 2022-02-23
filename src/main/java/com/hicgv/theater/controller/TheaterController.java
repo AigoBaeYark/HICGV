@@ -87,7 +87,6 @@ public class TheaterController {
    
    
    @RequestMapping(value="theaterTimeList" , produces = "application/text; charset=utf8")
-   @ResponseBody
    public String theaterTimeList(HttpServletRequest request, Model model, @RequestParam String date) {
 	   System.out.println("======= << theaterTimeList >> =======");
 	   String theaterid = request.getParameter("theaterid");
@@ -108,7 +107,7 @@ public class TheaterController {
 	  
 		   ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
 		   
-		   ArrayList<TimeInfoDto> tList=dao.getTime(locid);
+		   ArrayList<TimeInfoDto> tList=dao.getTime(locid,date);
 		   String year="";
 		   String month="";
 		   String day="";
@@ -159,16 +158,11 @@ public class TheaterController {
 			
 		}
 		   ArrayList<MoviesInfoDto> mList=dao.getMoviesInfo(theaterid,locid,date);
-		   
-		   String nowDate=year+month+day;
-		   System.out.println("nowDate : "+nowDate);	  
 		  
 		   model.addAttribute("timeList",timeListMap);
-		   model.addAttribute("nowDate",nowDate);
 		   model.addAttribute("movieInfo",mList);
 	   
-	   return "";
+	   return "theater/theaterTimeList";
    }
-   
 
 }

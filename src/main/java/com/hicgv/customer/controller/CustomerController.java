@@ -91,9 +91,7 @@ public class CustomerController {
 			System.out.println("정상적으로 로그인이 되었습니다.");
 			// 로그인할 때 id password 세션에 세팅
 			session.setAttribute("id", id);
-			session.setAttribute("name", getname);
-			session.setAttribute("nickname", getnickName);
-			session.setAttribute("grade", getgrade);
+		
 //			if () {
 //				
 //			}
@@ -104,9 +102,7 @@ public class CustomerController {
 
 			System.out.println("Sid :" + id);
 			System.out.println("id : " + id);
-			System.out.println("name : " + getname);
-			System.out.println("nickname : " + getnickName);
-			System.out.println("grade :" + getgrade);
+		
 			// System.out.println("img :"+ dto_img);
 			// model.addAttribute("msg", "정상적으로 로그인이 되었습니다.");
 		}
