@@ -7,9 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
@@ -25,10 +23,12 @@
 			<div class="login-top">
 				<h2 align="center">로그인</h2>
 
+		
+
 			</div>
 			<div class="box-login">
 				<h3 class="hidden">회원 로그인</h3>
-				<form method="post" action="loginCheck">
+				<form action="loginCheck" method="post">
 
 					<h5 align="center">아이디 비밀번호를 입력하신 후 <br /> 로그인 버튼을 클릭해 주세요.</h5>
 					<div class="login">
@@ -41,10 +41,11 @@
 							<input type="password" id="" name="loginpw" required="required"
 								placeholder="패스워드를 입력해주세요">
 						</div>
-						<div class="loginbtn">
-							<button type="submit" class="logbtn">
+						<div class="loginbtn" style="margin-top: 10px;">
+						<button type="submit" class="btn btn-primary">로그인</button>
+							<!-- <button type="submit" class="logbtn">
 								<span>로그인</span>
-							</button>
+							</button> -->
 						</div>
 					</div>
 					<div class="save-id" align="center">
@@ -54,14 +55,10 @@
 					<div class="forgot_pw">
 						<a href="forgetIdForm">아이디 찾기</a> <a href="forgetPwForm">비밀번호찾기</a>
 					</div>
-	<a href="myCGV">myCGV</a>
 		</form>
 			</div>
 		</div>
 	</div>
-
-
-
 
 
 </body>

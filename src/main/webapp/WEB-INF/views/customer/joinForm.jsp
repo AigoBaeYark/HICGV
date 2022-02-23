@@ -16,11 +16,11 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<div align="center" style="width: 600px; position: relative;left: 600px;">
+	<div align="center" style="width: 600px; position: relative; left: 600px;">
 		<div>
 			<div>
 
-				<form action="join" class="row g-3" method="post">
+				<form action="joinCustomer" class="row g-3" method="post">
 				<!-- name을 dto의 필드명과 동일하게 -->
 					<div class="wrap wd668">
 						<div class="container">
@@ -48,7 +48,7 @@
 													placeholder="password 를 입력하세요."></td>
 											</tr>
 											<tr>
-												<th><span>이릉</span></th>
+												<th><span>이름</span></th>
 												<td><input type="text" name="name" placeholder=""></td>
 											</tr>
 											<tr>
@@ -84,9 +84,8 @@
 											<tr class="email">
 												<th><span>이메일</span></th>
 												<td><input type="text" name="email" class="email"
-													placeholder=""><span class="mar10">@</span> <input
-													type="text" class="email email2" placeholder=""> <a
-													href="javascript:;" class="btn_confirm">인증번호 발송</a></td>
+													placeholder="">
+													</td>
 											</tr>
 											<tr>
 												<th><span>인증번호 확인</span></th>
@@ -133,11 +132,11 @@
 					<!-- container E -->
 
 					<div align="center" style="margin-top: 10px; margin-bottom: 10px;">
-						<div
-							style="width: 100px; height: 50px; border: 1px solid blue; border-radius: 10px; background: linear-gradient(45deg, aqua, #2041e3);">
-							<button type="submit">
+						<div>
+							<button type="submit" class="btn btn-primary">회원가입</button>
+							<!-- <button type="submit">
 								<h5 style="color: white; font-size: 20px;">회원가입</h5>
-							</button>
+							</button> -->
 						</div>
 					</div>
 			</div>

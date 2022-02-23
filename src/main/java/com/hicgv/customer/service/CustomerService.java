@@ -3,8 +3,11 @@ package com.hicgv.customer.service;
 import com.hicgv.customer.dto.CustomerDto;
 
 public interface CustomerService {
-	
-	public void insertCustomer(CustomerDto customerDto);
-	public String checkLogin(String id, String pw);
+	//매퍼함수를 부름
+	public void joinCustomer(CustomerDto customerDto);
+	public String loginCheck(String id, String password);
+	public CustomerDto myCGV(String id);
+
+
 
 }

@@ -21,7 +21,7 @@
 	
 	<%CustomerDto dto = (CustomerDto) session.getAttribute("dto");%>
 	
-	<%=dto.getId() %> 남 안녕하세요
+	<%=dto.getId() %> 님 안녕하세요
 	
 	<div><!--container 시작--> 
 	<div class="container-top">
