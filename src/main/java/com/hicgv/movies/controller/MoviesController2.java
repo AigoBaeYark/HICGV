@@ -28,10 +28,8 @@ import com.hicgv.movies.dto.MovieTrailerDto;
 public class MoviesController2 {
 	
 	
-	@Autowired
-	MoviesService moviesService;
 	
-	@Autowired
+	MoviesService moviesService;
 	private SqlSession sqlSession; //sqlSession은 트랜젝션(SELECT, UPDATE, INSERT, DELETE 등) 관련하여 해당 기능을 사용하기 쉽게 해주는것
 	
 	/*영화차트란*/
@@ -58,7 +56,8 @@ public class MoviesController2 {
         
         
 		model.addAttribute("movies",moives); 
-		model.addAttribute("dv", moviesService.getDateViewer(strDay));
+		//model.addAttribute("dv", moviesService.getDateViewer(strDay));
+		//(이거 원래 주석 아닌데 오류나성 씀)
 		model.addAttribute("poster", moviesService.getMoviePoster());
 	
 		

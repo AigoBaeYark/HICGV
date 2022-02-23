@@ -37,18 +37,10 @@ public class MoviesController {
 	public String movies(Model model) {
 		System.out.println("========= < pass by movies() > =========");
 
-		SimpleDateFormat day = new SimpleDateFormat("yyyyMMdd");
 		
-		// 하루 전 날짜 (영화진흥API 랭킹순위에 오늘 날짜는 안떠서)
-		Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cal.add(Calendar.DATE, -1);
-        System.out.println(day.format(cal.getTime()));
-        String strDay = day.format(cal.getTime());
 
-        
 		model.addAttribute("movies",moviesService.getMoviesList()); 
-		model.addAttribute("dateviewer", moviesService.getDateViewer(strDay));
+		model.addAttribute("dateviewer", moviesService.getDateViewer());
 		model.addAttribute("poster", moviesService.getMoviePoster());
 	
 		
