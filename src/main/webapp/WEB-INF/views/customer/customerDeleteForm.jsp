@@ -14,17 +14,17 @@
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 	<div style="margin: 50px">
-		<!-customerDelete 시작-->
+		<!-- customerDelete 시작 -->
 		<div style="border: solid; 1 px; margin: 10px;">
 			<div>
 				<h1>ICGV웹사이트의 회원탈퇴에 동의하시겠습니까?</h1>
 				<div>
 					<h3>HICGV 회원 탈퇴하시면 해당 웹사이트의 이용이 중지됩니다.</h3>
-					<div>HICGV 아이디 : ${myCGV.id }</div>
+					<div>탈퇴를 신중하게 생각하시고 진행해주세요.</div>
 					<div>
 						<form action="delete">
 						<div>
-						회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.
+						${id }님 회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.
 						</div>
 						<div>
 						아이디 <input type="text" name="id" /> <br />
@@ -41,7 +41,7 @@
 
 		</div>
 	</div>
-	<!-customerDelete 끝-->
+	<!-- customerDelete 끝 -->
 
 
 	<div style="clear: both;">

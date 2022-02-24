@@ -42,18 +42,10 @@
 		HICGV_CUSTOMER
 		WHERE ID LIKE #{id }
 	</select>
-	<!--회원정보 수정(업데이트) -->
-
-
- 	<!-- <insert id="insertCustomer" parameterType="CustomerDto"> INSERT INTO 
-		HICGV_CUSTOMER(user_id, ID) VALUES(hicgv_customer_seq.nextval,#{id}) </insert> -->
-	<!-- <insert id="join"> INSERT INTO HICGV_CUSTOMER VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},#{param4}, 
-		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11}) 
-		</insert> -->
 	<!--회원탈퇴 -->
-	<delete id="delete">
-		DELETE FROM hicgv_customer WHERE id like #{param1}
-		AND PASSWORD LIKE #{param2}
+	<delete id="delete" parameterType="Map">
+		DELETE FROM hicgv_customer WHERE id like #{id}
+		AND PASSWORD LIKE #{password}
 	</delete>
 	<select id="getEmail" resultType="String">
 		SELECT EMAIL FROM

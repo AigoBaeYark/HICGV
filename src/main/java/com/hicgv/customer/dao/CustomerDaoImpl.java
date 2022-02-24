@@ -16,6 +16,8 @@ import com.hicgv.customer.dto.CustomerDto;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
+	
+
 	@Autowired
 	private HttpSession session;
 
@@ -83,16 +85,16 @@ public class CustomerDaoImpl implements CustomerDao {
 		sqlSession.update(nameSpace + ".modify", customerDto);
 	}
 
-	/*
-	 * @Override public void join(String id, String password, String name,
-	 * String phone_number, String nickname, String gender, String date_birth,
-	 * String location, String email, String question, String answer) {
-	 * 
-	 * }
-	 */
 	@Override
 	public void delete(String id, String password) {
-
+		System.out.println("===========customerDaoImpl delete==================");
+		Map<String, String> sendMap = new HashMap<String, String>();
+		sendMap.put("id", id);
+		sendMap.put("password", password);
+		System.out.println("id :"+sendMap.get("id"));
+		System.out.println("password :"+sendMap.get("password"));
+		
+		sqlSession.delete(nameSpace+".delete",sendMap);
 	}
 
 	@Override
@@ -143,5 +145,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		return null;
 	}
+
 
 }
