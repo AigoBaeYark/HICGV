@@ -16,5 +16,6 @@ public class MoviesInfoDto {
    private String start_date;
    private int movie_id;
    private int location_id;
+   private String image_url;
 
 }

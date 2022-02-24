@@ -11,7 +11,7 @@
 <title>hicgv/theater</title>
 </head>
 <body>
-
+<div > 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 
 <div class="row" id="theaterName">
@@ -125,7 +125,7 @@
     <p class="info-noti"></p>
     <p>ㆍ입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</p>
    </div>
-   
+   </div>
 	
 	<script>
 		
