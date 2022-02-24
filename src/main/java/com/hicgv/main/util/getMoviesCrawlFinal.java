@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -97,9 +98,11 @@ public class getMoviesCrawlFinal {
 	// 검색 내용
 	private String searchTitle;
 	private String day;
+	private String movieId;
 	private int startYear;	//검색할 시작연도
 	private int totCnt;
 	private int curPage; //curPage 
+	
 
 	// 결과 담기
 	private LinkedList<HashMap<String, String>> resultMoviesList = new LinkedList<HashMap<String, String>>();
@@ -418,7 +421,16 @@ public class getMoviesCrawlFinal {
 	}
 
 	// 영화진흥위원회
-
+	
+	//영화코드로 검색
+	public void searchToMovieId(String movieId) {
+		this.movieId=movieId;
+		String movieIdResult = getMovieUrlJson(getMovieIdApiUrl());
+		System.out.println("movieid : "+ movieIdResult);
+		parseMovieIdData(movieIdResult);
+	}
+	
+	//일별 랭크
 	public void searchToDate(String day) {
 		// 일별 관람객 및 랭크를 가져오고싶은 날짜 (오늘날짜 제외)
 		this.day = day;
@@ -426,7 +438,8 @@ public class getMoviesCrawlFinal {
 		System.out.println("daily : " + dailyResult);
 		parseDailyData(dailyResult);
 	}
-
+	
+	//이름으로 검색
 	public LinkedList<HashMap<String, String>> searchToTitleMovieInfoApi(String searchTitle) {
 		try {
 			this.resultMoviesList = new LinkedList<HashMap<String, String>>();
@@ -453,13 +466,20 @@ public class getMoviesCrawlFinal {
 		}
 
 	}
-
+	
+	private String getMovieIdApiUrl() {
+		String movieUrl = MOVIEINFOURL +"?key="+MOVIEAPIKEY+"&movieCd="+movieId;
+		return movieUrl;
+	}
+	
+	//날짜별 랭크검색
 	private String getDailyMovieApiUrl() {
 		String movieUrl = DAILYURL + "?key=" + MOVIEAPIKEY + "&targetDt=" + day;
 
 		return movieUrl;
 	}
 
+	//첫번째 페이지
 	private String getMovieInfoApiUrl() {
 		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + this.searchTitle;
 		System.out.println("api URL : "+movieUrl);
@@ -467,6 +487,7 @@ public class getMoviesCrawlFinal {
 		return movieUrl;
 	}
 	
+	//두번쨰 이후 페이지
 	private String getMovieInfoApiUrl(int curPage) {
 		
 		String movieUrl = MOVIELISTURL + "?key=" + MOVIEAPIKEY + "&movieNm=" + this.searchTitle+"&curPage="+curPage;
@@ -474,7 +495,8 @@ public class getMoviesCrawlFinal {
 		return movieUrl;
 	}
 
-
+	
+	//Url을 읽어서 나온 내용들을 Json으로 변환
 	private String getMovieUrlJson(String movieApiUrl) {
 		String dailyResult = null;
 		try {
@@ -506,7 +528,36 @@ public class getMoviesCrawlFinal {
 		}
 
 	}
-
+	
+	
+	//영화코드로 검색하여 그 영화 하나에 대한 정보
+	private void parseMovieIdData(String movieIdResult) {
+		//영화배우가 여러명이면 여러명 다 담아야 함
+		Map<String, Object> movieIdMap = new HashMap<String, Object>();
+		List<String> actorList = new ArrayList<String>();
+		
+		try {
+			
+			JSONObject jsonObject = new JSONObject(movieIdResult.toString());
+			JSONObject resultObject = (JSONObject) jsonObject.get("movieInfoResult");
+			JSONObject resultObject2  = (JSONObject) resultObject.get("movieInfo");
+			JSONArray actorsJson = resultObject2.getJSONArray("actors");
+			for (int i = 0; i < actorsJson.length(); i++) {
+				
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			throw new RuntimeException("movieId API 데이터 불러오기 실패", e);
+		}
+		
+		
+		
+	}
+	
+	//날짜별 랭크 가져오기
 	private void parseDailyData(String dailyResult) {
 		LinkedList<HashMap<String, String>> dailyDataList = new LinkedList<HashMap<String, String>>();
 		System.out.println(dailyResult);
@@ -549,11 +600,13 @@ public class getMoviesCrawlFinal {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			
 		}
 
 	}
 
-	// 비교할 타이틀, 년도
+	// 제목으로검색해서 가져오기 비교할 타이틀, 년도
 	private LinkedList<HashMap<String, String>> parseMovieListData(String movieInfoResult) {
 		LinkedList<HashMap<String, String>> movieListData = new LinkedList<HashMap<String, String>>();
 		System.out.println(movieInfoResult);
