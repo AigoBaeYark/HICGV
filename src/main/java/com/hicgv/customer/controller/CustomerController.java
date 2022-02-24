@@ -55,7 +55,7 @@ public class CustomerController {
 	public String loginCheck(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto, 
 			HttpSession session, HttpServletResponse response)
 			throws Exception {
-		System.out.println("=========pass by loginCheck()=============");
+		System.out.println("=========pass by loginCheck11111()=============");
 		
 		
 		String id = request.getParameter("loginid");
@@ -129,22 +129,23 @@ public class CustomerController {
 	public String myCGV(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("=========pass by myCGV()=============");
 		
-		session.getAttribute("id");
-		System.out.println("getsession_id :"+ session.getAttribute("id"));
 		
+	
 		
-		ModelAndView mav = new ModelAndView();
+		/*ModelAndView mav = new ModelAndView();
 		if (session.getAttribute("id") == null) {
 			System.out.println("로그인 후 이용해주세요");
 			mav.addObject("msg", "로그인 후 이용해주세요");
 			return "/customer/loginForm";
 		}
-		/*CustomerDto dto = cusomerService.myCGV(id);*/
+		CustomerDto dto = cusomerService.myCGV("id");
+		session.getAttribute("id");
+		System.out.println("getsession_id :"+ session.getAttribute("id"));
 		
 		session.getAttribute("id");
 		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		session.setAttribute("dto", dao.getCustomerDto(session.getAttribute("id").toString()));
-		
+		*/
 		return "/customer/myCGV";
 		
 	}

@@ -74,6 +74,7 @@ public class CustomerServicempl implements CustomerService {
 	@Override // mpl에서 loginCheck실행
 	public String loginCheck(String id, String password) {
 		// mpl에서 받은 리턴값을 갖고 아래로 실행
+		System.out.println("=========pass by loginCheck ServeceImp()=============");
 		System.out.println("login ckid : " + id);
 		System.out.println("login ckpw : " + password);
 
@@ -91,6 +92,9 @@ public class CustomerServicempl implements CustomerService {
 
 	@Override
 	public CustomerDto myCGV(String id) {
+		System.out.println("==========customerServiceImpl.myCGV============");
+		System.out.println(id);
+		System.out.println("id"+dao.myCGV(id));
 		
 		return dao.myCGV(id);
 		

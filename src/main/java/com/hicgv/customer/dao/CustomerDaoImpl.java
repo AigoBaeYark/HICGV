@@ -27,7 +27,7 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 	@Override
 	public String loginCheckId(String id) {
-		
+		System.out.println("=========pass by DaoImp loginCheckId()=============");
 		System.out.println("loginCheckId : "+id);
 		System.out.println( (String) sqlSession.selectOne(nameSpace+".loginCheckId",id));
 		return sqlSession.selectOne(nameSpace+".loginCheckId",id);
@@ -35,7 +35,7 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 	@Override
 	public CustomerDto loginCheckPw(String id, String password) {
-		
+		System.out.println("=========pass by DaoImp loginCheckPw()=============");
 		System.out.println("loginCheckid  "+id);
 		System.out.println("loginCheckPw  "+password);
 		
@@ -47,12 +47,17 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 	@Override
 	public CustomerDto myCGV(String id) {
+		System.out.println("==========customerDaoeImpl.myCGV============");
 		
 		System.out.println("myCGV :"+ getCustomerDto(id));
+		System.out.println("myCGV :"+ id);
+		
 		
 		Map<String, Object> sendMap = new HashMap<String, Object>();
 		sendMap.put("id", id);
-		
+		System.out.println("id :"+ sendMap.get(id));
+		sqlSession.selectOne(nameSpace+".myCGV",sendMap);
+		System.out.println("selectOne : "+sqlSession.selectOne(nameSpace+".myCGV",sendMap));
 		return sqlSession.selectOne(nameSpace+".myCGV",sendMap);
 	}
 	@Override
@@ -112,7 +117,10 @@ public class CustomerDaoImpl implements CustomerDao{
 	}*/
 	@Override
 	public CustomerDto getCustomerDto(String id) {
+		// TODO Auto-generated method stub
 		return null;
+	}
+	
 	}
 	
 	
@@ -120,5 +128,4 @@ public class CustomerDaoImpl implements CustomerDao{
 	
 	
 	
-	
-}
+
