@@ -6,22 +6,21 @@
 
 <mapper namespace="TicketDao">
 	<select id="ticket" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR
+		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR <!-- 영화리스트 -->
 	</select>
 
 	 <select id="getLocal" resultType="TheaterDto"> 
-	 	SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID 
+	 	SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID <!-- 지역 -->
 	</select> 
 
 	 <select id="getTheaterLocal" resultType="TLocationDto"> 
 		 SELECT T.THEATER_ID, T.THEATER_LOC, TL.LOCATION_ID, TL.LOCATION_NAME 
 		 FROM HICGV_THEATER T INNER JOIN HICGV_THEATER_LOCATION TL 
 		 ON T.THEATER_ID =TL.THEATER_ID 
-		ORDER BY T.THEATER_ID, TL.LOCATION_NAME 
+		ORDER BY T.THEATER_ID, TL.LOCATION_NAME  <!-- 지역 내 영화관명 -->
 	</select>
 		<!--@@ where절을 써서 한 지역 영화관만 계속 나왔음  -->
 		<!--@@ id명칭을 수정하는 중 gettheaterLocal로 잘못써서 오류남 -->
-
 
 	<select id="getTicketday" parameterType="Map" resultType="TicketListDto">
 		SELECT S.THEATER_SCHEDULE_ID, S.MOVIE_ID, M.TITLE_KOR, M.AGE_LIMIT,
@@ -37,8 +36,8 @@
 		ON L.THEATER_ID = T.THEATER_ID
 		LEFT JOIN HICGV_MOVIE M
 		ON S.MOVIE_ID = M.MOVIE_ID
-		WHERE S.MOVIE_ID = #{movieid} AND T.THEATER_ID=#{theaterid} AND
-		L.LOCATION_ID=#{locid} AND SUBSTR(START_DATE, 9, 2)=#{tday}
+		WHERE S.MOVIE_ID = #{param1} AND T.THEATER_ID=#{param2} AND
+		L.LOCATION_ID=#{param3} AND SUBSTR(START_DATE, 9, 2)=#{param4}
 		ORDER BY S.START_DATE
 	</select>
 
@@ -63,7 +62,6 @@
 		ORDER BY S.START_DATE
 	</select>
 	
-
 
 </mapper> 
  

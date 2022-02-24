@@ -15,5 +15,6 @@ public interface TicketService {
 	public ArrayList<TLocationDto> getTheaterLocal();
 	public ArrayList<Map<String, Object>> getSelectDate(Map<String, String> sendDataMap);
 
-
+	/*티켓예약배너*/
+	/*public TicketListDto */
 }

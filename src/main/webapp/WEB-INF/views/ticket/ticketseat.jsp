@@ -21,7 +21,6 @@
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
         
-		
 		<!-- Contents Area -->
 		 <div id="contents" class="">
     
@@ -41,8 +40,15 @@
 		</div>
 	    <div class="col-6">
 			<span>선택정보</span>
-			<p>  ex) CGV강남 | 4관 <br/>
+			<p>ex) CGV강남 | 4관 <br/>
 			  2022. 02. 21 (월) 17:50 ~ 19:56(종료날짜받기) </p>
+			  <br>
+			  <span>종료시간</span>
+			  <c:forEach items="${tickettime }" var="tday">
+				 <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
+				  ${tday.endTime}
+				 </a>
+			</c:forEach>
 		</div>
 	  </div>
 	</div>

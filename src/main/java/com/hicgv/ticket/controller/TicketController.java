@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hicgv.movies.dto.MoviesDto;
 import com.hicgv.theater.dto.TheaterDto;
@@ -76,6 +77,7 @@ public class TicketController {
 	}
 
 	/*3.영화 상영날짜, 4.영화 시간선택 */
+	
 	//3번
 	/*날짜시간 세분화*/
 	@RequestMapping("/getdate")
@@ -87,11 +89,35 @@ public class TicketController {
 		String locid = request.getParameter("locid");
 		String tday = request.getParameter("day");
 		
+		System.out.println("movieid : " + movieid);
+		System.out.println("theaterid : " + theaterid);
+		System.out.println("locid : " + locid);
+		System.out.println("tday : " + tday);
+		
+		if (movieid == null)
+			movieid = "20223278"; //극장판주술회전 (가나다 순 중 젤 위)
+		if (theaterid == null)
+	        theaterid = "1"; //서울코드 (지역순)
+	    if (locid == null)
+	        locid = "101"; //서울 강남 (가나다 순 젤 위)
+	    if (tday == null)
+	    	tday = "16"; //16일 (주술회전 날짜 순 젤 위)
+		
+	    System.out.println("movieid2 : " + movieid);
+		System.out.println("theaterid2 : " + theaterid);
+		System.out.println("locid2 : " + locid);
+		System.out.println("tday2 : " + tday);
+		
 		Map<String, String> sendDataMap = new HashMap<String, String>();
-		sendDataMap.put("movieid", "20210087");
+		sendDataMap.put("movieid", movieid);
+		sendDataMap.put("theaterid", theaterid);
+		sendDataMap.put("locid", locid);
+		sendDataMap.put("tday", tday);
+		
+		/*sendDataMap.put("movieid", "20210087");
 		sendDataMap.put("theaterid", "1");
-		sendDataMap.put("locid", "101");
-		sendDataMap.put("tday", "16");
+		sendDataMap.put("locid", "103");
+		sendDataMap.put("tday", "15");*/
 		
 		
 		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
@@ -107,11 +133,11 @@ public class TicketController {
 		
 			model.addAttribute("ticketday",timeListMap);
 	
-		return "ticket/ticket";
+		return "ticket/tickettime";
 	}
 
-	
-	//상영종료 시간 구하기
+
+	//이거는 시트에다가 적을거고 맵핑명 수정할고임 (각각하나씩)
 	@RequestMapping("/tictimeSelect2")
 	public String timeSelect2(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by tictimeSelect2() > =======");
@@ -201,9 +227,16 @@ public class TicketController {
 	
 	/*예매란 배너*/
 		@RequestMapping("/ticketbuy")
-		public String bTicket(HttpServletRequest request, Model model) {
-			
+		public String bTicketres(HttpServletRequest request, Model model) {
+			System.out.println("======= < pass by ticketbuy() > =======");	
 
+			/* 나중에 수정하기
+			 * 
+			 * String userid=request.getParameter("userid"); 
+			String movieid=request.getParameter("movieid");*/
+			
+			/*model.addAttribute("ticketres", arg1)*/
+			
 			return "ticket/ticketbuy";
 		
 	}

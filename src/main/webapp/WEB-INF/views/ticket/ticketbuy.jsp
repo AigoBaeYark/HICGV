@@ -33,19 +33,18 @@
 				<div class="placeholder" title="영화선택"></div>
 			</div>
 			<div class="info theater">
-				<div class="row name" style="display: none;">
+				<div class="row name" >
 					<span class="header">극장</span>
-					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader">극장정보 상세보기</span></a></span>
 				</div>
-				<div class="row date" style="display: none;">
+				<div class="row date" >
 					<span class="header">일시</span>
 					<span class="data"></span>
 				</div>
-				<div class="row screen" style="display: none;">
+				<div class="row screen1" >
 					<span class="header">상영관</span>
 					<span class="data"></span>
 				</div>
-				<div class="row number" style="display: none;">
+				<div class="row number" > <!-- style="display: none;" -->
 					<span class="header">인원</span>
 					<span class="data"></span>
 				</div>

@@ -42,7 +42,7 @@ public class TicketServiceImpl implements TicketService{
 	@Override
 	public ArrayList<Map<String, Object>> getSelectDate(Map<String, String> sendDataMap) {
 		
-		System.out.println("getSelectDate : "+sendDataMap.get("movieid"));
+		System.out.println("getSelectDate(serviceImpl) : "+sendDataMap.get("movieid"));
 		ArrayList<Map<String, Object>> timeListMap =  new ArrayList<Map<String, Object>>();
 		
 		ArrayList<TicketListDto> requestList = dao.getTicketday(sendDataMap);
@@ -92,6 +92,7 @@ public class TicketServiceImpl implements TicketService{
 			timeMap.put("endTime", endTime);
 			
 			System.out.println("year : "+ year);
+			System.out.println("month : "+ month);
 			System.out.println("day"+ day);
 			System.out.println("hour"+ hour);
 			System.out.println("minute"+ minute);
