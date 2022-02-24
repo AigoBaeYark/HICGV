@@ -26,7 +26,7 @@
              <span class="badge bg-primary">상영중</span>
                 <span class="round lightblue"></span>
                 <i>${dto.genre }</i>/ 
-                <i> ${dto.running_time }분</i>/ 
+                <i> ${dto.running_time } 분</i>/ 
                 <i> ${dto.opening_date } 개봉</i>
                   <div class="type-hall">
                      <div class="info-hall">
