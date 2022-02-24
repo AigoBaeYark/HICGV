@@ -6,18 +6,18 @@
 
 <mapper namespace="TicketDao">
 	<select id="ticket" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR
+		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR <!-- 영화리스트 -->
 	</select>
 
 	 <select id="getLocal" resultType="TheaterDto"> 
-	 	SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID 
+	 	SELECT * FROM HICGV_THEATER ORDER BY THEATER_ID <!-- 지역 -->
 	</select> 
 
 	 <select id="getTheaterLocal" resultType="TLocationDto"> 
 		 SELECT T.THEATER_ID, T.THEATER_LOC, TL.LOCATION_ID, TL.LOCATION_NAME 
 		 FROM HICGV_THEATER T INNER JOIN HICGV_THEATER_LOCATION TL 
 		 ON T.THEATER_ID =TL.THEATER_ID 
-		ORDER BY T.THEATER_ID, TL.LOCATION_NAME 
+		ORDER BY T.THEATER_ID, TL.LOCATION_NAME  <!-- 지역 내 영화관명 -->
 	</select>
 		<!--@@ where절을 써서 한 지역 영화관만 계속 나왔음  -->
 		<!--@@ id명칭을 수정하는 중 gettheaterLocal로 잘못써서 오류남 -->

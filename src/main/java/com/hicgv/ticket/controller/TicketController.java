@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hicgv.movies.dto.MoviesDto;
 import com.hicgv.theater.dto.TheaterDto;
@@ -90,8 +91,8 @@ public class TicketController {
 		Map<String, String> sendDataMap = new HashMap<String, String>();
 		sendDataMap.put("movieid", "20210087");
 		sendDataMap.put("theaterid", "1");
-		sendDataMap.put("locid", "101");
-		sendDataMap.put("tday", "16");
+		sendDataMap.put("locid", "103");
+		sendDataMap.put("tday", "15");
 		
 		
 		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
@@ -201,9 +202,14 @@ public class TicketController {
 	
 	/*예매란 배너*/
 		@RequestMapping("/ticketbuy")
-		public String bTicket(HttpServletRequest request, Model model) {
-			
+		public String bTicketres(HttpServletRequest request, Model model) {
+			System.out.println("======= < pass by ticketbuy() > =======");	
 
+			String userid=request.getParameter("userid"); 
+			String movieid=request.getParameter("movieid");
+			
+			/*model.addAttribute("ticketres", arg1)*/
+			
 			return "ticket/ticketbuy";
 		
 	}

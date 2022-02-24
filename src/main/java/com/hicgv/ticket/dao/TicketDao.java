@@ -16,14 +16,19 @@ import com.hicgv.ticket.dto.TicketListDto;
 
 public interface TicketDao {
 
-	public ArrayList<MoviesDto> ticket();
-	public ArrayList<TheaterDto> getLocal();
-	public ArrayList<TLocationDto> getTheaterLocal();
+	public ArrayList<MoviesDto> ticket(); //영화리스트
+	public ArrayList<TheaterDto> getLocal(); //지역리스트
+	public ArrayList<TLocationDto> getTheaterLocal(); //영화관리스트
 
 	/*이거 하나로 같이 쓸예정*/
 	public ArrayList<TicketListDto> getTicketday(Map<String, String> sendDataMap);
 	
 	public ArrayList<TicketListDto> getTickettime(String movie_id, String theater_id, String location_id, String day, String starttime);
 	
-
+	
+	
+	
+	/*티켓예약배너*/
+	/*public TicketListDto */
+	
 }
