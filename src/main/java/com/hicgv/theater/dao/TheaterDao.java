@@ -11,6 +11,6 @@ public interface TheaterDao {
    public String getImg(String location_id);
    public ArrayList<MoviesInfoDto> getMoviesInfo(String theater_id,String location_id,String date);
    public LocationDto getLocationInfo(String location_id);
-
-   public ScheduleDto setScheduleInfo(String movieid,String locid,String roomid,String startdate);
+   public ScheduleDto setScheduleInfo(String movieid,String roomid,String date,String locid);
+   public MoviesInfoDto getMoviesList(String movieid);
 }

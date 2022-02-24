@@ -12,8 +12,7 @@
 <body>
 <h2>theaterAdmin.jsp</h2>
 
-
-<div style="height: 300px;">
+<div style="height: 300px; margin: auto">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
 
@@ -68,24 +67,80 @@ room_name
 
 start_date
 <input id="startdate" type="datetime-local" required/>
-<input type="submit" id="submitBtn" value="입력"/>
+<input type="submit" id="submitBtn" value="입력" />
 
 </form>
 
+
+
+<div id="moviesList" style="float: right;">
+
+</div>
+
 <script>
+
 	$(function() {
 		$('#submitBtn').click(function() {
 			var locid=$("#locid option:selected").val();
 			var roomid=$("#roomid option:selected").val();
 			var movieid=document.getElementById('movieid').value;
 			var startdate=document.getElementById('startdate').value;
+			if (locid!=null && roomid!=null && movieid!=null && startdate!=null) {
 			alert(movieid);
 			alert(locid);
 			alert(roomid);
 			alert(startdate);
-			location.href="theaterAdmin?movieid="+movieid+"&locid="+locid+"&roomid="+roomid+"&startdate="+startdate;
+			location.href="theaterInsertAdmin?movieid="+movieid
+					+"&locid="+locid+"&roomid="+roomid+"&startdate="+startdate;
+				
+				return true;
+				
+			} else {
+				return false; 
+			}
 		})
 	})	
+	
+	$(document).ready(
+		function() {
+			$("input").keyup(function() {
+				var movieid=document.getElementById('movieid').value;
+				if (movieid.length>=8) {
+				$('#moviesList').empty();
+				$(this).css("background-color","#9BC3FF");
+				alert('최대 8자리입니다.');
+				$.ajax({
+					type : "GET",
+					url : "moviesList?movieid="+movieid,
+					contentType: "application/json; charset=UTF-8",
+					success : function(movieInfo) {
+						$('#moviesList').append(
+							"<ul><li><img src="+movieInfo.image_url 
+							+" style='width: 200px; height: 270px' /></li><li>MOVIE_ID :"
+							+movieInfo.movie_id 
+							+"</li><li>TITLE_KOR : "+movieInfo.title_kor 
+							+"</li><li>OPENING_DATE : "+movieInfo.opening_date 
+							+"</li><li>GENRE : "+movieInfo.genre 
+							+"</li><li>RUNNING_TIME : "+movieInfo.running_time 
+							+"</li><li>AGE_LIMIT : "
+							+movieInfo.age_limit +"</li></ul>");
+					},
+					error : function () {
+						
+						$('#moviesList').append("검색 결과가 없습니다.");
+						alert('에러');
+					}
+				})
+					
+			}else if (movieid.length < 8) {
+					$(this).css("background-color","#fff");
+					
+				}
+			})
+		}		
+	)
+	
+	
 </script>
 
 <div style="clear: both;">
