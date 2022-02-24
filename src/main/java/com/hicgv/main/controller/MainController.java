@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hicgv.main.dao.MainDao;
 import com.hicgv.main.service.MainService;
 import com.hicgv.main.service.MainServiceImpl;
+import com.hicgv.main.util.getMoviesCrawlFinal;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
@@ -142,6 +143,25 @@ public class MainController {
 		}
 		
 		return finalSearchList;
+	}
+	
+	@RequestMapping(value="/moviesAdminInputDetail")
+	public String moviesAdminInputDetail(HttpServletRequest request, Model model) {
+		//직접 입력창
+		return "common/moviesAdminInputDetail";
+	}
+	
+	@RequestMapping(value="/moviesAdminDetail")
+	public String moviesAdminDetail(HttpServletRequest request, Model model) {
+		//API 정보 가져와서 화면에 뿌리게
+		String movie_id = request.getParameter("movie_id");
+		System.out.println("movie_id : "+movie_id);
+		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
+		
+		crawlFinal.searchToMovieId(movie_id);
+		
+		
+		return "common/moviesAdminDetail";
 	}
 	
 	
