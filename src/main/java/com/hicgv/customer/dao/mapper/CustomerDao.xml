@@ -4,9 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper 주소는 패키지.Dao인터페이스이름 -->
 <mapper namespace="com.hicgv.customer.dao.CustomerDao">
-<!--회원가입 -->
+	<!--회원가입 -->
 	<insert id="joinCustomer" parameterType="CustomerDto">
-	INSERT INTO HICGV_CUSTOMER
+		INSERT INTO HICGV_CUSTOMER
 		VALUES(HICGV_customer_seq.nextval,#{id},#{password},#{name},
 		#{phone_number},#{nickname},#{gender},#{date_birth},#{location},sysdate,#{email},#{grade},#{question},#{answer})
 	</insert>
@@ -15,43 +15,41 @@
 		HICGV_CUSTOMER WHERE ID = #{id}
 	</select>
 	<select id="loginCheckPw" parameterType="Map" resultType="CustomerDto">
-		SELECT * FROM
+		SELECT
+		* FROM
 		HICGV_CUSTOMER
-		WHERE ID = (SELECT ID FROM HICGV_CUSTOMER WHERE ID =
+		WHERE ID = (SELECT ID FROM HICGV_CUSTOMER WHERE ID
+		=
 		#{id })
 		AND PASSWORD = #{password}
 	</select>
+	<update id="modify" parameterType="CustomerDto">
+		UPDATE hicgv_customer
+		SET
+		PASSWORD= #{password},PHONE_NUMBER= #{phone_number},NICKNAME= #{nickname},GENDER= #{gender},
+		DATE_BIRTH= #{date_birth},LOCATION= #{location},EMAIL= #{email},QUESTION= #{question},ANSWER= #{answer}
+		WHERE ID LIKE #{id}
+	</update>
 	<!--회원id를 찾아 myCGV에 출력 -->
 	<!--컨트롤러에 있는 추상메서드와 같게 id를 만들어야함 -->
 	<!--myCGV 회원정보 보여주기 -->
-	<!-- <select id="myCGV" resultType="com.hicgv.customer.dto.CustomerDto">
-		SELECT
-		ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER
-		FROM HICGV_CUSTOMER
-		WHERE ID LIKE #{id}
-	</select> -->
+	<!-- <select id="myCGV" resultType="com.hicgv.customer.dto.CustomerDto"> 
+		SELECT ID,PASSWORD,NAME,PHONE_NUMBER,NICKNAME,GENDER,LOCATION,CREATE_AT,EMAIL,QUESTION,ANSWER 
+		FROM HICGV_CUSTOMER WHERE ID LIKE #{id} </select> -->
 	<select id="myCGV" parameterType="Map" resultType="CustomerDto">
 		SELECT *
-		FROM HICGV_CUSTOMER
+		FROM
+		HICGV_CUSTOMER
 		WHERE ID LIKE #{id }
 	</select>
 	<!--회원정보 수정(업데이트) -->
-	<update id="modify">
-		UPDATE hicgv_customer
-		SET
-		PASSWORD=#{param2},PHONE_NUMBER=#{param3},NICKNAME=#{param4},GENDER=#{param5},
-		DATE_BIRTH=#{param6},LOCATION=#{param7},EMAIL=#{param8},QUESTION=#{param9},ANSWER=#{param10}
-		WHERE ID LIKE #{param1}
-	</update>
-	
-	<!-- <insert id="insertCustomer" parameterType="CustomerDto">
-		INSERT INTO HICGV_CUSTOMER(user_id, ID) VALUES(hicgv_customer_seq.nextval,#{id})
-	</insert> -->
-	<!-- <insert id="join">
-		INSERT INTO HICGV_CUSTOMER
-		VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},#{param4},
-		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11})
-	</insert> -->
+
+
+ 	<!-- <insert id="insertCustomer" parameterType="CustomerDto"> INSERT INTO 
+		HICGV_CUSTOMER(user_id, ID) VALUES(hicgv_customer_seq.nextval,#{id}) </insert> -->
+	<!-- <insert id="join"> INSERT INTO HICGV_CUSTOMER VALUES(HICGV_customer_seq.nextval,#{param1},#{param2},#{param3},#{param4}, 
+		#{param5},#{param6},#{param7},#{param8},current_timestamp,#{param9},#{param10},#{param11}) 
+		</insert> -->
 	<!--회원탈퇴 -->
 	<delete id="delete">
 		DELETE FROM hicgv_customer WHERE id like #{param1}
@@ -101,12 +99,14 @@
 		SELECT
 		NAME
 		FROM HICGV_CUSTOMER
-		WHERE ID=#{param1} AND PASSWORD=#{param2}
+		WHERE
+		ID=#{param1} AND PASSWORD=#{param2}
 	</select>
 	<select id="nickname" resultType="String">
 		SELECT
 		NICKNAME
-		FROM HICGV_CUSTOMER
+		FROM
+		HICGV_CUSTOMER
 		WHERE ID=#{param1} AND PASSWORD=#{param2}
 
 	</select>
@@ -117,20 +117,16 @@
 		WHERE ID=#{param1} AND PASSWORD=#{param2}
 
 	</select>
-	<!-- <select id="img" resultType="String">
-		SELECT
-		PROFILE_IMGE
-		FROM HICGV_CUSTOMER
-		WHERE ID=#{param1} AND PASSWORD=#{param2}
+	<!-- <select id="img" resultType="String"> SELECT PROFILE_IMGE FROM HICGV_CUSTOMER 
+		WHERE ID=#{param1} AND PASSWORD=#{param2} </select> -->
 
-	</select>  -->
-	
 	<select id="getCustomerDto" resultType="CustomerDto">
 		SELECT *
-		FROM HICGV_CUSTOMER
+		FROM
+		HICGV_CUSTOMER
 		WHERE ID LIKE #{param1}
 	</select>
-	
-	
-	
+
+
+
 </mapper>

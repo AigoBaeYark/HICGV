@@ -22,9 +22,9 @@ public interface CustomerDao {
 	
 
 	// 값을 받아서 양방향으로 이동해야할 땐 리턴값을 dto
-	public void modify(String id, String password, String phone_number, String nickname, String gender,
-			String date_birth, String location, String email, String question, String answer);
-
+	/*public void modify(String id, String password, String phone_number, String nickname, String gender,
+			String date_birth, String location, String email, String question, String answer);*/
+	public void modify(CustomerDto customerDto);
 	// 양방향없이 한쪽방향으로 이동할 땐 void 타입
 	/*public void join(String id, String password, String name, String phone_number, String nickname, String gender,
 			String date_birth, String location, String email, String question, String answer);*/

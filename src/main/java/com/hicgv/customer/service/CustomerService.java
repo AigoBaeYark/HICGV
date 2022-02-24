@@ -7,7 +7,7 @@ public interface CustomerService {
 	public void joinCustomer(CustomerDto customerDto);
 	public String loginCheck(String id, String password);
 	public CustomerDto myCGV(String id);
-
+	public void modify(CustomerDto customerDto);
 
 
 }

@@ -9,10 +9,14 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Case;
 import org.apache.log4j.chainsaw.Main;
 import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +28,7 @@ public class CustomerServicempl implements CustomerService {
 
 	@Inject
 	CustomerDao dao;
-
+	
 	// 맵을 활용해서 입력받은 값으로 쿼리문 실행하고 컨트롤러로 이동
 	@Override
 	public void joinCustomer(CustomerDto customerDto) {
@@ -38,7 +42,7 @@ public class CustomerServicempl implements CustomerService {
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("id", customerDto.getId());
 		map.put("pw", customerDto.getPassword());
 		map.put("name", customerDto.getName());
@@ -51,8 +55,7 @@ public class CustomerServicempl implements CustomerService {
 		map.put("grade", customerDto.getGrade());
 		map.put("question", customerDto.getQuestion());
 		map.put("answer", customerDto.getAnswer());
-		
-		
+
 		System.out.println("map id : " + map.get("id"));
 		System.out.println("map pw :" + map.get("pw"));
 		System.out.println("map name :" + map.get("name"));
@@ -65,7 +68,7 @@ public class CustomerServicempl implements CustomerService {
 		System.out.println("map grade :" + map.get("grade"));
 		System.out.println("map question :" + map.get("question"));
 		System.out.println("map answer :" + map.get("answer"));
-		
+
 		// 정리하고 난 이후 방식
 		dao.joinCustomer(customerDto);
 	}
@@ -74,6 +77,7 @@ public class CustomerServicempl implements CustomerService {
 	@Override // mpl에서 loginCheck실행
 	public String loginCheck(String id, String password) {
 		// mpl에서 받은 리턴값을 갖고 아래로 실행
+		System.out.println("=========pass by loginCheck ServeceImp()=============");
 		System.out.println("login ckid : " + id);
 		System.out.println("login ckpw : " + password);
 
@@ -91,13 +95,41 @@ public class CustomerServicempl implements CustomerService {
 
 	@Override
 	public CustomerDto myCGV(String id) {
-		
+		System.out.println("==========customerServiceImpl.myCGV============");
 		return dao.myCGV(id);
-		
+
 	}
 
-	{
+	@Override
+	public void modify(CustomerDto customerDto) {
+		System.out.println("============ServiceImpl modify================");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id",customerDto.getId());
+		map.put("pw", customerDto.getPassword());
+		map.put("phone_number", customerDto.getPhone_number());
+		map.put("nickname", customerDto.getNickname());
+		map.put("gender", customerDto.getGender());
+		map.put("date_birth", customerDto.getDate_birth());
+		map.put("location", customerDto.getLocation());
+		map.put("email", customerDto.getEmail());
+		map.put("question", customerDto.getQuestion());
+		map.put("answer", customerDto.getAnswer());
 
+		
+		System.out.println("map id :" + map.get("id"));
+		System.out.println("map pw :" + map.get("pw"));
+		System.out.println("map phone_number :" + map.get("phone_number"));
+		System.out.println("map nickname :" + map.get("nickname"));
+		System.out.println("map gender :" + map.get("gender"));
+		System.out.println("map date_birth :" + map.get("date_birth"));
+		System.out.println("map location :" + map.get("location"));
+		System.out.println("map email :" + map.get("email"));	
+		System.out.println("map question :" + map.get("question"));
+		System.out.println("map answer :" + map.get("answer"));
+		
+		dao.modify(customerDto);
 	}
 
 }

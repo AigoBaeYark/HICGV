@@ -19,9 +19,9 @@
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 	
-	<%CustomerDto dto = (CustomerDto) session.getAttribute("dto");%>
+	<%-- <%CustomerDto dto = (CustomerDto) session.getAttribute("dto");%>
 	
-	<%=dto.getId() %> 님 안녕하세요
+	<%=dto.getId() %> 님 안녕하세요 --%>
 	
 	<div><!--container 시작--> 
 	<div class="container-top">
@@ -52,7 +52,7 @@
 					<div style="float: left;">
 					<div align="left" style="position:static; width: 500px; height:30px; margin-top: 50px; margin-left:30px ;float: left; border-bottom: 1px solid blue;">
 						<!--등급div시작  -->
-						${name }님 (아이디: ${id }) 닉네임:${nickname }
+						${myCGV.name }님 (아이디: ${id }) 닉네임:${myCGV.nickname }
 					</div>
 		
 					<div align="left" style="width: 500px; height:30px; margin-top: 10px; margin-left:30px ;">
