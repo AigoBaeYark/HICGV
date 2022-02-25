@@ -111,6 +111,32 @@
 			}else if ($('input[name=age]').val() === ('전체관람가')) {
 				$('#all').attr('selected','selected');
 			}
+			
+			console.log($('#age_limit').val());
+
+		})
+		
+		$('#checkIdBtn').on('click', function () {
+			console.log($('input[name=movie_id]').val());
+			var movieId = $('input[name=movie_id]').val();
+			$.ajax({
+				type: "get",
+				url: "checkDuplicationMovie",
+				data: {
+					'movie_id' : movieId
+				},
+				success: function (data) {
+					console.log(data);
+					if (data === '미등록 영화') {
+						
+					}
+					alert('미등록 영화');
+				},
+				error: function(data) {
+					console.log(data);
+					alert('이미 DB에 등록된 영화입니다.')
+				}
+			})
 		})
 	
 	</script>

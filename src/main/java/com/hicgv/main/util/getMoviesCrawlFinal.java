@@ -598,9 +598,20 @@ public class getMoviesCrawlFinal {
 			
 			movieInfoJsonArray = movieInfoObject.getJSONArray("directors");
 			if(movieInfoJsonArray.length() <= 1) {	//감독은 한명일수도 있어서 처리
-				movieIdMap.put("director", movieInfoJsonArray.getJSONObject(0).get("peopleNm"));
-				movieIdMap.put("directorEn", movieInfoJsonArray.getJSONObject(0).get("peopleNmEn"));
-				System.out.println("영화 한명감독 : "+movieInfoJsonArray.getJSONObject(0).getString("peopleNm"));
+				System.out.println("length : "+movieInfoJsonArray.length());
+				
+				//감독이 Api 없다?
+				if(movieInfoJsonArray.length() == 0 ) {
+					movieIdMap.put("director", "");
+					movieIdMap.put("directorEn", "");
+					System.out.println("영화 감독 정보 없음 : ");
+
+				}else {
+					movieIdMap.put("director", movieInfoJsonArray.getJSONObject(0).get("peopleNm"));
+					movieIdMap.put("directorEn", movieInfoJsonArray.getJSONObject(0).get("peopleNmEn"));
+					System.out.println("영화 한명감독 : "+movieInfoJsonArray.getJSONObject(0).getString("peopleNmEn"));
+				}
+				
 			}else {
 				List<String> direcotsList = new LinkedList<String>();
 				List<String> direcotsEnList = new LinkedList<String>();

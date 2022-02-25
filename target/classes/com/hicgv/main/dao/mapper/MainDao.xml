@@ -9,6 +9,11 @@
  	SELECT * FROM HICGV_MOVIE ORDER BY RANKING 
  	</select>
  	
+ 	<select  id="checkMovieId" resultType="Integer" parameterType="String">
+ 		SELECT COUNT(*) FROM HICGV_MOVIE
+ 		WHERE MOVIE_ID LIKE #{movieid }
+ 	</select>
+ 	
  	<!-- <insert>
  		insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, #{param1}, #{param2}) 
  	</insert> -->

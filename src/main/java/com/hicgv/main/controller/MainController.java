@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,7 @@ import com.hicgv.main.util.getMoviesCrawlFinal;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
+import oracle.net.aso.p;
 import oracle.net.aso.s;
 
 /**
@@ -155,12 +157,14 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/moviesAdminDetail" )
-	public String moviesAdminDetail(HttpServletRequest request, Model model) {
+	public String moviesAdminDetail(HttpServletRequest request, Model model, @RequestParam String movieId,@RequestParam String poster, @RequestParam String description) {
 		// API 정보 가져와서 화면에 뿌리게
-		String movie_id = request.getParameter("movie_id");
-		String poster = request.getParameter("poster"); // 포스터는 네이버에서 가져와야하는데 또 네이버 Api랑 같이 사용하면 느릴거 같아서 포스터는 바로 가져옴
-		String description = request.getParameter("description"); // 줄거리는 네이버에서 가져와야하는데 또 네이버 Api랑 같이 사용하면 느릴거 같아서 줄거리는 바로 가져옴
-		System.out.println("movie_id : " + movie_id);
+		System.out.println(movieId);
+		
+		//String movie_id = request.getParameter("movieid");
+		//String poster = request.getParameter("poster"); // 포스터는 네이버에서 가져와야하는데 또 네이버 Api랑 같이 사용하면 느릴거 같아서 포스터는 바로 가져옴
+		//String description = request.getParameter("description"); // 줄거리는 네이버에서 가져와야하는데 또 네이버 Api랑 같이 사용하면 느릴거 같아서 줄거리는 바로 가져옴
+		System.out.println("movie_id : " + movieId);
 		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
 		String actorsStr = "";
 		String actorsEnStr = "";
@@ -168,7 +172,7 @@ public class MainController {
 
 		try {
 			// 배열에 담겨온 애들은 빼줌
-			Map<String, Object> resultMap = crawlFinal.searchToMovieId(movie_id);
+			Map<String, Object> resultMap = crawlFinal.searchToMovieId(movieId);
 			System.out.println(resultMap.get("movie_id"));
 			LinkedList<String> actorsList = (LinkedList<String>) resultMap.get("actors");
 			LinkedList<String> actorsEnList = (LinkedList<String>) resultMap.get("actorsEn");
@@ -261,9 +265,33 @@ public class MainController {
 
 		return "common/moviesAdminDetail";
 	}
+	
+	@RequestMapping("insertMovie")
+	public String insertMovie(Model model, @ModelAttribute MoviesDto moviesDto) {
+		
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("checkDuplicationMovie")
+	@ResponseBody
+	public String checkDuplicationMovie(@RequestParam String movie_id) {
+		logger.info("before checkDuplicationMovie");
+		System.out.println("중복확인 : "+movie_id);
+		if(mainService.checkMovieId(movie_id) >=1)
+		{
+			logger.info("after checkDuplicationMovie");
+			System.out.println("1 이상");
+			return "등록된 영화";
+		}else {
+			logger.info("after checkDuplicationMovie");
+			System.out.println("0 으로");
+			return "미등록 영화";
+		}
+		
+		
+	}
 
-	// public String DailyRefresh() {
-	// //dao.dailyViewer(movie_id, api가져온 관람객);
-	// }
 
 }

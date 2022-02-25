@@ -72,5 +72,13 @@ public class MainServiceImpl  implements MainService{
 		crawlFinal.searchToTitleMovieInfoApi(searchTitle);
 	}
 
+	@Override
+	public int checkMovieId(String movie_id) {
+		
+		mainDao.checkMovieId(movie_id);
+		
+		return 0;
+	}
+
 	
 }

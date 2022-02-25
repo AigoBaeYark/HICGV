@@ -29,5 +29,12 @@ public class MainDaoImpl implements MainDao{
 	public ArrayList<MoviesDto> movieChart() {
 		List<MoviesDto> list = sqlSession.selectList(nameSpace+".movieChart");
 		return (ArrayList<MoviesDto>) list;
+	}
+
+
+	@Override
+	public int checkMovieId(String movieid) {
+		System.out.println("checkDao : "+sqlSession.selectOne(nameSpace+".checkMovieId",movieid));
+		return sqlSession.selectOne(nameSpace+".checkMovieId",movieid);
 	};
 }

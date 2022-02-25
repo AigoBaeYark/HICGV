@@ -22,4 +22,6 @@ public interface MainService {
 	public LinkedList<HashMap<String, String>> getSearchFinal(String searchTitle);	
 	public void getSearchFinalDaily(String day);
 	public void getSearchMovieInfo(String searchTitle);
+	public int checkMovieId(String movie_id);
+	
 }
