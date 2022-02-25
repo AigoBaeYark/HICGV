@@ -81,10 +81,12 @@
 				<br />
 				<form action="modifyForm" method="post">
 				<button type="submit">개인정보 변경</button>
-				</form>				
+				</form>
+				<form action="customerDeleteForm">			
 				<button type="submit">
-					<a href="customerDelete?id=${id }">회원탈퇴</a>
+					회원탈퇴<%-- <a href="customerDeleteForm?id=${id }"></a> --%>
 				</button>
+				</form>	
 				<form action="logout">
 					<button type="submit">로그아웃</button>
 				</form>

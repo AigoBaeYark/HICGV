@@ -132,4 +132,13 @@ public class CustomerServicempl implements CustomerService {
 		dao.modify(customerDto);
 	}
 
+	@Override
+	public void delete(String id, String password) {
+		System.out.println("delete ckid : " + id);
+		System.out.println("delete ckpw : " + password);
+		dao.delete(id, password);
+		
+	}
+
+
 }
