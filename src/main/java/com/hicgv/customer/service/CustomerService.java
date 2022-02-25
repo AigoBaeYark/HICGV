@@ -14,5 +14,14 @@ public interface CustomerService {
 	
 	public void delete(String id, String password);
 	
+	public String forgetPw(String id, String email);
+	
+	public void resetPw(String password, String name );
+	
+	public String getQuestion(String id, String email);
 
+	public String getAnswer(String answer);
+	
+	public String forgetId(String phone_number, String date_birth);
+	
 }

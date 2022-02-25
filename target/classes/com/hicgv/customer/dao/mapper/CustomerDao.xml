@@ -44,33 +44,33 @@
 	</select>
 	<!--회원탈퇴 -->
 	<delete id="delete" parameterType="Map">
-		DELETE FROM hicgv_customer WHERE id like #{id}
+		DELETE FROM HICGV_CUSTOMER WHERE ID like #{id}
 		AND PASSWORD LIKE #{password}
 	</delete>
 	<select id="getEmail" resultType="String">
 		SELECT EMAIL FROM
-		HICGV_CUSTOMER WHERE ID=#{param1}
+		HICGV_CUSTOMER WHERE ID=#{id}
 	</select>
 	<!--비밀번호 찾기 / 아이디 이메일 입력하고 해당 질문 뿌려주기 -->
 	<select id="forgetPw" resultType="String">
 		SELECT QUESTION FROM
 		HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
 	</select>
-	<select id="getQuestion" resultType="String">
+	<select id="getQuestion" resultType="String" parameterType="Map">
 		SELECT QUESTION FROM
-		HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
+		HICGV_CUSTOMER WHERE ID=#{id } AND EMAIL=#{email}
 	</select>
 	<!--답을 입력하고 질문이 같은지 비교 -->
-	<select id="getAnswer" resultType="String">
+	<select id="getAnswer" resultType="String" parameterType="Map">
 		SELECT ANSWER FROM
 		HICGV_CUSTOMER WHERE ID =
 		(SELECT ID FROM HICGV_CUSTOMER WHERE
-		ANSWER=#{param1})
+		ANSWER=#{answer})
 	</select>
-	<update id="resetPw">
+	<update id="resetPw" parameterType="HashMap">
 		UPDATE hicgv_customer
-		SET PASSWORD=#{param2} WHERE ID
-		LIKE #{param1}
+		SET PASSWORD=#{password} 
+		WHERE ID LIKE #{id}
 	</update>
 	<!-- 아이디 찾기 -->
 	<select id="getPhone_number" resultType="String">
@@ -79,12 +79,11 @@
 		PHONE_NUMBER= #{param1}
 
 	</select>
-	<select id="forgetId" resultType="String">
+	<select id="forgetId" resultType="String" parameterType="HashMap">
 		SELECT ID FROM HICGV_CUSTOMER
-		WHERE PHONE_NUMBER
-		=(SELECT PHONE_NUMBER FROM HICGV_CUSTOMER WHERE
-		PHONE_NUMBER= #{param1})
-		AND DATE_BIRTH = #{param2}
+		WHERE PHONE_NUMBER LIKE (SELECT PHONE_NUMBER FROM HICGV_CUSTOMER WHERE
+		PHONE_NUMBER LIKE #{phone_number})
+		AND DATE_BIRTH LIKE #{date_birth}
 
 	</select>
 	<select id="name" resultType="String">
