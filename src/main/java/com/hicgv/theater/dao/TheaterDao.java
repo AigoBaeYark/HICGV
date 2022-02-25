@@ -8,9 +8,9 @@ import com.hicgv.theater.dto.ScheduleDto;
 
 public interface TheaterDao {
    public ArrayList<LocationDto> getTheaterInfo();
-   public String getImg(String location_id);
-   public ArrayList<MoviesInfoDto> getMoviesInfo(String theater_id,String location_id,String date);
-   public LocationDto getLocationInfo(String location_id);
-   public ScheduleDto setScheduleInfo(String movieid,String roomid,String date,String locid);
-   public MoviesInfoDto getMoviesList(String movieid);
+   public String getImg(String locationId);
+   public ArrayList<MoviesInfoDto> getMoviesInfo(String theaterId,String locationId,String startDate);
+   public LocationDto getLocationInfo(String locationId);
+   public void setScheduleInfo(ScheduleDto scheduleDto);
+   public MoviesInfoDto getMoviesList(String movieId);
 }

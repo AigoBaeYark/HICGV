@@ -59,21 +59,18 @@
 				<label>보유포인트</label>
 			</dt>
 			<dd>
-				<span>${payInfo.point }</span>원
+				<span id="userPoint" >${payInfo.point }</span>원
 			</dd>
 			<dt>
-				<label for="">사용할 포인트</label>
+				<label>사용할 포인트</label>
 			</dt>
 			<dd>
-				<input type="text" />원
+				<input type="number" id="selPoint" readonly="readonly"/>원
+				<input type="checkbox" id="pointAllCheck" onclick="chkPoint()"/>
+				<label>모두사용</label>
 			</dd>
-			<dt>
-				<input type="checkbox" />
-			</dt>
-			<dd>
-				<label for="">모두사용</label>
-			</dd>
-			<div class="form_guide"><dl><dt>이용안내</dt><dd class="split">HICGV 포인트는 <em>1,000P</em> 이상부터 <em>10P</em> 단위로 사용 가능합니다.</dd></dl></div>
+			
+			<div class="form_guide"><dl><dt>이용안내</dt><dd class="split">HICGV 포인트는 <em>1,000P</em> 이상부터 사용 가능합니다.</dd></dl></div>
 		</div>      
       </div>
     </div>
@@ -271,13 +268,35 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">결제하기</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='kakaoPay'">결제하기</button>
       </div>
     </div>
   </div>
 </div>
 
+
+
+
 <script>
+
+function chkPoint() { 
+		var point=$('span#userPoint').text();
+		console.log( $('span#userPoint').text() );
+		
+	if ($('input:checkbox[id=pointAllCheck]').is(':checked')) {
+		alert(point);
+		if (point<1000) {
+			alert("1,000P 이상부터 사용 가능합니다.");
+		}
+		if(point>=1000){
+			$('input[id=selPoint]').val(point);
+		}
+	} else {
+		$('input[id=selPoint]').val(null);
+	}
+}
+
+
 function setDisplay(){
 	     if($('input:radio[id=pay1]').is(':checked')){
 	    	 $('#payInfo1').css('display', 'block');
@@ -306,6 +325,8 @@ function setDisplay(){
 function setPayMethod(event){
 	document.getElementById('payMethod').innerText=event.target.value;
 }
+
+
 
 </script>
 

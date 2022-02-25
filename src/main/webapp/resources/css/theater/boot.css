@@ -668,7 +668,7 @@ progress {
 	max-width: 100%;
 	padding-right: calc(var(- -bs-gutter-x)* .5);
 	padding-left: calc(var(- -bs-gutter-x)* .5);
-	margin-top: var(- -bs-gutter-y)
+	margin-top: var(- -bs-gutter-y);
 }
 
 .col {
@@ -730,10 +730,10 @@ progress {
 	width: 25%
 }
 
-/* .col-4 {
+.col-4 {
 	flex: 0 0 auto;
-	width: 33.33333333%
-} */
+	text-align: center;
+} 
 
 .col-5 {
 	flex: 0 0 auto;
@@ -6378,7 +6378,7 @@ keyframes progress-bar-stripes { 0%{
 	transition: opacity .6s ease
 }
 
-@media ( prefers-reduced-motion :reduce) {
+/* @media ( prefers-reduced-motion :reduce) {
 	.carousel-indicators [data-bs-target] {
 		transition: none
 	}
@@ -6482,7 +6482,7 @@ opacity
 	width: 1rem;
 	height: 1rem
 }
-
+ */
 @media ( prefers-reduced-motion :reduce) {
 	.spinner-border, .spinner-grow {
 		-webkit-animation-duration: 1.5s;

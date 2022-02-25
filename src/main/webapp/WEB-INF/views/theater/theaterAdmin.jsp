@@ -19,10 +19,10 @@
 <form action="theaterAdmin" style="border: 2px solid blue; width: 500px; height: 400px; margin: 0;">
 <div class="row g-3 align-items-center">
   <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label"  >movie_id</label>
+    <label for="inputPassword6" class="col-form-label" >movieId</label>
   </div>
   <div class="col-auto">
-    <input type="text" id="movieid" class="form-control" aria-describedby="passwordHelpInline" required maxlength="8" minlength ="8">
+    <input type="text" name="movieId" id="movieId" class="form-control" aria-describedby="passwordHelpInline" required maxlength="8" minlength ="8">
   </div>
   <div class="col-auto">
     <span id="passwordHelpInline" class="form-text">
@@ -30,8 +30,8 @@
     </span>
   </div>
 </div>
-location_name
-<select id="locid" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px">
+locationName
+<select id="locationId" class="form-select" name="locationId" aria-label="Default select example" style="width: 200px">
   <option value="101">HICGV강남</option>
   <option value="102">HICGV명동</option>
   <option value="103">HICGV구로</option>
@@ -52,8 +52,8 @@ location_name
   <option value="118">HICGV청주</option>
 </select>
 
-room_name 
-<select id="roomid" class="form-select" name="theater_room_id" aria-label="Default select example" style="width: 200px">
+theaterRoomName 
+<select id="theaterRoomId" class="form-select" name="theaterRoomId" aria-label="Default select example" style="width: 200px">
   <option value="1">강남1관</option>
   <option value="2">강남2관</option>
   <option value="3">강남3관</option>
@@ -65,8 +65,8 @@ room_name
   <option value="9">구로3관</option>
 </select>
 
-start_date
-<input id="startdate" type="datetime-local" required/>
+startDate
+<input id="startDate" name="startDate" type="datetime-local" required/>
 <input type="submit" id="submitBtn" value="입력" />
 
 </form>
@@ -81,17 +81,17 @@ start_date
 
 	$(function() {
 		$('#submitBtn').click(function() {
-			var locid=$("#locid option:selected").val();
-			var roomid=$("#roomid option:selected").val();
-			var movieid=document.getElementById('movieid').value;
-			var startdate=document.getElementById('startdate').value;
-			if (locid!=null && roomid!=null && movieid!=null && startdate!=null) {
-			alert(movieid);
-			alert(locid);
-			alert(roomid);
-			alert(startdate);
-			location.href="theaterInsertAdmin?movieid="+movieid
-					+"&locid="+locid+"&roomid="+roomid+"&startdate="+startdate;
+			var locationId=$("#locationId option:selected").val();
+			var roomId=$("#theaterRoomId option:selected").val();
+			var movieId=document.getElementById('movieId').value;
+			var startDate=document.getElementById('startDate').value;
+			if (locationId!=null && roomId!=null && movieId!=null && startDate!=null) {
+			alert(movieId);
+			alert(locationId);
+			alert(roomId);
+			alert(startDate);
+			location.href="theaterInsertAdmin?movieId="+movieId
+					+"&locationId="+locationId+"&roomId="+roomId+"&startDate="+startDate;
 				
 				return true;
 				
@@ -104,26 +104,26 @@ start_date
 	$(document).ready(
 		function() {
 			$("input").keyup(function() {
-				var movieid=document.getElementById('movieid').value;
-				if (movieid.length>=8) {
+				var movieId=document.getElementById('movieId').value;
+				if (movieId.length>=8) {
 				$('#moviesList').empty();
 				$(this).css("background-color","#9BC3FF");
 				alert('최대 8자리입니다.');
 				$.ajax({
 					type : "GET",
-					url : "moviesList?movieid="+movieid,
+					url : "moviesList?movieId="+movieId,
 					contentType: "application/json; charset=UTF-8",
 					success : function(movieInfo) {
 						$('#moviesList').append(
-							"<ul><li><img src="+movieInfo.image_url 
+							"<ul><li><img src="+movieInfo.imageUrl 
 							+" style='width: 200px; height: 270px' /></li><li>MOVIE_ID :"
-							+movieInfo.movie_id 
-							+"</li><li>TITLE_KOR : "+movieInfo.title_kor 
-							+"</li><li>OPENING_DATE : "+movieInfo.opening_date 
+							+movieInfo.movieId 
+							+"</li><li>TITLE_KOR : "+movieInfo.titleKor 
+							+"</li><li>OPENING_DATE : "+movieInfo.openingDate 
 							+"</li><li>GENRE : "+movieInfo.genre 
-							+"</li><li>RUNNING_TIME : "+movieInfo.running_time 
+							+"</li><li>RUNNING_TIME : "+movieInfo.runningTime 
 							+"</li><li>AGE_LIMIT : "
-							+movieInfo.age_limit +"</li></ul>");
+							+movieInfo.ageLimit +"</li></ul>");
 					},
 					error : function () {
 						
@@ -132,7 +132,7 @@ start_date
 					}
 				})
 					
-			}else if (movieid.length < 8) {
+			}else if (movieId.length < 8) {
 					$(this).css("background-color","#fff");
 					
 				}

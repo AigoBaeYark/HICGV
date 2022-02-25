@@ -9,16 +9,17 @@
 		SELECT LOCATION_ID,THEATER_ID,LOCATION_NAME,LOCATION_ADD,LOCATION_TEL
 		FROM HICGV_THEATER_LOCATION ORDER BY LOCATION_NAME
 	</select>
-    <select id="getImg" resultType="String">
+    <select id="getImg" resultType="String" parameterType="String">
 		SELECT LOCATION_IMG
 		FROM HICGV_THEATER_LOCATION
-		WHERE LOCATION_ID=#{param1}
+		WHERE LOCATION_ID=#{locationId }
     </select>
-    <select id="getMoviesInfo" resultType="MoviesInfoDto">
+    <!-- to_char 형변환 후 alias해야 됨 -->
+    <select id="getMoviesInfo" resultType="MoviesInfoDto" parameterType="String">
 		SELECT THEATER_SCHEDULE_ID, S.MOVIE_ID, TITLE_KOR, AGE_LIMIT, 
 		T.THEATER_ID , LOCATION_ID, START_DATE, TO_CHAR(START_DATE,'YYYYMMDD') AS SELDATE, 
 		SUBSTR(START_DATE, 12, 6) AS STARTTIME, ROOM_NAME,M.RUNNING_TIME,
-		OPENING_DATE,GENRE, MAX_SEAT
+		TO_CHAR(OPENING_DATE,'yyyy-MM-dd') AS OPENING_DATE,GENRE, MAX_SEAT
 	    FROM HICGV_THEATER_SCHEDULE S 
 	    LEFT JOIN HICGV_THEATER_LOCATION L 
 	    ON S.LOCATION_ID = L.LOCATION_ID 
@@ -28,28 +29,28 @@
 	    ON L.THEATER_ID = T.THEATER_ID
 	    LEFT JOIN HICGV_MOVIE M 
 	    ON S.MOVIE_ID = M.MOVIE_ID
-	    WHERE T.THEATER_ID=#{param1} 
-	    AND L.LOCATION_ID=#{param2} 
-	    AND TO_CHAR(START_DATE,'YYYYMMDD')=#{param3}
+	    WHERE T.THEATER_ID=#{theaterId} 
+	    AND L.LOCATION_ID=#{locationId} 
+	    AND TO_CHAR(START_DATE,'YYYYMMDD')=#{date}
 	    ORDER BY S.START_DATE
     </select>
-    <select id="getLocationInfo" resultType="LocationDto">
+    <select id="getLocationInfo" resultType="LocationDto" parameterType="String">
 		SELECT DISTINCT LOCATION_NAME,LOCATION_ADD,LOCATION_TEL,L.LOCATION_ID
 		FROM HICGV_THEATER_LOCATION L
 		LEFT JOIN HICGV_THEATER_ROOM R
 		ON L.LOCATION_ID=R.LOCATION_ID
-		WHERE L.LOCATION_ID=#{param1}
+		WHERE L.LOCATION_ID=#{locationId}
     </select>
    
-    <select id="setScheduleInfo" resultType="ScheduleDto">
+    <select id="setScheduleInfo" parameterType="ScheduleDto">
    		INSERT INTO HICGV_THEATER_SCHEDULE 
-   		VALUES(THEATER_SCHEDULE_ID_SEQ.NEXTVAL,#{param1},#{param2},TO_DATE(#{param3},'YYYY-MM-DD HH24:MI'),#{param4})
+   		VALUES(THEATER_SCHEDULE_ID_SEQ.NEXTVAL,#{movieId},#{roomId},TO_DATE(#{date},'YYYY-MM-DD HH24:MI'),#{locId})
     </select>
     
-    <select id="getMoviesList" resultType="MoviesInfoDto">
-    	SELECT MOVIE_ID,TITLE_KOR,OPENING_DATE,GENRE,RUNNING_TIME,AGE_LIMIT,IMAGE_URL
+    <select id="getMoviesList" resultType="MoviesInfoDto" parameterType="String">
+    	SELECT MOVIE_ID,TITLE_KOR,TO_CHAR(OPENING_DATE,'yyyy-MM-dd'),GENRE,RUNNING_TIME,AGE_LIMIT,IMAGE_URL
     	FROM HICGV_MOVIE 
-    	WHERE MOVIE_ID=#{param1}
+    	WHERE MOVIE_ID=#{movieId}
     </select>
 </mapper>
 
