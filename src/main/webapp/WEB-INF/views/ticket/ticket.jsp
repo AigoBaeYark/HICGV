@@ -21,9 +21,8 @@
 	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
         
 		<!-- Contents Area -->
-		 <div id="contents" class="">
-        <a href="ticketseat">ticketseat</a>
-        <a href="getdate" >getdate </a>
+		<div id="contents" class="">
+        #ticketseat, pay 참고하고 싶으면 주술회전-서울-강남-16일 9:30 버튼 클릭#
         
         <!-- SECTION -->
 		<section>
@@ -34,9 +33,6 @@
 						<p style="text-align: center;">영화1</p>
 						<c:forEach items="${moviesList }" var="tic">
 					    <div class="row justify-content-around " id="MovieTab" role="tablist">
-					      <!-- for (var i = 1; i < moviesList.options.length; i++) {
-					      	console.log(moviesList.options[i].selected + "<br>");
-						    } -->
 					      <a class="list-group-item list-group-item-action list-group-item-movie" id="list-movie" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
 					      <input type="hidden" value="${tic.movie_id }"/>
 					      <span class="ico-grade grade-${tic.age_limit }">${tic.age_limit}</span> 
@@ -55,7 +51,6 @@
 					      	<input type="hidden"  value="${loc.theater_id }"/>${loc.theater_loc } </a>
 					   	</c:forEach>
 					    </div>
-					    
 					    </div>
 					  </div>
 					  
@@ -69,7 +64,7 @@
 					      <c:if test="${theloc.theater_id eq 1 }">
 					      <div id="loc-${theloc.theater_id }">
 					      <a class="list-group-item list-group-item-action list-group-item-theater" id="list-theater" data-bs-toggle="list" href="#list-theater" role="tab" aria-controls="list-theater">
-					      <input type="hidden" value="${theloc.theater_id }"/> 		 
+					      <input type="hidden" value="${theloc.location_id }"/> 		 
 					      <span id="movieTheater">
 					      ${theloc.location_name }
 					      </span>
@@ -79,7 +74,7 @@
 					      <c:if test="${theloc.theater_id eq 2 }"> 
 					      <div id="loc-${theloc.theater_id }">
 					      <a class="list-group-item list-group-item-action list-group-item-theater" id="list-theater" data-bs-toggle="list" href="#list-theater" role="tab" aria-controls="list-theater">
-					      <input type="hidden" value="${theloc.theater_id }"/> 		 
+					      <input type="hidden" value="${theloc.location_id }"/> 		 
 					      <span id="movieTheater">
 					      ${theloc.location_name }
 					      </span>
@@ -89,7 +84,7 @@
 					      <c:if test="${theloc.theater_id eq 3 }"> 
 					      <div id="loc-${theloc.theater_id }">
 					      <a class="list-group-item list-group-item-action list-group-item-theater" id="list-theater" data-bs-toggle="list" href="#list-theater" role="tab" aria-controls="list-theater">
-					      <input type="hidden" value="${theloc.theater_id }"/> 		 
+					      <input type="hidden" value="${theloc.location_id }"/> 		 
 					      <span id="movieTheater">
 					      ${theloc.location_name }
 					      </span>
@@ -99,7 +94,7 @@
 					      <c:if test="${theloc.theater_id eq 4 }"> 
 					      <div id="loc-${theloc.theater_id }">
 					      <a class="list-group-item list-group-item-action list-group-item-theater" id="list-theater" data-bs-toggle="list" href="#list-theater" role="tab" aria-controls="list-theater">
-					      <input type="hidden" value="${theloc.theater_id }"/> 		 
+					      <input type="hidden" value="${theloc.location_id }"/> 		 
 					      <span id="movieTheater">
 					      ${theloc.location_name }
 					      </span>
@@ -109,7 +104,7 @@
 					      <c:if test="${theloc.theater_id eq 5 }"> 
 					      <div id="loc-${theloc.theater_id }">
 					      <a class="list-group-item list-group-item-action list-group-item-theater" id="list-theater" data-bs-toggle="list" href="#list-theater" role="tab" aria-controls="list-theater">
-					      <input type="hidden" value="${theloc.theater_id }"/> 		 
+					      <input type="hidden" value="${theloc.location_id }"/> 		 
 					      <span id="movieTheater">
 					      ${theloc.location_name }
 					      </span>
@@ -124,12 +119,15 @@
 					  <p style="text-align: center;">날짜선택3</p>
 					  <p style="text-align: center;">2022년</p>
 					  <p style="text-align: center;">2월</p>
-					  <%-- <c:forEach items="${ticketday }" var="ticd"> --%>
+					  
 					  <div class="list-group" id="dateTab" role="tablist">
 					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
-					      <a class="list-group-item list-group-item-action  list-group-item-date" id="list-day15-list" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >15(화)<input type="hidden"  value="15"/></a>
-					      <a class="list-group-item list-group-item-action  list-group-item-date" id="list-day16-list" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >16(수)<input type="hidden"  value="16"/></a>
-					      <a class="list-group-item list-group-item-action  list-group-item-date" id="list-day17-list" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >17(목)<input type="hidden"  value="17"/></a>
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.day }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
+					      15(화)<input type="hidden" class="hiddenDate" value="15"/></a>
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.day }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
+					      16(수)<input type="hidden" class="hiddenDate" value="16"/></a>
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.day }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day17" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >
+					      17(목)<input type="hidden" class="hiddenDate" value="17"/></a>
 					    </div>			
 					   </div>
 					  </div>
@@ -139,34 +137,13 @@
 						<p style="text-align: center;">시간선택4</p>
 					    <div class="tab-content" id="nav-tabContent listLoc"> 	
 							<div class="tab-pane fade show active" id="timeList" role="tabpanel" aria-labelledby="list-time">
-							<c:forEach items="${ticketday}" var="tday">	
-							<c:if test="${tday.day eq 15 }">
-							<ul>
-							<li><a href="getdate?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&day=15" >
-								<!-- 에이태그 사용X 어떻게 수정할까..?
-								1안. 겟데이트를 티켓jsp에 추가로 넣어서 붙여넣기..? 
-								2안. 모든데이터 한꺼번에
-								 -->
-								<span> 
-					            ${tday.room_name }
-					            </span>
-					            <span>
-					            ${tday.location_name }
-					            </span>
-					            <span>
-					            ${tday.starttime }
-					            </span>
-					            <span>
-					            ${tday.max_seat }
-					            </span>
-					            <span>
-					            ${tday.start_date }
-					            </span>
-							</a></li>
-							</ul> 
-							</c:if> 
-							</c:forEach>
-					      <hr>
+							
+							<!-- 티켓 타임 내역 이 안으로 넣었음 -->
+							<div id="tickettime">
+   				
+  							</div>
+
+					      <hr> 
 					   
 					    </div>
 					  </div>
@@ -182,43 +159,39 @@
 		 	var locId = "" 	//영화관 id
 		 	var date = ""	//선택한 날짜
 		 	
-		 	/* $(document).one('ready',function () {
-		 		$('#locTap').hide();	//페이지 처음 불러올때 지역만 보임 
-			}) */
 			
-			
-			//영화 누른 밸류 가져오기  (영화 선택 중복 방지)
+			//영화 누른 밸류 가져오기  
 			$('.list-group-item-movie').click(function() {
-				
+				//(영화 선택 중복 방지)
 				$('.list-group-item-movie').each( function(i) {
 		               $(this).removeClass('active');
 		            })
 		            $(this).addClass('active');
 				
-				$(this).siblings().append('hihihihi');
-				//$(this).addClass('active');
+				$(this).siblings().append('movie');
+				//$(this).addClass('active') 
 				console.log($(this).children('#movieTitle').text());//타이틀 가져오기
 				console.log($(this).children('input').val()); //콘솔에 맞게 입력되었는지 확인 후 
-				movieCd = $(this).children('input').val(); // 값 지정해주기
+				movieCd = $(this).children('input').val(); //값 지정해주기
 				console.log('값넣음 '+movieCd);
 			})
 			
-			//지역 누른 밸류 가져오기 (지역 선택 중복 방지)
+			//지역 누른 밸류 가져오기 
 			$('.list-group-item-local').click(function() {
 				//영화관 값 없음 -> 지역 선택 안 됨
 				//영화관 값 없음  or 지역 값 없음 -> 영화관 선택 안 됨
 				//영화관 값 없음  or 지역 값 없음 or 영화관 값 없음 -> 날짜 선택 안 됨
 				
-				//상영관을 전부 히든 혹은 display=none
+				//상영관을 전부 히든 or display=none
 				//지역을 선택하면 안의 input에서 value를 가져옴
-				//가져온 value에 해당하는  
-				//hidden 속성 없애기 or display = true 해야할 것 같음
+				//가져온 value에 해당하는   
+				//hidden 속성 없애기 or display = true 해야함
 				// +) hidden으로 하면 공간은 그대론데 사라지는거라 display:none  <-> block로 구현해보기
 				
 				if(movieCd == '' || movieCd == null){
 					alert('영화를 선택하세요');
 					$(this).removeClass('active');
-				}else{
+				}else{  //(지역 선택 중복 방지)
 					$(this).addClass('active').siblings().removeClass('active');
 					console.log($(this).text());
 					console.log($(this).children().val()); 
@@ -229,6 +202,7 @@
 					$('.theaterId-1').each(function (i) {
 						$('.theaterId-1')[i].style.display='block';
 					})
+					
 					$('.theaterId-2').each(function (i) {
 						$('.theaterId-2')[i].style.display='none';
 					})
@@ -243,14 +217,15 @@
 					
 					$('.theaterId-5').each(function (i) {
 						$('.theaterId-5')[i].style.display='none';
-					})
-						
+					})	
+					
 				}
 				
 				if(theaterId==2){
 					$('.theaterId-1').each(function (i) {
 						$('.theaterId-1')[i].style.display='none';
 					})
+					
 					$('.theaterId-2').each(function (i) {
 						$('.theaterId-2')[i].style.display='block';
 					})
@@ -273,6 +248,7 @@
 					$('.theaterId-1').each(function (i) {
 						$('.theaterId-1')[i].style.display='none';
 					})
+					
 					$('.theaterId-2').each(function (i) {
 						$('.theaterId-2')[i].style.display='none';
 					})
@@ -295,6 +271,7 @@
 					$('.theaterId-1').each(function (i) {
 						$('.theaterId-1')[i].style.display='none';
 					})
+					
 					$('.theaterId-2').each(function (i) {
 						$('.theaterId-2')[i].style.display='none';
 					})
@@ -317,6 +294,7 @@
 					$('.theaterId-1').each(function (i) {
 						$('.theaterId-1')[i].style.display='none';
 					})
+					
 					$('.theaterId-2').each(function (i) {
 						$('.theaterId-2')[i].style.display='none';
 					})
@@ -338,8 +316,13 @@
 			})
 			
 
-			//상영관 누른 밸류 가져오기  (상영관 선택 중복 방지)
+			//상영관 누른 밸류 가져오기  
 			$('.list-group-item-theater').click(function() {
+				//(상영관 선택 중복 방지)
+				$('.list-group-item-theater').each( function(i) {
+		               $(this).removeClass('active');
+		            })
+		            $(this).addClass('active');
 				
 				if((movieCd == '' || movieCd == null) || (theaterId == '' || theaterId == null)){
 					alert('지역을 선택하세요');
@@ -352,14 +335,12 @@
 				}
 			})
 					
-			/* $(document).one('ready',function () {
-		 		$('#dateTap').hide();	//페이지 처음 불러올때 지역만 보임 
-			}) */
 		
-		 	//날짜가져오기 (날짜 선택 중복 방지)
+		 	//날짜가져오기 
 			 $('.list-group-item-date').click(function() {
-				 
+				 //(날짜 선택 중복 방지)
 				 $('.list-group-item-date').each( function(i) {
+					 
 		               $(this).removeClass('active');
 		            })
 		            $(this).addClass('active');
@@ -392,10 +373,49 @@
 			    tabTrigger.show()
 			    
 			  })
-			})  */
+			})  
+			*/
 	
-	
+			$('a.list-group-item-date').click(function(e) {
+				//e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미	//이거 안넣으면 a태그 페이지 바뀜
+		
+			})
+			
+			$(function() {
+				$('.list-group-item-date').on('click', tickettime);
+				
+			});
+			
+			function tickettime() {
+				var getdate = $(this).children('input.hiddenDate').val(); //hiddenDate 닐짜값 가져오기
+				console.log("getdate : " + getdate);
+				$.ajax({
+			        type : "GET",
+			        url : "getdate",
+			        contentType: "application/json; charset=UTF-8",
+			        data : {
+			        	'movieCd' : movieCd,
+			        	'theaterId' : theaterId,
+			        	'locId' : locId,
+			        	'date' : getdate
+			        },
+			        success : function(mv) {
+			        	$("#tickettime").html(mv);
+					},
+			        error   : function(mv) {
+			        	
+			        	for ( var i = 0 in mv){
+			        		console.log(mv[i].day); //day, getdate으로 수정했눈데도 안 됨
+			        	}
+						
+						alert('에러');
+					}
+			    }); 
+			}
+				
+			
 	</script>
+	
 		</div>
 			<div style="clear: both;">
 				<c:import url="../ticket/ticketbuy.jsp"></c:import>

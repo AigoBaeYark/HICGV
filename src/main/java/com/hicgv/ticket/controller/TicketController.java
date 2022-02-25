@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hicgv.movies.dto.MoviesDto;
 import com.hicgv.theater.dto.TheaterDto;
@@ -70,8 +71,7 @@ public class TicketController {
 		}
 		model.addAttribute("theaterlocal", ticketService.getTheaterLocal());
 	
-		
-		
+	
 		return "ticket/ticket";
 		
 	}
@@ -79,22 +79,23 @@ public class TicketController {
 	/*3.영화 상영날짜, 4.영화 시간선택 */
 	
 	//3번
-	/*날짜시간 세분화*/
-	@RequestMapping("/getdate")
+	/*날짜시간 세분화 */
+	@RequestMapping(value = "/getdate")
 	public String getdate(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by getdate() > =======");
 		
-		String movieid = request.getParameter("movieid");
-		String theaterid = request.getParameter("theaterid");
-		String locid = request.getParameter("locid");
-		String tday = request.getParameter("day");
+		String movieid = request.getParameter("movieCd");
+		String theaterid = request.getParameter("theaterId");
+		String locid = request.getParameter("locId");
+		String tday = request.getParameter("date");
 		
 		System.out.println("movieid : " + movieid);
 		System.out.println("theaterid : " + theaterid);
 		System.out.println("locid : " + locid);
 		System.out.println("tday : " + tday);
 		
-		if (movieid == null)
+		//JS로 값 받아오기 전에 임의의 값을 넣어서 test함
+		/*if (movieid == null)
 			movieid = "20223278"; //극장판주술회전 (가나다 순 중 젤 위)
 		if (theaterid == null)
 	        theaterid = "1"; //서울코드 (지역순)
@@ -106,59 +107,72 @@ public class TicketController {
 	    System.out.println("movieid2 : " + movieid);
 		System.out.println("theaterid2 : " + theaterid);
 		System.out.println("locid2 : " + locid);
-		System.out.println("tday2 : " + tday);
+		System.out.println("tday2 : " + tday);*/
 		
-		Map<String, String> sendDataMap = new HashMap<String, String>();
+	
+		HashMap<String, String> sendDataMap = new HashMap<String, String>();
 		sendDataMap.put("movieid", movieid);
 		sendDataMap.put("theaterid", theaterid);
 		sendDataMap.put("locid", locid);
 		sendDataMap.put("tday", tday);
 		
-		/*sendDataMap.put("movieid", "20210087");
+	
+		/* test
+		sendDataMap.put("movieid", "20210087");
 		sendDataMap.put("theaterid", "1");
 		sendDataMap.put("locid", "103");
 		sendDataMap.put("tday", "15");*/
-		
+	
 		
 		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
 		
 		//영화 선택시간
 		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectDate(sendDataMap);
-		
-		
+
 			for (Map<String, Object> timeMaplist : timeListMap) {
-				System.out.println(timeMaplist.get("day"));
-				System.out.println(timeMaplist.get("endTime"));
+				System.out.println("getdate year : "+timeMaplist.get("year"));
+				System.out.println("getdate month : "+timeMaplist.get("month"));
+				System.out.println("getdate hour : "+timeMaplist.get("hour"));
+				System.out.println("getdate minute : "+timeMaplist.get("minute"));
+				System.out.println("getdate endTime : "+timeMaplist.get("endTime"));
+				System.out.println("getdate day : "+timeMaplist.get("day"));
+
+	
 			}
 		
 			model.addAttribute("ticketday",timeListMap);
-	
+			//ModelAndView mv = new ModelAndView(); //데이터와 뷰를 동시에 넘기기 가능
+			//mv.setViewName("ticket/tickettime");
+			//mv.addObject("ticketday",timeListMap);
 		return "ticket/tickettime";
 	}
 
 
+	////////////////////////////////////////////
+	
+	
 	//이거는 시트에다가 적을거고 맵핑명 수정할고임 (각각하나씩)
 	@RequestMapping("/tictimeSelect2")
 	public String timeSelect2(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by tictimeSelect2() > =======");
 		
-		String movieid = request.getParameter("movieid");
-		String theaterid = request.getParameter("theaterid");
-		String locid = request.getParameter("locid");
-		String tday = request.getParameter("day");
-		String starttime = request.getParameter("starttime");
-		
-		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
-		
-		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
-		
-		//ArrayList<TicketListDto> tickettiem=dao.tickettime(movieid, theaterid, locid, tday, starttime); //괄호안에 다가 날짜 쓸 예정
-		String year="";
-		String month="";
-		String day="";
-		String hour="";
-		String minute="";
-		
+//		String movieid = request.getParameter("movieid");
+//		String theaterid = request.getParameter("theaterid");
+//		String locid = request.getParameter("locid");
+//		String tday = request.getParameter("day");
+//		String starttime = request.getParameter("starttime");
+//		
+//		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
+//		
+//		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
+//		
+//		//ArrayList<TicketListDto> tickettiem=dao.tickettime(movieid, theaterid, locid, tday, starttime); //괄호안에 다가 날짜 쓸 예정
+//		String year="";
+//		String month="";
+//		String day="";
+//		String hour="";
+//		String minute="";
+//		
 //		for (TicketListDto ticketListDto : tickettiem) {
 //			String startTime=ticketListDto.getStart_date();
 //			System.out.println("startTime : "+startTime);
@@ -185,8 +199,8 @@ public class TicketController {
 //			}
 //			
 //			Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
-//			// LinkedHashMap  HashMap 의 순서를 유지한다.
-//			
+////			// LinkedHashMap  HashMap 의 순서를 유지한다.
+////			
 //			timeMap.put("year", year);
 //			timeMap.put("month", month);
 //			timeMap.put("day", day);
@@ -202,13 +216,13 @@ public class TicketController {
 //			
 //			timeListMap.add(timeMap);
 //		}
-			
-			for (Map<String, Object> timeMaplist : timeListMap) {
-				System.out.println(timeMaplist.get("day"));
-				System.out.println(timeMaplist.get("endTime"));
-			}
-		
-			model.addAttribute("tickettime",timeListMap);
+//			
+//			for (Map<String, Object> timeMaplist : timeListMap) {
+//				System.out.println(timeMaplist.get("day"));
+//				System.out.println(timeMaplist.get("endTime"));
+//			}
+//		
+//			model.addAttribute("tickettime",timeListMap);
 	
 		return "ticket/ticketseat";
 	}

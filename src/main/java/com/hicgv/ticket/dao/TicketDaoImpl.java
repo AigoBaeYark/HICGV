@@ -47,9 +47,10 @@ public class TicketDaoImpl implements TicketDao{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> getTicketday(Map<String, String> sendDataMap) {
-		List<TicketListDto> dto = sqlSession.selectList(nameSpace+".getTicketday",sendDataMap);
-		System.out.println("sendData(DaoImpl) : "+sendDataMap.get("movieid"));
+	public ArrayList<TicketListDto> getTicketday(HashMap<String, String> sendDataMap) {
+		List<TicketListDto> dto = new ArrayList<TicketListDto>();
+		dto = sqlSession.selectList(nameSpace+".getTicketday",sendDataMap);
+		System.out.println("sendData(DaoImpl) : "+sqlSession.selectList(nameSpace+".getTicketday",sendDataMap).size());
 		for (TicketListDto ticketListDto : dto) {
 			System.out.println(ticketListDto.getAge_limit());
 		}
