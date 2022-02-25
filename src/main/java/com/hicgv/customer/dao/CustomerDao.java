@@ -22,7 +22,7 @@ public interface CustomerDao {
 
 	public String getEmail(String id);
 	
-
+	public String getQuestion(String id, String email);
 	// 값을 받아서 양방향으로 이동해야할 땐 리턴값을 dto
 	/*public void modify(String id, String password, String phone_number, String nickname, String gender,
 			String date_birth, String location, String email, String question, String answer);*/
@@ -34,7 +34,7 @@ public interface CustomerDao {
 	
 	//비밀번호 분실시 비번 재설정
 	public void resetPw(String id, String password);
-	public String getQuestion(String id, String email);
+	
 	public String getAnswer(String answer);
 	//아이디찾기를 위한 쿼리문  > 입력한 전화번호로 디비의 전화번호를 찾고 그 전화번호와 생년월일을 비교하여 아이디를 찾음 
 	public String getPhone_number(String phone_number);

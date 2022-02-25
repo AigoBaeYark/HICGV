@@ -16,12 +16,12 @@
 <div style="height: 300px;">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
-${getId }
+
 
 <form action="resetPwForm" method="post">
   <div class="form-group">
-    <label for="exampleInputPassword1">***질문에 맞는 답을 입력하세요***</label> <br /> 
-    <label for="">************${question }*************</label>
+    <label for="exampleInputPassword1">***** ${id }님 질문에 알맞은 답을 입력하세요. *****</label> <br /> 
+    <label for="">************ ${question } *************</label>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">답을 입력해주세요</label>
@@ -29,7 +29,7 @@ ${getId }
   </div>
   <div class="form-group">
 
-	<input type="hidden" name = "getId" value="${getId }"/> <!--히든값을 주면 화면에서 표시되지 않음  -->
+	<input type="hidden" name = "id" value="${id }"/> <!--히든값을 주면 화면에서 표시되지 않음  -->
   <button type="submit" class="btn btn-default">입력</button>
   <button type="button" class="btn btn-default"><a href="home"></a>취소</button>
   </div>

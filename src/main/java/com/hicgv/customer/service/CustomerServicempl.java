@@ -28,7 +28,7 @@ public class CustomerServicempl implements CustomerService {
 
 	@Inject
 	CustomerDao dao;
-	
+
 	// 맵을 활용해서 입력받은 값으로 쿼리문 실행하고 컨트롤러로 이동
 	@Override
 	public void joinCustomer(CustomerDto customerDto) {
@@ -103,10 +103,10 @@ public class CustomerServicempl implements CustomerService {
 	@Override
 	public void modify(CustomerDto customerDto) {
 		System.out.println("============ServiceImpl modify================");
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("id",customerDto.getId());
+
+		map.put("id", customerDto.getId());
 		map.put("pw", customerDto.getPassword());
 		map.put("phone_number", customerDto.getPhone_number());
 		map.put("nickname", customerDto.getNickname());
@@ -117,7 +117,6 @@ public class CustomerServicempl implements CustomerService {
 		map.put("question", customerDto.getQuestion());
 		map.put("answer", customerDto.getAnswer());
 
-		
 		System.out.println("map id :" + map.get("id"));
 		System.out.println("map pw :" + map.get("pw"));
 		System.out.println("map phone_number :" + map.get("phone_number"));
@@ -125,10 +124,10 @@ public class CustomerServicempl implements CustomerService {
 		System.out.println("map gender :" + map.get("gender"));
 		System.out.println("map date_birth :" + map.get("date_birth"));
 		System.out.println("map location :" + map.get("location"));
-		System.out.println("map email :" + map.get("email"));	
+		System.out.println("map email :" + map.get("email"));
 		System.out.println("map question :" + map.get("question"));
 		System.out.println("map answer :" + map.get("answer"));
-		
+
 		dao.modify(customerDto);
 	}
 
@@ -136,9 +135,63 @@ public class CustomerServicempl implements CustomerService {
 	public void delete(String id, String password) {
 		System.out.println("delete ckid : " + id);
 		System.out.println("delete ckpw : " + password);
+
+		if (id == null || password == null) {
+			System.out.println("아이디와 비밀번호가 일치하지 않습니다.");
+		}
 		dao.delete(id, password);
-		
+		System.out.println("아이디와 비밀번호가 일치합니다. 회원탈퇴를 요청합니다.");
 	}
 
+	@Override
+	public String forgetPw(String id, String email) {
+		System.out.println("=========pass by forgetPw ServeceImp()=============");
+		System.out.println("ck id : " + id);
+		System.out.println("ck email : " + email);
+		dao.loginCheckId(id);
+		dao.getEmail(id);
+		System.out.println("id : " + dao.loginCheckId(id));
+		System.out.println("email : " + dao.getEmail(id));
+		if (id.equals(dao.loginCheckId(id)) && email.equals(dao.getEmail(id))) {
+			System.out.println("아이디와 이메일이 일치합니다.");
+			System.out.println("질문확인 화면으로 이동합니다.");
 
+			return "회원확인성공";
+		}
+		System.out.println("아이디와 비밀번호가 일치하지 않습니다.");
+		return "회원확인실패";
+		/* return dao.getEmail(id); */
+
+	}
+
+	@Override
+	public String getQuestion(String id, String email) {
+
+		return dao.getQuestion(id, email);
+	}
+
+	@Override
+	public String getAnswer(String answer) {
+		if (answer.equals(dao.getAnswer(answer))) {
+		System.out.println("답 : "+dao.getAnswer(answer));
+			System.out.println("정답이 일치합니다.");
+			return "정답";
+		}
+		System.out.println("정답이 아닙니다.");
+		
+		return "정답이 아닙니다.";
+	}
+	@Override
+	public void resetPw(String id, String password) {
+		System.out.println("==========serviceImpl resetPw===========");
+		
+		dao.resetPw(id, password);		
+	}
+
+	@Override
+	public String forgetId(String phone_number, String date_birth) {
+		System.out.println("==========service forgetId==========");
+		
+		return dao.forgetId(phone_number, date_birth);
+	}
 }
