@@ -37,8 +37,6 @@ public class MoviesController {
 	public String movies(Model model) {
 		System.out.println("========= < pass by movies() > =========");
 
-		
-
 		model.addAttribute("movies",moviesService.getMoviesList()); 
 		model.addAttribute("dateviewer", moviesService.getDateViewer());
 		model.addAttribute("poster", moviesService.getMoviePoster());

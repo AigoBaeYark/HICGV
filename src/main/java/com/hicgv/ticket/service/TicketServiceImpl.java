@@ -40,22 +40,23 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public ArrayList<Map<String, Object>> getSelectDate(Map<String, String> sendDataMap) {
+	public ArrayList<Map<String, Object>> getSelectDate(HashMap<String, String> sendDataMap) {
 		
 		System.out.println("getSelectDate(serviceImpl) : "+sendDataMap.get("movieid"));
 		ArrayList<Map<String, Object>> timeListMap =  new ArrayList<Map<String, Object>>();
 		
 		ArrayList<TicketListDto> requestList = dao.getTicketday(sendDataMap);
-		for (TicketListDto ticketListDto : requestList) {
-			System.out.println("시간 : "+ticketListDto.getDay());
-		}
-		
+//		for (TicketListDto ticketListDto : requestList) {
+//			System.out.println("시간 : "+ticketListDto.getDay());
+//		}
+//		
 		String year="";
 		String month="";
 		String day="";
 		String hour="";
 		String minute="";
-		
+				
+		 
 		for (TicketListDto ticketListDto : requestList) {
 			String startTime=ticketListDto.getStart_date();
 			System.out.println("startTime : "+startTime);
@@ -81,6 +82,8 @@ public class TicketServiceImpl implements TicketService{
 				endTime +=100; //1시간추가
 			}
 			
+			//roomName=ticketListDto.getRoom_name();
+
 			Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
 			// LinkedHashMap  HashMap 의 순서를 유지한다.
 			
@@ -91,12 +94,23 @@ public class TicketServiceImpl implements TicketService{
 			timeMap.put("minute", minute);
 			timeMap.put("endTime", endTime);
 			
+			timeMap.put("room_name", ticketListDto.getRoom_name());  //'n'관
+			timeMap.put("location_name", ticketListDto.getLocation_name()); //상영관이름
+			timeMap.put("max_seat", ticketListDto.getMax_seat()); //좌석수
+			timeMap.put("running_time", ticketListDto.getRunning_time()); //러닝타임
+			
+			
 			System.out.println("year : "+ year);
 			System.out.println("month : "+ month);
-			System.out.println("day"+ day);
-			System.out.println("hour"+ hour);
-			System.out.println("minute"+ minute);
-			System.out.println("endTime"+  endTime);
+			System.out.println("day : "+ day);
+			System.out.println("hour : "+ hour);
+			System.out.println("minute : "+ minute);
+			System.out.println("endTime : "+  endTime);
+			System.out.println("room_name : "+  ticketListDto.getRoom_name());
+			System.out.println("location_name : "+  ticketListDto.getLocation_name());
+			System.out.println("max_seat : "+  ticketListDto.getMax_seat());
+			System.out.println("running_time : "+ ticketListDto.getRunning_time());
+	
 			
 			timeListMap.add(timeMap);
 		}

@@ -17,8 +17,6 @@ public interface CustomerDao {
 	public CustomerDto loginCheckPw(String id, String password);
 	
 	public CustomerDto myCGV(String id);
-	
-	public void delete(String id, String password);
 
 	public String getEmail(String id);
 	
@@ -31,7 +29,9 @@ public interface CustomerDao {
 	/*public void join(String id, String password, String name, String phone_number, String nickname, String gender,
 			String date_birth, String location, String email, String question, String answer);*/
 
-	
+	public void delete(String id, String password);
+
+
 	//비밀번호 분실시 비번 재설정
 	public void resetPw(String id, String password);
 	public String getQuestion(String id, String email);

@@ -16,10 +16,10 @@ public class TicketListDto {
 	private String theater_loc;
 	private int location_id;
 	private String location_name;
-	private String day; //substr(start_date, 9, 2) as day 영화 날짜 자른것
+	private String day; //TO_CHAR (START_DATE, 'dd') AS DAY 영화 날짜 자른것
     private String start_date;
     private String room_name;
-    private String starttime; //substr(start_date, 12, 6) as starttime 상영시작시간 자른것
+    private String starttime; //TO_CHAR(START_DATE, 'hh:MI') AS STARTTIME 상영시작시간 자른것
     private int running_time;
     private int max_seat;
 

@@ -155,6 +155,11 @@ public class CustomerController {
 	@RequestMapping("/modifyForm")
 	public String modifyForm(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by modifyForm()=============");
+		/*
+		 * String id = request.getParameter("id"); CustomerDao dao =
+		 * sqlSession.getMapper(CustomerDao.class); CustomerDto myCGV =
+		 * dao.myCGV(id); model.addAttribute("myCGV", myCGV);
+		 */
 
 		return "/customer/modifyForm";
 	}
@@ -182,22 +187,47 @@ public class CustomerController {
 
 			cusomerService.modify(customerDto);
 			
+			/*
+			 * HttpSession session = request.getSession();
+			 * 
+			 * // 세션에 담긴 아이디를 가져옴 // 아이디와 비교해서 로그인한 아이디의 필드를 수정해야하니까 String id =
+			 * (String) session.getAttribute("id"); String password =
+			 * request.getParameter("password"); String phone_number =
+			 * request.getParameter("phone_number"); String nickname =
+			 * request.getParameter("nickname"); String gender =
+			 * request.getParameter("gender"); String date_birth =
+			 * request.getParameter("date_birth"); String location =
+			 * request.getParameter("location"); String email =
+			 * request.getParameter("email"); String question =
+			 * request.getParameter("question"); String answer =
+			 * request.getParameter("answer");
+			 * 
+			 * System.out.println(id); System.out.println(password);
+			 * System.out.println(phone_number); System.out.println(nickname);
+			 * System.out.println(gender); System.out.println(date_birth);
+			 * System.out.println(location); System.out.println(email);
+			 * System.out.println(question); System.out.println(answer);
+			 * 
+			 * // id 세션처리해야 함 CustomerDao dao =
+			 * sqlSession.getMapper(CustomerDao.class); dao.modify(id, password,
+			 * phone_number, nickname, gender, date_birth, location, email,
+			 * question, answer);
+			 */
 	}
 			return "/customer/myCGV";
 		
 	}// 회원탈퇴 화면으로 이동
-	@RequestMapping("/customerDeleteForm")
-	public String customerDelete(HttpServletRequest request, Model model,HttpSession httpSession) {
-		System.out.println("=========pass by customerDeleteForm()=============");
-		
-		session.getAttribute("id");
-		System.out.println("session id :"+session.getAttribute("id"));
-		/*String id = request.getParameter("id");
-		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		CustomerDto myCGV = dao.myCGV(id);*/
-		model.addAttribute("sessionId", session.getAttribute("id"));
 
-		return "/customer/customerDeleteForm";
+	@RequestMapping("/customerDelete")
+	public String customerDelete(HttpServletRequest request, Model model) {
+		System.out.println("=========pass by customerDelete()=============");
+
+		String id = request.getParameter("id");
+		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+		CustomerDto myCGV = dao.myCGV(id);
+		model.addAttribute("myCGV", myCGV);
+
+		return "/customer/customerDelete";
 	}// 회원탈퇴 화면에서 탈퇴 진행
 
 	@RequestMapping("/delete")
@@ -209,17 +239,15 @@ public class CustomerController {
 		String password = request.getParameter("password");
 		System.out.println("id :" + id);
 		System.out.println("password :" + password);
-		
-		cusomerService.delete(id, password);
-		/*CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
+
+		CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
 		dao.delete(id, password);
 		HttpSession session = request.getSession();
 		System.out.println("id");
 		// 새션 변수 개별 삭제
 		// session.removeAttribute("id");
-		// 세션초기화*/
-		/*session.invalidate();
-		System.out.println("정상적으로 탈퇴되었습니다.");*/
+		// 세션초기화
+		session.invalidate();
 		return "home";
 	} // 비밀번호 찾기 폼으로 이동
 

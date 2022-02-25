@@ -21,7 +21,7 @@ public interface TicketDao {
 	public ArrayList<TLocationDto> getTheaterLocal(); //영화관리스트
 
 	/*이거 하나로 같이 쓸예정*/
-	public ArrayList<TicketListDto> getTicketday(Map<String, String> sendDataMap);
+	public ArrayList<TicketListDto> getTicketday(HashMap<String, String> sendDataMap);
 	
 	public ArrayList<TicketListDto> getTickettime(String movie_id, String theater_id, String location_id, String day, String starttime);
 	

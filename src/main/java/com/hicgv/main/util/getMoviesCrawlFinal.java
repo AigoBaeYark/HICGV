@@ -9,9 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -423,23 +421,13 @@ public class getMoviesCrawlFinal {
 	}
 
 	// 영화진흥위원회
-	//영화 배우 검색할 Url 및 Parse 만들기
-	// https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do	--원래 사이트 주소
-	// http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleInfo.json	--요청 주소 + key + 영화인코드(peopleCd)
-	//	영화인 상세정보 - 영화인코드 peopleCd 가 필요함
-	
-	//	https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do	-- 원래 사이트 주소
-	//	http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json --요청주소 +key + 영화인이름으로 검색가능(peopleNm)
-	//	영화인목록 - 여기서 영화인 이름 검색  + 그 영화인에 검색한 영화가 있으면 추가....?
-	//	여기서 repRoleNm으로 배우, 감독 분류가능
-	// filmoNames 로 필모리스트 뽑기가능 다작이면 듄|스파이더맨|어벤져스 이런식으로 한번에 나누어져 있어서 split으로 제목만 뽑아낼 수 있을수도?
 	
 	//영화코드로 검색
-	public Map<String, Object> searchToMovieId(String movieId) {
+	public void searchToMovieId(String movieId) {
 		this.movieId=movieId;
 		String movieIdResult = getMovieUrlJson(getMovieIdApiUrl());
 		System.out.println("movieid : "+ movieIdResult);
-		return parseMovieIdData(movieIdResult);
+		parseMovieIdData(movieIdResult);
 	}
 	
 	//일별 랭크
@@ -543,120 +531,27 @@ public class getMoviesCrawlFinal {
 	
 	
 	//영화코드로 검색하여 그 영화 하나에 대한 정보
-	private Map<String, Object> parseMovieIdData(String movieIdResult) {
+	private void parseMovieIdData(String movieIdResult) {
 		//영화배우가 여러명이면 여러명 다 담아야 함
-		//배열로 가져와야 할 거 장르, 배우, 감독
-		//영화감독도 여러명일수도?
 		Map<String, Object> movieIdMap = new HashMap<String, Object>();
-		List<String> actorList = new LinkedList<String>();			//한글이름 넣을 리스트
-		List<String> actorEnList = new LinkedList<String>();		//영어이름 넣을 리스트
-		List<String> genreList = new LinkedList<String>(); 			//장르 넣을 리스트
-		
+		List<String> actorList = new ArrayList<String>();
 		
 		try {
 			
 			JSONObject jsonObject = new JSONObject(movieIdResult.toString());
-			JSONObject movieInfoResultObject = (JSONObject) jsonObject.get("movieInfoResult");
-			JSONObject movieInfoObject  = (JSONObject) movieInfoResultObject.get("movieInfo");
-			JSONArray movieInfoJsonArray = movieInfoObject.getJSONArray("actors");	//이거 돌려쓰면서 배열이 따로 필요한 값들은 이걸로 넣어줌
-			
-			System.out.println("movieNm : "+movieInfoObject.getString("movieNm"));
-			movieIdMap.put("movie_id", movieInfoObject.getString("movieCd"));		//영화코드
-			movieIdMap.put("title_kor", movieInfoObject.getString("movieNm"));		//영화 한글 이름
-			movieIdMap.put("title_eng", movieInfoObject.getString("movieNmEn"));	//영화 영어 이름
-			movieIdMap.put("running_time", movieInfoObject.getString("showTm"));	//상영시간
-			//개봉일이 20210911 이런식으로와서 변환해줘야함
-			
-			if(movieInfoObject.getString("openDt").equals("") || movieInfoObject.getString("openDt").equals(null)) {
-				movieIdMap.put("opening_date", movieInfoObject.get("prdtYear"));
-			}else {
-				SimpleDateFormat firstFormat = new SimpleDateFormat("yyyyMMdd");
-				SimpleDateFormat secondFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date beforeDateFormat = firstFormat.parse(movieInfoObject.getString("openDt"));
-				String opening_date = secondFormat.format(beforeDateFormat);
-				movieIdMap.put("opening_date", opening_date);	//개봉일
+			JSONObject resultObject = (JSONObject) jsonObject.get("movieInfoResult");
+			JSONObject resultObject2  = (JSONObject) resultObject.get("movieInfo");
+			JSONArray actorsJson = resultObject2.getJSONArray("actors");
+			for (int i = 0; i < actorsJson.length(); i++) {
+				
 			}
 			
 			
 			
-			
-			//movieIdMap.put("age_limit", movieInfoObject.getString("watchGradeNm"));	//연령제한 배열로 가져와야함... audits 배열로 받아서 watchGradeNm이라는 이름으로 받아야됨
-			//movieIdMap.put("movie_id", movieInfoObject.getString("movieNm"));
-			
-			
-			
-			
-			for (int i = 0; i < movieInfoJsonArray.length(); i++) {		//영화배우 담을 반복문
-				actorList.add(movieInfoJsonArray.getJSONObject(i).getString("peopleNm"));
-				actorEnList.add(movieInfoJsonArray.getJSONObject(i).getString("peopleNmEn"));
-
-				System.out.println("영화배우 : "+movieInfoJsonArray.getJSONObject(i).getString("peopleNm"));
-			}
-			movieIdMap.put("actors", actorList);
-			movieIdMap.put("actorsEn", actorEnList);
-			
-			
-			movieInfoJsonArray = movieInfoObject.getJSONArray("directors");
-			if(movieInfoJsonArray.length() <= 1) {	//감독은 한명일수도 있어서 처리
-				movieIdMap.put("director", movieInfoJsonArray.getJSONObject(0).get("peopleNm"));
-				movieIdMap.put("directorEn", movieInfoJsonArray.getJSONObject(0).get("peopleNmEn"));
-				System.out.println("영화 한명감독 : "+movieInfoJsonArray.getJSONObject(0).getString("peopleNm"));
-			}else {
-				List<String> direcotsList = new LinkedList<String>();
-				List<String> direcotsEnList = new LinkedList<String>();
-				for (int i = 0; i < movieInfoJsonArray.length(); i++) {		//영화감독 담을 반복문
-					System.out.println(movieInfoJsonArray.length());
-					direcotsList.add(movieInfoJsonArray.getJSONObject(i).getString("peopleNm"));
-					direcotsEnList.add(movieInfoJsonArray.getJSONObject(i).getString("peopleNmEn"));
-					System.out.println("영화감독 : "+movieInfoJsonArray.getJSONObject(i).getString("peopleNm"));
-				}
-				movieIdMap.put("directors", direcotsList);
-				movieIdMap.put("directorsEn", direcotsEnList);
-			}
-			
-			movieInfoJsonArray = movieInfoObject.getJSONArray("genres");
-			if(movieInfoJsonArray.length() <= 1) {	//장르가 한가지일수 있어서 처리
-				movieIdMap.put("genre", movieInfoJsonArray.getJSONObject(0).get("genreNm"));
-				System.out.println("영화 한 장르 : "+movieInfoJsonArray.getJSONObject(0).getString("genreNm"));
-			}else {
-				List<String> genresList = new LinkedList<String>();
-				for (int i = 0; i < movieInfoJsonArray.length(); i++) {		
-					System.out.println(movieInfoJsonArray.length());
-					genresList.add(movieInfoJsonArray.getJSONObject(i).getString("genreNm"));
-					System.out.println("영화 여러장르 : "+movieInfoJsonArray.getJSONObject(i).getString("genreNm"));
-				}
-				movieIdMap.put("genres", genresList);
-			}
-			
-			movieInfoJsonArray = movieInfoObject.getJSONArray("nations");
-			if(movieInfoJsonArray.length() <= 1) {	//제작국가가 하나일수 있어서 처리
-				movieIdMap.put("nation", movieInfoJsonArray.getJSONObject(0).get("nationNm"));
-				System.out.println("제작국가 하나 : "+movieInfoJsonArray.getJSONObject(0).getString("nationNm"));
-			}else {
-				List<String> nationsList = new LinkedList<String>();
-				for (int i = 0; i < movieInfoJsonArray.length(); i++) {		
-					System.out.println(movieInfoJsonArray.length());
-					nationsList.add(movieInfoJsonArray.getJSONObject(i).getString("nationNm"));
-					System.out.println("제작국가 여럿 : "+movieInfoJsonArray.getJSONObject(i).getString("nationNm"));
-				}
-				movieIdMap.put("nations", nationsList);
-			}
-			
-			//관람등급은 무조건 배열안에 있어서 배열로 넣은다음 watchGradeNm 으로 빼야함
-			movieInfoJsonArray = movieInfoObject.getJSONArray("audits");
-			String age_limit = movieInfoJsonArray.getJSONObject(0).get("watchGradeNm").toString();
-			
-			movieIdMap.put("age_limit", movieInfoJsonArray.getJSONObject(0).get("watchGradeNm"));
-			
-			
-			
-			
-			return movieIdMap;
 			
 		} catch (Exception e) {
 			throw new RuntimeException("movieId API 데이터 불러오기 실패", e);
 		}
-		
 		
 		
 		
