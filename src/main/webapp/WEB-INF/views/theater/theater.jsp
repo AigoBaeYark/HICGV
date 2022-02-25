@@ -11,7 +11,7 @@
 <title>hicgv/theater</title>
 </head>
 <body>
-<div > 
+<div> 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 
 <div class="row" id="theaterName">
@@ -30,7 +30,7 @@
       <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 1 }">
             <ul>
-               <li><a href="theater?theaterid=1&locid=${dto.location_id }" >${dto.location_name } </a></li>
+               <li><a href="theater?theaterId=1&locId=${dto.location_id }" >${dto.location_name } </a></li>
             </ul>
           </c:if> 
       </c:forEach>
@@ -39,7 +39,7 @@
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 2 }">
             <ul>
-               <li><a href="theater?theaterid=2&locid=${dto.location_id }">${dto.location_name } </a></li>
+               <li><a href="theater?theaterId=2&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
       </c:forEach>
@@ -48,7 +48,7 @@
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 3 }">
             <ul>
-               <li><a href="theater?theaterid=3&locid=${dto.location_id }">${dto.location_name } </a></li>
+               <li><a href="theater?theaterId=3&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
       </c:forEach>
@@ -57,7 +57,7 @@
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 4 }">
             <ul>
-               <li><a href="theater?theaterid=4&locid=${dto.location_id }">${dto.location_name } </a></li>
+               <li><a href="theater?theaterId=4&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
       </c:forEach>
@@ -66,7 +66,7 @@
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 5 }">
             <ul>
-               <li><a href="theater?theaterid=5&locid=${dto.location_id }">${dto.location_name } </a></li>
+               <li><a href="theater?theaterId=5&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
       </c:forEach>
@@ -77,16 +77,16 @@
 <div>
    <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
       <h4>
-         <span>${locinfo.location_name }</span>
+         <span>${locInfo.location_name }</span>
       </h4>
-<div id="theaterimg" style="background-image: url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
+<div style="background-image: url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
    <div style="background: url('https://img.cgv.co.kr/R2014/images/common/bg/bg_dim80.png') 0 0 repeat; width: 980px; height: 420px;">
       <div>
          <div>
             <div>
-               <strong>
-                  ${locinfo.location_add } <br />
-                  ${locinfo.location_tel }
+               <strong style="color: #eee;">
+                  ${locInfo.location_add } <br />
+                  ${locInfo.location_tel }
                </strong>
             </div>
          </div>
@@ -98,17 +98,53 @@
       <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
    </div>
     <div class="day">
-        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
          <strong>02월 15일 화</strong>
          <input type="hidden" class="hiddenDate" value="20220215"/>
         </a>
-        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
          <strong>02월 16일 수</strong>
          <input type="hidden" class="hiddenDate" value="20220216"/>
         </a>
-        <a href="theaterTimeList?locid=${locinfo.location_id }" class="selTime"> 
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
          <strong>02월 17일 목</strong>
          <input type="hidden" class="hiddenDate" value="20220217"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 18일 금</strong>
+         <input type="hidden" class="hiddenDate" value="20220218"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 19일 토</strong>
+         <input type="hidden" class="hiddenDate" value="20220219"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 20일 일</strong>
+         <input type="hidden" class="hiddenDate" value="20220220"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 21일 월</strong>
+         <input type="hidden" class="hiddenDate" value="20220221"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 22일 화</strong>
+         <input type="hidden" class="hiddenDate" value="20220222"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 23일 수</strong>
+         <input type="hidden" class="hiddenDate" value="20220223"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 24일 목</strong>
+         <input type="hidden" class="hiddenDate" value="20220224"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 25일 금</strong>
+         <input type="hidden" class="hiddenDate" value="20220225"/>
+        </a>
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+         <strong>02월 26일 토</strong>
+         <input type="hidden" class="hiddenDate" value="20220226"/>
         </a>
      </div>
      
@@ -139,20 +175,25 @@
 		});
 		
 		function schTest() {
-			var param = $(this).children('input.hiddenDate').val();
+			var date = $(this).children('input.hiddenDate').val();
 			var url_href=window.location.href;
 			var url=new URL(url_href);
-			var locid=url.searchParams.get('locid');
-			if(locid == null)
-				locid = '101';
-			console.log(param);
+			var locId=url.searchParams.get('locId');
 			
+			if(locId == null)
+				locId = '101';
+			 
 			$.ajax({
 				type : "GET",
-				url : "theaterTimeList?date="+param+"&locid="+locid,
+				url : "theaterTimeList?date="+date+"&locId="+locId,
 				contentType: "application/json; charset=UTF-8",
-				success : function(data) {
+				success : function(data) { // 가로 안에 있는 data는 컨트롤러에서 return받은 값
+					console.log(data);
 					$("#schTest").html(data);
+				},
+				error : function (data) {
+					console.log(data);
+					alert('에  러');
 				}
 			})
 		}
