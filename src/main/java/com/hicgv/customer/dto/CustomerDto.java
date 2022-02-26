@@ -20,10 +20,11 @@ public class CustomerDto {
 	String gender;
 	String date_birth;
 	String location;
-	//Timestamp create_at;
+	Timestamp create_at;
 	String email;
 	int grade;
 	String question;
 	String answer;
 
 }
+

@@ -1,15 +1,16 @@
 package com.hicgv.customer.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
+
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.hicgv.customer.dto.CustomerDto;
@@ -171,6 +172,46 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		return null;
 	}
+//  ==================================관리자페이지 만들기==============================================
+/*	@Override
+	public LinkedList<CustomerDto> customerList(int start,int end) {
+		System.out.println("============customerDao customerList==============");
+		
+		List<CustomerDto> dto = new LinkedList<CustomerDto>();
+		dto = sqlSession.selectList(nameSpace+".customerList");
+		
+		System.out.println("dto");
+		return (LinkedList<CustomerDto>) dto;
+	}
 
+	@Override
+	public void adminWrite(String bName, String bTitle, String bContent) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public CustomerDto contentView(String sbid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void adminDelete(String bid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void adminModify(String bid, String bName, String bTitle, String bContent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int selectBoardTotCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+*/
 }
