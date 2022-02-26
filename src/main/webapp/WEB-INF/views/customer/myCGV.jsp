@@ -83,7 +83,7 @@
 				<button type="submit">개인정보 변경</button>
 				</form>				
 				<button type="submit">
-					<a href="customerDelete?id=${id }">회원탈퇴</a>
+					<a href="customerDeleteForm?id=${id }">회원탈퇴</a>
 				</button>
 				<form action="logout">
 					<button type="submit">로그아웃</button>

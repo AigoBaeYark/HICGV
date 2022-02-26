@@ -2,6 +2,7 @@ package com.hicgv.customer.dao;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -44,10 +45,29 @@ public interface CustomerDao {
 	//myCGV에 가져올 이름 닉네임 등급 아이디 프로필 이미지
 	
 	public String name(String id, String password);
+	
 	public String nickname(String id, String password);
+	
 	public String grade(String id, String password);
+	
 	//public String img(String id, String password);
-	public CustomerDto getCustomerDto(String id);
-
+	
+	public CustomerDto getCustomerDto(String id);	
+	
+//=====================================관리자모드==========================================================
+/*	
+	public LinkedList<CustomerDto> customerList(int start,int end);
+	
+	public void adminWrite(String bName,
+			
+			String bTitle, String bContent);
+	
+	public CustomerDto contentView(String id);
+	
+	public void adminDelete(String bid);
+	
+	public void adminModify(String bid, String bName, String bTitle, String bContent);
+	
+	public int selectBoardTotCount();*/
 
 }
