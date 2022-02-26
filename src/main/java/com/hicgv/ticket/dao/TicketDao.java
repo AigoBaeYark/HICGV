@@ -23,12 +23,10 @@ public interface TicketDao {
 	/*이거 하나로 같이 쓸예정*/
 	public ArrayList<TicketListDto> getTicketday(HashMap<String, String> sendDataMap);
 	
-	public ArrayList<TicketListDto> getTickettime(String movie_id, String theater_id, String location_id, String day, String starttime);
-	
-	
-	
+	public ArrayList<TicketListDto> getSelectMovieInfo(HashMap<String, String> sendDataMap);
 	
 	/*티켓예약배너*/
+	
 	/*public TicketListDto */
 	
 }

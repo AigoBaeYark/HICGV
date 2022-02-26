@@ -4,9 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+<c:import url="../common/header.jsp"></c:import>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -15,13 +15,11 @@
 <link rel="stylesheet" href="resources/css/ticket/ticket.css" />
 
 <title>ticket/ticketseat</title>
-<div style="height: 300px;">
-<c:import url="../common/header.jsp"></c:import>
-</div> 
+
 </head>
 <body>
 
-<style> /* css로 보내줄예정 */
+<style> 
       .seat {
           width: 30px;
           height: 30px;
@@ -31,7 +29,7 @@
           background-color: red;
           color: white;
         }
- </style>
+</style>
     
 
 <!-- Contaniner -->
@@ -44,27 +42,29 @@
 	  <div class="row">
 	    <div class="col-6">
 			<span>인원수</span>
-		   <select class="form-select" aria-label="Default select example">
+			<form name="headcountForm" method="post">
+		   <select id="headcount" name="headcount" onchange="onheadcount(this)">
 		  	<option selected>인원수를 선택해주세요 (명)</option>
-		  	<option value="1">1</option>
-		 	 <option value="2">2</option>
-		  	<option value="3">3</option>
-		  	<option value="4">4</option>
-		 	 <option value="5">5</option>
-		  	<option value="6">6</option>
+		  	<option value="1명">1</option>
+		 	 <option value="2명">2</option>
+		  	<option value="3명">3</option>
+		  	<option value="4명">4</option>
+		 	 <option value="5명">5</option>
+		  	<option value="6명">6</option>
 			</select> 
+			<div id='result'></div>
+			</form>
 		</div>
 	    <div class="col-6">
+	    <!-- 영화정보를 넘어오게 해야함 -->
 			<span>선택정보</span>
-			<p>ex) CGV강남 | 4관 <br/>
+			<p>ex) ${ticketseat.location_name } (상영관명) | ${ticketseat.room_name } (관명)<br/>
 			  2022. 02. 21 (월) 17:50 ~ 19:56(종료날짜받기) </p>
 			  <br>
 			  <span>종료시간</span>
-			  <c:forEach items="${tickettime }" var="tday">
-				 <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="list-time">
-				  ${tday.endTime}
+				 <a class="list-group-item list-group-item-action" id="list-time-list" data-bs-toggle="list" href="" role="tab" aria-controls="list-time">
+				  00
 				 </a>
-			</c:forEach>
 		</div>
 	  </div>
 	</div>
@@ -169,7 +169,33 @@
 	
 </div>
 
+<script type="text/javascript">
 
+function onheadcount(e) {
+	  // 선택된 데이터 가져오기
+	  var value = e.value;
+	  
+	 /* //선택인원 확인 알림창
+	  alert(selected_value + '을 선택하였습니다.'); */
+	   
+	  // 데이터 출력
+	  document.getElementById('result').innerText = value;
+	  
+	  console.log(e.options);
+	  
+	//선택인원 확인 알림창 	// @@alert를 괄호 밖에다가 빼서 실행하기도 전에 alert창이 뜨는 오류가 났음
+	  var target = document.getElementById("headcount");
+	 	/* alert( target.options[target.selectedIndex].text + '명을 선택합니다.');     // 옵션 text 값 */
+	   	alert( target.options[target.selectedIndex].value + '을 선택합니다.');     // 옵션 value 값 */
+	}
+	
+	
+	
+ 
+
+	
+
+</script>
 
 
 <div style="clear: both;">

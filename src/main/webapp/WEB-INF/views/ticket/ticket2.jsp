@@ -16,8 +16,6 @@
 </head>
 <body>
 
-<a href="ticketseat">좌석</a>
-
 <!-- 아래 JSTL추가수정  -->
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
@@ -124,11 +122,11 @@
 					  
 					  <div class="list-group" id="dateTab" role="tablist">
 					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.tday }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
 					      15(화)<input type="hidden" class="hiddenDate" value="15"/></a>
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.tday }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
 					      16(수)<input type="hidden" class="hiddenDate" value="16"/></a>
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day17" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >
+					      <a href="getdate?movieid=${ticketday.movie_id }&theaterid=${ticketday.theater_id }&locid=${ticketday.location_id }&day=${ticketday.tday }" class="list-group-item list-group-item-action  list-group-item-date" id="list-day17" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >
 					      17(목)<input type="hidden" class="hiddenDate" value="17"/></a>
 					    </div>			
 					   </div>

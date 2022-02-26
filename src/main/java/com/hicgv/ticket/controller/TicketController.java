@@ -76,11 +76,10 @@ public class TicketController {
 		
 	}
 
-	/*3.영화 상영날짜, 4.영화 시간선택 */
+	/*4.영화 시간선택 */
 	
-	//3번
 	/*날짜시간 세분화 */
-	@RequestMapping(value = "/getdate")
+	@RequestMapping("/getdate")
 	public String getdate(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by getdate() > =======");
 		
@@ -141,98 +140,51 @@ public class TicketController {
 			}
 		
 			model.addAttribute("ticketday",timeListMap);
-			//ModelAndView mv = new ModelAndView(); //데이터와 뷰를 동시에 넘기기 가능
-			//mv.setViewName("ticket/tickettime");
-			//mv.addObject("ticketday",timeListMap);
+
 		return "ticket/tickettime";
 	}
 
 
 	////////////////////////////////////////////
-	
-	
-	//이거는 시트에다가 적을거고 맵핑명 수정할고임 (각각하나씩)
-	@RequestMapping("/tictimeSelect2")
-	public String timeSelect2(HttpServletRequest request, Model model) {
-		System.out.println("======= < pass by tictimeSelect2() > =======");
-		
-//		String movieid = request.getParameter("movieid");
-//		String theaterid = request.getParameter("theaterid");
-//		String locid = request.getParameter("locid");
-//		String tday = request.getParameter("day");
-//		String starttime = request.getParameter("starttime");
-//		
-//		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
-//		
-//		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
-//		
-//		//ArrayList<TicketListDto> tickettiem=dao.tickettime(movieid, theaterid, locid, tday, starttime); //괄호안에 다가 날짜 쓸 예정
-//		String year="";
-//		String month="";
-//		String day="";
-//		String hour="";
-//		String minute="";
-//		
-//		for (TicketListDto ticketListDto : tickettiem) {
-//			String startTime=ticketListDto.getStart_date();
-//			System.out.println("startTime : "+startTime);
-//			
-//			//연 월 일 시 분 나누기(영화 예매 날짜 및 종료날짜를 구하기 위해)
-//			//year=startTime.substring(beginIndex, endIndex)
-//			year=startTime.substring(0,4);
-//			month=startTime.substring(5,7);
-//			day=startTime.substring(8,10);
-//			hour=startTime.substring(11,13);
-//			minute=startTime.substring(14,16);
-//			
-//			// 상영 종료시간 계산
-//			String time = hour + minute; //ex)10시45분 10+45 => 1045(string이기때문)
-//			int endTime = Integer.parseInt(time);
-//			
-//			int runningTime = ticketListDto.getRunning_time();	
-//			
-//			endTime = endTime + ((runningTime/60)*100) + (runningTime-((runningTime/60)*60));
-//			if(endTime%100 >= 60) {
-//				System.out.println(endTime%100);
-//				endTime -=60; //60분초과시삭제 후
-//				endTime +=100; //1시간추가
-//			}
-//			
-//			Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
-////			// LinkedHashMap  HashMap 의 순서를 유지한다.
-////			
-//			timeMap.put("year", year);
-//			timeMap.put("month", month);
-//			timeMap.put("day", day);
-//			timeMap.put("hour", hour);
-//			timeMap.put("minute", minute);
-//			timeMap.put("endTime", endTime);
-//			
-//			System.out.println("year : "+ year);
-//			System.out.println("day"+ day);
-//			System.out.println("hour"+ hour);
-//			System.out.println("minute"+ minute);
-//			System.out.println("endTime"+  endTime);
-//			
-//			timeListMap.add(timeMap);
-//		}
-//			
-//			for (Map<String, Object> timeMaplist : timeListMap) {
-//				System.out.println(timeMaplist.get("day"));
-//				System.out.println(timeMaplist.get("endTime"));
-//			}
-//		
-//			model.addAttribute("tickettime",timeListMap);
-	
-		return "ticket/ticketseat";
-	}
-	
-	
-	
-	
-	/*좌석예매란*/
+
+	/*좌석선택란*/
 	@RequestMapping("/ticketseat")
-	public String tSeat(HttpServletRequest request, Model model) {
+	public String Seat(HttpServletRequest request, Model model) {
+		System.out.println("======= < pass by ticketseat() > =======");
+		
+		String movieid = request.getParameter("movieid");
+		System.out.println("movieid : "+movieid);
+		String theaterid = request.getParameter("theaterid");
+		String locid = request.getParameter("locid");
+		String tday = request.getParameter("tday");
+		String hour = request.getParameter("hour");
+		System.out.println("hour : "+hour);
+		String minute = request.getParameter("minute");
+		//String startmovtime = request.getParameter("sTime"); //hour+minute
+		
+		
+		HashMap<String, String> sendDataMap = new HashMap<String, String>();
+		sendDataMap.put("movieid", movieid);
+		sendDataMap.put("theaterid", theaterid);
+		sendDataMap.put("locid", locid);
+		sendDataMap.put("tday", tday);
+		sendDataMap.put("hour", hour);
+		sendDataMap.put("minute", minute);
+		//sendDataMap.put("sTime", startmovtime); //hour+minute
+		
+		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectMovieInfo(sendDataMap);
+		
+		for (Map<String, Object> timeMaplist : timeListMap) {
+			System.out.println("ticketseat year : "+timeMaplist.get("year"));
+			System.out.println("ticketseat month : "+timeMaplist.get("month"));
+			System.out.println("ticketseat hour : "+timeMaplist.get("hour"));
+			System.out.println("ticketseat minute : "+timeMaplist.get("minute"));
+			System.out.println("ticketseat endTime : "+timeMaplist.get("endTime"));
+			System.out.println("ticketseat tday : "+timeMaplist.get("tday"));
+			//System.out.println("ticketseat startmovtime : "+timeMaplist.get("startmovtime"));
+			}
+		
+		model.addAttribute("ticketseat",timeListMap);
 		
 		return "ticket/ticketseat";
 		

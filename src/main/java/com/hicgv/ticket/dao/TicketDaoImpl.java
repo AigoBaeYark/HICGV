@@ -59,10 +59,15 @@ public class TicketDaoImpl implements TicketDao{
 	}
 
 	@Override
-	public ArrayList<TicketListDto> getTickettime(String movie_id, String theater_id, String location_id, String day,
-			String starttime) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TicketListDto> getSelectMovieInfo(HashMap<String, String> sendDataMap) {
+		List<TicketListDto> dto = new ArrayList<TicketListDto>();
+		dto = sqlSession.selectList(nameSpace+".getSelectMovieInfo",sendDataMap);
+		System.out.println("sendData(DaoImpl) : "+sqlSession.selectList(nameSpace+".getSelectMovieInfo",sendDataMap).size());
+		for (TicketListDto ticketListDto : dto) {
+			System.out.println(ticketListDto.getTitle_kor());
+		}
+		
+		return (ArrayList<TicketListDto>) dto; //@@nameSpace뒤에 .getSelectMovieInfo를 써야했는데 .getTicketday를 써서 오류
 	}
 
 
