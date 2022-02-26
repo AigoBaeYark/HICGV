@@ -115,7 +115,6 @@ public class TheaterController {
 
 		System.out.println("theaterId : " + theaterId);
 		System.out.println("locId : " + locId);
-
 		
 		ArrayList<Map<String, Object>> timeListMap = theaterService.getMoviesInfo(theaterId,locId , date);
 		
@@ -125,15 +124,28 @@ public class TheaterController {
 
 		model.addAttribute("movieInfo", timeListMap);
 		
-		
 		return "theater/schList";
 	}
 	
-	
-	// 왜 오류나나나나나나나나
-	@RequestMapping("kakaoPay")
-	public String kakaoPay(HttpServletRequest request) {
+	@RequestMapping(value = "kakaoPay", produces = "application/text; charset=utf8")
+	public String kakaoPay(HttpServletRequest request, Model model) {
 		System.out.println("======= << kakaoPay >> =======");
+		String movieName=request.getParameter("movie_name");
+		String theater=request.getParameter("theater");
+		String screen=request.getParameter("screen");
+		String movieDate=request.getParameter("moviedate");
+		String people=request.getParameter("people");
+		String seat=request.getParameter("seat");
+		String paymentPrice=request.getParameter("payment_price");
+		
+		model.addAttribute("movieName",movieName);
+		model.addAttribute("theater",theater);
+		model.addAttribute("screen",screen);
+		model.addAttribute("movieDate",movieDate);
+		model.addAttribute("people",people);
+		model.addAttribute("seat",seat);
+		model.addAttribute("paymentPrice",paymentPrice);
+		
 		return "pay/kakaoPay";
 	}
 

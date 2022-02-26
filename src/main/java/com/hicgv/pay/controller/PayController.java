@@ -19,15 +19,15 @@ public class PayController {
 	@RequestMapping("/pay")
 	public String reserve(HttpServletRequest request, Model model) {
 		System.out.println("======= << pay >> =======");
-		String userid=request.getParameter("userid");
-		String movieid=request.getParameter("movieid");
+		String userId=request.getParameter("userId");
+		String movieId=request.getParameter("movieId");
 		
-		System.out.println("userid : "+userid);
-		System.out.println("movieid : "+movieid);
+		System.out.println("userid : "+userId);
+		System.out.println("movieid : "+movieId);
 		
 		PayDao dao=sqlSession.getMapper(PayDao.class);
 		
-		model.addAttribute("payInfo",dao.getPayInfo(userid, movieid));
+		model.addAttribute("payInfo",dao.getPayInfo(userId, movieId));
 	
 		return "pay/pay";
 	}
