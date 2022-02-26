@@ -152,7 +152,7 @@
 <br>
 <!-- PayDao 테스트용 -->
 
-<a href="pay?userid=1&movieid=20210087">pay</a>
+<a href="pay?userId=1&movieId=20210087">pay</a>
 
 			</div>
 		</section>
