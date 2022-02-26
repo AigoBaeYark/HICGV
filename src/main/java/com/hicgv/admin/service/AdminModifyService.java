@@ -5,11 +5,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hicgv.admin.controller.dto.AdminDto;
 import com.hicgv.admin.dao.AdminDao;
 
+
+@Service
 public class AdminModifyService implements AdminServiceInf{
 
 	@Override

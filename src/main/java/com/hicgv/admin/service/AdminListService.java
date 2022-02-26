@@ -2,11 +2,14 @@ package com.hicgv.admin.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hicgv.admin.controller.dto.AdminDto;
 import com.hicgv.admin.dao.AdminDao;
 
+
+@Service
 public class AdminListService implements AdminServiceInf{
 
 	@Override

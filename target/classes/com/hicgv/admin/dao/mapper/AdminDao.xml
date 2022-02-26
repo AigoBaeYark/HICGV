@@ -3,8 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.tech.springwebrboard01.dao.IDao">
-	<select id="list" resultType="com.tech.springwebrboard01.dto.BoardDto">
+<mapper namespace="AdminMapper">
+	<select id="list" >
 		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT
 		FROM
 		(SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT,
@@ -23,7 +23,7 @@
 			VALUES(REPLYBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
 			SYSDATE,0,REPLYBOARD_SEQ.CURRVAL,0,0)
 	</insert>
-	<select id="contentView" resultType="com.tech.springwebrboard01.dto.BoardDto">
+	<select id="contentView" >
 		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,
 		BHIT,BGROUP,BSTEP,BINDENT
 		FROM REPLYBOARD WHERE BID=#{param1}
@@ -41,7 +41,7 @@
 			SET BNAME=#{param2},BTITLE=#{param3},
 			BCONTENT=#{param4}	WHERE BID=#{param1}
 	</update>
-	<select id="replyView" resultType="com.tech.springwebrboard01.dto.BoardDto">
+	<select id="replyView">
 		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,
 		BHIT,BGROUP,BSTEP,BINDENT
 		FROM REPLYBOARD WHERE BID=#{param1}

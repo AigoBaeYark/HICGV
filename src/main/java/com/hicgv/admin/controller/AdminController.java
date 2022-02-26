@@ -22,18 +22,19 @@ import com.hicgv.admin.vopage.SearchVO;
 
 @Controller
 public class AdminController {
-	AdminServiceInf commandInf;
+//	@Autowired
+//	AdminServiceInf commandInf;
 	
-	@Autowired
-	private SqlSession sqlSession;
-	
+	/*@Autowired
+	private SqlSession sqlSession;*/
+	/*	
 	@RequestMapping("/getcustomerList")
 	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("=========pass by getcustomerList()=============");
 
 		
 //		paging
-		String strPage=request.getParameter("page");
+	String strPage=request.getParameter("page");
 		System.out.println("strPage1 : "+strPage);
 		if(strPage==null)
 			strPage="1";
@@ -66,54 +67,55 @@ public class AdminController {
 		model.addAttribute("totRowCnt",total);
 		model.addAttribute("searchVO",searchVO);
 		return "/customer/customerList";
-	}
-
+	}*/
+/*
 	@RequestMapping("/write_view")
 	public String write_view() {
 		System.out.println("=========pass by write_view()=============");
 		
 		return "write_view";
-	}
-	@RequestMapping("/write")
-	public String write(HttpServletRequest request, Model model) {
-		System.out.println("=========pass by write()=============");
-		//db에 글쓰기진행
-		String bName=request.getParameter("bName");
-		String bTitle=request.getParameter("bTitle");
-		String bContent=request.getParameter("bContent");
+	}*/
+//	@RequestMapping("/write")
+//	public String write(HttpServletRequest request, Model model) {
+//		System.out.println("=========pass by write()=============");
+//		//db에 글쓰기진행
+//		String bName=request.getParameter("bName");
+//		String bTitle=request.getParameter("bTitle");
+//		String bContent=request.getParameter("bContent");
+//		
+////		mybatis작업
+//		ADao dao=sqlSession.getMapper(ADao.class);
+//		dao.write(bName, bTitle, bContent);
+//		
+//		return "redirect:list";
+////	}
+//	@RequestMapping("/content_view")
+//	public String content_view(HttpServletRequest request, Model model) {
+//		System.out.println("=========pass by content_view()=============");
+//		
+//		String bid=request.getParameter("bid");
+////		mybatis작업
+//		ADao dao=sqlSession.getMapper(ADao.class);
+//		dao.upHit(bid);//upHit처리
+//		
+//		AdminDto dto=dao.contentView(bid);
+//		model.addAttribute("content_view",dto);
+//		return "content_view";
+//	}
 		
-//		mybatis작업
-		ADao dao=sqlSession.getMapper(ADao.class);
-		dao.write(bName, bTitle, bContent);
-		
-		return "redirect:list";
-	}
-	@RequestMapping("/content_view")
-	public String content_view(HttpServletRequest request, Model model) {
-		System.out.println("=========pass by content_view()=============");
-		
-		String bid=request.getParameter("bid");
-//		mybatis작업
-		ADao dao=sqlSession.getMapper(ADao.class);
-		dao.upHit(bid);//upHit처리
-		
-		AdminDto dto=dao.contentView(bid);
-		model.addAttribute("content_view",dto);
-		return "content_view";
-	}
-	@RequestMapping("/content_update")
-	public String content_update(HttpServletRequest request, Model model) {
-		System.out.println("=========pass by content_updateform()=============");
-		
-		String bid=request.getParameter("bid");
-		ADao dao=sqlSession.getMapper(ADao.class);
-		
-		AdminDto dto=dao.contentView(bid);
-		model.addAttribute("content_view",dto);
-		
-		return "content_update";
-	}
-	@RequestMapping(method=RequestMethod.POST,value="/modify")
+//	@RequestMapping("/content_update")
+//	public String content_update(HttpServletRequest request, Model model) {
+//		System.out.println("=========pass by content_updateform()=============");
+//		
+//		String bid=request.getParameter("bid");
+//		ADao dao=sqlSession.getMapper(ADao.class);
+//		
+//		AdminDto dto=dao.contentView(bid);
+//		model.addAttribute("content_view",dto);
+//		
+//		return "content_update";
+//	}
+	/*@RequestMapping(method=RequestMethod.POST,value="/modify")
 	public String modify(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by modify()=============");
 		
@@ -138,5 +140,5 @@ public class AdminController {
 		ADao dao=sqlSession.getMapper(ADao.class);
 		
 		return "redirect:list";
-	}
+	}*/
 }

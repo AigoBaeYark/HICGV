@@ -9,36 +9,22 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.tiles.template.AddAttributeModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.hicgv.customer.dao.CustomerDao;
 import com.hicgv.customer.dto.CustomerDto;
 import com.hicgv.customer.service.CustomerService;
-import com.hicgv.customer.service.CustomerServicempl;
 
-import oracle.net.ns.DataDescriptorPacket;
 
 //import com.HICGV.dao.customerDao;
 
 @Controller
 public class CustomerController {
-	// DB접속
-	@Autowired
-	private SqlSession sqlSession;
 	// 서비스 연결
 	@Autowired
 	CustomerService customerService;
@@ -312,13 +298,13 @@ public class CustomerController {
 		return "/customer/loginForm";
 	}
 //관리자 페이지
-	@RequestMapping("/getcustomerList")
+	/*@RequestMapping("/getcustomerList")
 	public String customerList(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by customerList()=============");
 	
 		
 		//customerService.customerList("page");
-		/*String strPage=request.getParameter("page");
+		String strPage=request.getParameter("page");
 		System.out.println("strPage1 : "+strPage);
 		if(strPage==null)
 			strPage="1";
@@ -350,8 +336,8 @@ public class CustomerController {
 		model.addAttribute("list",list);
 		model.addAttribute("totRowCnt",total);
 		model.addAttribute("searchVO",searchVO);
-		*/
+		
 		
 		return "/customer/customerList";
-	}
+	}*/
 }
