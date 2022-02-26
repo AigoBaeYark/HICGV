@@ -21,14 +21,14 @@ public class AdminContentViewService implements AdminServiceInf{
 		Map<String, Object> map=model.asMap();
 //		map->request
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String bid=request.getParameter("bid");
+		String id=request.getParameter("id");
 		
 		
 		//System.out.println("bName   :  "+bName);
 		
 		AdminDao dao=new AdminDao();
-		AdminDto dto=dao.contentView(bid);
+		AdminDto dto=dao.contentView(id);
 		
-		model.addAttribute("content_view",dto);
+		model.addAttribute("customerView",dto);
 	}
 }

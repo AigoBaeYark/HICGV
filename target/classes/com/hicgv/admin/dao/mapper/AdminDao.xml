@@ -4,21 +4,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="AdminMapper">
-	<select id="list" >
-		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT
-		FROM
-		(SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT,
-		ROW_NUMBER() OVER(ORDER BY BGROUP DESC,BSTEP ASC) B_SEQ FROM REPLYBOARD)
-		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
+	<select id="getcustomerList" >
+	SELECT * FROM (SELECT ROWNUM AS PAGE ,HICGV_CUSTOMER.* FROM
+	HICGV_CUSTOMER)
+	WHERE PAGE BETWEEN #{param1}*10-9 AND #{param1}*10 ORDER BY NUM
+
 	</select>	
 	
-	<select id="selectBoardTotCount" resultType="Integer">
-		SELECT COUNT(*) FROM REPLYBOARD
+	<select id="selectCustomerTotCount" resultType="Integer">
+		SELECT COUNT(*) FROM HICGV_CUSTOMER
 	</select>	
 	
 	
 	
-	<insert id="write">
+	<!-- <insert id="write">
 		INSERT INTO REPLYBOARD
 			VALUES(REPLYBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
 			SYSDATE,0,REPLYBOARD_SEQ.CURRVAL,0,0)
@@ -57,7 +56,7 @@
 	<update id="replyShape">
 		UPDATE REPLYBOARD SET BSTEP=BSTEP+1
 		WHERE BGROUP=#{param1} AND BSTEP>#{param2}
-	</update>
+	</update> -->
 	
 	
 </mapper>

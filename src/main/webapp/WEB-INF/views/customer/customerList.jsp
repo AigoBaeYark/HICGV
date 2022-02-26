@@ -15,7 +15,7 @@
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 
-	<h3>customerList.jsp || ${id }님 환영합니다.</h3>
+	<h3>customerList.jsp || ${id }님 환영합니다.</h3> <form action="getcustomerList"><button type="submit">조회</button></form>
 		<div class="table-responsive">
   <table class="table">
    
@@ -35,46 +35,26 @@
 		<th>질문</th>
 		<th>답</th>
 	</tr>
-	<c:forEach begin="1" end="10">
-	
+	<%-- <c:forEach begin="1" end="10"> --%>
+	<c:forEach items="${list }" var="dto">
 	<tr>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>7</td>
-		<td>8</td>
-		<td>9</td>
-		<td>10</td>
-		<td>11</td>
-		<td>12</td>
-		<td>13</td>
-	
-	</tr>
+		<td>${dto.user_id }</td>
+		<td>${dto.id }</td>
+		<td>${dto.name }</td>
+		<td>${dto.phone_number }</td>
+		<td>${dto.nickname }</td>
+		<td>${dto.gender }</td>
+		<td>${dto.gender }</td>
+		<td>${dto.location }</td>
+		<td>${dto.create_at }</td>
+		<td>${dto.email }</td>
+		<td>${dto.grade }</td>
+		<td>${dto.question }</td>
+		<td>${dto.answer }</td>
 	</c:forEach>
+	</tr>
 	
-	<%-- <c:forEach items="${list }" var="dto">
-		<tr>
-			<th>${dto.bid }</th>
-			<th>${dto.bname }</th>
-			<th>
-			<!-- 	들여쓰기가 되도록 -->
-			<c:set value="${dto.bindent }" var="endindent" />
-			<c:forEach begin="1" end="${dto.bindent }" var="cnt">
-				&nbsp;
-				<c:if test="${cnt eq  endindent}">
-				<img src="resources/img/reply.gif" alt="" />
-				[re]
-				</c:if>	
-			</c:forEach>
-				<a href="content_view?bid=${dto.bid }">${dto.btitle }</a> 
-			</th>
-			<th>${dto.bdate }</th>
-			<th>${dto.bhit }</th>
-		</tr>
-	</c:forEach> --%>
+	
 	<tr>
 		<th colspan="3"> <a href="joinForm" >회원가입</a> </th>
 		<th colspan="3"> <a href="modifyForm">회원정보수정</a> </th>
