@@ -1,6 +1,8 @@
 package com.hicgv.main.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,5 +38,12 @@ public class MainDaoImpl implements MainDao{
 	public int checkMovieId(String movieid) {
 		System.out.println("checkDao : "+sqlSession.selectOne(nameSpace+".checkMovieId",movieid));
 		return sqlSession.selectOne(nameSpace+".checkMovieId",movieid);
+	}
+
+
+	@Override
+	public void insertAllActor(HashMap<String, Object> allActor) {
+		System.out.println("daoActor : ");
+		sqlSession.insert(nameSpace+".insertAllActor",allActor);
 	};
 }

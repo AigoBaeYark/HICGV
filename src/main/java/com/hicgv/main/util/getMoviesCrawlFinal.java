@@ -87,7 +87,9 @@ public class getMoviesCrawlFinal {
 	private static final String DAILYURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
 	private static final String MOVIELISTURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
 	private static final String MOVIEINFOURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
-	private static final String MOVIEAPIKEY = "e65350d6dfb171753380a52de708b7a8";
+	private static final String ACTORSURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json";
+	private static final String MOVIEAPIKEY2 = "3d8870e2b84d63c3754a24d4a7a83dc3";
+	private static final String MOVIEAPIKEY = "bddfb4542fc6932260fc641a8e03c6d3";
 
 	// 네이버
 	private static final String NAVERAPIURL = "https://openapi.naver.com/v1/search/movie.json";
@@ -108,6 +110,7 @@ public class getMoviesCrawlFinal {
 
 	// 결과 담기
 	private LinkedList<HashMap<String, String>> resultMoviesList = new LinkedList<HashMap<String, String>>();
+	private List<HashMap<String, String>> actorsAllList = new LinkedList<HashMap<String, String>>();
 
 	// 제목으로 검색 (영화API, 네이버API 둘 다 UTF-8로 변경해줘야함)
 	private LinkedList<HashMap<String, String>> searchToTitleNaver(String searchTitle, LinkedList<HashMap<String, String>> movieListData) {
@@ -124,7 +127,7 @@ public class getMoviesCrawlFinal {
 				naverResult = readyNaver(this.searchTitle, movieListData.size());
 				parseNaverData(naverResult, movieListData);	//데이터 변환해서 resultMoviesList 에 넣기
 				
-				for(this.curPage=2; this.curPage<=totCntPerPage+1 ; this.curPage++) {
+				for(this.curPage=2; this.curPage <= totCntPerPage ; this.curPage++) {
 					
 					//두번째 페이지부터는 for문 안에서
 					LinkedList<HashMap<String, String>> tempList = searchToTitleMovieInfoApi(this.searchTitle,this.curPage);
@@ -479,6 +482,48 @@ public class getMoviesCrawlFinal {
 
 	}
 	
+	
+	//영화배우모두
+	public List<HashMap<String, String>> searchToAllActors() {
+		try {
+			String movieActorsResult = getMovieUrlJson(getAllActorsApiUrl());
+			System.out.println("acotrsResult : "+movieActorsResult);
+			paraeAllActorsData(movieActorsResult);
+			
+			if(totCnt>10) {
+				System.out.println("tot 10 넘음");
+				int totCntPerPage=totCnt/10;
+				System.out.println("totCnt/10 : "+totCnt);
+				//첫번째 한번은 무조건 for문 밖에서
+				int page=2;	//이거 한번 돌면 2900씩 +
+				
+				//totCntPerPage+1
+				//2번째페이지부터 마지막페이지 까지(+1 이유는 10으로 나누면 나머지가 날라가서)	//여기도 2900씩 +
+				for(page=4001; page<= 6000; page++) {
+					System.out.println("현재페이지 : "+page);
+					//두번째 페이지부터는 for문 안에서
+					searToAllActorsAfterPage(page);
+				}
+			}else {
+				
+			}
+			return this.actorsAllList;		
+			
+			
+		} catch (Exception e) {
+			throw new RuntimeException("acotorsAll 파싱 실패",e);
+		}
+	}
+	
+	private void searToAllActorsAfterPage(int curPage) {
+		String movieActorsResult = getMovieUrlJson(getAllActorsApiUrl(curPage));
+		System.out.println("movieInfo : " + movieActorsResult);
+		paraeAllActorsData(movieActorsResult);
+	}
+	
+	
+	
+	//영화 id로 검색
 	private String getMovieIdApiUrl() {
 		String movieUrl = MOVIEINFOURL +"?key="+MOVIEAPIKEY+"&movieCd="+movieId;
 		return movieUrl;
@@ -506,6 +551,30 @@ public class getMoviesCrawlFinal {
 		System.out.println("2페이지 이상 : "+movieUrl);
 		return movieUrl;
 	}
+	
+	//영화배우 모두검색
+	public String getAllActorsApiUrl() {
+		//배우이름 + 영화이름 으로 검색
+		String actorsUrl = ACTORSURL + "?key=" +MOVIEAPIKEY2;
+		System.out.println("영화배우검색 URL : "+actorsUrl); 
+		return actorsUrl;
+	}
+	
+	//영화배우 모두검색 2페이지부터
+		public String getAllActorsApiUrl(int curPage) {
+			//배우이름 + 영화이름 으로 검색
+			String actorsUrl = ACTORSURL + "?key=" +MOVIEAPIKEY2 + "&curPage="+curPage;
+			System.out.println("영화배우검색 URL : "+actorsUrl); 
+			return actorsUrl;
+		}
+	
+	//영화배우 이름으로 검색
+		public String getActorsApiUrl(String actorName, String movieName) {
+			//배우이름 + 영화이름 으로 검색
+			String actorsUrl = ACTORSURL + "?key=" +MOVIEAPIKEY+"&peopleNm="+actorName+"&filmoNames="+movieName;
+			System.out.println("영화배우검색 URL : "+actorsUrl); 
+			return actorsUrl;
+		}
 
 	
 	//Url을 읽어서 나온 내용들을 Json으로 변환
@@ -539,6 +608,59 @@ public class getMoviesCrawlFinal {
 			throw new RuntimeException("API 불러오기 실패");
 		}
 
+	}
+	
+	//오늘 1만개 가져온다. //영화배우만 추출
+	private List<HashMap<String, String>> paraeAllActorsData(String movieActorsResult) {
+		//영화배우만 가져오려면 repRoleNm 에서 '배우'인 사람들만
+		
+		//최종으로 보낼 리스트
+		System.out.println(movieActorsResult);
+		
+		JSONObject jsonObject = null;
+
+		String peopleCd; // 영화인 고유번호
+		String peopleNm;// 영화인명
+		String peopleNmEn; // 영화인명 영문
+		String repRoleNm;	//분야	--여기서 배우, 감독만 뽑음
+		String filmoNames; // 필모리스트
+		
+		try {
+			jsonObject = new JSONObject(movieActorsResult.toString());
+			JSONObject jsonObject1 = (JSONObject) jsonObject.get("peopleListResult");
+			this.totCnt = Integer.parseInt(jsonObject1.get("totCnt").toString());
+			System.out.println("totCnt : "+this.totCnt);
+			JSONArray jsonArray = jsonObject1.getJSONArray("peopleList");
+
+			// 1위부터 10위까지 순차적으로 넣음
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject item = jsonArray.getJSONObject(i);
+				HashMap<String, String> movieActorMap = new HashMap<String, String>();	//배우 한명당 맵 하나
+				if (item.getString("repRoleNm").equals("배우") && ( !(item.getString("peopleCd").equals("20381961"))&&!(item.getString("peopleCd").equals("20189580")))) {	//배우일때
+					movieActorMap.put("movie_actor_id", item.getString("peopleCd"));
+					movieActorMap.put("name_kor", item.getString("peopleNm"));
+					movieActorMap.put("name_eng", item.getString("peopleNmEn"));
+					movieActorMap.put("filmo", item.getString("filmoNames"));
+					this.actorsAllList.add(movieActorMap);
+
+				}else if (item.getString("repRoleNm").equals("감독")) {	//감독일때
+					
+				}
+				
+			}
+			
+			for (HashMap<String, String> hashMap : actorsAllList) {
+				System.out.println("movie_actor_id "+hashMap.get("movie_actor_id"));
+				System.out.println("name_kor "+hashMap.get("name_kor"));
+				System.out.println("name_eng "+hashMap.get("name_eng"));
+				System.out.println("filmo "+hashMap.get("filmo"));
+			}
+			System.out.println("movieListDataSize : " + actorsAllList.size());
+			return actorsAllList;
+		} catch (Exception e) {
+			throw new RuntimeException("JSON 데이터 읽기 실패", e);
+		}
+		
 	}
 	
 	

@@ -13,6 +13,8 @@ import com.hicgv.main.util.GetMoiveID;
 import com.hicgv.movies.dao.MoviesDao;
 import com.hicgv.movies.dto.MoviesDto;
 
+import oracle.net.aso.p;
+
 public interface MainService {
 	
 	public void getDailyViewers(String day);
@@ -23,5 +25,6 @@ public interface MainService {
 	public void getSearchFinalDaily(String day);
 	public void getSearchMovieInfo(String searchTitle);
 	public int checkMovieId(String movie_id);
+	public void insertAllActor(HashMap<String, Object> resultMap);
 	
 }

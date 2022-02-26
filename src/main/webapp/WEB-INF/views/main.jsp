@@ -6,22 +6,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path }/resources/css/reset.css" />
-<link rel="stylesheet" href="${path }/resources/css/main/main.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
 <%-- <link href="${path }/resources/css/main/swiper-bundle.min.css">
 <script src="${path }/resources/js/main/swiper.min.js"> --%>
 
 <c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+<link rel="stylesheet" href="${path }/resources/css/main/main.css" />
+<link rel="stylesheet"
+	href="${path }/resources/css/main/style-starter.css" />
+
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="${path }/resources/js/main/easyResponsiveTabs.js"></script>
+<script src="${path }/resources/js/main/owl.carousel.js"></script>
+<script src="${path }/resources/js/main/main.js"></script>
+<script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
+
 
 <title>main</title>
 </head>
 <body>
-	
-	
+
+
 	<a href="header">header</a>
 	<a href="seatTest">seatTest</a>
 	<a href="moviesAdmin">moviesAdmin</a>
@@ -29,12 +38,18 @@
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
 		class="movieSelection_wrap">
-			<div class="contents">
-		<% if(session.getAttribute("id")!=null){ %>
-		<p style="color: #fff;"><%=session.getAttribute("id") %> 님 안녕하세요</p>
-		<%} %>
+		<div class="contents">
+			<%
+				if (session.getAttribute("id") != null) {
+			%>
+			<p style="color: #fff;"><%=session.getAttribute("id")%>
+				님 안녕하세요
+			</p>
+			<%
+				}
+			%>
 			<div class="video_wrap"
-				style="overflow: hidden; position: relative; width: 100%; height: 100%;clear:both;">
+				style="overflow: hidden; position: relative; width: 100%; height: 100%; clear: both;">
 				<video autoplay="" muted=""
 					style=" position: relative;width: 100%;height: 100%;z-index: 0;">
 				<source src="${trailer.video }" type="video/mp4"></video>
@@ -87,8 +102,8 @@
 
 			<!-- 무비차트 스와이퍼 -->
 
-
-			<div class="swiper-container swiper " id="movieChart_list"
+			<!-- 기존 스와이퍼 -->
+			<%-- <div class="swiper-container swiper " id="movieChart_list"
 				style="position: relative; clear: none; float: none; margin: 0 auto;">
 				<div class="swiper-wrapper"
 					style="tranform: translate3d(0px, 0px, 0px); height: 295px;">
@@ -138,7 +153,93 @@
 				</div>
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
+			</div> --%>
+			
+			
+			
+	<section class="w3l-grids">
+		<div class="grids-main py-5">
+			<div class="container py-lg-3">
+				<div class="headerhny-title">
+					<div class="w3l-title-grids">
+						<div class="headerhny-left">
+							<h3 class="hny-title">New Releases</h3>
+						</div>
+						<div class="headerhny-right text-lg-right">
+							<h4><a class="show-title" href="genre.html">Show all</a></h4>
+						</div>
+					</div>
+				</div>
+				<div class="owl-one owl-carousel owl-theme">
+				<c:forEach items="${movie }" var="mov">
+					<div class="item vhny-grid">
+						<div class="box16 mb-0" onmouseover="onDetail(this)">
+							<a href="moviesdetailview?movie_id=${mov.movie_id }">
+								<figure>
+									<img class="img-fluid" src="${mov.image_url }" >
+								</figure>
+								<div class="box-content">
+									<span class="post">${mov.ranking } 위</span>
+									<span class="post" style="width: 30%"><span class="fa-regular fa-clock" >${mov.running_time } 분  </span> </span>
+									<span class="post" >상세보기</span>
+									
+								</div>
+							</a>
+						</div>
+						<h3> <a class="title-gd" href="genre.html">${mov.title_kor }</a></h3>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+						<div class="button-center text-center mt-4">
+							<a href="#" class="btn watch-button">예매하기</a>
+						</div>
+
+					</div>
+					</c:forEach>
+				</div>
 			</div>
+
+		</div>
+	</section>
+			
+			
+			
+			
+		
+		<!-- 영상 슬라이더 -->
+	<%-- <section class="w3l-main-slider position-relative" id="home">
+		<div class="companies20-content">
+			<div class="owl-one owl-carousel owl-theme">
+			
+				<c:forEach items="${movie }" var="mov">
+				<div class="item">
+					<li>
+						<div class="slider-info banner-view bg bg2" style="background: url('${mov.image_url }')no-repeat center;">
+							<div class="banner-info">
+								<h3>${mov.title_kor }</h3>
+								<!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span class="over-para"> Consequuntur hic odio
+									voluptatem tenetur consequatur.</span></p> --> <!-- 여기에 대충 줄거리 -->
+								<a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
+									<span class="video-play-icon">
+										<span class="fa-solid fa-ticket fa-2x"></span>
+									</span>
+									<a href="moviesdetailview?movie_id=${mov.movie_id }" style="margin-left: 10px ">상세정보</a>
+								</a>
+								<!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+								<div id="small-dialog1" class="zoom-anim-dialog mfp-hide">
+									<img src="${mov.image_url }"></img>
+								</div>
+							</div>
+						</div>
+					</li>
+				</div>
+				</c:forEach>
+				
+			</div>
+		</div>
+	</section>  --%>
+
+
+
+
 		</div>
 	</div>
 
@@ -153,66 +254,164 @@
 
 	<script>
 	
-		$(document).ready(function() {
-			$('.movieAgeLimit_wrap').each( function(i) {
-				if($(this).children('img').attr('alt') === '12세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/12세관람가.png');
-					$(this).children('img').css('width', '30px');
-				}
-				if($(this).children('img').attr('alt') === '15세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/15세관람가.png');
-					$(this).children('img').css('width', '30px');
-				}
-				if($(this).children('img').attr('alt') === '18세 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/18세관람가.png');
-					$(this).children('img').css('width', '30px');
-				}
-				if($(this).children('img').attr('alt') === '전체 관람가'){
-					$(this).children('img').attr('src', 'resources/img/theater/전체관람가.png');
-					$(this).children('img').css('width', '30px');
-				}
-				
-				
-			})
-		})
 	
+	
+	//슬라이더 스크립트
+	$(document).ready(function () {
+		$('.owl-one').owlCarousel({
+			stagePadding:340,
+			loop: true,
+			margin: 20,
+			nav: true,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					stagePadding:20,
+					nav: false
+				},
+				480: {
+					items: 1,
+					stagePadding:40,
+					nav: true
+				},
+				667: {
+					items: 1,
+					stagePadding:60,
+					nav: true
+				},
+				1000: {
+					items: 1,
+					nav: true
+				}
+			}
+		})
+	})
+</script>
+<!-- //script -->
+<script>
+	$(document).ready(function () {
+		$('.owl-three').owlCarousel({
+			loop: true,
+			margin: 20,
+			nav: false,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 2,
+					nav: false
+				},
+				480: {
+					items: 2,
+					nav: true
+				},
+				667: {
+					items: 3,
+					nav: true
+				},
+				1000: {
+					items: 5,
+					nav: true
+				}
+			}
+		})
+	})
+	
+	
+	
+	
+		$(document)
+				.ready(
+						function() {
+							$('.movieAgeLimit_wrap')
+									.each(
+											function(i) {
+												if ($(this).children('img')
+														.attr('alt') === '12세 관람가') {
+													$(this)
+															.children('img')
+															.attr('src',
+																	'resources/img/theater/12세관람가.png');
+													$(this).children('img')
+															.css('width',
+																	'30px');
+												}
+												if ($(this).children('img')
+														.attr('alt') === '15세 관람가') {
+													$(this)
+															.children('img')
+															.attr('src',
+																	'resources/img/theater/15세관람가.png');
+													$(this).children('img')
+															.css('width',
+																	'30px');
+												}
+												if ($(this).children('img')
+														.attr('alt') === '18세 관람가') {
+													$(this)
+															.children('img')
+															.attr('src',
+																	'resources/img/theater/18세관람가.png');
+													$(this).children('img')
+															.css('width',
+																	'30px');
+												}
+												if ($(this).children('img')
+														.attr('alt') === '전체 관람가') {
+													$(this)
+															.children('img')
+															.attr('src',
+																	'resources/img/theater/전체관람가.png');
+													$(this).children('img')
+															.css('width',
+																	'30px');
+												}
+
+											})
+						})
+
 		var num;
-		var movieChartSwiper = 	new Swiper("#movieChart_list",{
-			slidesPerView: 5,	//한번에 5페이지
-			spaceBetween: 35,	//각 영화포스터 사이간격
-			slidesPerGroup: 1,	//버튼 누르면 바뀌는 갯수
+		var movieChartSwiper = new Swiper("#movieChart_list", {
+			slidesPerView : 5, //한번에 5페이지
+			spaceBetween : 35, //각 영화포스터 사이간격
+			slidesPerGroup : 1, //버튼 누르면 바뀌는 갯수
 			//슬라이드 버튼
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
+			navigation : {
+				nextEl : '.swiper-button-next',
+				prevEl : '.swiper-button-prev',
 			}
 		});
-		
-		$('.img_wrap').on('mouseenter',function() {
+
+		$('.img_wrap').on('mouseenter', function() {
 			$(this).children('.movieAgeLimit_wrap').css("margin", "10px 0");
 			$(this).children('#poster').css("margin", "10px 0");
 			//console.log($(this).children('.movieAgeLimit_wrap').children('img[alt]'));
 		})
-		
-		
-		$('.img_wrap').on('mouseleave', function () {
+
+		$('.img_wrap').on('mouseleave', function() {
 			console.log();
 			$(this).children('.movieAgeLimit_wrap').css("margin", "0 auto");
 			$(this).children('#poster').css("margin", "0 auto");
 		});
-		
+
 		function mover(rank) {
-		
-			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="inline-grid";
+
+			document.getElementsByClassName("movieChart_btn_wrap")[rank - 1].style.display = "inline-grid";
 		}
-		
+
 		function mout(rank) {
-			
-			document.getElementsByClassName("movieChart_btn_wrap")[rank-1].style.display="none";
-			
+
+			document.getElementsByClassName("movieChart_btn_wrap")[rank - 1].style.display = "none";
+
 		}
-		
-		
 	</script>
 
 

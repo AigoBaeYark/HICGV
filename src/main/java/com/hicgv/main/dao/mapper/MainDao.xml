@@ -4,24 +4,36 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hicgv.main.dao.MainDao">  
- <select id="movieChart" resultType="MoviesDto">
- 	SELECT * FROM HICGV_MOVIE ORDER BY RANKING 
- 	</select>
- 	
- 	<select  id="checkMovieId" resultType="Integer" parameterType="String">
- 		SELECT COUNT(*) FROM HICGV_MOVIE
- 		WHERE MOVIE_ID LIKE #{movieid }
- 	</select>
- 	
- 	<!-- <insert>
- 		insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, #{param1}, #{param2}) 
- 	</insert> -->
- 	
- 	<!-- <update>
- 		update set audience_today = #{param1} = (api 가져온 관람객 수)
- 		where movie_id = #{param2}
- 	</update> -->
- 	
- 	
- </mapper>  
+<mapper namespace="com.hicgv.main.dao.MainDao">
+	<select id="movieChart" resultType="MoviesDto">
+		SELECT * FROM HICGV_MOVIE ORDER BY RANKING
+	</select>
+
+	<select id="checkMovieId" resultType="Integer"
+		parameterType="String">
+		SELECT COUNT(*) FROM HICGV_MOVIE
+		WHERE MOVIE_ID LIKE #{movieid }
+	</select>
+
+	<insert id="insertAllActor" parameterType="HashMap">
+		<foreach collection="actorList" item="item" separator=" " open="INSERT ALL" close = "SELECT * FROM DUAL">
+			INTO HICGV_MOVIE_ACTOR(MOVIE_ACTOR_ID,NAME_KOR,NAME_ENG,FILMO)
+			VALUES
+				(
+				#{item.movie_actor_id },
+				#{item.name_kor },
+				#{item.name_eng } ,
+				#{item.filmo } 
+				)
+			</foreach>
+		
+	</insert>
+
+	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 
+		#{param1}, #{param2}) </insert> -->
+
+	<!-- <update> update set audience_today = #{param1} = (api 가져온 관람객 수) where 
+		movie_id = #{param2} </update> -->
+
+
+</mapper>  

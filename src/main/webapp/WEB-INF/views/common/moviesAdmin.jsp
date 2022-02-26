@@ -26,7 +26,8 @@
 			type="button" name="searchBtn" id="searchBtn" value="검색"
 			onclick="searchTitle()" />
 		</span> <span> <a href="moviesAdminInputDetail"><input
-				type="button" value="직접입력하기" /></a></span> <br /> <strong>검색결과</strong> <br />
+				type="button" value="직접입력하기" /></a></span> <span><a href="insertAllActor" ><input type="button" value="영화배우 전부갱신" /> </a></span>
+				<br /> <strong>검색결과</strong> <br />
 
 	</div>
 

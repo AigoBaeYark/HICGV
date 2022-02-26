@@ -80,5 +80,11 @@ public class MainServiceImpl  implements MainService{
 		return 0;
 	}
 
+	@Override
+	public void insertAllActor(HashMap<String, Object> actor) {
+		System.out.println("serviceActor : ");
+		mainDao.insertAllActor(actor);
+	}
+
 	
 }

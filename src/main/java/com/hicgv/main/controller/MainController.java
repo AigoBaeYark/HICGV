@@ -168,6 +168,7 @@ public class MainController {
 		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
 		String actorsStr = "";
 		String actorsEnStr = "";
+		crawlFinal.searchToAllActors();
 		
 
 		try {
@@ -272,8 +273,30 @@ public class MainController {
 		
 		return null;
 	}
+	@RequestMapping("insertAllActor")
+	public String insertAllActor(Model model) {
+		
+		getMoviesCrawlFinal getMoviesCrawlFinal = new getMoviesCrawlFinal();
+		List<HashMap<String, String>> resultActors = getMoviesCrawlFinal.searchToAllActors();
+		HashMap<String, Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("actorList", resultActors);
+		mainService.insertAllActor(resultMap);
+		
+		
+		/*for (HashMap<String, String> hashMap : resultActors) {
+			System.out.println("배우 확인용 : "+hashMap.get("name_kor"));
+			mainService.insertAllActor(hashMap);
+
+		}*/
+		
+		//mainService.insertAllActor();
+		
+		return "main";
+		
+	}
 	
 	
+	//영화 중복환인
 	@RequestMapping("checkDuplicationMovie")
 	@ResponseBody
 	public String checkDuplicationMovie(@RequestParam String movie_id) {
