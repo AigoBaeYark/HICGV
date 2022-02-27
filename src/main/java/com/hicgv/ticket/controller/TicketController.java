@@ -36,22 +36,22 @@ public class TicketController {
 		//파라미터 받을때 null값이면 다른값으로 처리
 		String movieid = request.getParameter("movieid");
 		String theaterid = request.getParameter("theaterid");
-		String locid = request.getParameter("locid");
+		//String locid = request.getParameter("locid");
 		
 		System.out.println("movieid : " + movieid);
 		System.out.println("theaterid : " + theaterid);
-		System.out.println("locid : " + locid);
+		//System.out.println("locid : " + locid);
 		
 		if (movieid == null)
 			movieid = "20223278"; //극장판주술회전 (가나다 순 중 젤 위)
 		if (theaterid == null)
 	        theaterid = "1"; //서울코드 (지역순)
-	    if (locid == null)
-	        locid = "101"; //서울 강남 (가나다 순 젤 위)
+//	    if (locid == null)
+//	        locid = "101"; //서울 강남 (가나다 순 젤 위)
 	    
 	    System.out.println("movieid2 : " + movieid);
 		System.out.println("theaterid2 : " + theaterid);
-		System.out.println("locid2 : " + locid);
+		//System.out.println("locid2 : " + locid);
 		
 		/*1.영화선택*/
 		model.addAttribute("moviesList", ticketService.getMoviesList());
@@ -135,6 +135,8 @@ public class TicketController {
 				System.out.println("getdate minute : "+timeMaplist.get("minute"));
 				System.out.println("getdate endTime : "+timeMaplist.get("endTime"));
 				System.out.println("getdate day : "+timeMaplist.get("day"));
+				System.out.println("getdate location_id : "+timeMaplist.get("location_id"));
+				System.out.println("getdate theater_id : "+timeMaplist.get("theater_id"));
 
 	
 			}
@@ -153,13 +155,18 @@ public class TicketController {
 		System.out.println("======= < pass by ticketseat() > =======");
 		
 		String movieid = request.getParameter("movieid");
-		System.out.println("movieid : "+movieid);
+		System.out.println("movieid : "+movieid); 
 		String theaterid = request.getParameter("theaterid");
+		System.out.println("theaterid : "+theaterid);
 		String locid = request.getParameter("locid");
+		System.out.println("locid : "+locid);
 		String tday = request.getParameter("tday");
+		System.out.println("tday : "+tday);
 		String hour = request.getParameter("hour");
 		System.out.println("hour : "+hour);
 		String minute = request.getParameter("minute");
+		System.out.println("minute : "+minute);
+		
 		//String startmovtime = request.getParameter("sTime"); //hour+minute
 		
 		
@@ -188,22 +195,6 @@ public class TicketController {
 		
 		return "ticket/ticketseat";
 		
-		
-	}
-	
-	/*예매란 배너*/
-		@RequestMapping("/ticketbuy")
-		public String bTicketres(HttpServletRequest request, Model model) {
-			System.out.println("======= < pass by ticketbuy() > =======");	
-
-			/* 나중에 수정하기
-			 * 
-			 * String userid=request.getParameter("userid"); 
-			String movieid=request.getParameter("movieid");*/
-			
-			/*model.addAttribute("ticketres", arg1)*/
-			
-			return "ticket/ticketbuy";
 		
 	}
 	

@@ -25,7 +25,7 @@ import com.hicgv.movies.dto.MovieTrailerDto;
 
 
 
-public class MoviesController2 {
+public class xx_MoviesController {
 	
 	
 	

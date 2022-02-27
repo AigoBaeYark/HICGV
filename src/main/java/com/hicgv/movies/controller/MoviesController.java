@@ -44,7 +44,6 @@ public class MoviesController {
 		
 	/*movielist받기 api, 크롤링*/
 			
-		
 		return "movies/movies";	
 	
 	}
