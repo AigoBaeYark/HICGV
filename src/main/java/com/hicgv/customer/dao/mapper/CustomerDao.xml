@@ -76,8 +76,7 @@
 	</select>
 	<update id="resetPw" parameterType="HashMap">
 		UPDATE hicgv_customer
-		SET
-		PASSWORD LIKE #{password}
+		SET	PASSWORD = #{password}
 		WHERE ID LIKE #{id}
 	</update>
 	<!-- 아이디 찾기 -->

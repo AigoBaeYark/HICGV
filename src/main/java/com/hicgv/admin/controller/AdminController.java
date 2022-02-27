@@ -2,39 +2,33 @@ package com.hicgv.admin.controller;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
+//import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hicgv.admin.controller.dto.AdminDto;
-import com.hicgv.admin.dao.ADao;
-import com.hicgv.admin.dao.AdminDao;
-import com.hicgv.admin.service.AdminContentViewService;
-import com.hicgv.admin.service.AdminDeleteService;
-import com.hicgv.admin.service.AdminModifyService;
-import com.hicgv.admin.service.AdminServiceInf;
-import com.hicgv.admin.service.AdminWriteService;
+import com.hicgv.admin.dto.AdminDto;
+import com.hicgv.admin.service.AdminService;
+import com.hicgv.admin.vopage.PageVO;
 import com.hicgv.admin.vopage.SearchVO;
 
 @Controller
 public class AdminController {
-//	@Autowired
-//	AdminServiceInf commandInf;
+	
+	@Autowired
+	AdminService adminService;
 
-	/*@Autowired
-	private SqlSession Session;*/
-	/*@RequestMapping("/getcustomerList")
-	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
+	
+	@RequestMapping("/getcustomerList")
+	public String customerlist(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("=========pass by getcustomerList()=============");
 
-		
 		//paging
 		String strPage=request.getParameter("page");
 		System.out.println("strPage1 : "+strPage);
@@ -46,9 +40,8 @@ public class AdminController {
 		searchVO.setPage(page);
 		
 		
-		ADao dao=Session.getMapper(ADao.class);
 	//totcnt
-		int total=dao.selectCustomerTotCount();
+		int total=adminService.selectCustomerTotCount();
 		searchVO.pageCalculate(total);
 		
 		
@@ -62,14 +55,14 @@ public class AdminController {
 		
 		int rowStart=searchVO.getRowStart();
 		int rowEnd=searchVO.getRowEnd();
-		
-		ArrayList<AdminDto> list=dao.list(rowStart,rowEnd);
+		ArrayList<AdminDto> list=adminService.customerlist();
+		//ArrayList<AdminDto> list=dao.list(rowStart,rowEnd);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("totRowCnt",total);
 		model.addAttribute("searchVO",searchVO);
 		return "/customer/customerList";
-	}*/
+	}
 
 	/*@RequestMapping("/customerView")
 	public String write_view() {

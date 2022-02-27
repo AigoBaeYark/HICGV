@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hicgv.admin.controller.dto.AdminDto;
-import com.hicgv.admin.dao.ADao;
+import com.hicgv.admin.dto.AdminDto;
 import com.hicgv.admin.vopage.SearchVO;
 import com.hicgv.customer.dto.CustomerDto;
 import com.hicgv.customer.service.CustomerService;
@@ -289,7 +288,7 @@ public class CustomerController {
 		return "/customer/loginForm";
 	}
 //================================관리자페이지===================================
-	@RequestMapping("/getcustomerList")
+	/*@RequestMapping("/getcustomerList")
 	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("=========pass by customerList()=============");
 
@@ -305,9 +304,9 @@ public class CustomerController {
 		searchVO.setPage(page);
 		
 		
-		ADao dao=Session.getMapper(ADao.class);
+		ADao dao=Session.getMapper(ADao.class);*/
 	//totcnt
-		int total=dao.selectCustomerTotCount();
+	/*	int total=dao.selectCustomerTotCount();
 		searchVO.pageCalculate(total);
 		
 		
@@ -326,7 +325,7 @@ public class CustomerController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("totRowCnt",total);
-		model.addAttribute("searchVO",searchVO);
-		return "/customer/customerList";
-	}
+		model.addAttribute("searchVO",searchVO);*/
+	/*	return "/customer/customerList";
+	}*/
 }

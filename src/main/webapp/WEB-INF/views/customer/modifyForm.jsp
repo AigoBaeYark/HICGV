@@ -62,15 +62,7 @@
                 <tr class="email">
                   <th><span>이메일</span></th>
                   <td>
-                    <input type="text" name="email" class="email" placeholder=""><span class="mar10">@</span>
-                    <input type="text"  class="email email2" placeholder="">
-                    <a href="javascript:;" class="btn_confirm">인증번호 발송</a>
-                  </td>
-                </tr>
-                <tr>
-                  <th><span>인증번호 확인</span></th>
-                  <td><input type="text" class="send_number" placeholder="10:00">
-                    <a href="javascript:;" class="btn_confirm">인증번호 확인</a>
+                    <input type="text" name="email" class="" placeholder="">                 
                   </td>
                 </tr>
                 <tr>
