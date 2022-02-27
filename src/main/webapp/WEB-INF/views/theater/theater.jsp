@@ -16,7 +16,7 @@
 <div id="contents"> 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 <i class="fa-solid fa-heart"></i>
-<a href="pay?userId=2&theater_schedule_id=1000" style="border: 2px solid red;">pay</a>
+<a href="pay?userId=2&theater_schedule_id=1000" style="border: 2px solid red;">pay</a> <span><a href="getSeat">getSEAT</a></span>
 
 
 <div class="row" id="theaterName">

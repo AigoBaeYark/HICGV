@@ -31,7 +31,7 @@
   </div>
 </div>
 locationName
-<select id="location_id" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px">
+<select id="location_id" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px; height: 9%">
   <option value="101">HICGV강남</option>
   <option value="102">HICGV명동</option>
   <option value="103">HICGV구로</option>
@@ -53,7 +53,7 @@ locationName
 </select>
 
 theaterRoomName 
-<select id="theaterRoom_id" class="form-select" name="theaterRoom_id" aria-label="Default select example" style="width: 200px">
+<select id="theaterRoom_id" class="form-select" name="theaterRoom_id" aria-label="Default select example" style="width: 200px; height: 9%;">
   <option value="1">강남1관</option>
   <option value="2">강남2관</option>
   <option value="3">강남3관</option>
@@ -78,6 +78,8 @@ startDate
 </div>
 
 <script>
+
+	
 
 	$(function() {
 		$('#submitBtn').click(function() {
