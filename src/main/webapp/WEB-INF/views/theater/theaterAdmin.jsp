@@ -12,7 +12,7 @@
 <body>
 <h2>theaterAdmin.jsp</h2>
 
-<div style="height: 300px; margin: auto">
+<div class="contents" style="height: 300px; margin: auto">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
 
@@ -22,7 +22,7 @@
     <label for="inputPassword6" class="col-form-label" >movieId</label>
   </div>
   <div class="col-auto">
-    <input type="text" name="movieId" id="movieId" class="form-control" aria-describedby="passwordHelpInline" required maxlength="8" minlength ="8">
+    <input type="text" name="movie_id" id="movie_id" class="form-control" aria-describedby="passwordHelpInline" required maxlength="8" minlength ="8">
   </div>
   <div class="col-auto">
     <span id="passwordHelpInline" class="form-text">
@@ -31,7 +31,7 @@
   </div>
 </div>
 locationName
-<select id="locationId" class="form-select" name="locationId" aria-label="Default select example" style="width: 200px">
+<select id="location_id" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px">
   <option value="101">HICGV강남</option>
   <option value="102">HICGV명동</option>
   <option value="103">HICGV구로</option>
@@ -53,7 +53,7 @@ locationName
 </select>
 
 theaterRoomName 
-<select id="theaterRoomId" class="form-select" name="theaterRoomId" aria-label="Default select example" style="width: 200px">
+<select id="theaterRoom_id" class="form-select" name="theaterRoom_id" aria-label="Default select example" style="width: 200px">
   <option value="1">강남1관</option>
   <option value="2">강남2관</option>
   <option value="3">강남3관</option>
@@ -66,7 +66,7 @@ theaterRoomName
 </select>
 
 startDate
-<input id="startDate" name="startDate" type="datetime-local" required/>
+<input id="start_date" name="start_date" type="datetime-local" required/>
 <input type="submit" id="submitBtn" value="입력" />
 
 </form>
@@ -81,17 +81,17 @@ startDate
 
 	$(function() {
 		$('#submitBtn').click(function() {
-			var locationId=$("#locationId option:selected").val();
-			var roomId=$("#theaterRoomId option:selected").val();
-			var movieId=document.getElementById('movieId').value;
-			var startDate=document.getElementById('startDate').value;
+			var locationId=$("#location_id option:selected").val();
+			var roomId=$("#theaterRoom_id option:selected").val();
+			var movieId=document.getElementById('movie_id').value;
+			var startDate=document.getElementById('start_date').value;
 			if (locationId!=null && roomId!=null && movieId!=null && startDate!=null) {
 			alert(movieId);
 			alert(locationId);
 			alert(roomId);
 			alert(startDate);
-			location.href="theaterInsertAdmin?movieId="+movieId
-					+"&locationId="+locationId+"&roomId="+roomId+"&startDate="+startDate;
+			location.href="theaterInsertAdmin?movie_id="+movieId
+					+"&location_id="+locationId+"&theaterRoom_id="+roomId+"&start_date="+startDate;
 				
 				return true;
 				
@@ -104,26 +104,26 @@ startDate
 	$(document).ready(
 		function() {
 			$("input").keyup(function() {
-				var movieId=document.getElementById('movieId').value;
+				var movieId=document.getElementById('movie_id').value;
 				if (movieId.length>=8) {
 				$('#moviesList').empty();
 				$(this).css("background-color","#9BC3FF");
 				alert('최대 8자리입니다.');
 				$.ajax({
 					type : "GET",
-					url : "moviesList?movieId="+movieId,
+					url : "moviesList?movie_id="+movieId,
 					contentType: "application/json; charset=UTF-8",
 					success : function(movieInfo) {
 						$('#moviesList').append(
-							"<ul><li><img src="+movieInfo.imageUrl 
+							"<ul><li><img src="+movieInfo.image_url 
 							+" style='width: 200px; height: 270px' /></li><li>MOVIE_ID :"
-							+movieInfo.movieId 
-							+"</li><li>TITLE_KOR : "+movieInfo.titleKor 
-							+"</li><li>OPENING_DATE : "+movieInfo.openingDate 
+							+movieInfo.movie_id 
+							+"</li><li>TITLE_KOR : "+movieInfo.title_kor 
+							+"</li><li>OPENING_DATE : "+movieInfo.opening_date 
 							+"</li><li>GENRE : "+movieInfo.genre 
-							+"</li><li>RUNNING_TIME : "+movieInfo.runningTime 
+							+"</li><li>RUNNING_TIME : "+movieInfo.running_time 
 							+"</li><li>AGE_LIMIT : "
-							+movieInfo.ageLimit +"</li></ul>");
+							+movieInfo.age_limit +"</li></ul>");
 					},
 					error : function () {
 						

@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <c:import url="/WEB-INF/views/common/header.jsp" />
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
 <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
@@ -12,10 +13,11 @@
 <title>hicgv/theater</title>
 </head>
 <body>
-<div> 
+<div id="contents"> 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
-
 <i class="fa-solid fa-heart"></i>
+<a href="pay?userId=2&theater_schedule_id=1000" style="border: 2px solid red;">pay</a>
+
 
 <div class="row" id="theaterName">
   <div class="col-4">
@@ -85,7 +87,17 @@
 <i class="fa-solid fa-grip-lines fa-2x"></i>
 <i class="fa-solid fa-grip-lines fa-2x"></i>
 <i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
    <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
 <i class="fa-solid fa-grip-lines fa-2x"></i>
 <i class="fa-solid fa-grip-lines fa-2x"></i>
 <i class="fa-solid fa-grip-lines fa-2x"></i>
@@ -114,55 +126,13 @@
       <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
    </div>
     <div class="day">
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime">
-        <i class="fa-solid fa-calendar"></i>
-         <strong>02월 15일 화</strong>
-         <input type="hidden" class="hiddenDate" value="20220215"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 16일 수</strong>
-         <input type="hidden" class="hiddenDate" value="20220216"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 17일 목</strong>
-         <input type="hidden" class="hiddenDate" value="20220217"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 18일 금</strong>
-         <input type="hidden" class="hiddenDate" value="20220218"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 19일 토</strong>
-         <input type="hidden" class="hiddenDate" value="20220219"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 20일 일</strong>
-         <input type="hidden" class="hiddenDate" value="20220220"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 21일 월</strong>
-         <input type="hidden" class="hiddenDate" value="20220221"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 22일 화</strong>
-         <input type="hidden" class="hiddenDate" value="20220222"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 23일 수</strong>
-         <input type="hidden" class="hiddenDate" value="20220223"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 24일 목</strong>
-         <input type="hidden" class="hiddenDate" value="20220224"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 25일 금</strong>
-         <input type="hidden" class="hiddenDate" value="20220225"/>
-        </a>
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
-         <strong>02월 26일 토</strong>
-         <input type="hidden" class="hiddenDate" value="20220226"/>
-        </a>
+	   	 <c:forEach items="${scheduleDate }" var="date">
+   	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime">
+	       <i class="fa-regular fa-calendar"></i>
+	        <strong>${date.start_date }</strong>
+	        <input type="hidden" class="hiddenDate" value="${date.start_date }"/>
+     </a>
+	     </c:forEach>
      </div>
      
    <div id="schTest">
@@ -179,43 +149,43 @@
     <p>ㆍ입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</p>
    </div>
    </div>
-	
-	<script>
-		
-		$('a.selTime').click(function(e) {
-			e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미	//이거 안넣으면 a태그 페이지 바뀜
-	
-		})
-	
-		$(function() {
-			$('a.selTime').on('click', schTest);
-		});
-		
-		function schTest() {
-			var date = $(this).children('input.hiddenDate').val();
-			var url_href=window.location.href;
-			var url=new URL(url_href);
-			var locId=url.searchParams.get('locId');
-			
-			if(locId == null)
-				locId = '101';
-			 
-			$.ajax({
-				type : "GET",
-				url : "theaterTimeList?date="+date+"&locId="+locId,
-				contentType: "application/json; charset=UTF-8",
-				success : function(data) { // 가로 안에 있는 data는 컨트롤러에서 return받은 값
-					console.log(data);
-					$("#schTest").html(data);
-				},
-				error : function (data) {
-					console.log(data);
-					alert('error');
-				}
-			})
-		}
-		
-	</script>
+   
+   <script>
+      
+      $('a.selTime').click(function(e) {
+         e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미   //이거 안넣으면 a태그 페이지 바뀜
+   
+      })
+   
+      $(function() {
+         $('a.selTime').on('click', schTest);
+      });
+      
+      function schTest() {
+         var date = $(this).children('input.hiddenDate').val();
+         var url_href=window.location.href;
+         var url=new URL(url_href);
+         var locId=url.searchParams.get('locId');
+         
+         if(locId == null)
+            locId = '101';
+          
+         $.ajax({
+            type : "GET",
+            url : "theaterTimeList?date="+date+"&locId="+locId,
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) { // 가로 안에 있는 data는 컨트롤러에서 return받은 값
+               console.log(data);
+               $("#schTest").html(data);
+            },
+            error : function (data) {
+               console.log(data);
+               alert('error');
+            }
+         })
+      }
+      
+   </script>
 
    <c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 </body>

@@ -15,5 +15,6 @@ public interface TheaterService {
 	public LocationDto getLocationInfo(String locationId);
 	public void setScheduleInfo(ScheduleDto schedultDto);
 	public MoviesInfoDto getMoviesList(String movieId);
+	public ArrayList<ScheduleDto> getScheduleDate();
 
 }

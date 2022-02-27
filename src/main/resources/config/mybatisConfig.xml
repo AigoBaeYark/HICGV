@@ -25,6 +25,8 @@
   		<typeAlias type="com.hicgv.ticket.dto.TicketListDto" alias="TicketListDto"/>
   		<typeAlias type="com.hicgv.store.dto.StoreDto" alias="StoreDto"/>
   		<typeAlias type="com.hicgv.customer.dto.CustomerDto" alias="CustomerDto"/>
+  		<typeAlias type="com.hicgv.theater.dto.ScheduleDto" alias="ScheduleDto"/>
+  		
   		
   		
   	</typeAliases>

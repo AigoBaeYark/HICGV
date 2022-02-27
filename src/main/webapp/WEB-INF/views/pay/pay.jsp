@@ -14,7 +14,6 @@
 <title>hicgv/pay</title>
 </head>
 <body>
-<h2>pay.jsp</h2>
 <div style="height: 300px;">
    <c:import url="/WEB-INF/views/common/header.jsp" />
 </div>

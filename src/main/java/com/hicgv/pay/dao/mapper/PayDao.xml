@@ -6,8 +6,11 @@
     
 <mapper namespace="com.hicgv.pay.dao.PayDao">
 	<select id="getPayInfo" resultType="com.hicgv.pay.dto.PayDto">
-		SELECT * FROM HICGV_PAY
-		WHERE USER_ID=#{param1} AND MOVIE_ID=#{param2}
+		SELECT USER_ID,THEATER_SCHEDULE_ID,MOVIE_ID,HICGV_COUPON,VIP_COUPON,POINT,TITLE_KOR,LOCATION_NAME,
+		ROOM_NAME,START_DATE,PERSON,SEAT,SEAT_PRICE,PERSON*SEAT_PRICE AS TOT_PRICE
+		FROM HICGV_PAY WHERE USER_ID=#{param1} AND THEATER_SCHEDULE_ID=#{param2}
 	</select>
-
+	<select id="getSeat" resultType="com.hicgv.pay.dto.PayDto">
+		SELECT SEAT FROM HICGV_PAY WHERE THEATER_SCHEDULE_ID=#{param1}
+	</select>
 </mapper>
