@@ -79,27 +79,9 @@ public class MainController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(HttpServletRequest req, HttpSession session, Locale locale, Model model) {
 		logger.info("before mainContrller main()");
-		// LinkedList<HashMap<String, String>> finalSearchList = new
-		// LinkedList<HashMap<String, String>>();
-
-		// mainService.getDailyViewers("20220213"); //당일 관람객 수 (최대 10위까지)
-		// mainService.getMovieID(); //cgv에서 movieID 가져오기
-
-		// 데이터 들어오는거 테스트 완료
-		// try {
-		// finalSearchList = mainService.getSearchFinal("스파이더맨");
-		// for (HashMap<String, String> hashMap : finalSearchList) {
-		// System.out.println("title : "+hashMap.get("title_kor"));
-		// }
-		// } catch (Exception e) {
-		// throw new RuntimeException("검색실패",e);
-		// }
-
-		// mainService.getSearchFinalDaily("20220218");
-		// mainService.getSearchMovieInfo("듄");
+		
 		model.addAttribute("trailer", mainService.getTrail()); // 트레일러 영상 제목 설명 가져옴
 		model.addAttribute("movie", mainService.getMoviesList());
-		// model.addAttribute("movieList",finalSearchList);
 		session.setAttribute("t", mainService.getTrail());
 		logger.info("after mainContrller main()");
 
@@ -113,7 +95,6 @@ public class MainController {
 		// 영화를 넣는법
 		// 1. 직접입력
 		// 2. api 가져오기
-
 		return "common/header";
 	}
 
@@ -329,6 +310,14 @@ public class MainController {
 		}
 		
 		
+	}
+	
+	@RequestMapping("updateDailyRank")
+	public String updateDailyRank() {
+		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
+		mainService.updateDailyRank(crawlFinal.updateMovieRank());
+		
+		return "redirect:common/moviesAdmin";
 	}
 
 

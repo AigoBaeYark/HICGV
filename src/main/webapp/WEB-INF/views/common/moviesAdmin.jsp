@@ -27,6 +27,7 @@
 			onclick="searchTitle()" />
 		</span> <span> <a href="moviesAdminInputDetail"><input
 				type="button" value="직접입력하기" /></a></span> <span><a href="insertAllActor" ><input type="button" value="영화배우 전부갱신" /> </a></span>
+				<span><a href="updateDailyRank"><input type="button" value="최신랭크 갱신 1~10위" /></a></span>
 				<br /> <strong>검색결과</strong> <br />
 
 	</div>
@@ -149,10 +150,6 @@
 			})
 		}; 
 	</script>
-
-
-
-
 
 
 	<div style="clear: both;">

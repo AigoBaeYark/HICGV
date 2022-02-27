@@ -40,7 +40,19 @@
 		to_date(#{opening_date },'yyyy-MM-dd'),#{genre },#{running_time })
 
 	</insert>
-
+	
+	<update id = "updateDailyRank" parameterType="List">
+		<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;">
+			UPDATE HICGV_MOVIE
+			SET RANKING = #{item.rank }, 
+			AUDIENCE_TODAY = #{item.audience_today}, 
+			AUDIENCE_TOTAL = #{item.audience_total}, 
+			AUDIENCE_YESTERDAY = #{item.audience_yesterday}
+			WHERE MOVIE_ID = #{item.movie_id} 
+		</foreach>
+	
+	</update>
+	
 	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 
 		#{param1}, #{param2}) </insert> -->
 

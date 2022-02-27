@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -456,6 +457,19 @@ public class getMoviesCrawlFinal {
 		parseDailyData(dailyResult);
 	}
 	
+	//최신 랭크로 갱신
+	public LinkedList<HashMap<String, String>> updateMovieRank() {
+		//가장 최신랭크가 하루전날이기 때문에 하루전날 날짜로 갱신
+		SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd");
+		Calendar calToday = Calendar.getInstance();
+		calToday.add(Calendar.DATE, -1);
+		this.day=today.format((calToday.getTime()));
+		
+		String updateMovieResult = getMovieUrlJson(getDailyMovieApiUrl());
+		System.out.println("updateMovieRank : "+updateMovieResult);
+		return parseDailyData(updateMovieResult);
+	}
+	
 	//이름으로 검색
 	public LinkedList<HashMap<String, String>> searchToTitleMovieInfoApi(String searchTitle) {
 		try {
@@ -533,7 +547,7 @@ public class getMoviesCrawlFinal {
 	
 	//날짜별 랭크검색
 	private String getDailyMovieApiUrl() {
-		String movieUrl = DAILYURL + "?key=" + MOVIEAPIKEY + "&targetDt=" + day;
+		String movieUrl = DAILYURL + "?key=" + MOVIEAPIKEY + "&targetDt=" + this.day;
 
 		return movieUrl;
 	}
@@ -803,16 +817,18 @@ public class getMoviesCrawlFinal {
 	}
 	
 	//날짜별 랭크 가져오기
-	private void parseDailyData(String dailyResult) {
+	private LinkedList<HashMap<String, String>> parseDailyData(String dailyResult) {
 		LinkedList<HashMap<String, String>> dailyDataList = new LinkedList<HashMap<String, String>>();
 		System.out.println(dailyResult);
 
 		JSONObject jsonObject = null;
 
 		String title; // 영화제목
-		
 		String movieCd; // 영화 코드
 		String audiCnt; // 당일 관람객
+		String rank ; // 랭크
+		String audiIntern ; // 전일대비 증감분
+		String audiAcc  ; // 누적관객수
 		try {
 			jsonObject = new JSONObject(dailyResult.toString());
 			JSONObject jsonObject1 = (JSONObject) jsonObject.get("boxOfficeResult");
@@ -824,27 +840,34 @@ public class getMoviesCrawlFinal {
 				HashMap<String, String> dailyDataMap = new HashMap<String, String>();
 
 				movieCd = item.getString("movieCd");
+				rank = item.getString("rank");
 				title = item.getString("movieNm");
 				audiCnt = item.getString("audiCnt");
+				audiAcc = item.getString("audiAcc");
+				audiIntern = item.getString("audiInten");
 
 				System.out.println("rank : " + item.getString("rank") + "movieCd : " + movieCd + " movieNm : " + title
 						+ " audiCnt : " + audiCnt);
-				dailyDataMap.put("movieCd", movieCd);
-				dailyDataMap.put("title", title);
-				dailyDataMap.put("rank", item.getString("rank"));
-				dailyDataMap.put("audiCnt", audiCnt);
+				dailyDataMap.put("movie_id", movieCd);
+				dailyDataMap.put("rank", rank);
+				dailyDataMap.put("title_kor", title);
+				dailyDataMap.put("audience_today", audiCnt);
+				dailyDataMap.put("audience_total", audiAcc);
+				dailyDataMap.put("audience_yesterday", audiIntern);
 
 				dailyDataList.add(dailyDataMap);
 
 			}
 			for (HashMap<String, String> hashMap : dailyDataList) {
-				System.out.println(hashMap.get("movieCd"));
-				System.out.println(hashMap.get("title"));
+				System.out.println(hashMap.get("movie_id"));
 				System.out.println(hashMap.get("rank"));
-				System.out.println(hashMap.get("audiCnt"));
+				System.out.println(hashMap.get("title_kor"));
+				System.out.println(hashMap.get("audience_today"));
 			}
+			
+			return dailyDataList;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("데일리 랭크 갱신 실패",e);
 		}finally {
 			
 		}

@@ -22,4 +22,5 @@ public interface MainDao {
 	//모든 영화인 데이터 넣기
 	public void insertAllActor(HashMap<String, Object> actor);
 	public void insertMovie(MoviesDto moviesDto);
+	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
 }

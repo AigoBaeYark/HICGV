@@ -89,5 +89,11 @@ public class MainServiceImpl  implements MainService{
 		mainDao.insertMovie(moviesDto);
 	}
 
+	@Override
+	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank) {
+
+		mainDao.updateDailyRank(updateMovieRank);
+	}
+
 	
 }
