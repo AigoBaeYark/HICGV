@@ -122,7 +122,6 @@ public class CustomerController {
 			System.out.println("로그인 후 이용해주세요");
 			return "/customer/loginForm";
 		} else { // 로그인 했을경우
-
 			String id = (String) session.getAttribute("id");
 			System.out.println("id : " + id);
 			CustomerDto dto = new CustomerDto();
@@ -140,7 +139,7 @@ public class CustomerController {
 	@RequestMapping("/modifyForm")
 	public String modifyForm(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by modifyForm()=============");
-
+		
 		return "/customer/modifyForm";
 	}
 

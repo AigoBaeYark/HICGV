@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int selectCustomerTotCount() {
 		
-		return 0;
+		return dao.selectCustomerTotCount();
 	}
 
 	@Override
@@ -31,15 +31,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public AdminDto contentView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void customerJoin() {
-		// TODO Auto-generated method stub
-		
+	public AdminDto customerView(String id) {
+		System.out.println("==========adminserviceimpl customerView============");
+		return dao.customerView(id);
 	}
 
 	@Override
@@ -49,9 +43,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void customerMotify() {
+	public void customerModify() {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

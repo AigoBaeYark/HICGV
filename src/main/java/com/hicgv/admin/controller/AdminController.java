@@ -6,17 +6,20 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpSession;
 
-
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hicgv.admin.dao.AdminDao;
 import com.hicgv.admin.dto.AdminDto;
 import com.hicgv.admin.service.AdminService;
 import com.hicgv.admin.vopage.PageVO;
 import com.hicgv.admin.vopage.SearchVO;
+import com.hicgv.customer.dto.CustomerDto;
 
 @Controller
 public class AdminController {
@@ -29,6 +32,7 @@ public class AdminController {
 	public String customerlist(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("=========pass by getcustomerList()=============");
 
+		
 		//paging
 		String strPage=request.getParameter("page");
 		System.out.println("strPage1 : "+strPage);
@@ -39,7 +43,8 @@ public class AdminController {
 		int page=Integer.parseInt(strPage);
 		searchVO.setPage(page);
 		
-		
+		//AdminDao dao = (AdminDao) adminService.customerlist();
+
 	//totcnt
 		int total=adminService.selectCustomerTotCount();
 		searchVO.pageCalculate(total);
@@ -64,13 +69,54 @@ public class AdminController {
 		return "/customer/customerList";
 	}
 
-	/*@RequestMapping("/customerView")
-	public String write_view() {
+	@RequestMapping("/customerView")
+	public String customerView(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by customerView()=============");
+		String id=request.getParameter("id");
+		System.out.println("id :"+ id);
+		AdminDto dto = new AdminDto();
+		dto = adminService.customerView(id);
+		System.out.println("getid : "+dto.getId());
+		model.addAttribute("customerView",dto);
+		return "/adminCustomer/customerView";
 		
-		return "write_view";
+	} 
+	@RequestMapping("/customerModifyForm")
+		public String customerModifyForm(HttpServletRequest request, Model model) {
+			System.out.println("=========pass by customerModifyForm()=============");
+			String id=request.getParameter("id");
+			System.out.println("id :"+ id);
+			AdminDto dto = new AdminDto();
+			dto = adminService.customerView(id);
+			System.out.println("getid : "+dto.getId());
+			model.addAttribute("customerMotify", dto);
+			return "/adminCustomer/customerModifyForm";
+		
 	}
-	@RequestMapping("/customerJoin")
+	@RequestMapping(value = "/customerModify", method = RequestMethod.POST)
+	public String customerModify(HttpServletRequest request, Model model, @ModelAttribute CustomerDto customerDto)
+			throws Exception {
+		{
+			System.out.println("=========pass by customerModify()=============");
+
+			customerDto.setId("id");
+
+			System.out.println(customerDto.getId());
+			System.out.println(customerDto.getGender());
+			System.out.println(customerDto.getPhone_number());
+			System.out.println(customerDto.getNickname());
+			System.out.println(customerDto.getDate_birth());
+			System.out.println(customerDto.getLocation());
+			System.out.println(customerDto.getEmail());
+			System.out.println(customerDto.getQuestion());
+			System.out.println(customerDto.getAnswer());
+
+			adminService.customerModify();
+
+			return "/customer/myCGV";
+		}
+		}
+	/*@RequestMapping("/customerJoin")
 	public String write(HttpServletRequest request, Model model) {
 		System.out.println("=========pass by write()=============");
 		//db에 글쓰기진행

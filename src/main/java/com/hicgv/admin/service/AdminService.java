@@ -15,11 +15,11 @@ public interface AdminService {
 	
 	public	 ArrayList<AdminDto> customerlist();
 	
-	public AdminDto contentView();
-	
-	public void customerJoin();
+	public AdminDto customerView(String id);
 	
 	public void customerDelete();
 	
-	public void customerMotify();
+	public void customerModify();
+
+	
 }
