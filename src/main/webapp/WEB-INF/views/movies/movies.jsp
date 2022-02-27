@@ -33,7 +33,7 @@
                	  <li><a href="/movies/pre-movies.aspx">상영예정작</a></li>
              	</ul>
        		</div>
-        </div>ccd
+        </div>
          <!-- //Heading Map Multi -->
         <!-- Sorting -->
         <div class="sect-sorting">

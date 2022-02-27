@@ -118,7 +118,7 @@
 					  <div class="col-2">
 					  <p style="text-align: center;">날짜선택3</p>
 					  <p style="text-align: center;">2022년</p>
-					  <p style="text-align: center;">2월</p>
+					  <p style="text-align: center;">02월</p>
 					  
 					  <div class="list-group" id="dateTab" role="tablist">
 					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
@@ -355,26 +355,6 @@
 				}
 			})
 			
-		 	/*
-			var triggerTabList = [].slice.call(document.querySelectorAll('#MovieTab'))
-			var triggerTabList2 = [].slice.call(document.querySelectorAll('#locTap'))
-			var triggerTabList3 = [].slice.call(document.querySelectorAll('#dateTap'))
-			
-			triggerTabList.forEach(function (triggerEl) {
-				
-			  var tabTrigger = new bootstrap.Tab(triggerEl)
-			  
-			  
-			    triggerEl.addEventListener('click', function (event) {
-				  alert('click');
-				
-				  $('#locTap').show();
-			    event.preventDefault()
-			    tabTrigger.show()
-			    
-			  })
-			})  
-			*/
 	
 			$('a.list-group-item-date').click(function(e) {
 				//e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미	//이거 안넣으면 a태그 페이지 바뀜
@@ -405,7 +385,7 @@
 			        error   : function(mv) {
 			        	
 			        	for ( var i = 0 in mv){
-			        		console.log(mv[i].day); //day, getdate으로 수정했눈데도 안 됨
+			        		console.log(mv[i].day); 
 			        	}
 						
 						alert('에러');
@@ -418,7 +398,7 @@
 	
 		</div>
 			<div style="clear: both;">
-				<c:import url="../ticket/ticketbuy.jsp"></c:import>
+				<c:import url="../ticket/tickettab.jsp"></c:import>
 			</div>
 
 			<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
