@@ -28,8 +28,8 @@
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
       <div class="accordion-body">
       	<div class="row">
-      	<select class="form-select" aria-label="Default select example" style="height: 100%">
-		  <option selected>사용하실 쿠폰을 선택해주세요.</option>
+      	<select class="form-select" onclick="coupon();" id="coupon" style="height: 100%" aria-label="Default select example" >
+		  <option>사용하실 쿠폰을 선택해주세요.</option>
 		  <option value="${payInfo.hicgv_coupon }">HICGV 할인쿠폰 ${payInfo.hicgv_coupon }장</option>
 		  <option value="${payInfo.vip_coupon }">VIP 할인쿠폰 ${payInfo.vip_coupon }장</option>
 		</select>
@@ -273,88 +273,95 @@
 
 <script>
 
-function kakaoPay() {
-	var movie_name=$('tr#movie_name:first-child > td').text();
-	var theater=$('td#theater').text()
-	var screen=$('tr:nth-child(3) > td').text();
-	var movie_date=$('tr:nth-child(4) > td').text();
-	var people=$('tr:nth-child(5) > td').text();
-	var seat=$('tr:nth-child(6) > td').text();
-	var payment_price=$('tr#payment_price:first-child > td').text();
-	
-	$.ajax({
-		type: "GET",
-		url: "kakaoPay",
-		contentType: "application/json; charset=UTF-8",
-		data: {
-			'movie_name' : movie_name,
-			'theater' : theater,
-			'screen' : screen,
-			'moviedate' : movie_date,
-			'people' : people,
-			'seat' : seat,
-			'payment_price' : payment_price
-		},
-		async: false,
-		success: function(data) {
-			alert("성공");
-			$('html').html(data);
-			
+	function coupon() {
+		var hicgv_coupon = "${payInfo.hicgv_coupon }";
+		var vip_coupon = "${payInfo.vip_coupon }";
+		/* alert(hicgv_coupon);
+		alert(vip_coupon); */
+		if (hicgv_coupon < 1) {
+			alert('쿠폰없다')
+			$("#coupon").attr("disabled", true);
 		}
-	})
-}
-
-function chkPoint() { 
-		var point=$('span#userPoint').text();
-		console.log( $('span#userPoint').text() );
-		
-	if ($('input:checkbox[id=pointAllCheck]').is(':checked')) {
-		alert(point);
-		if (point<1000) {
-			alert("1,000P 이상부터 사용 가능합니다.");
-			$('input:checkbox[id=pointAllCheck]').prop("checked", false); //checkbox 체크(true), 체크해제(false)
-
-		}
-		if(point>=1000){
-			$('input[id=selPoint]').val(point);
-		}
-	} else {
-		$('input[id=selPoint]').val(null); // checkbox 체크해제시 input내용 지우기
 	}
-}
 
+	function kakaoPay() {
+		var movie_name = $('tr#movie_name:first-child > td').text();
+		var theater = $('td#theater').text()
+		var screen = $('tr:nth-child(3) > td').text();
+		var movie_date = $('tr:nth-child(4) > td').text();
+		var people = $('tr:nth-child(5) > td').text();
+		var seat = $('tr:nth-child(6) > td').text();
+		var payment_price = $('tr#payment_price:first-child > td').text();
 
-function setDisplay(){
-	     if($('input:radio[id=pay1]').is(':checked')){
-	    	 $('#payInfo1').css('display', 'block');
-	    	 $('#payInfo2').css('display', 'none');
-	    	 $('#payInfo3').css('display', 'none');
-	    	 $('#payInfo4').css('display', 'none');
-	    } else if($('input:radio[id=pay2]').is(':checked')){
-	    	 $('#payInfo1').css('display', 'none');
-	    	 $('#payInfo2').css('display', 'block');
-	    	 $('#payInfo3').css('display', 'none');
-	    	 $('#payInfo4').css('display', 'none');
-	    } else if($('input:radio[id=pay3]').is(':checked')){
-	    	 $('#payInfo1').css('display', 'none');
-	    	 $('#payInfo2').css('display', 'none');
-	    	 $('#payInfo3').css('display', 'block');
-	    	 $('#payInfo4').css('display', 'none');
-	    } else if($('input:radio[id=pay4]').is(':checked')){
-	    	 $('#payInfo1').css('display', 'none');
-	    	 $('#payInfo2').css('display', 'none');
-	    	 $('#payInfo3').css('display', 'none');
-	    	 $('#payInfo4').css('display', 'block');
-	    }
+		$.ajax({
+			type : "GET",
+			url : "kakaoPay",
+			contentType : "application/json; charset=UTF-8",
+			data : {
+				'movie_name' : movie_name,
+				'theater' : theater,
+				'screen' : screen,
+				'moviedate' : movie_date,
+				'people' : people,
+				'seat' : seat,
+				'payment_price' : payment_price
+			},
+			async : false,
+			success : function(data) {
+				alert("성공");
+				$('html').html(data);
+
+			}
+		})
+	}
+
+	function chkPoint() {
+		var point = $('span#userPoint').text();
+		console.log($('span#userPoint').text());
+
+		if ($('input:checkbox[id=pointAllCheck]').is(':checked')) {
+			alert(point);
+			if (point < 1000) {
+				alert("1,000P 이상부터 사용 가능합니다.");
+				$('input:checkbox[id=pointAllCheck]').prop("checked", false); //checkbox 체크(true), 체크해제(false)
+
+			}
+			if (point >= 1000) {
+				$('input[id=selPoint]').val(point);
+			}
+		} else {
+			$('input[id=selPoint]').val(null); // checkbox 체크해제시 input내용 지우기
+		}
+	}
+
+	function setDisplay() {
+		if ($('input:radio[id=pay1]').is(':checked')) {
+			$('#payInfo1').css('display', 'block');
+			$('#payInfo2').css('display', 'none');
+			$('#payInfo3').css('display', 'none');
+			$('#payInfo4').css('display', 'none');
+		} else if ($('input:radio[id=pay2]').is(':checked')) {
+			$('#payInfo1').css('display', 'none');
+			$('#payInfo2').css('display', 'block');
+			$('#payInfo3').css('display', 'none');
+			$('#payInfo4').css('display', 'none');
+		} else if ($('input:radio[id=pay3]').is(':checked')) {
+			$('#payInfo1').css('display', 'none');
+			$('#payInfo2').css('display', 'none');
+			$('#payInfo3').css('display', 'block');
+			$('#payInfo4').css('display', 'none');
+		} else if ($('input:radio[id=pay4]').is(':checked')) {
+			$('#payInfo1').css('display', 'none');
+			$('#payInfo2').css('display', 'none');
+			$('#payInfo3').css('display', 'none');
+			$('#payInfo4').css('display', 'block');
+		}
 
 	}
-	
-function setPayMethod(event){
-	document.getElementById('payMethod').innerText=event.target.value;
-}
 
-
-
+	function setPayMethod(event) {
+		document.getElementById('payMethod').innerText = event.target.value;
+	}
 </script>
 
 
