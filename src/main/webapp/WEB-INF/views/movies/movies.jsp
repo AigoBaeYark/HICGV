@@ -27,12 +27,6 @@
         <!-- Heading Map Multi -->
         <div class="tit-heading-wrap">
             <h3>무비차트</h3>
-        	<div class="submenu">
-            	 <ul>
-              	  <li class="on"><a href="/movies/" title="선택">무비차트</a></li>
-               	  <li><a href="/movies/pre-movies.aspx">상영예정작</a></li>
-             	</ul>
-       		</div>
         </div>
          <!-- //Heading Map Multi -->
         <!-- Sorting -->

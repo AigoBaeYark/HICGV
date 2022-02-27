@@ -48,10 +48,10 @@
                 <h2>인원/좌석선택</h2>
                 <div class="mr_agilemain">
                     <div class="agileits-left">
-                        <label> 가격(이 이부분 히든처리하면 될듯)
+                        <label> 가격(이 이부분 히든처리하고 9천원 고정할까 생각중)
                             <span>*</span>
                         </label>
-                        <input type="text" id="Username" required>
+                        <input type="text" id="TicketPrice" required>
                     </div>
                     <div class="agileits-right">
                         <label> 인원수
@@ -60,18 +60,20 @@
                         <input type="number" id="Numseats" required min="1">
                     </div>
                 </div>
-                <button onclick="takeData()">Start Selecting</button>
-                
                 
                 <div class="col-6">
 			    <!-- 영화정보를 넘어오게 해야함 -->
 			    <c:forEach items="${ticketseat }" var="seat">
-					<span > 선택정보 </span>
+					<h2> 선택정보 </h2>
 					<p> ${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name } &nbsp; | &nbsp; ${seat.room_name }  <br>
 					  ${seat.year }. ${seat.month }. ${seat.day }  &nbsp;  ${seat.hour }:${seat.minute } ~ ${seat.endHour }:${seat.endMinute } </p>
 					</c:forEach> 
 				</div>
             </div>
+           
+            <button onclick="takeData()">Start Selecting</button>
+            
+            
             <!-- //input fields -->
             <!-- seat availabilty list -->
             <ul class="seat_w3ls">
@@ -535,7 +537,7 @@
                     <tr>
                         <th>선택좌석명</th>
                         <th>선택좌석수</th>
-                        <th>결제예정금액</th>
+                        <th>결제예정금액(단가*인원 식 넣을까 생각중)</th>
                     </tr>
                     <tr>
                        <td>
@@ -563,15 +565,15 @@
             $(".seatStructure *").prop("disabled", true);
             $(".displayerBoxes *").prop("disabled", true);
         }
-
+	
         function takeData() {
-            if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
+            if (($("#TicketPrice").val().length == 0) || ($("#Numseats").val().length == 0)) {
                 alert("Please Enter your Name and Number of Seats");
             } else {
                 $(".inputForm *").prop("disabled", true);
                 $(".seatStructure *").prop("disabled", false);
                 document.getElementById("notification").innerHTML =
-                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
+                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>좌석을 선택해주세요 :)</b>";
             }
         }
 
@@ -586,7 +588,7 @@
                 var allSeatsVals = [];
 
                 //Storing in Array
-                allNameVals.push($("#Username").val());
+                allNameVals.push($("#TicketPrice").val());
                 allNumberVals.push($("#Numseats").val());
                 $('#seatsBlock :checked').each(function () {
                     allSeatsVals.push($(this).val());
@@ -606,8 +608,8 @@
             alert($("input:checked").length);
         }
 
-        //원래 이 단락만 주석 되어 있음
-        function getCookie(cname) {
+        
+       /*  function getCookie(cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
             for(var i = 0; i < ca.length; i++) {
@@ -621,8 +623,9 @@
             }
             return "";
         }
-        
+         */
 
+         
 
         $(":checkbox").click(function () {
             if ($("input:checked").length == ($("#Numseats").val())) {
@@ -633,20 +636,27 @@
             }
         });
         
-          
-        /* 인원 , 좌석넘버, 금액(단가), 총금액 기재 */
-        
-       /*  var audience="";
+         
+         
+        /* 인원 , 좌석넘버, 금액(단가), 총금액 기재하깅 */
+       var audience="";
         var seatName="";
         var unitPrice="";
         var totalPrice="";
         
+        /* 좌석 하나하나 맞춘거 */
         $('.seatStructure txt-center').mouseover(function() {
-        	
-        } */
+        	console.log($(this).children('#seatsBlock').text()); //좌석명 가져오기
+        	//console.log($(this).children('td').text()); //좌석명 가져오기
+        	console.log($(this).children('input').val()); //좌석명 가져오기
+        	seatName = $(this).children('input').val(); //값 지정해주기
+        	console.log('seatName :  '+seatName); //콘솔값 넣음
+        })
         
         
         
+        
+ 
         
         
     </script>
