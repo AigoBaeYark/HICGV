@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hicgv.admin.dto.AdminDto;
+import com.hicgv.admin.vopage.SearchVO;
 import com.hicgv.customer.dto.CustomerDto;
 import com.hicgv.customer.service.CustomerService;
 
@@ -26,6 +29,8 @@ import com.hicgv.customer.service.CustomerService;
 @Controller
 public class CustomerController {
 	// 서비스 연결
+	@Autowired
+	private SqlSession Session;
 	@Autowired
 	CustomerService customerService;
 
@@ -279,31 +284,16 @@ public class CustomerController {
 		customerService.forgetId(phone_number, date_birth);
 		
 		System.out.println(customerService.forgetId(phone_number, date_birth));
-		// 디비에 접속과 동시에 비교
-		/*CustomerDao dao = sqlSession.getMapper(CustomerDao.class);
-		// getId로 아이디를 찾는 쿼리의 결과 값을 담는다. dao.에는 위에서 입력한 값을 임력해서 쿼리를 실행
-		String getPhone_number = dao.getPhone_number(phone_number);
-		String getId = dao.forgetId(phone_number, date_birth);
-		System.out.println("id :" + getId);
 
-		if (getPhone_number != null && getId != null) {
-			System.out.println("회원정보가 일치합니다.");
-			model.addAttribute("getId", getId);
-			System.out.println("회원님의 아이디는 " + getId + "입니다.");
-			return "home";
-			// 아이디만 뿌려주기 위해서 모델에 담음
-		} else {
-			System.out.println("입력한 회원정보가 다릅니다.");
-		}*/
 		return "/customer/loginForm";
 	}
-//관리자 페이지
+//================================관리자페이지===================================
 	/*@RequestMapping("/getcustomerList")
-	public String customerList(HttpServletRequest request, Model model) {
+	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("=========pass by customerList()=============");
-	
+
 		
-		//customerService.customerList("page");
+		//paging
 		String strPage=request.getParameter("page");
 		System.out.println("strPage1 : "+strPage);
 		if(strPage==null)
@@ -314,9 +304,9 @@ public class CustomerController {
 		searchVO.setPage(page);
 		
 		
-		CustomerDao dao=sqlSession.getMapper(CustomerDao.class);
-//		totcnt
-		int total=dao.selectBoardTotCount();
+		ADao dao=Session.getMapper(ADao.class);*/
+	//totcnt
+	/*	int total=dao.selectCustomerTotCount();
 		searchVO.pageCalculate(total);
 		
 		
@@ -331,13 +321,11 @@ public class CustomerController {
 		int rowStart=searchVO.getRowStart();
 		int rowEnd=searchVO.getRowEnd();
 		
-		ArrayList<BoardDto> list=dao.list(rowStart,rowEnd);
+		ArrayList<AdminDto> list=dao.list(rowStart,rowEnd);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("totRowCnt",total);
-		model.addAttribute("searchVO",searchVO);
-		
-		
-		return "/customer/customerList";
+		model.addAttribute("searchVO",searchVO);*/
+	/*	return "/customer/customerList";
 	}*/
 }
