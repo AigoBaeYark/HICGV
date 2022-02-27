@@ -31,7 +31,7 @@ public class PayController {
 	
 		return "pay/pay";
 	}
-	@RequestMapping("ticketseat")
+	@RequestMapping("getSeat")
 	public String getSeat(HttpServletRequest request, Model model) {
 		System.out.println("======= << getSeat >> =======");
 		String theaterScheduleId=request.getParameter("theater_schedule_id");
