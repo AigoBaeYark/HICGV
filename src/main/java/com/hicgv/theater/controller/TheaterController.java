@@ -47,7 +47,8 @@ public class TheaterController {
 		model.addAttribute("theater", theaterService.getTheaterInfo());
 		model.addAttribute("img", theaterService.getImg(locId));
 		model.addAttribute("locInfo", theaterService.getLocationInfo(locId));
-
+		model.addAttribute("scheduleDate",theaterService.getScheduleDate());
+		
 		return "theater/theater";
 
 	}
@@ -73,12 +74,13 @@ public class TheaterController {
 		String startDate = request.getParameter("startDate");*/
 		
 		// input type="datetime-local" 값 중간에 T가 들어가서 " "로 바꿔줌
-		String startDate = schedultDto.getStart_date().replace("T", " ");
+		
 		System.out.println("locationId : " + schedultDto.getLocation_id());
 		System.out.println("roomId : " +schedultDto.getTheaterRoom_id());
 		System.out.println("movieId : " + schedultDto.getMovie_id());
-		System.out.println("startDate : " + startDate);
-
+		System.out.println("startDate : " + schedultDto);
+		
+		
 		theaterService.setScheduleInfo(schedultDto);
 
 		return "theater/theaterAdmin";
@@ -88,9 +90,9 @@ public class TheaterController {
 	@RequestMapping("moviesList")
 	public MoviesInfoDto schedule(HttpServletRequest request, Model model) {
 		System.out.println("======= << moviesList >> =======");
-		String movieId = request.getParameter("movieId");
+		String movieId = request.getParameter("movie_id");
 
-		System.out.println("movieId : " + movieId);
+		System.out.println("movie_id : " + movieId);
 
 		model.addAttribute("movieInfo", theaterService.getMoviesList(movieId));
 		MoviesInfoDto dto = theaterService.getMoviesList(movieId);

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class PayDto {
 	private int user_id;
+	private int theater_schedule_id;
 	private int movie_id;
 	private int hicgv_coupon;
 	private int vip_coupon;

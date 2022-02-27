@@ -9,7 +9,6 @@ public class MoviesInfoDto {
    private String title_kor;
    private String opening_date;
    private String genre;
-   private int running_time;
    private String age_limit;
    private String room_name;
    private int max_seat;
@@ -17,5 +16,6 @@ public class MoviesInfoDto {
    private int movie_id;
    private int location_id;
    private String image_url;
+   private int running_time;
 
 }

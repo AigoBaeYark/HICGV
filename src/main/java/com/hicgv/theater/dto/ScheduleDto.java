@@ -10,5 +10,6 @@ public class ScheduleDto {
 	private int theaterRoom_id;
 	private String start_date;
 	private int location_id;
+	private String schdate;
 
 }

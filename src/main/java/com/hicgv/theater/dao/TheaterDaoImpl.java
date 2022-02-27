@@ -60,14 +60,36 @@ public class TheaterDaoImpl implements TheaterDao{
 
 	@Override
 	public void setScheduleInfo(ScheduleDto schedultDto) {
+		
+		// 날짜에 있는 T를 지우고 새로 생성한 dto에 start_date를 설정해준 뒤에 보내줘야 됨
+		String startDate = schedultDto.getStart_date().replace("T", " ");
+		ScheduleDto schDto = schedultDto;
+		schDto.setStart_date(startDate);
 		System.out.println("======= << TheaterDaoImpl.setScheduleInfo() >> =======");
-		sqlSession.selectOne(nameSpace+".setScheduleInfo",schedultDto);
+		System.out.println("locationId : " + schDto.getLocation_id());
+		System.out.println("roomId : " +schDto.getTheaterRoom_id());
+		System.out.println("movieId : " + schDto.getMovie_id());
+		System.out.println("Start_date : " + schDto.getStart_date());
+		
+		
+		sqlSession.insert(nameSpace+".setScheduleInfo",schDto);
 	}
 
 	@Override
 	public MoviesInfoDto getMoviesList(String movieId) {
 		System.out.println("======= << TheaterDaoImpl.getMoviesList() >> =======");
 		return sqlSession.selectOne(nameSpace+".getMoviesList",movieId);
+	}
+
+	@Override
+	public ArrayList<ScheduleDto> getScheduleDate() {
+		System.out.println("======= << TheaterDaoImpl.getScheduleDate() >> =======");
+		List<ScheduleDto> dto = sqlSession.selectList(nameSpace+".getScheduleDate");
+		for (ScheduleDto scheduleDto : dto) {
+			System.out.println("date : "+scheduleDto.getStart_date());
+		}
+	
+		return (ArrayList<ScheduleDto>) dto;
 	}
 	
 }

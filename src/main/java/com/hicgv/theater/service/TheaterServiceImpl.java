@@ -1,6 +1,7 @@
 package com.hicgv.theater.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import com.hicgv.theater.dto.MoviesInfoDto;
 import com.hicgv.theater.dto.ScheduleDto;
 
 @Service
-public class TheaterServiceImpl implements TheaterService{
+public class TheaterServiceImpl implements TheaterService {
 
 	@Inject
 	TheaterDao dao;
@@ -39,7 +40,7 @@ public class TheaterServiceImpl implements TheaterService{
 		String selectDate = "";
 		ArrayList<MoviesInfoDto> mList = dao.getMoviesInfo(theaterId, locationId, startDate);
 		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
-		
+
 		for (MoviesInfoDto moviesInfoDto : mList) {
 
 			// 연, 월, 일, 시, 분 추출
@@ -75,7 +76,7 @@ public class TheaterServiceImpl implements TheaterService{
 			 */
 
 			Map<String, Object> timeMap = new LinkedHashMap<String, Object>();
-			
+
 			System.out.println(year);
 			System.out.println(month);
 			System.out.println(day);
@@ -99,19 +100,18 @@ public class TheaterServiceImpl implements TheaterService{
 
 			timeListMap.add(timeMap);
 		}
-		
+
 		return timeListMap;
 	}
-	
+
 	@Override
 	public LocationDto getLocationInfo(String locId) {
 		return dao.getLocationInfo(locId);
 	}
 
-
 	@Override
 	public void setScheduleInfo(ScheduleDto schedultDto) {
-		
+		dao.setScheduleInfo(schedultDto);
 	}
 
 	@Override
@@ -119,9 +119,12 @@ public class TheaterServiceImpl implements TheaterService{
 		return dao.getMoviesList(movieId);
 	}
 
+	@Override
+	public ArrayList<ScheduleDto> getScheduleDate() {
+		return 	dao.getScheduleDate();
+
+	}
+
 	
-	
-	
-	
-	
+
 }
