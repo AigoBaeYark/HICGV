@@ -75,15 +75,18 @@ public class MainServiceImpl  implements MainService{
 	@Override
 	public int checkMovieId(String movie_id) {
 		
-		mainDao.checkMovieId(movie_id);
-		
-		return 0;
+		return mainDao.checkMovieId(movie_id);
 	}
 
 	@Override
 	public void insertAllActor(HashMap<String, Object> actor) {
 		System.out.println("serviceActor : ");
 		mainDao.insertAllActor(actor);
+	}
+
+	@Override
+	public void insertMovie(MoviesDto moviesDto) {
+		mainDao.insertMovie(moviesDto);
 	}
 
 	

@@ -45,5 +45,26 @@ public class MainDaoImpl implements MainDao{
 	public void insertAllActor(HashMap<String, Object> allActor) {
 		System.out.println("daoActor : ");
 		sqlSession.insert(nameSpace+".insertAllActor",allActor);
+	}
+
+
+	@Override
+	public void insertMovie(MoviesDto moviesDto) {
+		
+		System.out.println("================ insertDao ================");
+		System.out.println("배우 : "+moviesDto.getActor());
+		System.out.println("영화이름 : "+moviesDto.getTitle_kor());
+		System.out.println("영화이름 영문 : "+moviesDto.getTitle_eng());
+		System.out.println("영화이이디 : "+moviesDto.getMovie_id());
+		System.out.println("영화배우 : "+moviesDto.getActor());
+		System.out.println("영화감독 : "+moviesDto.getDirector());
+		System.out.println("영화개봉일 : "+moviesDto.getOpening_date());
+		System.out.println("영화설명 : "+moviesDto.getDescription());
+		System.out.println("관람제한 : "+moviesDto.getAge_limit());
+		System.out.println("장르 : "+moviesDto.getGenre());
+		System.out.println("상영시간 : "+moviesDto.getRunning_time());
+		
+		
+		sqlSession.insert(nameSpace+".insertMovie",moviesDto);
 	};
 }

@@ -88,7 +88,7 @@ public class getMoviesCrawlFinal {
 	private static final String MOVIELISTURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
 	private static final String MOVIEINFOURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
 	private static final String ACTORSURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json";
-	private static final String MOVIEAPIKEY2 = "c0b6ae00f2bd5caf0c5fcbbef73f04f0";
+	private static final String MOVIEAPIKEY2 = "8c88363d7a07a5572ce618bb71149e90";
 	private static final String MOVIEAPIKEY = "bddfb4542fc6932260fc641a8e03c6d3";
 
 	// 네이버
@@ -303,14 +303,15 @@ public class getMoviesCrawlFinal {
 						System.out.println("replace 후 : " + aftertitle_korMatch);
 						System.out.println("title replace 후 : " + title.replaceAll(match,""));
 						
-						if (afterTitleMatch.equals(aftertitle_korMatch) && (year.equals(movieListMap.get("year")) || year.equals(movieListMap.get("opening_date").substring(0,4)))) {
+						if (afterTitleMatch.equals(aftertitle_korMatch) && (year.equals(movieListMap.get("year"))|| year.equals(movieListMap.get("year2")) || year.equals(movieListMap.get("opening_date").substring(0,4))|| 
+								year.equals(movieListMap.get("beforeYear")) ||  year.equals(movieListMap.get("afterYear")))) {
 							System.out.println("같은영화 : " + movieListMap.get("title"));
 							HashMap<String, String> finalMap = new HashMap<String,String>();
 							finalMap.put("movie_id", movieListMap.get("movie_id"));			//영화 고유코드
 							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
 							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
 							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
-							finalMap.put("genre", movieListMap.get("genre"));				//영화 장르
+							finalMap.put("genres", movieListMap.get("genre"));				//영화 장르
 							finalMap.put("year", year);										//영화 제작년도
 							finalMap.put("poster", naverLinkTempMap.get("poset")); // 링크로 들어가서 가져오기
 							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
@@ -350,7 +351,8 @@ public class getMoviesCrawlFinal {
 						System.out.println("replace 후 : " + aftertitle_korMatch);
 						System.out.println("title replace 후 : " + title.replaceAll(match,""));
 
-						if (aftertitle_korMatch.equals(afterTitleMatch) && (movieListMap.get("year").equals(year) || movieListMap.get("opening_date").substring(0,4).equals(year))) {
+						if (aftertitle_korMatch.equals(afterTitleMatch) && (movieListMap.get("year").equals(year) || 
+								movieListMap.get("opening_date").substring(0,4).equals(year) ||  movieListMap.get("year2").equals(year)||  movieListMap.get("beforeYear").equals(year)|| movieListMap.get("afterYear").equals(year))) {
 							HashMap<String, String> finalMap = new HashMap<String,String>();
 							
 							System.out.println("같은영화2 : " + title);
@@ -366,7 +368,7 @@ public class getMoviesCrawlFinal {
 							finalMap.put("title_kor", movieListMap.get("title_kor"));		//영화 한글제목
 							finalMap.put("title_eng", movieListMap.get("title_eng"));		//영화 영문제목
 							finalMap.put("opening_date", movieListMap.get("opening_date"));	//영화 개봉일
-							finalMap.put("genre", movieListMap.get("genre"));				//영화 장르
+							finalMap.put("genres", movieListMap.get("genre"));				//영화 장르
 							finalMap.put("year", year);										//영화 제작년도
 							finalMap.put("poster", naverLinkTempMap.get("poset")); 			// 링크로 들어가서 가져오기
 							finalMap.put("description", naverLinkTempMap.get("description")); // 링크로 들어가서 가져오기
@@ -499,7 +501,7 @@ public class getMoviesCrawlFinal {
 				
 				//totCntPerPage+1
 				//2번째페이지부터 마지막페이지 까지(+1 이유는 10으로 나누면 나머지가 날라가서)	//여기도 2900씩 +
-				for(page=4001; page<= 6000; page++) {
+				for(page=12001; page<= 14000; page++) {
 					System.out.println("현재페이지 : "+page);
 					//두번째 페이지부터는 for문 안에서
 					searToAllActorsAfterPage(page);
@@ -776,10 +778,15 @@ public class getMoviesCrawlFinal {
 			}
 			
 			//관람등급은 무조건 배열안에 있어서 배열로 넣은다음 watchGradeNm 으로 빼야함
-			movieInfoJsonArray = movieInfoObject.getJSONArray("audits");
-			String age_limit = movieInfoJsonArray.getJSONObject(0).get("watchGradeNm").toString();
 			
-			movieIdMap.put("age_limit", movieInfoJsonArray.getJSONObject(0).get("watchGradeNm"));
+			if (movieInfoObject.getJSONArray("audits") == null) {
+				movieIdMap.put("age_limit", "전체 관람가");
+			}else {
+				movieInfoJsonArray = movieInfoObject.getJSONArray("audits");
+				String age_limit = movieInfoJsonArray.getJSONObject(0).get("watchGradeNm").toString();
+				movieIdMap.put("age_limit", movieInfoJsonArray.getJSONObject(0).get("watchGradeNm"));
+			}
+			
 			
 			
 			
@@ -896,6 +903,9 @@ public class getMoviesCrawlFinal {
 				dailyDataMap.put("title_kor", title);	//영화 한글제목
 				dailyDataMap.put("title_eng", titleEn);	//영화 영문제목
 				dailyDataMap.put("year", year);			//영화 제작년도
+				dailyDataMap.put("year2", item.getString("movieCd").substring(0,4));			//영화 제작년도2
+				dailyDataMap.put("afterYear", Integer.toString((Integer.parseInt(dailyDataMap.get("year2"))+1)));	//영화 제작년도+1년
+				dailyDataMap.put("beforeYear", Integer.toString((Integer.parseInt(dailyDataMap.get("year2"))-1)));	//영화 제작년도-1년
 				
 				dailyDataMap.put("opening_date", openDt);	//영화 개봉일
 				dailyDataMap.put("genre", genreAlt);		//영화 장르
@@ -909,6 +919,9 @@ public class getMoviesCrawlFinal {
 				System.out.println("title_kor "+hashMap.get("title_kor"));
 				System.out.println("title_eng "+hashMap.get("title_eng"));
 				System.out.println("year "+hashMap.get("year"));
+				System.out.println("year "+hashMap.get("year2"));
+				System.out.println("oneBefroeYear "+hashMap.get("beforeYear"));
+				System.out.println("oneAfterYear "+hashMap.get("afterYear"));
 				System.out.println("opening_date "+hashMap.get("opening_date"));
 				System.out.println("genre "+hashMap.get("genre"));
 			}
