@@ -22,11 +22,9 @@ public interface AdminDao {
 	
 	public ArrayList<AdminDto> customerlist();
 	
-	public void customerJoin(String bName, String bTitle, String bContent) ;
-	
-	public AdminDto contentView(String sbid);
-	
 	public void customerDelete(String bid, String bName, String bTitle, String bContent);
 	
-	public void customerMotify(String bid);
+	public void customerModify(String bid);
+
+	public AdminDto customerView(String id);
 }

@@ -5,15 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.xml.stream.events.Namespace;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Repository;
 
 import com.hicgv.admin.dto.AdminDto;
@@ -21,6 +26,8 @@ import com.hicgv.admin.dto.AdminDto;
 @Repository
 public class AdminDaoImpl implements AdminDao {
 	
+	@Autowired
+	private HttpSession session;
 	
 	@Autowired
 	SqlSession sqlSession;
@@ -29,13 +36,14 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public int selectCustomerTotCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.selectOne(nameSpace+".selectCustomerTotCount");
 	}
 
 	@Override
 	public ArrayList<AdminDto> customerlist() {
 		System.out.println("=====adminDao customerlist=====");
+		
 		List<AdminDto> dto = sqlSession.selectList(nameSpace +".getcustomerList");
 		for(AdminDto adminDto : dto){
 			System.out.println(adminDto.getId());
@@ -44,15 +52,15 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void customerJoin(String bName, String bTitle, String bContent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public AdminDto contentView(String sbid) {
-		// TODO Auto-generated method stub
-		return null;
+	public AdminDto customerView(String id) {
+		System.out.println("==========adminDaoImpl customerView============");
+		System.out.println("id :" +id);
+		//System.out.println("id:" + session.getAttribute("id"));
+		Map<String, Object> Map = new HashMap<String, Object>();
+		Map.put("id", id);
+		//AdminDao adminDao =sqlSession.selectOne(id);
+		AdminDto adminDto =sqlSession.selectOne(nameSpace +".customerView", Map);
+		return adminDto;
 	}
 
 	@Override
@@ -62,9 +70,9 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void customerMotify(String bid) {
+	public void customerModify(String bid) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }
