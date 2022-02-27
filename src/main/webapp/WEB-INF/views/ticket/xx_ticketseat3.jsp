@@ -214,7 +214,7 @@
     <!-- //js -->
     <!-- script for seat selection -->
     <script>
-	    var seatCount = 0; // 선택 좌석 수
+	    var seatCount = 0;
 		var list = [];
 		<c:forEach items="${seat }" var="seats">
 		list.push("${seats }");

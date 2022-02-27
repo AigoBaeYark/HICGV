@@ -8,6 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/ticket/ticket.css" />
@@ -30,7 +31,7 @@
 				<div id="secMain">
 					<div class="row" id="secSelect">
 						<div class="col-3">
-						<p style="text-align: center;">영화1</p>
+						<p style="text-align: center;">영화1 </p> <i class="fa-duotone fa-camera-movie"></i>
 						<c:forEach items="${moviesList }" var="tic">
 					    <div class="row justify-content-around " id="MovieTab" role="tablist">
 					      <a class="list-group-item list-group-item-action list-group-item-movie" id="list-movie" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
