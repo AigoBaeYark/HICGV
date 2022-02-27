@@ -26,5 +26,6 @@ public interface MainService {
 	public void getSearchMovieInfo(String searchTitle);
 	public int checkMovieId(String movie_id);
 	public void insertAllActor(HashMap<String, Object> resultMap);
+	public void insertMovie(MoviesDto moviesDto);
 	
 }

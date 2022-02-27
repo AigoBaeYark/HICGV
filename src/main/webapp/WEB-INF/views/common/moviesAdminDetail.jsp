@@ -14,17 +14,17 @@
 	</style>
 
 	<div class="container" >
-		<form action="" method="post">
+		<form action="insertMovie" method="get">
 		
 			<table>
 				<tr>
 					<td>
-						<label for="movie_title_kor">영화 제목(국문)</label>
-						<input type="text" name="movie_title_kor" value="${movieInfo.title_kor }" placeholder="영화 제목(국문)" />
+						<label for="title_kor">영화 제목(국문)</label>
+						<input type="text" name="title_kor" value="${movieInfo.title_kor }" placeholder="영화 제목(국문)" />
 					</td>
 					<td>
-						<label for="movie_title_eng">영화 제목(영문)</label>
-						<input type="text" name="movie_title_kor" value="${movieInfo.title_eng }" placeholder="영화 제목(영문)" />
+						<label for="title_eng">영화 제목(영문)</label>
+						<input type="text" name="title_eng" value="${movieInfo.title_eng }" placeholder="영화 제목(영문)" />
 					</td>
 					<td>
 						<label>영화 상영시간</label>
@@ -35,14 +35,14 @@
 				<tr>
 					<td colspan="3">
 						<label>영화 배우 (국문)</label>
-						<input type="text" name="actors" value="${actors }" placeholder="영화배우명 (국문)" required style="width: 70%"/>	
+						<input type="text" name="actor" value="${actors }" placeholder="영화배우명 (국문)" required style="width: 70%"/>	
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="3">
 						<label>영화 배우 (영문)</label>
-						<input type="text" name="actorsEn" value="${actorsEn }" placeholder="영화배우명 (영문)" required style="width: 70%"/>
+						<input type="text" name="" value="${actorsEn }" placeholder="영화배우명 (영문)" required style="width: 70%"/>
 					</td>
 				</tr>
 				
@@ -54,7 +54,7 @@
 					
 					<td colspan="1">
 						<label>감독 (영문)</label>
-						<input type="text" name="directorEn " value="${directorEn }" placeholder="감독명 (국문)" required/>
+						<input type="text" name="" value="${directorEn }" placeholder="감독명 (국문)" required/>
 					</td>
 				</tr>
 				
@@ -67,7 +67,7 @@
 							<option id="15" value="15세 관람가">15세 관람가</option>
 							<option id="18" value="청소년 관람불가">청소년 관람불가</option>
 						</select>
-						<input type="hidden" name="age" value="${movieInfo.age_limit }"/>
+						<input type="hidden" id="age" value="${movieInfo.age_limit }"/>
 					</td>
 					
 					<td>
@@ -82,15 +82,26 @@
 					</td>
 					
 					<td>
-						<input type="button" value="DB에  영화정보 등록" style="border: 1px solid #aaa;"/>
+						<input type="button" id="insertBtn" value="DB에  영화정보 등록" style="border: 1px solid #aaa;"/>
 					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="">장르</label>
+						<input type="text" name="genre" value="${genre }"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<textarea name="description" id="" cols="30" rows="10" >${movieInfo.description }</textarea>
 				</tr>
 				
 			</table>
 		
 			
 			<div id="posterWrap" style="float: right;">
-				영화 포스터 <img src="${poster }" name="poster"> 
+				영화 포스터 <img src="${poster }" id="poster"> 
+				<input type="hidden" name="image_url" value="${poster }" />
 			</div>
 			
 			
@@ -98,8 +109,20 @@
 	</div>
 	
 	<script type="text/javascript">
+		var checkID=2;
+		$('#insertBtn').click(function() {
+			
+			let param = decodeURI(decodeURIComponent(checkID));
+			if(checkID != 0 ){
+				alert('영화코드 중복확인을 해주세요');
+			}else if (checkID == 0) {
+				alert('등록완료');
+				$(this).attr('type','submit');
+			}
+		})
+	
 		$(document).ready(function() {
-			console.log($('input[name=age]').val() );
+			console.log($('input[id=age]').val() );
 			console.log($('#age_limit').val());
 			
 			if ($('input[name=age]').val() === ('12세이상관람가')) {
@@ -127,14 +150,20 @@
 				},
 				success: function (data) {
 					console.log(data);
-					if (data === '미등록 영화') {
-						
+					checkID = data;
+					if (data === 0) {
+						console.log('미등록')
+						alert('미등록 영화');
+					}else if(data === 1){
+						console.log('등록');
+						alert('이미 등록된 영화입니다.')
 					}
-					alert('미등록 영화');
+					
 				},
 				error: function(data) {
+					checkID = data;
 					console.log(data);
-					alert('이미 DB에 등록된 영화입니다.')
+					alert('이미 DB에 등록된 영화 || 에러')
 				}
 			})
 		})
