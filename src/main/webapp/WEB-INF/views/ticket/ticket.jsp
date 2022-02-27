@@ -16,8 +16,6 @@
 </head>
 <body>
 
-<a href="ticketseat">좌석</a>
-
 <!-- 아래 JSTL추가수정  -->
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
@@ -158,8 +156,8 @@
 		 	<script>
 		 	var movieCd = "";	//영화코드
 		 	var theaterId = ""; //지역코드
-		 	var locId = "" 	//영화관 id
-		 	var date = ""	//선택한 날짜
+		 	var locId = ""; 	//영화관 id
+		 	var date = "";	//선택한 날짜
 		 	
 			
 			//영화 누른 밸류 가져오기  
@@ -404,7 +402,7 @@
 			        success : function(mv) {
 			        	$("#tickettime").html(mv);
 					},
-			        error   : function(mv) {
+			        error : function(mv) {
 			        	
 			        	for ( var i = 0 in mv){
 			        		console.log(mv[i].day); //day, getdate으로 수정했눈데도 안 됨
@@ -417,12 +415,7 @@
 				
 			
 	</script>
-	
 		</div>
-			<div style="clear: both;">
-				<c:import url="../ticket/ticketbuy.jsp"></c:import>
-			</div>
-
 			<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
 			<!-- 흰 배경 -->
 			</div>

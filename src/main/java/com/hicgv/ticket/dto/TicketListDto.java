@@ -22,5 +22,6 @@ public class TicketListDto {
     private String starttime; //TO_CHAR(START_DATE, 'hh:MI') AS STARTTIME 상영시작시간 자른것
     private int running_time;
     private int max_seat;
-
+    private String starthour; //TO_CHAR(START_DATE, 'hh') AS STARTHOUR
+    private String startminute; //TO_CHAR(START_DATE, 'MI') AS STARTMINUTE
 }

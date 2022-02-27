@@ -43,6 +43,7 @@ public class TicketServiceImpl implements TicketService {
 	public ArrayList<Map<String, Object>> getSelectDate(HashMap<String, String> sendDataMap) {
 
 		System.out.println("getSelectDate(serviceImpl) : " + sendDataMap.get("movieid"));
+		System.out.println("getSelectDate2(serviceImpl) : " + sendDataMap.get("theaterid"));
 		ArrayList<Map<String, Object>> timeListMap = new ArrayList<Map<String, Object>>();
 
 		ArrayList<TicketListDto> requestList = dao.getTicketday(sendDataMap);
@@ -94,6 +95,8 @@ public class TicketServiceImpl implements TicketService {
 
 			timeMap.put("room_name", ticketListDto.getRoom_name()); // 'n'관
 			timeMap.put("location_name", ticketListDto.getLocation_name()); // 상영관이름
+			timeMap.put("location_id", ticketListDto.getLocation_id()); // 상영관이름
+			timeMap.put("theater_id", ticketListDto.getTheater_id()); // 상영관이름
 			timeMap.put("max_seat", ticketListDto.getMax_seat()); // 좌석수
 			timeMap.put("running_time", ticketListDto.getRunning_time()); // 러닝타임
 			timeMap.put("movie_id", ticketListDto.getMovie_id());	//영화 ID
@@ -109,6 +112,8 @@ public class TicketServiceImpl implements TicketService {
 			System.out.println("max_seat : " + ticketListDto.getMax_seat());
 			System.out.println("running_time : " + ticketListDto.getRunning_time());
 			System.out.println("movie_id : " + ticketListDto.getMovie_id());
+			System.out.println("Location_id : " + ticketListDto.getLocation_id());
+			System.out.println("Theater_id : " + ticketListDto.getTheater_id());
 
 			timeListMap.add(timeMap);
 		}
@@ -173,8 +178,11 @@ public class TicketServiceImpl implements TicketService {
 
 			timeMap2.put("room_name", ticketListDto.getRoom_name()); // 'n'관
 			timeMap2.put("location_name", ticketListDto.getLocation_name()); // 상영관이름
+			timeMap2.put("location_id", ticketListDto.getLocation_id()); // 상영관ID
 			timeMap2.put("max_seat", ticketListDto.getMax_seat()); // 좌석수
+			timeMap2.put("theater_id", ticketListDto.getTheater_id()); // 상영지역ID
 			timeMap2.put("running_time", ticketListDto.getRunning_time()); // 러닝타임
+			timeMap2.put("title_kor", ticketListDto.getTitle_kor()); // 영화명(국문)
 
 			System.out.println("year2 : " + year);
 			System.out.println("month2 : " + month);
@@ -187,8 +195,11 @@ public class TicketServiceImpl implements TicketService {
 			
 			System.out.println("room_name2 : " + ticketListDto.getRoom_name());
 			System.out.println("location_name2 : " + ticketListDto.getLocation_name());
+			System.out.println("location_id2 : " + ticketListDto.getLocation_id());
+			System.out.println("theater_id2 : " + ticketListDto.getTheater_id());
 			System.out.println("max_seat2 : " + ticketListDto.getMax_seat());
 			System.out.println("running_time2 : " + ticketListDto.getRunning_time());
+			System.out.println("title_kor2 : " + ticketListDto.getTitle_kor());
 
 			timeListMap.add(timeMap2);
 

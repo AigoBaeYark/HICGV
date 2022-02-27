@@ -47,11 +47,6 @@
         </div>
         <div class="score"> 
             <strong class="percent">예매율&nbsp;<span>${moviesdv.booking_rate }</span></strong>
-            <!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->            
-            <div class='egg-gage small'>
-               <span class='sprite_preegg default'></span>
-               <span class='percent'>99%</span>
-            </div>
         </div>
         <!-- 떨어지는 얘 이전 요소에 class=on을 넣는다 -->
         <div class="spec">
@@ -81,9 +76,7 @@
 
 	
         <span class="like">
-            <!-- 2020.05.07 영화찜하기 -> 프리에그 선택 변경(조회하여 노출) -->
-            <a class="link-count" href="javascript:void (0);"><i class="sprite_preegg btn_md default"></i>프리에그</a>
-            <a class="link-reservation" href="/ticket/?MOVIE_CD=20028797&MOVIE_CD_GROUP=20028797">예매</a> 
+            <a class="link-reservation" href="ticket">예매</a> 
         </span>
     </div>
 </div><!-- .sect-base -->
@@ -138,7 +131,7 @@
 		<!-- 스틸컷 -->
 		<div id="ctl00_PlaceHolderContent_Section_Still_Cut" class="sect-stillcut">
                 <div class="heading">
-                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current">1</strong>/${postercnt }건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
+                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
                 </div>
              <c:forEach items="${poster }" var="pos"> <!-- items="poster" 로 써서 오류남 -->
                 <div class="slider-wrap">

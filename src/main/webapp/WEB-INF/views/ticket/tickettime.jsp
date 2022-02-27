@@ -42,9 +42,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }
-					           &locid=${tday.location_id}&tday=${tday.day}&hour=${tday.starthour }
-					           &minute=${tday.startminute }" class="btn"> 
+					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
@@ -78,9 +76,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }
-					           &locid=${tday.location_id}&tday=${tday.day}&hour=${tday.starthour }
-					           &minute=${tday.startminute }" class="btn"> 
+					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
@@ -109,9 +105,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					          <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }
-					           &locid=${tday.location_id}&tday=${tday.day}&hour=${tday.starthour }
-					           &minute=${tday.startminute }" class="btn"> 
+					          <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
