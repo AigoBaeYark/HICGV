@@ -6,7 +6,8 @@
 
 <mapper namespace="com.hicgv.main.dao.MainDao">
 	<select id="movieChart" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY RANKING
+		SELECT * FROM HICGV_MOVIE
+		ORDER BY RANKING
 	</select>
 
 	<select id="checkMovieId" resultType="Integer"
@@ -16,17 +17,28 @@
 	</select>
 
 	<insert id="insertAllActor" parameterType="HashMap">
-		<foreach collection="actorList" item="item" separator=" " open="INSERT ALL" close = "SELECT * FROM DUAL">
-			INTO HICGV_MOVIE_ACTOR(MOVIE_ACTOR_ID,NAME_KOR,NAME_ENG,FILMO)
+		<foreach collection="actorList" item="item" separator=" "
+			open="INSERT ALL" close="SELECT * FROM DUAL">
+			INTO
+			HICGV_MOVIE_ACTOR(MOVIE_ACTOR_ID,NAME_KOR,NAME_ENG,FILMO)
 			VALUES
-				(
-				#{item.movie_actor_id },
-				#{item.name_kor },
-				#{item.name_eng } ,
-				#{item.filmo } 
-				)
-			</foreach>
-		
+			(
+			#{item.movie_actor_id },
+			#{item.name_kor },
+			#{item.name_eng } ,
+			#{item.filmo }
+			)
+		</foreach>
+
+	</insert>
+	
+	<insert id="insertMovie" parameterType="MoviesDto">
+		INSERT INTO
+		HICGV_MOVIE(MOVIE_ID,TITLE_KOR,TITLE_ENG,AGE_LIMIT,DESCRIPTION,IMAGE_URL,ACTOR,DIRECTOR,OPENING_DATE,GENRE,RUNNING_TIME)
+		VALUES (#{movie_id }, #{title_kor } , #{title_eng } , #{age_limit },
+		#{description }, #{image_url }, #{actor }, #{director },
+		to_date(#{opening_date },'yyyy-MM-dd'),#{genre },#{running_time })
+
 	</insert>
 
 	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 
