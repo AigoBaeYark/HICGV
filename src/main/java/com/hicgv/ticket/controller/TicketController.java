@@ -28,7 +28,7 @@ public class TicketController {
 	@Autowired
 	TicketService ticketService;
 	
-	/*예매파트란*/
+	/*1. 예매파트란*/
 	@RequestMapping("/ticket")
 	public String ticket(HttpServletRequest request, Model model) {
 		System.out.println("========= < pass by ticket() > =========");
@@ -53,19 +53,18 @@ public class TicketController {
 		System.out.println("theaterid2 : " + theaterid);
 		//System.out.println("locid2 : " + locid);
 		
-		/*1.영화선택*/
+		/*1) 영화선택*/
 		model.addAttribute("moviesList", ticketService.getMoviesList());
 		
-		/*2.지역선택*/
+		/*2)지역선택*/
 		
-		//2-1. 지역(도별)
-		
+		//2-1) 지역(도별)
 		for (TheaterDto theaterDto : ticketService.getLocal()) {
 			System.out.println("getLocal : "+theaterDto.getTheater_loc());
 		}
 		model.addAttribute("local", ticketService.getLocal());
 		
-		//2-2. 상영관별
+		//2-2) 상영관별
 		for (TLocationDto tLocationDto : ticketService.getTheaterLocal()) {
 			System.out.println("getTheaterLocal : "+tLocationDto.getLocation_name());
 		}
@@ -76,11 +75,10 @@ public class TicketController {
 		
 	}
 
-	/*4.영화 시간선택 */
-	
-	/*날짜시간 세분화 */
+	/*4) 영화 시간선택 */
+	//날짜시간 세분화 
 	@RequestMapping("/getdate")
-	public String getdate(HttpServletRequest request, Model model) {
+	public String getDate(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by getdate() > =======");
 		
 		String movieid = request.getParameter("movieCd");
@@ -121,9 +119,7 @@ public class TicketController {
 		sendDataMap.put("theaterid", "1");
 		sendDataMap.put("locid", "103");
 		sendDataMap.put("tday", "15");*/
-	
-		
-		//TicketDao dao = sqlSession.getMapper(TicketDao.class);
+
 		
 		//영화 선택시간
 		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectDate(sendDataMap);
@@ -137,8 +133,6 @@ public class TicketController {
 				System.out.println("getdate day : "+timeMaplist.get("day"));
 				System.out.println("getdate location_id : "+timeMaplist.get("location_id"));
 				System.out.println("getdate theater_id : "+timeMaplist.get("theater_id"));
-
-	
 			}
 		
 			model.addAttribute("ticketday",timeListMap);
@@ -146,12 +140,9 @@ public class TicketController {
 		return "ticket/tickettime";
 	}
 
-
-	////////////////////////////////////////////
-
-	/*좌석선택란*/
+	//좌석선택란
 	@RequestMapping("/ticketseat")
-	public String Seat(HttpServletRequest request, Model model) {
+	public String getSeat(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by ticketseat() > =======");
 		
 		String movieid = request.getParameter("movieid");
@@ -166,7 +157,6 @@ public class TicketController {
 		System.out.println("hour : "+hour);
 		String minute = request.getParameter("minute");
 		System.out.println("minute : "+minute);
-		
 		//String startmovtime = request.getParameter("sTime"); //hour+minute
 		
 		
@@ -192,6 +182,10 @@ public class TicketController {
 			}
 		
 		model.addAttribute("ticketseat",timeListMap);
+		
+		
+		
+		//pay에서 모델 값을 가져와야할 것 같음
 		
 		return "ticket/ticketseat";
 		

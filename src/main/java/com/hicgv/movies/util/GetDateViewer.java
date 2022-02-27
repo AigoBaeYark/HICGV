@@ -17,7 +17,7 @@ public class GetDateViewer {
 	// 영화진흥위원회 Api 사용
 	// 일일 관람객 URL
 	private String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
-	public static final String KEY = "e65350d6dfb171753380a52de708b7a8"; // 발급받은 api키
+	public static final String KEY = "bddfb4542fc6932260fc641a8e03c6d3"; // 발급받은 api키
 	private String[] rank = { "", "", "", "", "", "", "", "", "", "" };
 	public String today;
 	

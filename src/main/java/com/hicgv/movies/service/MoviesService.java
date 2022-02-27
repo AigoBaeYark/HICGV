@@ -20,6 +20,5 @@ public interface MoviesService {
 	public int getTrailercnt(String movie_id);
 	public ArrayList<MoviePosterDto> getPoster(String movie_id);
 	public int getPostercnt(String movie_id);
-	
-	
 }
+

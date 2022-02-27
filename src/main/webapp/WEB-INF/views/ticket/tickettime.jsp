@@ -155,8 +155,6 @@ $('.starttime').mouseover(function() {
 
 
 
-	
-
 
 
 </script>
