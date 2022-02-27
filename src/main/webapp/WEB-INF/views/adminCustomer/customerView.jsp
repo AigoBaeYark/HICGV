@@ -83,10 +83,13 @@
 
 					<div align="center" style="margin-top: 10px; margin-bottom: 10px;">
 						<div>
-							<button type="submit" class="btn btn-primary">회원정보수정</button> 
-							<%-- <a href="customerModifyForm?id=${customerView.id }">회원정보수정</a> --%>
+							<button type="submit" class="btn btn-primary">회원정보수정</button>
 						</div>
 					</div>
+			</form>
+			<form action="customerDelete">
+			<input type="hidden" name="id" value="${customerView.id }" />
+			<button type="submit" class="btn btn-primary">회원정보삭제</button>
 			</form>
 			</div>
 		</div>

@@ -17,9 +17,9 @@ public interface AdminService {
 	
 	public AdminDto customerView(String id);
 	
-	public void customerDelete();
-	
-	public void customerModify();
+	public void customerDelete(String id);
+
+	 public void customerModify(AdminDto adminDto);
 
 	
 }

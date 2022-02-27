@@ -33,9 +33,5 @@ public interface CustomerService {
 	public String getAnswer(String answer);
 	
 	public String forgetId(String phone_number, String date_birth);
-//========================관리자체이지=====================================
-/*	public LinkedList<CustomerDto> customerList(int start,int end);
-	
-	public void execute(Model model);*/
 
 }

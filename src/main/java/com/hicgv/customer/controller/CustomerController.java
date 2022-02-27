@@ -69,7 +69,7 @@ public class CustomerController {
 			if (customerService.loginCheck(id, password).equals("관리자 로그인 성공")) {
 				System.out.println("관리자로 로그인 되었습니다.");
 				session.setAttribute("id", id);
-				return "/customer/customerList";
+				return "/adminCustomer/customerList";
 			}
 			System.out.println("정상적으로 로그인이 되었습니다.");
 			// 로그인할 때 id password 세션에 세팅

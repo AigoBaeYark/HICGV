@@ -63,15 +63,20 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void customerDelete(String bid, String bName, String bTitle, String bContent) {
-		// TODO Auto-generated method stub
+	public void customerDelete(String id) {
+		Map<String, String> Map = new HashMap<String, String>();
+		Map.put("id", id);
+
+		System.out.println("id :"+Map.get("id"));
 		
+		sqlSession.delete(nameSpace+".customerDelete",Map);
 	}
 
 	@Override
-	public void customerModify(String bid) {
-		// TODO Auto-generated method stub
+	public void customerModify(AdminDto adminDto) {
+		System.out.println("==========adminDaoImpl customerModify============");
 		
+		sqlSession.update(nameSpace + ".customerModify", adminDto);
 	}
 
 }
