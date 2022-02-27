@@ -1,23 +1,12 @@
 package com.hicgv.customer.service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import org.apache.ibatis.annotations.Case;
-import org.apache.log4j.chainsaw.Main;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.hicgv.customer.dao.CustomerDao;
@@ -30,7 +19,7 @@ public class CustomerServicempl implements CustomerService {
 	CustomerDao dao;
 
 	// 맵을 활용해서 입력받은 값으로 쿼리문 실행하고 컨트롤러로 이동
-	@Override
+	@Override //회원가입
 	public void joinCustomer(CustomerDto customerDto) {
 		// 필수 항목은 예외처리 X (아이디,패스워드,이름,연락처,생일,이메일,질문,답)
 		if (customerDto.getNickname() == null) {
@@ -89,6 +78,10 @@ public class CustomerServicempl implements CustomerService {
 			System.out.println("패스워드 틀림");
 			return "비밀번호 틀림";
 		} else
+			if (dao.loginCheckId(id).equals("admin")) {
+				System.out.println("관리자모드");
+				return "관리자 로그인 성공";
+			}
 			System.out.println("로그인 성공");
 		return "로그인 성공";
 	}
@@ -194,4 +187,27 @@ public class CustomerServicempl implements CustomerService {
 		
 		return dao.forgetId(phone_number, date_birth);
 	}
+	/*@Override
+	public LinkedList<CustomerDto> customerList(int start,int end) {
+		
+		return customerList(start,end);
+	}*/
+	/*@Override
+	public void execute(Model model) {
+		System.out.println("===========customerService=============");
+//		map으로 변환
+		Map<String, Object> map=model.asMap();
+//		map->request
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String bid=request.getParameter("bid");
+		
+		
+		//System.out.println("bName   :  "+bName);
+		
+		CustomerDao dao=new CustomerDaoImpl();
+		//CustomerDto dto=dao.contentView("id");
+		
+		model.addAttribute("content_view",dto);
+	}*/
+	
 }

@@ -6,13 +6,16 @@
 <head>
 <c:import url="/WEB-INF/views/common/header.jsp" />
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
-
+<link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>hicgv/theater</title>
 </head>
 <body>
 <div> 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
+
+<i class="fa-solid fa-heart"></i>
 
 <div class="row" id="theaterName">
   <div class="col-4">
@@ -75,7 +78,20 @@
   </div>
 </div>
 <div>
+
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
    <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
+<i class="fa-solid fa-grip-lines fa-2x"></i>
       <h4>
          <span>${locInfo.location_name }</span>
       </h4>
@@ -98,7 +114,8 @@
       <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
    </div>
     <div class="day">
-        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> 
+        <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime">
+        <i class="fa-solid fa-calendar"></i>
          <strong>02월 15일 화</strong>
          <input type="hidden" class="hiddenDate" value="20220215"/>
         </a>
@@ -193,7 +210,7 @@
 				},
 				error : function (data) {
 					console.log(data);
-					alert('에  러');
+					alert('error');
 				}
 			})
 		}

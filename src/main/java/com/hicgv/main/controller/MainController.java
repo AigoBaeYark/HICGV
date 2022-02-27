@@ -168,6 +168,7 @@ public class MainController {
 		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
 		String actorsStr = "";
 		String actorsEnStr = "";
+		crawlFinal.searchToMovieId(movieId);
 		
 
 		try {
@@ -220,18 +221,20 @@ public class MainController {
 			}
 			
 			if(resultMap.get("genres") == null) {	//장르가 한가지밖에 없을때
+				System.out.println("영화가 장르가 하나 : "+resultMap.get("genres"));
 				model.addAttribute("genre",resultMap.get("genre"));
 			}else {
 				String genresStr = "";
 				LinkedList<String> genresList = (LinkedList<String>) resultMap.get("genres");
 				for (String string : genresList) {
+					System.out.println("영화 여러장르 : "+string);
 					genresStr+=string+",";
 				}
 				
 				// null 예외를 방지하고 문자열에서 마지막 문자를 제거하는 기능적 접근 방식을 사용할 수 있습니다.
 				genresStr = Optional.ofNullable(genresStr).filter(s -> s.length() != 0)
 						.map(s -> s.substring(0, s.length() - 1)).orElse(genresStr);
-				
+				System.out.println(genresStr);
 				model.addAttribute("genre",genresStr);
 				
 				
@@ -255,6 +258,7 @@ public class MainController {
 			
 			
 			
+			resultMap.put("description", description);
 			
 			model.addAttribute("poster",poster);
 			model.addAttribute("movieInfo",resultMap);
@@ -266,28 +270,62 @@ public class MainController {
 		return "common/moviesAdminDetail";
 	}
 	
-	@RequestMapping("insertMovie")
+	@RequestMapping(value = "insertMovie")
 	public String insertMovie(Model model, @ModelAttribute MoviesDto moviesDto) {
+		logger.info("before insertMovie");
+		System.out.println("배우 : "+moviesDto.getActor());
+		System.out.println("영화이름 : "+moviesDto.getTitle_kor());
+		System.out.println("영화이름 영문 : "+moviesDto.getTitle_eng());
+		System.out.println("영화이이디 : "+moviesDto.getMovie_id());
+		System.out.println("영화배우 : "+moviesDto.getActor());
+		System.out.println("영화감독 : "+moviesDto.getDirector());
+		System.out.println("영화개봉일 : "+moviesDto.getOpening_date());
+		System.out.println("영화설명 : "+moviesDto.getDescription());
+		System.out.println("관람제한 : "+moviesDto.getAge_limit());
+		System.out.println("장르 : "+moviesDto.getGenre());
+		System.out.println("상영시간 : "+moviesDto.getRunning_time());
+		mainService.insertMovie(moviesDto);
+		
+		return "redirect:moviesAdmin";
+	}
+	@RequestMapping("insertAllActor")
+	public String insertAllActor(Model model) {
+		
+		getMoviesCrawlFinal getMoviesCrawlFinal = new getMoviesCrawlFinal();
+		List<HashMap<String, String>> resultActors = getMoviesCrawlFinal.searchToAllActors();
+		HashMap<String, Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("actorList", resultActors);
+		mainService.insertAllActor(resultMap);
 		
 		
-		return null;
+		/*for (HashMap<String, String> hashMap : resultActors) {
+			System.out.println("배우 확인용 : "+hashMap.get("name_kor"));
+			mainService.insertAllActor(hashMap);
+
+		}*/
+		
+		//mainService.insertAllActor();
+		
+		return "main";
+		
 	}
 	
 	
+	//영화 중복환인
 	@RequestMapping("checkDuplicationMovie")
 	@ResponseBody
-	public String checkDuplicationMovie(@RequestParam String movie_id) {
+	public int checkDuplicationMovie(@RequestParam String movie_id) {
 		logger.info("before checkDuplicationMovie");
-		System.out.println("중복확인 : "+movie_id);
+		System.out.println("중복확인 : "+ movie_id);
 		if(mainService.checkMovieId(movie_id) >=1)
 		{
 			logger.info("after checkDuplicationMovie");
 			System.out.println("1 이상");
-			return "등록된 영화";
+			return 1;
 		}else {
 			logger.info("after checkDuplicationMovie");
 			System.out.println("0 으로");
-			return "미등록 영화";
+			return 0;
 		}
 		
 		

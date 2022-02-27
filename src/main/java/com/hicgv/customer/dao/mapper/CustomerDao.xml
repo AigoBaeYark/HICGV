@@ -6,7 +6,8 @@
 <mapper namespace="com.hicgv.customer.dao.CustomerDao">
 	<!--회원가입 -->
 	<insert id="joinCustomer" parameterType="CustomerDto">
-		INSERT INTO HICGV_CUSTOMER
+		INSERT INTO
+		HICGV_CUSTOMER
 		VALUES(HICGV_customer_seq.nextval,#{id},#{password},#{name},
 		#{phone_number},#{nickname},#{gender},#{date_birth},#{location},sysdate,#{email},#{grade},#{question},#{answer})
 	</insert>
@@ -26,8 +27,10 @@
 	<update id="modify" parameterType="CustomerDto">
 		UPDATE hicgv_customer
 		SET
-		PASSWORD= #{password},PHONE_NUMBER= #{phone_number},NICKNAME= #{nickname},GENDER= #{gender},
-		DATE_BIRTH= #{date_birth},LOCATION= #{location},EMAIL= #{email},QUESTION= #{question},ANSWER= #{answer}
+		PASSWORD= #{password},PHONE_NUMBER= #{phone_number},NICKNAME=
+		#{nickname},GENDER= #{gender},
+		DATE_BIRTH= #{date_birth},LOCATION=
+		#{location},EMAIL= #{email},QUESTION= #{question},ANSWER= #{answer}
 		WHERE ID LIKE #{id}
 	</update>
 	<!--회원id를 찾아 myCGV에 출력 -->
@@ -44,46 +47,54 @@
 	</select>
 	<!--회원탈퇴 -->
 	<delete id="delete" parameterType="Map">
-		DELETE FROM HICGV_CUSTOMER WHERE ID like #{id}
+		DELETE FROM HICGV_CUSTOMER
+		WHERE ID like #{id}
 		AND PASSWORD LIKE #{password}
 	</delete>
 	<select id="getEmail" resultType="String">
 		SELECT EMAIL FROM
-		HICGV_CUSTOMER WHERE ID=#{id}
+		HICGV_CUSTOMER WHERE ID LIKE #{id}
 	</select>
 	<!--비밀번호 찾기 / 아이디 이메일 입력하고 해당 질문 뿌려주기 -->
 	<select id="forgetPw" resultType="String">
 		SELECT QUESTION FROM
-		HICGV_CUSTOMER WHERE ID=#{param1} AND EMAIL=#{param2}
+		HICGV_CUSTOMER WHERE ID LIKE #{id} AND EMAIL LIKE #{email}
 	</select>
 	<select id="getQuestion" resultType="String" parameterType="Map">
 		SELECT QUESTION FROM
-		HICGV_CUSTOMER WHERE ID=#{id } AND EMAIL=#{email}
+		HICGV_CUSTOMER WHERE ID LIKE #{id } AND EMAIL LIKE
+		#{email}
 	</select>
 	<!--답을 입력하고 질문이 같은지 비교 -->
 	<select id="getAnswer" resultType="String" parameterType="Map">
-		SELECT ANSWER FROM
+		SELECT
+		ANSWER FROM
 		HICGV_CUSTOMER WHERE ID =
-		(SELECT ID FROM HICGV_CUSTOMER WHERE
-		ANSWER=#{answer})
+		(SELECT ID FROM HICGV_CUSTOMER
+		WHERE
+		ANSWER LIKE #{answer})
 	</select>
 	<update id="resetPw" parameterType="HashMap">
 		UPDATE hicgv_customer
-		SET PASSWORD=#{password} 
+		SET
+		PASSWORD LIKE #{password}
 		WHERE ID LIKE #{id}
 	</update>
 	<!-- 아이디 찾기 -->
 	<select id="getPhone_number" resultType="String">
 		SELECT PHONE_NUMBER FROM
 		HICGV_CUSTOMER WHERE
-		PHONE_NUMBER= #{param1}
+		PHONE_NUMBER LIKE #{phone_number}
 
 	</select>
 	<select id="forgetId" resultType="String" parameterType="HashMap">
-		SELECT ID FROM HICGV_CUSTOMER
-		WHERE PHONE_NUMBER LIKE (SELECT PHONE_NUMBER FROM HICGV_CUSTOMER WHERE
+		SELECT
+		ID FROM HICGV_CUSTOMER
+		WHERE PHONE_NUMBER LIKE (SELECT PHONE_NUMBER
+		FROM HICGV_CUSTOMER WHERE
 		PHONE_NUMBER LIKE #{phone_number})
-		AND DATE_BIRTH LIKE #{date_birth}
+		AND
+		DATE_BIRTH LIKE #{date_birth}
 
 	</select>
 	<select id="name" resultType="String">
@@ -91,21 +102,21 @@
 		NAME
 		FROM HICGV_CUSTOMER
 		WHERE
-		ID=#{param1} AND PASSWORD=#{param2}
+		ID LIKE #{id} AND PASSWORD LIKE #{password}
 	</select>
 	<select id="nickname" resultType="String">
 		SELECT
 		NICKNAME
 		FROM
 		HICGV_CUSTOMER
-		WHERE ID=#{param1} AND PASSWORD=#{param2}
+		WHERE ID LIKE #{id} AND PASSWORD LIKE #{password}
 
 	</select>
 	<select id="grade" resultType="String">
 		SELECT
 		GRADE
 		FROM HICGV_CUSTOMER
-		WHERE ID=#{param1} AND PASSWORD=#{param2}
+		WHERE ID LIKE #{id} AND PASSWORD LIKE #{password}
 
 	</select>
 	<!-- <select id="img" resultType="String"> SELECT PROFILE_IMGE FROM HICGV_CUSTOMER 
@@ -115,9 +126,15 @@
 		SELECT *
 		FROM
 		HICGV_CUSTOMER
-		WHERE ID LIKE #{param1}
+		WHERE ID LIKE #{id}
 	</select>
-
+	<!--관리자 페이지에서 모든 회원정보 리스트를 볼 수 있도록 디비에서 셀렉 -->
+	<select id="customerList" resultType="CustomerDto">
+		* FROM (SELECT ROWNUM AS
+		NUM,HICGV_CUSTOMER.* FROM HICGV_CUSTOMER)
+		WHERE NUM BETWEEN #{page}*10-9 AND #{page}*10
+		ORDER BY NUM;
+	</select>
 
 
 </mapper>

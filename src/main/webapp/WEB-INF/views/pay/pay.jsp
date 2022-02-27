@@ -28,22 +28,16 @@
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
       <div class="accordion-body">
-      <div class="row">
-  <div class="col-2">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">HICGV 할인쿠폰</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">VIP 할인쿠폰</a>
-    </div>
-  </div>
-  <div class="col-10">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-    </div>
-  </div>
+      	<div class="row">
+      	<select class="form-select" aria-label="Default select example" style="height: 100%">
+		  <option selected>사용하실 쿠폰을 선택해주세요.</option>
+		  <option value="${payInfo.hicgv_coupon }">HICGV 할인쿠폰 ${payInfo.hicgv_coupon }장</option>
+		  <option value="${payInfo.vip_coupon }">VIP 할인쿠폰 ${payInfo.vip_coupon }장</option>
+		</select>
 </div>
       </div>
     </div>
+    
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -69,7 +63,6 @@
 				<input type="checkbox" id="pointAllCheck" onclick="chkPoint()"/>
 				<label>모두사용</label>
 			</dd>
-			
 			<div class="form_guide"><dl><dt>이용안내</dt><dd class="split">HICGV 포인트는 <em>1,000P</em> 이상부터 사용 가능합니다.</dd></dl></div>
 		</div>      
       </div>
@@ -208,27 +201,27 @@
                     <caption>예매정보</caption>
                     <thead></thead>
                     <tbody>
-                        <tr class="movie_name">
+                        <tr id="movie_name">
                             <th scope="row">영화명</th>
                             <td>${payInfo.title_kor }</td>
                         </tr>
-                        <tr class="theater">
+                        <tr id="theater">
                             <th scope="row">극장</th>
-                            <td>${payInfo.location_name }</td>
+                            <td id="theater">${payInfo.location_name }</td>
                         </tr>
-                        <tr class="screen">
+                        <tr id="screen">
                             <th scope="row">상영관</th>
                             <td>${payInfo.room_name }</td>
                         </tr>
-                        <tr class="movie_date">
+                        <tr id="movie_date">
                             <th scope="row">일시</th>
                             <td>${payInfo.start_date }</td>
                         </tr>
-                        <tr class="people">
+                        <tr id="people">
                             <th scope="row">인원</th>
                             <td>일반 ${payInfo.person }명</td>
                         </tr>
-                        <tr class="seat">
+                        <tr id="seat">
                             <th scope="row">좌석</th>
                             <td>${payInfo.seat }</td>
                         </tr>
@@ -244,11 +237,11 @@
                 <caption>결제정보</caption>
                 <thead></thead>
                 <tbody>
-                    <tr class="payment_price">
+                    <tr id="payment_price">
                         <th scope="row">결제금액</th>
                         <td><span class="price">${payInfo.tot_price }</span>원</td>
                     </tr>
-                    <tr class="payment_method">
+                    <tr id="payment_method">
                         <th scope="row">결제수단</th>
                         <td><span id="payMethod"></span></td>
                     </tr>
@@ -268,16 +261,49 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='kakaoPay'">결제하기</button>
+        <button type="button" class="btn btn-primary" onclick="kakaoPay();">결제하기</button>
       </div>
+      <ul class="list-group">
+      	 <li class="list-group-item list-group-item-primary">A simple primary list group item</li>
+      </ul>
     </div>
   </div>
 </div>
 
-
-
+<div id="payPage"></div>
 
 <script>
+
+function kakaoPay() {
+	var movie_name=$('tr#movie_name:first-child > td').text();
+	var theater=$('td#theater').text()
+	var screen=$('tr:nth-child(3) > td').text();
+	var movie_date=$('tr:nth-child(4) > td').text();
+	var people=$('tr:nth-child(5) > td').text();
+	var seat=$('tr:nth-child(6) > td').text();
+	var payment_price=$('tr#payment_price:first-child > td').text();
+	
+	$.ajax({
+		type: "GET",
+		url: "kakaoPay",
+		contentType: "application/json; charset=UTF-8",
+		data: {
+			'movie_name' : movie_name,
+			'theater' : theater,
+			'screen' : screen,
+			'moviedate' : movie_date,
+			'people' : people,
+			'seat' : seat,
+			'payment_price' : payment_price
+		},
+		async: false,
+		success: function(data) {
+			alert("성공");
+			$('html').html(data);
+			
+		}
+	})
+}
 
 function chkPoint() { 
 		var point=$('span#userPoint').text();
@@ -287,12 +313,14 @@ function chkPoint() {
 		alert(point);
 		if (point<1000) {
 			alert("1,000P 이상부터 사용 가능합니다.");
+			$('input:checkbox[id=pointAllCheck]').prop("checked", false); //checkbox 체크(true), 체크해제(false)
+
 		}
 		if(point>=1000){
 			$('input[id=selPoint]').val(point);
 		}
 	} else {
-		$('input[id=selPoint]').val(null);
+		$('input[id=selPoint]').val(null); // checkbox 체크해제시 input내용 지우기
 	}
 }
 

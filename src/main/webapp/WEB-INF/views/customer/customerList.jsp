@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//Dth HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dth">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,31 +14,52 @@
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	
-	<h3>customerList.jsp 이곳에서 모든 회원정보를 볼 수 있음</h3>
 
-<table width="500" border="1">
+	<h3>customerList.jsp || ${id }님 환영합니다.</h3>
+		<div class="table-responsive">
+  <table class="table">
+   
+
 	<tr>
-		<td>번호</td>
-		<td>아이디</td>
-		<td>이름</td>
-		<td>연락처</td>
-		<td>닉네임</td>
-		<td>성별</td>
-		<td>생년월일</td>
-		<td>주소</td>
-		<td>가입일</td>
-		<td>이메일</td>
-		<td>회원등급</td>
-		<td>질문</td>
-		<td>답</td>
+		<th>user_id(가입순서)</th>
+		<th>아이디</th>
+		<th>이름</th>
+		<th>연락처</th>
+		<th>닉네임</th>
+		<th>성별</th>
+		<th>생년월일</th>
+		<th>주소</th>
+		<th>가입일</th>
+		<th>이메일</th>
+		<th>회원등급</th>
+		<th>질문</th>
+		<th>답</th>
 	</tr>
+	<c:forEach begin="1" end="10">
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+		<td>11</td>
+		<td>12</td>
+		<td>13</td>
+	
+	</tr>
+	</c:forEach>
 	
 	<%-- <c:forEach items="${list }" var="dto">
 		<tr>
-			<td>${dto.bid }</td>
-			<td>${dto.bname }</td>
-			<td>
+			<th>${dto.bid }</th>
+			<th>${dto.bname }</th>
+			<th>
 			<!-- 	들여쓰기가 되도록 -->
 			<c:set value="${dto.bindent }" var="endindent" />
 			<c:forEach begin="1" end="${dto.bindent }" var="cnt">
@@ -49,18 +70,20 @@
 				</c:if>	
 			</c:forEach>
 				<a href="content_view?bid=${dto.bid }">${dto.btitle }</a> 
-			</td>
-			<td>${dto.bdate }</td>
-			<td>${dto.bhit }</td>
+			</th>
+			<th>${dto.bdate }</th>
+			<th>${dto.bhit }</th>
 		</tr>
 	</c:forEach> --%>
 	<tr>
-		<td colspan="3"> <a href="joinForm" >회원가입</a> </td>
-		<td colspan="3"> <a href="modifyForm">회원정보수정</a> </td>
-		<!-- <td colspan="3"> <a href="customerDelete">회원삭제</a> </td> -->
+		<th colspan="3"> <a href="joinForm" >회원가입</a> </th>
+		<th colspan="3"> <a href="modifyForm">회원정보수정</a> </th>
+		<!-- <th colspan="3"> <a href="customerDelete">회원삭제</a> </th> -->
 	</tr>
 
-</table>
+
+ </table>
+</div>
 TotCnt : ${totRowCnt }
 <br />
 <c:if test="${searchVO.totPage>1 }">

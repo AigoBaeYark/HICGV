@@ -8,12 +8,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MoviesDto {
-	private int movie_id;
+	private String movie_id;
 	private int ranking;
 	private String title_kor;
 	private String title_eng;
+	private String actor;
+	private String director;
 	private String production_date;
-	private Timestamp opening_date;
+	private String opening_date;
 	private String genre;
 	private String nation;
 	private int running_time;
