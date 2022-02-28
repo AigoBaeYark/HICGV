@@ -2,22 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="sect-showtimes">
-   <ul>
+<div class="sect-showtimes" >
+   <ul style="margin-top: 20px;">
       <li>
          <div class="col-times">
             <c:forEach items="${movieInfo }" var="dto">
             <div class="info-movie">
-            	<c:if test="${dto.age_limit eq '전체 관람가'}">
+            	<c:if test="${dto.age_limit eq '전체관람가'}">
 			   		<img src="/cgv/resources/img/theater/전체관람가.PNG" width="21" height="21" />
             	</c:if>
-            	<c:if test="${dto.age_limit eq '12세 관람가'}">
+            	<c:if test="${dto.age_limit eq '12세관람가'}">
             		<img src="/cgv/resources/img/theater/12세관람가.PNG" width="21" height="21" />
             	</c:if>
-            	<c:if test="${dto.age_limit eq '15세 관람가'}">
+            	<c:if test="${dto.age_limit eq '15세관람가'}">
             		<img src="/cgv/resources/img/theater/15세관람가.PNG" width="21" height="21" />
             	</c:if>
-            	<c:if test="${dto.age_limit eq '18세 관람가'}">
+            	<c:if test="${dto.age_limit eq '18세관람가'}">
             		<img src="/cgv/resources/img/theater/18세관람가.PNG" width="21" height="21" />
             	</c:if>
 	            
@@ -38,6 +38,7 @@
 	   					<em> ${dto.endHour } : ${dto.endMinute }</em>
 	   				</a>
                         </ul>
+                        <br />
                      </div>
                   </div>
                   </div>

@@ -10,13 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>theaterAdmin.jsp</h2>
 
-<div class="contents" style="height: 300px; margin: auto">
+<div class="contents" style="height: 250px; margin: auto">
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
 
-<form action="theaterAdmin" style="border: 2px solid blue; width: 500px; height: 400px; margin: 0;">
+<form action="theaterAdmin" class="container">
 <div class="row g-3 align-items-center">
   <div class="col-auto">
     <label for="inputPassword6" class="col-form-label" >movieId</label>

@@ -4041,7 +4041,8 @@ textarea.form-control-lg {
 }
 
 .tab-content>.tab-pane {
-	display: none
+	display: none;
+	list-style-type: none;
 }
 
 .tab-content>.active {

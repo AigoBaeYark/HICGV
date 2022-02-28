@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>결제실패</h2>
+<h2>결제완료</h2>
+
+
 </body>
 </html>

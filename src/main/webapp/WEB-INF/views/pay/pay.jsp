@@ -14,10 +14,11 @@
 <title>hicgv/pay</title>
 </head>
 <body>
-<div style="height: 300px;">
+
+<div style="height: 250px;">
    <c:import url="/WEB-INF/views/common/header.jsp" />
 </div>
-
+<div class="container" style="width: 80%">
 <div class="accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -33,7 +34,13 @@
         <option id="normalCoupon" value="${payInfo.hicgv_coupon }">HICGV 할인쿠폰 ${payInfo.hicgv_coupon }장</option>
         <option id="vipCoupon" value="${payInfo.vip_coupon }">VIP 할인쿠폰 ${payInfo.vip_coupon }장</option>
       </select>
+    
 </div>
+<div class="form_guide"><dl><dt>이용안내</dt><dd class="split">쿠폰은 <em>중복사용</em> 불가능합니다.</dd></dl></div>
+      <span><input type="checkbox" class="btn-check" name="couponBtn" id="btn-check-outlined" autocomplete="off">
+	  <label class="btn btn-outline-primary" for="btn-check-outlined">쿠폰적용</label></span>
+      <span><input type="checkbox" class="btn-check" name="resetBtn" id="btn-check-2-outlined" checked autocomplete="off">
+	  <label class="btn btn-outline-secondary" for="btn-check-2-outlined">초기화</label></span>
       </div>
     </div>
     
@@ -58,7 +65,7 @@
             <label>사용할 포인트</label>
          </dt>
          <dd>
-            <input type="number" id="selPoint" readonly="readonly"/>원
+            <input type="number" id="selPoint" readonly="readonly"/>원	&nbsp;
             <input type="checkbox" id="pointAllCheck" />
             <label>모두사용</label>
          </dd>
@@ -91,25 +98,9 @@
          <option card_code="SHB" card_type="1" card_digit="15" card_cd="N0021">신한카드</option>
          <option card_code="CNB" card_type="1" card_digit="16" card_cd="N0004">KB국민카드</option>
          <option card_code="KKB" card_type="1" card_digit="16" card_cd="N0024">카카오뱅크카드</option>
-         <option card_code="NLC" card_type="1" card_digit="16" card_cd="N0017">NH카드</option>
-         <option card_code="SCB" card_type="1" card_digit="16" card_cd="N0020">스탠다드차타드은행카드</option>
          <option card_code="CIT" card_type="1" card_digit="16" card_cd="N0003">씨티카드</option>
-         <option card_code="AMX" card_type="1" card_digit="15" card_cd="N0001">롯데/아멕스카드</option>
-         <option card_code="KBK" card_type="1" card_digit="16" card_cd="N0025">K뱅크</option>
          <option card_code="PHB" card_type="1" card_digit="16" card_cd="N0018">우리카드</option>
-         <option card_code="SIN" card_type="1" card_digit="16" card_cd="N0022">신세계카드</option>
          <option card_code="HNB" card_type="1" card_digit="14" card_cd="N0006">하나카드(구,하나SK)</option>
-         <option card_code="KJB" card_type="1" card_digit="16" card_cd="N0014">광주은행카드</option>
-         <option card_code="SAN" card_type="1" card_digit="16" card_cd="N0019">산은캐피탈</option>
-         <option card_code="NFF" card_type="1" card_digit="16" card_cd="N0016">수협카드</option>
-         <option card_code="KDB" card_type="1" card_digit="16" card_cd="N0011">KDB산업은행카드</option>
-         <option card_code="JBB" card_type="1" card_digit="16" card_cd="N0009">전북은행카드</option>
-         <option card_code="JJB" card_type="1" card_digit="16" card_cd="N0010">제주은행카드</option>
-         <option card_code="KEP" card_type="1" card_digit="16" card_cd="N0013">우체국카드</option>
-         <option card_code="MGC" card_type="1" card_digit="16" card_cd="N0015">MG체크카드</option>
-         <option card_code="HSC" card_type="1" card_digit="16" card_cd="N0007">KB증권카드(구,현대증권)</option>
-         <option card_code="IBK" card_type="1" card_digit="16" card_cd="N0008">기업은행카드</option>
-         <option card_code="SSG" card_type="1" card_digit="16" card_cd="N0026">SSG카드</option>
       </select>
    </div>
 </div>
@@ -175,12 +166,16 @@
   </div>
 </div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div style="margin-bottom: 100px;">
+<button style="float: right; margin-left: 20px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   결제하기
 </button>
+<div style="float: right; margin-top: 10px;">
 <label>결제하실 금액 : </label>
-<span id="tot_price">${payInfo.tot_price }</span>
-
+<span id="tot_price">${payInfo.tot_price }원</span>
+</div>
+</div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -192,10 +187,12 @@
       <div class="modal-body">
         <div class="bd">
         <div class="article reservation_info">
-            <h5>예매정보<span class="desc">결제하시기 전 예매내역을 다시 한번 확인해 주세요.</span></h5>
+            <h6>예매정보<span>결제하시기 전 예매내역을 다시 한번 확인해 주세요.</span></h6>
             <div class="content">
-                <div class="poster"><img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85624/85624_185.JPG" alt="" style="visibility: visible;"></div>
-                <table>
+                <div class="poster">
+                	<img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85624/85624_185.JPG" style="margin-left: 130px; margin-top: 15px;">
+                </div>
+                <table style="margin-top: 22px; margin-bottom: 8px; margin-left: 45px">
                     <caption>예매정보</caption>
                     <thead></thead>
                     <tbody>
@@ -223,40 +220,30 @@
                             <th scope="row">좌석</th>
                             <td>${payInfo.seat }</td>
                         </tr>
+	                    <tr id="payment_price">
+	                        <th scope="row">결제금액</th>
+	                        <td><span class="price">${payInfo.tot_price }</span>원</td>
+	                    </tr>
+	                    <tr id="payment_method">
+	                        <th scope="row">결제수단</th>
+	                        <td><span id="payMethod"></span></td>
+	                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="article payment_info">
-            <h5>결제정보<span class="desc">결제하기 버튼을 클릭하시면 결제가 완료됩니다.</span></h5>
-            <table>
-                <caption>결제정보</caption>
-                <thead></thead>
-                <tbody>
-                    <tr id="payment_price">
-                        <th scope="row">결제금액</th>
-                        <td><span class="price">${payInfo.tot_price }</span>원</td>
-                    </tr>
-                    <tr id="payment_method">
-                        <th scope="row">결제수단</th>
-                        <td><span id="payMethod"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="article desc" style="border-bottom: none; background: none;">
+        <div style="margin-right: 20px;">
             <ul>
-                <li>영화상영 시간 기준 30분 전까지 온라인 예매 취소가 가능하며, 이후에는 현장에서 취소 하셔야 합니다. (영화 상영 후 취소 불가)</li>
+                <li>영화상영 시간 기준 30분 전까지 온라인 예매 취소가 가능하며, 이후에는 현장에서 취소 하셔야 합니다. <br/> (영화 상영 후 취소 불가)</li>
                 <li>현장 취소를 하는 경우 상영시간 이전까지만 가능하며 영화 상영 시작 시간 이후 취소나 환불은 되지 않습니다.</li>
-                <li>입장 지연에 따른 관람 불편을 최소화 하기 위해 본 영화는 10분 후 상영이 시작됩니다.
-               씨네앤포레관은 영화 상영 시작 20분 전 입장 가능하며 자연 컨셉의 라운지와 상영관에서 자유롭게 휴식을 즐기실 수 있습니다.</li>
+                <li>입장 지연에 따른 관람 불편을 최소화 하기 위해 본 영화는 10분 후 상영이 시작됩니다. <br/> 씨네앤포레관은 영화 상영 시작 20분 전 입장 가능하며 자연 컨셉의 라운지와 상영관에서 자유롭게 휴식을 즐기실 수 있습니다.</li>
             </ul>
         </div>
     </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" onclick="kakaoPay();">결제하기</button>
+        <a href="modifyPayInfo"><button type="button" class="btn btn-primary" >결제하기</button></a>
       </div>
     </div>
   </div>
@@ -265,135 +252,130 @@
 <div id="payPage"></div>
 
 <script>
-	var hicgv_coupon_cnt = "${payInfo.hicgv_coupon }";
-	var vip_coupon_cnt = "${payInfo.vip_coupon }";
-	var hicgv_coupon_price = 3000;
-	var vip_coupon_price = 9000;
-	
-	// 쿠폰이 없을 때 select 비활성화시키기
-	if (hicgv_coupon_cnt < 1 && vip_coupon_cnt < 1) {
-        $('option:first-child').text("사용가능한 쿠폰이 없습니다.");
-        $("#coupon").attr("disabled", true);
+var hicgv_coupon_cnt = "${payInfo.hicgv_coupon }";
+var vip_coupon_cnt = "${payInfo.vip_coupon }";
+var hicgv_coupon_price = 3000;
+var vip_coupon_price = 9000;
+
+var tot_price = "${payInfo.tot_price }";
+
+
+// 쿠폰이 없을 때 select 비활성화시키기
+if (hicgv_coupon_cnt < 1 && vip_coupon_cnt < 1) {
+    $('option:first-child').text("사용가능한 쿠폰이 없습니다.");
+    $("#coupon").attr("disabled", true);
+}
+
+if (hicgv_coupon_cnt < 1 && vip_coupon_cnt >= 1) {
+    $('#coupon option[value="${payInfo.hicgv_coupon }"]').prop("hidden",true); 
+}if (hicgv_coupon_cnt >= 1 && vip_coupon_cnt < 1) {
+    $('#coupon option[value="${payInfo.vip_coupon }"]').prop("hidden",true); // vip_coupon이 없으면 hidden처리
+   
+} 
+
+
+$('input:checkbox[id=pointAllCheck]').on('click', function() {
+	var point = parseInt($('span#userPoint').text());
+	var tot_price = parseInt($('#tot_price').text());
+	console.log($('span#userPoint').text());
+
+	if (point < 1000) {
+		alert("1,000P 이상부터 사용 가능합니다.");
+		$('input:checkbox[id=pointAllCheck]').prop("checked", false); //checkbox 체크(true), 체크해제(false)
+	}
+	if (point >= 1000) {
+		$('input[id=selPoint]').val(point);
+		$('#tot_price').text(tot_price - point);
+		$('span.price').text(tot_price - point);
+		if ($('input:checkbox[id=pointAllCheck]').is(':checked')) {
+			$('input[id=selPoint]').val(point);
+			$('#tot_price').text(tot_price - point);
+			$('span.price').text(tot_price - point);
+		}
+		if (!$('input:checkbox[id=pointAllCheck]').is(':checked')) {
+			var result = tot_price + point;
+			$('input[id=selPoint]').val(null);
+			$('#tot_price').text(result);
+			$('span.price').text(result);
+		}
+		
+		/* if(tot_price < 0){
+		$('#tot_price').text(0);
+		$('span#userPoint').text(point - tot_price);
+
+		} */
+	}
+})
+
+
+$('input[name=couponBtn]').on('click', function() {
+	if($('#tot_price').text() <= 0){
+		$('#tot_price').text(0)
+
 	}
 	
-	if (hicgv_coupon_cnt < 1 && vip_coupon_cnt >= 1) {
-        $('#coupon option[value="${payInfo.hicgv_coupon }"]').prop("hidden",true); 
-	}if (hicgv_coupon_cnt >= 1 && vip_coupon_cnt < 1) {
-        $('#coupon option[value="${payInfo.vip_coupon }"]').prop("hidden",true); // vip_coupon이 없으면 hidden처리
-       } 
-	
-
-	if($('#vipCoupon').is(':selected')){
+	else if($('#vipCoupon').is(':selected')){
 		discountPrice = $('#vipCoupon').val()*vip_coupon_price;
 		var tot_price = parseInt($('#tot_price').text());
 		$('#tot_price').text(tot_price - discountPrice);
 		$('span.price').text(tot_price - discountPrice);
-		
-	}if($('#normalCoupon').is(':selected')){
+		console.log($('#tot_price').text())
+		console.log($('span.price').text())
+		$('input[name=couponBtn]').attr('disabled', true);
+	}
+	
+	else if($('#normalCoupon').is(':selected')){
 		discountPrice = $('#normalCoupon').val()*hicgv_coupon_price;
 		var tot_price = parseInt($('#tot_price').text());
 		$('#tot_price').text(tot_price - discountPrice);
 		$('span.price').text(tot_price - discountPrice);
-	}
-
-	
-	$('input:checkbox[id=pointAllCheck]').on('click', function() {
-		var point = parseInt($('span#userPoint').text());
-		var tot_price = parseInt($('#tot_price').text());
-		console.log($('span#userPoint').text());
-
-		if (point < 1000) {
-			alert("1,000P 이상부터 사용 가능합니다.");
-			$('input:checkbox[id=pointAllCheck]').prop("checked", false); //checkbox 체크(true), 체크해제(false)
-		}
-		if (point >= 1000) {
-			$('input[id=selPoint]').val(point);
-			$('#tot_price').text(tot_price - point);
-			$('span.price').text(tot_price - point);
-			if ($('input:checkbox[id=pointAllCheck]').is(':checked')) {
-				$('input[id=selPoint]').val(point);
-				$('#tot_price').text(tot_price - point);
-				$('span.price').text(tot_price - point);
-			}
-			if (!$('input:checkbox[id=pointAllCheck]').is(':checked')) {
-				var result = tot_price + point;
-				$('input[id=selPoint]').val(null);
-				$('#tot_price').text(result);
-				$('span.price').text(result);
-			}
-			/* if(tot_price < 0){
-			$('#tot_price').text(0);
-			$('span#userPoint').text(point - tot_price);
-
-			} */
-		}
-	})
-   
-
-   function kakaoPay() {
-      var movie_name = $('tr#movie_name:first-child > td').text();
-      var theater = $('td#theater').text()
-      var screen = $('tr:nth-child(3) > td').text();
-      var movie_date = $('tr:nth-child(4) > td').text();
-      var people = $('tr:nth-child(5) > td').text();
-      var seat = $('tr:nth-child(6) > td').text();
-      var payment_price = $('tr#payment_price:first-child > td').text();
-
-      $.ajax({
-         type : "GET",
-         url : "kakaoPay",
-         contentType : "application/json; charset=UTF-8",
-         data : {
-            'movie_name' : movie_name,
-            'theater' : theater,
-            'screen' : screen,
-            'moviedate' : movie_date,
-            'people' : people,
-            'seat' : seat,
-            'payment_price' : payment_price
-         },
-         async : false,
-         success : function(data) {
-            alert("성공");
-            $('html').html(data);
-         }
-      })
-   }
-   
-   
-	function setDisplay() {
-		if ($('input:radio[id=pay1]').is(':checked')) {
-			$('#payInfo1').css('display', 'block');
-			$('#payInfo2').css('display', 'none');
-			$('#payInfo3').css('display', 'none');
-			$('#payInfo4').css('display', 'none');
-		} else if ($('input:radio[id=pay2]').is(':checked')) {
-			$('#payInfo1').css('display', 'none');
-			$('#payInfo2').css('display', 'block');
-			$('#payInfo3').css('display', 'none');
-			$('#payInfo4').css('display', 'none');
-		} else if ($('input:radio[id=pay3]').is(':checked')) {
-			$('#payInfo1').css('display', 'none');
-			$('#payInfo2').css('display', 'none');
-			$('#payInfo3').css('display', 'block');
-			$('#payInfo4').css('display', 'none');
-		} else if ($('input:radio[id=pay4]').is(':checked')) {
-			$('#payInfo1').css('display', 'none');
-			$('#payInfo2').css('display', 'none');
-			$('#payInfo3').css('display', 'none');
-			$('#payInfo4').css('display', 'block');
-		}
+		$('input[name=couponBtn]').attr('disabled', true);
 
 	}
+}) 
 
-	function setPayMethod(event) {
-		document.getElementById('payMethod').innerText = event.target.value;
+// 초기화 버튼
+$('input[name=resetBtn]').on('click', function(){
+	$('#tot_price').text(tot_price);
+	$('input[name=couponBtn]').attr('disabled', false);
+})
+
+
+function setDisplay() {
+	if ($('input:radio[id=pay1]').is(':checked')) {
+		$('#payInfo1').css('display', 'block');
+		$('#payInfo2').css('display', 'none');
+		$('#payInfo3').css('display', 'none');
+		$('#payInfo4').css('display', 'none');
+	} else if ($('input:radio[id=pay2]').is(':checked')) {
+		$('#payInfo1').css('display', 'none');
+		$('#payInfo2').css('display', 'block');
+		$('#payInfo3').css('display', 'none');
+		$('#payInfo4').css('display', 'none');
+	} else if ($('input:radio[id=pay3]').is(':checked')) {
+		$('#payInfo1').css('display', 'none');
+		$('#payInfo2').css('display', 'none');
+		$('#payInfo3').css('display', 'block');
+		$('#payInfo4').css('display', 'none');
+	} else if ($('input:radio[id=pay4]').is(':checked')) {
+		$('#payInfo1').css('display', 'none');
+		$('#payInfo2').css('display', 'none');
+		$('#payInfo3').css('display', 'none');
+		$('#payInfo4').css('display', 'block');
 	}
+
+}
+
+function setPayMethod(event) {
+	document.getElementById('payMethod').innerText = event.target.value;
+}
+
 	
 </script>
 
 
-<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 
 </body>
+<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+
 </html>
