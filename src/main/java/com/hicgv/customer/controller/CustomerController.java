@@ -56,7 +56,7 @@ public class CustomerController {
 		String password = request.getParameter("loginpw");
 		System.out.println("id:" + id);
 		System.out.println("password:" + password);
-
+//추가 +++++++++++++++로그인 할때 관리자인지 일반인지 grade로 구분할 수 있게 수정 세션에는 다 담와서 아이디와 grade로 관리자인지 구분
 		// 아이디 패스워드 체크
 		customerService.loginCheck(id, password);
 		if (customerService.loginCheck(id, password).equals("아이디없음")) {
@@ -77,7 +77,7 @@ public class CustomerController {
 			System.out.println("Sid :" + id);
 			System.out.println("id : " + id);
 		}
-		return "main";
+		return "redirect:main";
 		// 로그인이 성공하면 메인 또는 홈.jsp로 이동하게 수정
 		// 아이디 비번이 다르거나 없으면 발생하는 이벤트 코딩하기
 	}
@@ -90,7 +90,7 @@ public class CustomerController {
 		System.out.println("id");
 		// 세션초기화
 		session.invalidate();
-		return "main";
+		return "redirect:main";
 	}
 
 	// 로그인을 클릭하면 로그인 페이지로 이동

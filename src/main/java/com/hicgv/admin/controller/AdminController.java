@@ -19,7 +19,6 @@ import com.hicgv.admin.dto.AdminDto;
 import com.hicgv.admin.service.AdminService;
 import com.hicgv.admin.vopage.PageVO;
 import com.hicgv.admin.vopage.SearchVO;
-import com.hicgv.customer.dto.CustomerDto;
 
 @Controller
 public class AdminController {

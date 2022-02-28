@@ -17,61 +17,39 @@
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 
-	<h3>customerList.jsp || ${id }님 환영합니다.</h3>
-<form action="noticeList"><h2><button type="submit">공지사항</button></h2></form>
-	<form action="getcustomerList">
-		<th colspan="3"><button type="submit">회원정보조회</button></th>
-		<br /> 자세한 고객정보를 확인하려면 아이디를 클릭해주세요.
-	</form>
+	<h3 align="center">noticeList.jsp || 공지사항</h3>
+<form action="noticelist"><h2><button type="submit">공지사항</button></h2></form>
 
 	<div class="table-responsive">
-		<table class="table">
+		<table class="table" style="text-align: center;">
 
 
 			<tr>
-				<th>user_id(가입순서)</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>연락처</th>
-				<th>닉네임</th>
-				<th>성별</th>
-				<th>생년월일</th>
-				<th>주소</th>
-				<th>가입일</th>
-				<th>이메일</th>
-				<th>회원등급</th>
-				<th>질문</th>
-				<th>답</th>
+				<th>글번호</th>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>작성시간</th>
+				<th>조회수</th>
 			</tr>
-			<%-- <c:forEach begin="1" end="10"> --%>
 			<c:forEach items="${list }" var="dto">
 				<tr>
-					<td>${dto.user_id }</td>
-					<td>
-					<a href="customerView?id=${dto.id }">${dto.id }</a>				
-					</td>
-					<td>${dto.name }</td>
-					<td>${dto.phone_number }</td>
-					<td>${dto.nickname }</td>
-					<td>${dto.gender }</td>
-					<td>${dto.gender }</td>
-					<td>${dto.location }</td>
-					<td>${dto.create_at }</td>
-					<td>${dto.email }</td>
-					<td>${dto.grade }</td>
-					<td>${dto.question }</td>
-					<td>${dto.answer }</td>
+					<td>${dto.no }</td>					
+					<td>${dto.writer }</td>
+					<td><a href="noticeView?no=${dto.no }">${dto.title }</a></td>
+					<td>${dto.ncreate_at }</td>
+					<td>${dto.hit }</td>
+				</tr>
 			</c:forEach>
-			</tr>
+			
 		</table>
 	</div>
 	TotCnt : ${totRowCnt }
 	<br />
-	<form id="form1" name="form1" action="getcustomerList" method="post">
+	<form id="form1" name="form1" action="" method="post">
 		<c:if test="${searchVO.totPage>1 }">
 			<c:if test="${searchVO.page>1 }">
-				<a href="customerList?page=1">[처음]</a>
-				<a href="customerList?page=${searchVO.page-1 }">[이전]</a>
+				<a href="noticeList?page=1">[처음]</a>
+				<a href="noticeList?page=${searchVO.page-1 }">[이전]</a>
 			</c:if>
 			<c:forEach begin="${searchVO.pageStart }" end="${searchVO.pageEnd }"
 				var="i">
@@ -80,13 +58,13 @@
 						<span style="color: red; font-weight: bold;">${i } &nbsp;</span>
 					</c:when>
 					<c:otherwise>
-						<a href="customerList?page=${i }">${i } </a>&nbsp;
+						<a href="noticeList?page=${i }">${i } </a>&nbsp;
 			</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${searchVO.totPage>searchVO.page }">
-				<a href="customerList?page=${searchVO.page+1 }">[다음]</a>
-				<a href="customerList?page=${searchVO.totPage }">[마지막]</a>
+				<a href="noticeList?page=${searchVO.page+1 }">[다음]</a>
+				<a href="noticeList?page=${searchVO.totPage }">[마지막]</a>
 			</c:if>
 		</c:if>
 		<div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NoticeMapper"><!-- com.hicgv.admin.dao.AdminDao -->
+	<select id="noticelist" parameterType="String" resultType="NoticeDto">
+		SELECT * FROM (SELECT ROWNUM AS NUM ,HICGV_NOTICE.* FROM
+		HICGV_NOTICE)
+		WHERE NUM BETWEEN 1 AND 10
+		ORDER BY NUM
+	</select>
+	<select id="selectNoticeTotCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM HICGV_NOTICE
+	</select>
+</mapper>
