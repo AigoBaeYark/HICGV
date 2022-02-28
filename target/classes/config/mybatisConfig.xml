@@ -27,7 +27,7 @@
   		<typeAlias type="com.hicgv.customer.dto.CustomerDto" alias="CustomerDto"/>
 	  	<typeAlias type="com.hicgv.admin.dto.AdminDto" alias="AdminDto"/>	
   		<typeAlias type="com.hicgv.theater.dto.ScheduleDto" alias="ScheduleDto"/>
-  		
+  		<typeAlias type="com.hicgv.notice.dto.NoticeDto" alias="NoticeDto"/>
   		
 
   		

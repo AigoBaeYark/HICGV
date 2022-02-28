@@ -24,8 +24,18 @@
 		HICGV_CUSTOMER
 		WHERE ID = #{id }
 	</select>
-
-
+<update id="customerModify" parameterType="AdminDto">
+		UPDATE hicgv_customer
+		SET
+		PHONE_NUMBER= #{phone_number},NICKNAME=
+		#{nickname},GENDER= #{gender},
+		DATE_BIRTH= #{date_birth},LOCATION=
+		#{location},EMAIL= #{email},QUESTION= #{question},ANSWER= #{answer}
+		WHERE ID LIKE #{id}
+	</update>
+	<delete id="customerDelete" parameterType="String">
+		DELETE FROM HICGV_CUSTOMER WHERE ID LIKE #{id}	
+	</delete>
 	<!-- <insert id="write"> INSERT INTO REPLYBOARD VALUES(REPLYBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3}, 
 		SYSDATE,0,REPLYBOARD_SEQ.CURRVAL,0,0) </insert> <select id="contentView"> 
 		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE, BHIT,BGROUP,BSTEP,BINDENT FROM REPLYBOARD 
