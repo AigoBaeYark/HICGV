@@ -37,27 +37,26 @@
     <!-- //fonts -->
 </head>
 
+<!-- <img src="/cgv/resources/img/ticket/banner.jpg" alt="좌석뒷배경" >  -->
 
 <body onload="onLoaderFunc()">
+<div id="bannerjsp">
     <h1>Movie Seat Selection</h1>
     <div class="container">
-<!-- <img src="/cgv/resources/img/ticket/banner.jpg" alt="좌석뒷배경" > -->
+
         <div class="w3ls-reg">
             <!-- input fields -->
             <div class="inputForm">
                 <h2>인원/좌석선택</h2>
                 <div class="mr_agilemain">
-                    <div class="agileits-left">
-                        <label> 가격(토탈값 수정중)
-                            <span>*</span>
-                        </label>
-                        <input type="hidden" id="TicketPrice" value="9000" required>
-                    </div>
-                    <div class="agileits-right">
+                    <div class="Numseats">
                         <label> 인원수
                             <span>*</span>
                         </label>
                         <input type="number" id="Numseats" required min="1">
+                    </div>
+                    <div class="TicketPrice">
+                        <input type="hidden" id="TicketPrice" value="9000" required>
                     </div>
                 </div>
                 
@@ -83,6 +82,7 @@
 
                 <li class="smallBox emptyBox">선택가능좌석</li>
             </ul>
+            
             
             
             <!-- screen 화면 -->
@@ -186,7 +186,7 @@
             <!-- //details after booking displayed here -->
         </div>
     </div>
-
+</div>
     <!-- js -->
     <script src="js/ticket/jquery-2.2.3.min.js"></script>
     <!-- //js -->
@@ -205,7 +205,7 @@
         }
 	
         function takeData() { 
-            if (($("#TicketPrice").val().length == 0) || ($("#Numseats").val().length == 0)) {
+            if (($("#Numseats").val().length == 0)) {
                 alert("인원수를 입력해주세요");
             } else {
                 $(".inputForm *").prop("disabled", true);
@@ -246,33 +246,18 @@
                 //Displaying 
                 $('#seatsDisplay').val(allSeatsVals);
                 $('#numberDisplay').val(allNumberVals);
-                $('#priceDisplay').val(allPriceVals);
+                $('#priceDisplay').val(allPriceVals*allNumberVals);
             } else {
                 alert("Please select " + ($("#Numseats").val()) + " seats")
             }
         }
-
-
+		
+        
+        
         function myFunction() { 
             alert($("input:checked").length);
         }
 
-        
-       /*  function getCookie(cname) { //@
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-         */
 
          
 
@@ -285,24 +270,7 @@
             }
         });
         
-         
-          
-        /* 인원 , 좌석넘버, 금액(단가), 총금액 기재하깅 */
-      /*  var audience="";
-        var seatName="";
-        var unitPrice="";
-        var totalPrice="";
-        
-        /* 좌석 하나하나 맞춘거 */
-       /* $('.seatStructure txt-center').mouseover(function() {
-        	console.log($(this).children('#seatsBlock').text()); //좌석명 가져오기
-        	//console.log($(this).children('td').text()); //좌석명 가져오기
-        	console.log($(this).children('input').val()); //좌석명 가져오기
-        	seatName = $(this).children('input').val(); //값 지정해주기
-        	console.log('seatName :  '+seatName); //콘솔값 넣음
-        }) */ 
-        
-        
+    
     
         
     </script>

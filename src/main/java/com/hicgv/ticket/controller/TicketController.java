@@ -123,7 +123,7 @@ public class TicketController {
 		
 		//영화 선택시간
 		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectDate(sendDataMap);
-
+		System.out.println("size: "+timeListMap.size());
 			for (Map<String, Object> timeMaplist : timeListMap) {
 				System.out.println("getdate year : "+timeMaplist.get("year"));
 				System.out.println("getdate month : "+timeMaplist.get("month"));

@@ -84,19 +84,21 @@
         <div class="col-detail">
             <!-- 메뉴가 선택되면 a 에 title="선택" 이라고 넣는다 -->
             <ul class="tab-menu">
-                <li class="on"><a title="현재 선택됨" href="/movies/detail-view/?midx=85603#menu">주요정보 </a></li>             
-                <li><a href="/movies/detail-view/trailer.aspx?midx=85603#menu">트레일러</a></li>
-                <li><a href="/movies/detail-view/still-cut.aspx?midx=85603#menu">스틸컷</a></li>
-                <li><a href="/movies/detail-view/?midx=85603#commentReg">평점/리뷰</a></li>               
-                <li class="last"><a href="/movies/detail-view/show-times.aspx?midx=85603#menu">상영시간표</a></li>
+                <li class="on"><a href="#intro"><p>줄거리 </p></a></li>             
+                <li><a href="#trailer"><p>트레일러 </p></a> </li>
+                <li> <a href="#poster"><p>스틸컷</p></a></li>
             </ul>
+            
+            <a id="intro"></a>
+            <br><br><br>
+            <p>줄거리</p>
 			<div class="sect-story-movie">
                ${moviesdv.description }
             </div>
  		</div>
  </div>
 <!-- 트레일러시작 -->
-
+	<a id="trailer"></a> 
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
                     <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more" href="trailer.aspx?midx=85603">더보기</a>
@@ -129,7 +131,8 @@
 	</div>
 	
 		<!-- 스틸컷 -->
-		<div id="ctl00_PlaceHolderContent_Section_Still_Cut" class="sect-stillcut">
+		<a id="poster"></a> 
+		<div class="sect-stillcut">
                 <div class="heading">
                     <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
                 </div>

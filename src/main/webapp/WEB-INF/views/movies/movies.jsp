@@ -71,6 +71,15 @@
                         <div class="score">
                             <strong class="percent">전날관객수<span>${dv.audiCnt }</span></strong>
                         </div>
+                         <div class="score">
+                            <strong class="percent">TOP10신규진입(New or Old)<span>${dv.rankOldAndNew }</span></strong>
+                        </div>
+                        <div class="score">
+                            <strong class="percent">전일 대비 관객수 증감분<span>${dv.audiInten }명</span></strong>
+                        </div>
+                        <div class="score">
+                            <strong class="percent">전일 대비 관객수 증감 비율<span>${dv.audiChange }%</span></strong>
+                        </div>
 					</div>
                     <div class="txt-info">
                          <strong> ${dv.openDt } </strong>

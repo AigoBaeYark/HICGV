@@ -6,7 +6,12 @@
 
 <mapper namespace="TicketDao">
 	<select id="ticket" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR <!-- 영화리스트 -->
+		 SELECT DISTINCT S.MOVIE_ID ,M.MOVIE_ID ,M.AGE_LIMIT ,M.TITLE_KOR 
+     	FROM HICGV_THEATER_SCHEDULE S  LEFT JOIN  HICGV_MOVIE M 
+    	 ON S.MOVIE_ID = M.MOVIE_ID
+    	ORDER BY M.TITLE_KOR 
+		<!-- SELECT * FROM HICGV_MOVIE ORDER BY TITLE_KOR 에서 현재 상영만으로 수정 -->
+		<!-- 영화리스트 -->
 	</select>
 
 	 <select id="getLocal" resultType="TheaterDto"> 
