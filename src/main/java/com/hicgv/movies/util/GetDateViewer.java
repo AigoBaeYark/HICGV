@@ -73,6 +73,9 @@ public class GetDateViewer {
 		String movieCd=null; // 영화 코드
 		String audiCnt=null; // 당일 관람객
 		String openDt=null; // 영화 개봉일
+		String rankOldAndNew=null; //랭킹에 신규진입여부
+		String audiInten=null; //전일 대비 관객수 증감분을 출력합니다.
+		String audiChange=null; //	전일 대비 관객수 증감 비율을 출력합니다.
 		ArrayList<Map<String, String>> b = new ArrayList<Map<String, String>>();
 
 
@@ -91,15 +94,18 @@ public class GetDateViewer {
 				
 				JSONObject item = jsonArray.getJSONObject(i);
 				a.put("title", title = item.getString("movieNm"));
-				
 				a.put("movieCd", movieCd = item.getString("movieCd"));
 				a.put("audiCnt", audiCnt = item.getString("audiCnt"));
 				a.put("openDt", openDt = item.getString("openDt")); 
-				a.put("rank", rank[i] = item.getString("rank")); //(맵으로 묶어주기) "jsp내 JSTL이름",밸류 - "키"
+				a.put("rankOldAndNew", rankOldAndNew = item.getString("rankOldAndNew")); 
+				a.put("audiInten", audiInten = item.getString("audiInten")); 
+				a.put("audiChange", audiChange = item.getString("audiChange")); 
+				a.put("rank", rank[i] = item.getString("rank"));//(맵으로 묶어주기) "jsp내 JSTL이름",밸류 - "키"
 				b.add(a); //리스트로받기
 				
 				System.out.println("rank : " + rank[i] + "movieCd : " + movieCd + " movieNm : " + title + " audiCnt : "
-						+ audiCnt + " openDt : " + openDt);
+						+ audiCnt + " openDt : " + openDt + " rankOldAndNew : " + rankOldAndNew
+						+ " audiInten : " + audiInten + " audiChange : " + audiChange );
 
 			}
 

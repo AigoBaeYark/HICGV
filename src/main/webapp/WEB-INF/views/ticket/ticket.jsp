@@ -356,31 +356,8 @@
 				}
 			})
 			
-		 	/*
-			var triggerTabList = [].slice.call(document.querySelectorAll('#MovieTab'))
-			var triggerTabList2 = [].slice.call(document.querySelectorAll('#locTap'))
-			var triggerTabList3 = [].slice.call(document.querySelectorAll('#dateTap'))
-			
-			triggerTabList.forEach(function (triggerEl) {
-				
-			  var tabTrigger = new bootstrap.Tab(triggerEl)
-			  
-			  
-			    triggerEl.addEventListener('click', function (event) {
-				  alert('click');
-				
-				  $('#locTap').show();
-			    event.preventDefault()
-			    tabTrigger.show()
-			    
-			  })
-			})  
-			*/
 	
-			$('a.list-group-item-date').click(function(e) {
-				//e.preventDefault(); // 해당태그의 원래 기능을 사용하지 않겠다는 의미	//이거 안넣으면 a태그 페이지 바뀜
 		
-			})
 			
 			$(function() {
 				$('.list-group-item-date').on('click', tickettime);
@@ -388,7 +365,7 @@
 			});
 			
 			function tickettime() {
-				var getdate = $(this).children('input.hiddenDate').val(); //hiddenDate 닐짜값 가져오기
+				var getdate = $(this).children('input.hiddenDate').val();  //hiddenDate 닐짜값 가져오기
 				console.log("getdate : " + getdate);
 				$.ajax({
 			        type : "GET",
@@ -406,7 +383,7 @@
 			        error : function(mv) {
 			        	
 			        	for ( var i = 0 in mv){
-			        		console.log(mv[i].day); //day, getdate으로 수정했눈데도 안 됨
+			        		console.log(mv[i].day); 
 			        	}
 						
 						alert('에러');
