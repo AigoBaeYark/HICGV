@@ -7,6 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/movies/movies.css" />
+<link rel="stylesheet" href="resources/css/main/style-starter.css" />
+<script src="resources/js/main/easyResponsiveTabs.js"></script>
+<script src="resources/js/main/owl.carousel.js"></script>
+<script src="resources/js/main/main.js"></script>
+<script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
 <title>hicgv/movies</title>
 </head>
 <body>
@@ -28,78 +33,83 @@
         <div class="tit-heading-wrap">
             <h3>무비차트</h3>
         </div>
-         <!-- //Heading Map Multi -->
-        <!-- Sorting -->
-        <div class="sect-sorting">
-             <div class="nowshow">
-                  <input type="checkbox" id="chk_nowshow" />
-                <label for="chk_nowshow">현재 상영작만 보기</label>                
-            </div>
-            <label for="order_type" class="hidden">정렬</label>
-            <select id="order_type" name="order-type">
-				<option title="현재 선택됨" selected value="1">예매율순</option>
-                <option value="2">평점순</option>
-                <option value="3">관람객순</option>
-            </select>
-            <button type="button" class="round gray"><span>GO</span></button>
-        </div>
-        <!-- //Sorting -->    
-        <div class="sect-movie-chart">
-            <h4 class="hidden">
-                무비차트 - 예매율순
-            </h4>       
-            <ol>
-                <li>
-                    <div class="box-image" >
-                    <c:forEach items="${dateviewer }" var="dv">
-                        <strong class="rank">No.${dv.rank }</strong>	
-                        <a href="http://www.cgv.co.kr/movies/detail-view/?midx=${mov.movieCd }"></a>
-                        <a href="moviesdetailview?movie_id=${dv.title }">
-                            </c:forEach>
-                            <c:forEach items="${movies }" var="mov">
-                            <span class="thumb-image"> 
-                                <img src="${poster}" alt="포스터" />
-                                <span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span>
-                            </span>
-                            </c:forEach> 
-                        </a>
-                     <c:forEach items="${dateviewer }" var="dv">
-                    <div class="box-contents">
-                        <a href="moviesdetailview?movie_id=${dv.movieCd }">
-                            <strong class="title">${dv.title }</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">전날관객수<span>${dv.audiCnt }</span></strong>
-                        </div>
-                         <div class="score">
-                            <strong class="percent">TOP10신규진입(New or Old)<span>${dv.rankOldAndNew }</span></strong>
-                        </div>
-                        <div class="score">
-                            <strong class="percent">전일 대비 관객수 증감분<span>${dv.audiInten }명</span></strong>
-                        </div>
-                        <div class="score">
-                            <strong class="percent">전일 대비 관객수 증감 비율<span>${dv.audiChange }%</span></strong>
-                        </div>
+
+         
+        <section class="w3l-albums py-5" id="projects">
+	<div class="container py-lg-4">
+		<div class="row">
+			<div class="col-lg-12 mx-auto">
+				<!--Horizontal Tab-->
+				<div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">
+					<ul class="resp-tabs-list hor_1">
+						<li class="resp-tab-item hor_1 resp-tab-active" aria-controls="hor_1_tab_item-0" role="tab" style="background-color: white; border-color: rgb(193, 193, 193);">Recent Movies</li>
+						
+						<div class="clear"></div>
+					</ul>
+					<div class="resp-tabs-container hor_1" style="border-color: rgb(193, 193, 193);">
+						<h2 class="resp-accordion hor_1 resp-tab-active" role="tab" aria-controls="hor_1_tab_item-0" style="background: none; border-color: rgb(193, 193, 193);"><span class="resp-arrow"></span>Recent Movies</h2><div class="albums-content resp-tab-content hor_1 resp-tab-content-active" aria-labelledby="hor_1_tab_item-0" style="display:block">
+							<div class="row">
+								<div class="col-lg-4 new-relise-gd mt-lg-0 mt-0">
+								<c:forEach items="${movies }" var="mov">
+									<div class="slider-info">
+										<div class="img-circle">
+											<a href="moviesdetailview">
+												<img src="이미지파일넣어야댐" class="img-fluid" alt="author image">
+											</a>
+										</div>
+										<div class="message">
+											<strong class="rank">No.${mov.ranking }</strong>
+											<a class="author-book-title" href="moviesdetailview?movie_id=${mov.movie_id }">영화제목쓰기잉</a>
+											<p>00</p>
+											<span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span> <!-- 이거 수정해야됨 -->
+											<h4> <span class="post">
+												<c:forEach items="${dateviewer }" var="dv">
+													<div class="box-contents">
+														<a href="moviesdetailview?movie_id=${dv.movieCd }">
+															<strong class="title">${dv.title }</strong>
+														</a>
+														 <div class="score">
+															<strong class="percent">TOP10신규진입(New or Old)<span>${dv.rankOldAndNew }</span></strong>
+														</div>
+													</div>
+													<div class="txt-info">
+														 <strong> ${dv.openDt } </strong>
+													 </div>
+											
+													 <div class="like"> 
+														<a class="link-reservation" href="ticket">예매</a>
+													 </div> 
+													 </c:forEach> 
+												</span>
+
+												<span class="post fa fa-heart text-right"></span>
+											</h4>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+						
+					
+						</div>
+				
+						</div>
 					</div>
-                    <div class="txt-info">
-                         <strong> ${dv.openDt } </strong>
-                     </div>
-            
-                     <div class="like"> 
-                        <a class="link-reservation" href="#">예매</a>
-                     </div> 
-                     </c:forEach>  
-                   </div>  
-                   
-                </li> 
-                
-            </ol>
-            
-                 
-       </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+       
+       
+       
+       
+       
    </div>         
  </div> 
  </div> 
+ 
+ 
 <c:import url="../common/footer.jsp"></c:import>
 
 </body>
