@@ -42,7 +42,7 @@
       <div class="tab-pane fade" id="list-gyeonggi" role="tabpanel" aria-labelledby="list-gyeonggi-list">
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 2 }">
-            <ul style="float: left; position: relative; left: 100px;">
+            <ul style="float: left; position: relative; left: 150px;">
                <li><a href="theater?theaterId=2&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -81,14 +81,14 @@
 <div>
 
 <c:forEach var="i" begin="0" end="10">
-	<i class="fa-solid fa-grip-lines fa-2x"></i>
+	<i class="fa-solid fa-grip-lines fa-2x" style="margin-top: 20px;"></i>
 </c:forEach>
    <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
 <c:forEach var="i" begin="0" end="10">
 	<i class="fa-solid fa-grip-lines fa-2x"></i>
 </c:forEach>
       <h4>
-         <span>${locInfo.location_name }</span>
+         <span><strong>${locInfo.location_name }</strong></span>
       </h4>
 <div style="background-image:linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
    <div style="background: url('https://img.cgv.co.kr/R2014/images/common/bg/bg_dim80.png') 0 0 repeat; width: 980px; height: 420px;">
@@ -108,7 +108,7 @@
    <div>
       <img style="margin-top: 20px;" src="https://adimg.cgv.co.kr/images/202203/Morbius/980x90.jpg" alt="" />
    </div>
-    <div class="day" style="margin-top: 20px;">
+    <div class="day" style="margin-top: 20px; margin-left: 50px;">
 	   	 <c:forEach items="${scheduleDate }" var="date">
    	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> &nbsp;&nbsp;&nbsp;
 	       <i class="fa-regular fa-calendar"></i>
