@@ -5,12 +5,12 @@
     "http://myba``tis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.hicgv.pay.dao.PayDao">
-	<select id="getPayInfo" resultType="com.hicgv.pay.dto.PayDto">
+	<select id="getPayInfo" resultType="PayDto" parameterType="String">
 		SELECT USER_ID,THEATER_SCHEDULE_ID,MOVIE_ID,HICGV_COUPON,VIP_COUPON,POINT,TITLE_KOR,LOCATION_NAME,
 		ROOM_NAME,START_DATE,PERSON,SEAT,SEAT_PRICE,PERSON*SEAT_PRICE AS TOT_PRICE
-		FROM HICGV_PAY WHERE USER_ID=#{param1} AND THEATER_SCHEDULE_ID=#{param2}
+		FROM HICGV_PAY WHERE USER_ID=#{userId} AND THEATER_SCHEDULE_ID=#{movieId}
 	</select>
-	<select id="getSeat" resultType="com.hicgv.pay.dto.PayDto">
-		SELECT SEAT FROM HICGV_PAY WHERE THEATER_SCHEDULE_ID=#{param1}
+	<select id="getSeat" resultType="PayDto" parameterType="String">
+		SELECT SEAT FROM HICGV_PAY WHERE THEATER_SCHEDULE_ID=#{theaterScheduleId}
 	</select>
 </mapper>

@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hicgv.pay.dao.PayDao;
 import com.hicgv.pay.dto.PayDto;
+import com.hicgv.pay.service.PayService;
 
 @Controller
 public class PayController {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private PayService payService;
 	
 	@RequestMapping("/pay")
 	public String reserve(HttpServletRequest request, Model model) {
@@ -28,13 +29,11 @@ public class PayController {
 		System.out.println("userid : "+userId);
 		System.out.println("movieid : "+movieId);
 		
-		PayDao dao=sqlSession.getMapper(PayDao.class);
-		
-		model.addAttribute("payInfo",dao.getPayInfo(userId, movieId));
+		model.addAttribute("payInfo",payService.getPayInfo(userId, movieId));
 	
 		return "pay/pay";
 	}
-	@RequestMapping("getSeat")
+	@RequestMapping("/getSeat")
 	public String getSeat(HttpServletRequest request, Model model) {
 		
 		//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기
@@ -47,8 +46,7 @@ public class PayController {
 		String str = "";
 		String[] strArray;
 		
-		PayDao dao=sqlSession.getMapper(PayDao.class);
-		List<PayDto> payList =  dao.getSeat(theaterScheduleId);
+		List<PayDto> payList =  payService.getSeat(theaterScheduleId);
 		
 		//jsp에서 수정하고 뿌리기 편하게 str로 변환해서 보내줌
 		for (int i = 0; i < payList.size(); i++) {
@@ -57,8 +55,16 @@ public class PayController {
 		strArray = str.split(",");
 		
 		
-		model.addAttribute("seat",strArray);
+		model.addAttribute("seat",payService.getSeat(theaterScheduleId));
 		
-		return "ticket/ticketseat3";
+		return "ticket/ticketseat";
+	}
+	@RequestMapping("/modifyPayInfo")
+	public String modifyPayInfo() {
+		System.out.println("======= << modifyPayInfo >> =======");
+		
+		
+		
+		return "pay/modifyPayInfo";
 	}
 }

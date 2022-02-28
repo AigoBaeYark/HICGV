@@ -16,8 +16,7 @@
 <div id="contents"> 
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 <i class="fa-solid fa-heart"></i>
-<a href="pay?userId=1&theater_schedule_id=1000" style="border: 2px solid red;">pay</a> <span><a href="getSeat">getSEAT</a></span>
-
+<a href="pay?userId=1&theater_schedule_id=1000" style="border: 2px solid red;">pay</a>
 
 <div class="row" id="theaterName">
   <div class="col-4">
@@ -34,7 +33,7 @@
       <div class="tab-pane fade show active" id="list-seoul" role="tabpanel" aria-labelledby="list-seoul-list">
       <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 1 }">
-            <ul>
+            <ul style="float: left; position: relative; left: 100px;">
                <li><a href="theater?theaterId=1&locId=${dto.location_id }" >${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -43,7 +42,7 @@
       <div class="tab-pane fade" id="list-gyeonggi" role="tabpanel" aria-labelledby="list-gyeonggi-list">
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 2 }">
-            <ul>
+            <ul style="float: left; position: relative; left: 100px;">
                <li><a href="theater?theaterId=2&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -52,7 +51,7 @@
       <div class="tab-pane fade" id="list-incheon" role="tabpanel" aria-labelledby="list-incheon-list">
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 3 }">
-            <ul>
+            <ul style="float: left; position: relative; left: 100px;">
                <li><a href="theater?theaterId=3&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -61,7 +60,7 @@
       <div class="tab-pane fade" id="list-gangwon" role="tabpanel" aria-labelledby="list-gangwon-list">
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 4 }">
-            <ul>
+            <ul style="float: left; position: relative; left: 100px;">
                <li><a href="theater?theaterId=4&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -70,7 +69,7 @@
       <div class="tab-pane fade" id="list-chungcheong" role="tabpanel" aria-labelledby="list-chungcheong-list">
          <c:forEach items="${theater }" var="dto">
          <c:if test="${dto.theater_id eq 5 }">
-            <ul>
+            <ul style="float: left; position: relative; left: 100px;">
                <li><a href="theater?theaterId=5&locId=${dto.location_id }">${dto.location_name } </a></li>
             </ul>
           </c:if> 
@@ -81,38 +80,22 @@
 </div>
 <div>
 
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
+<c:forEach var="i" begin="0" end="10">
+	<i class="fa-solid fa-grip-lines fa-2x"></i>
+</c:forEach>
    <img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="Theater" />
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
-<i class="fa-solid fa-grip-lines fa-2x"></i>
+<c:forEach var="i" begin="0" end="10">
+	<i class="fa-solid fa-grip-lines fa-2x"></i>
+</c:forEach>
       <h4>
          <span>${locInfo.location_name }</span>
       </h4>
-<div style="background-image: url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
+<div style="background-image:linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('${img }');background-repeat: no-repeat; width=980px; height=420px;">
    <div style="background: url('https://img.cgv.co.kr/R2014/images/common/bg/bg_dim80.png') 0 0 repeat; width: 980px; height: 420px;">
       <div>
          <div>
             <div>
-               <strong style="color: #eee;">
+               <strong style="color: #eee; position: relative; top: 300px; left: 50px;">
                   ${locInfo.location_add } <br />
                   ${locInfo.location_tel }
                </strong>
@@ -123,11 +106,11 @@
 </div>
 </div>
    <div>
-      <img src="https://adimg.cgv.co.kr/images//202201/Uncharted/0127_980x90.jpg" alt="" />
+      <img style="margin-top: 20px;" src="https://adimg.cgv.co.kr/images/202203/Morbius/980x90.jpg" alt="" />
    </div>
-    <div class="day">
+    <div class="day" style="margin-top: 20px;">
 	   	 <c:forEach items="${scheduleDate }" var="date">
-   	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime">
+   	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> &nbsp;&nbsp;&nbsp;
 	       <i class="fa-regular fa-calendar"></i>
 	        <strong>${date.start_date }</strong>
 	        <input type="hidden" class="hiddenDate" value="${date.start_date }"/>
@@ -139,16 +122,13 @@
    
    </div>
    
-      <div class="showtimes-wrap">
  <div class="sect-guide">
-    <div class="descri-timezone">
-       <p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
+	    <ul style="margin-top: 10px;">
+	       <li>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다. <br />
+		   	   * 입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</li>
+	    </ul>
     </div>
  </div>
-    <p class="info-noti"></p>
-    <p>ㆍ입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</p>
-   </div>
-   </div>
    
    <script>
       

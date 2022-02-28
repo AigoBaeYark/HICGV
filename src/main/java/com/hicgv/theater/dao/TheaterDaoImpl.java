@@ -42,12 +42,12 @@ public class TheaterDaoImpl implements TheaterDao{
 	public ArrayList<MoviesInfoDto> getMoviesInfo(String theaterId, String locationId, String date) {
 		System.out.println("======= << TheaterDaoImpl.getMoviesInfo() >> =======");
 		
-		Map<String, String> Map = new HashMap<String, String>();
-		Map.put("theaterId", theaterId);
-		Map.put("locationId", locationId);
-		Map.put("date", date);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("theaterId", theaterId);
+		map.put("locationId", locationId);
+		map.put("date", date);
 		
-		List<MoviesInfoDto> dto = sqlSession.selectList(nameSpace+".getMoviesInfo",Map);
+		List<MoviesInfoDto> dto = sqlSession.selectList(nameSpace+".getMoviesInfo",map);
 		
 		return (ArrayList<MoviesInfoDto>) dto;
 	}
@@ -70,7 +70,6 @@ public class TheaterDaoImpl implements TheaterDao{
 		System.out.println("roomId : " +schDto.getTheaterRoom_id());
 		System.out.println("movieId : " + schDto.getMovie_id());
 		System.out.println("Start_date : " + schDto.getStart_date());
-		
 		
 		sqlSession.insert(nameSpace+".setScheduleInfo",schDto);
 	}

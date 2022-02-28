@@ -54,14 +54,14 @@ public class TheaterController {
 	}
 
 	// 바로 theaterAdmin.jsp로 들어가면 input 값이 null로 들어가니까 화면전환 먼저 해줌
-	@RequestMapping("theaterAdmin")
+	@RequestMapping("/theaterAdmin")
 	public String theaterAdmin() {
 		System.out.println("======= << theaterAdmin >> =======");
 		return "theater/theaterAdmin";
 	}
 
 	// theaterAdmin.jsp에서 입력한 값 DB에 INSERT
-	@RequestMapping("theaterInsertAdmin")
+	@RequestMapping("/theaterInsertAdmin")
 	public String theaterInsertAdmin(HttpServletRequest request, Model model, @ModelAttribute ScheduleDto schedultDto) throws ParseException {
 		System.out.println("======= << theaterInsertAdmin >> =======");
 		
@@ -87,7 +87,7 @@ public class TheaterController {
 	}
 
 	@ResponseBody
-	@RequestMapping("moviesList")
+	@RequestMapping("/moviesList")
 	public MoviesInfoDto schedule(HttpServletRequest request, Model model) {
 		System.out.println("======= << moviesList >> =======");
 		String movieId = request.getParameter("movie_id");
