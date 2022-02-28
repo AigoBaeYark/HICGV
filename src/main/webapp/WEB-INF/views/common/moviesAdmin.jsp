@@ -6,11 +6,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 
-
-<link rel="stylesheet" href="적용할 css 나 script" />
 
 <title>Movies Admin</title>
 </head>
@@ -21,7 +18,7 @@
 		<!-- 네이버와 영화진흥위원회 두번 거쳐서 검색해서 중복되는 내용만 나옴 (모든영화는 안나올 듯?) -->
 		<!-- 모든 영화 나오게하려면 힘들수도 -->
 		<!-- 02_23 문자열 순수 한글, 영어, 숫자만 비교(띄어쓰기도 제거) 검색내용 올라감 -->
-		<label for="searchTitle">API 검색할 영화</label> <input type="text"
+		<label for="searchTitle">API 검색할 영화 </label> <input type="text"
 			name="searchTitle" id="searchTitle" /> <span> <input
 			type="button" name="searchBtn" id="searchBtn" value="검색"
 			onclick="searchTitle()" />

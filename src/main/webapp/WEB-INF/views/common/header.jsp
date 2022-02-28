@@ -10,12 +10,18 @@
 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/layout.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/jquery-ui-1.10.4.custom.min.css" />
+<link rel="styleSheet" src="${path }/resources/css/font-awesome.min" crossorigin="anonymous"></script>
 
 <script src="${path }/resources/js/main/jquery-1.10.2.min.js" ></script>
 <script src="${path }/resources/js/main/jquery-ui-1.10.4.custom.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
 
+<script src="${path }/resources/js/main/movieDetail.js"  ></script>
+<script src="${path }/resources/js/main/daterangepicker.js"  ></script>
+<script src="${path }/resources/js/main/moment.min.js"  ></script>
+<script src="${path }/resources/js/main/select2.min.js"  ></script>
 
 </head>
 <body>
@@ -92,6 +98,18 @@
 	                   
 	                </dl>
 	  			</li>
+	  			<%-- <%if(session.getAttribute("grade") != null) { %> --%>
+	  			<li>
+	  				<h2><a href="" style="font-weight: 700;">관리자 메뉴</a></h2>
+	  				<dl class="nav_overMenu">
+	  					<dt><h2><a href="" style="color: #df0e62; ">관리자 메뉴</a></h2></dt>
+	  					 <dd><h3><a href="">유저 관리</a></h3></dd>
+	  					 <dd><h3><a href="">극장 및 상영관리</a></h3></dd>
+	  					 <dd><h3><a href="moviesAdmin">영화</a></h3></dd>
+	  					 <dd><h3><a href="">스토어</a></h3></dd>
+	  				</dl>
+	  			</li>
+	  			<%-- <%} %> --%>
 	        </ul>
 	        <div class="totalSearch_wrap">
 	            <label for="totalSearch">

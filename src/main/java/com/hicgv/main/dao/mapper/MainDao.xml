@@ -7,6 +7,7 @@
 <mapper namespace="com.hicgv.main.dao.MainDao">
 	<select id="movieChart" resultType="MoviesDto">
 		SELECT * FROM HICGV_MOVIE
+		WHERE RANKING BETWEEN 1 AND 10
 		ORDER BY RANKING
 	</select>
 
@@ -51,6 +52,11 @@
 			WHERE MOVIE_ID = #{item.movie_id} 
 		</foreach>
 	
+	</update>
+	
+	<update id="rankInit">
+		UPDATE HICGV_MOVIE
+		SET RANKING = 99
 	</update>
 	
 	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 

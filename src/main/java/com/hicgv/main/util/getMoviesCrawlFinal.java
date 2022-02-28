@@ -794,11 +794,19 @@ public class getMoviesCrawlFinal {
 			//관람등급은 무조건 배열안에 있어서 배열로 넣은다음 watchGradeNm 으로 빼야함
 			
 			if (movieInfoObject.getJSONArray("audits") == null) {
+				System.out.println("심사중");
 				movieIdMap.put("age_limit", "전체 관람가");
 			}else {
-				movieInfoJsonArray = movieInfoObject.getJSONArray("audits");
-				String age_limit = movieInfoJsonArray.getJSONObject(0).get("watchGradeNm").toString();
-				movieIdMap.put("age_limit", movieInfoJsonArray.getJSONObject(0).get("watchGradeNm"));
+				if(movieInfoObject.getJSONArray("audits").length() == 0){	//데이터는 없으나 null이 아닌 0으로 올때
+					System.out.println("심사중");
+					movieIdMap.put("age_limit", "전체 관람가");
+				}else {
+					System.out.println("심의등급 있음");
+					System.out.println(movieInfoObject.getJSONArray("audits").length());
+					movieInfoJsonArray = movieInfoObject.getJSONArray("audits");
+					String age_limit = movieInfoJsonArray.getJSONObject(0).get("watchGradeNm").toString();
+					movieIdMap.put("age_limit", movieInfoJsonArray.getJSONObject(0).get("watchGradeNm"));
+				}
 			}
 			
 			

@@ -95,5 +95,10 @@ public class MainServiceImpl  implements MainService{
 		mainDao.updateDailyRank(updateMovieRank);
 	}
 
+	@Override
+	public void rankInit() {
+		mainDao.rankInit();
+	}
+
 	
 }

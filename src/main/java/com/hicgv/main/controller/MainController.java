@@ -122,6 +122,7 @@ public class MainController {
 
 		for (HashMap<String, String> hashMap : finalSearchList) {
 			System.out.println(hashMap.get("movie_id"));
+			System.out.println("관람가 " + hashMap.get("age_limit"));
 		}
 
 		if (finalSearchList.size() == 0) {
@@ -151,6 +152,7 @@ public class MainController {
 		String actorsEnStr = "";
 		crawlFinal.searchToMovieId(movieId);
 		
+		
 
 		try {
 			// 배열에 담겨온 애들은 빼줌
@@ -158,6 +160,8 @@ public class MainController {
 			System.out.println(resultMap.get("movie_id"));
 			LinkedList<String> actorsList = (LinkedList<String>) resultMap.get("actors");
 			LinkedList<String> actorsEnList = (LinkedList<String>) resultMap.get("actorsEn");
+			
+			System.out.println("영화ID검색 관람가 : "+resultMap.get("age_limit"));
 			
 			//jsp에서 수정하고 뿌리기 편하게 str로 변환해서 보내줌
 			for (int i = 0; i < actorsList.size(); i++) {
@@ -315,6 +319,7 @@ public class MainController {
 	@RequestMapping("updateDailyRank")
 	public String updateDailyRank() {
 		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
+		mainService.rankInit();
 		mainService.updateDailyRank(crawlFinal.updateMovieRank());
 		
 		return "redirect:common/moviesAdmin";

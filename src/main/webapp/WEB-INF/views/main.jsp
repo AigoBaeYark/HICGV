@@ -30,11 +30,6 @@
 </head>
 <body>
 
-
-	<a href="header">header</a>
-	<a href="seatTest">seatTest</a>
-	<a href="moviesAdmin">moviesAdmin</a>
-
 	<!-- 메뉴 아래 신규영화 영상 -->
 	<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap"
 		class="movieSelection_wrap">
@@ -86,19 +81,7 @@
 	<div class="movieChartBeScreen_wrap"
 		style="clear: none; float: none; position: relative; background-image: linear-gradient(to bottom, rgba(95 211 255), rgba(232, 232, 232, 0.37));">
 		<div class="contents"
-			style="margin: 0 auto; width: 980px; height: 100%">
-			<div class="movieChartBeScreen_btn_wrap">
-				<div class="tapBtn_wrap" style="display: inline-flex;">
-					<!-- 차트, 예정작 선택버튼 -->
-					<h3>
-						<a href="" class="active" id="btnMovie">무비차트</a>
-					</h3>
-					<h3>
-						<a href="" id="btnReserMovie">상영예정작</a>
-					</h3>
-				</div>
-				<a href="movies" class="btn_Allview" style="float: right;">전체보기</a>
-			</div>
+			style="margin: 0 auto; width: 100%; height: 50%">
 
 			<!-- 무비차트 스와이퍼 -->
 
@@ -163,10 +146,10 @@
 				<div class="headerhny-title">
 					<div class="w3l-title-grids">
 						<div class="headerhny-left">
-							<h3 class="hny-title">New Releases</h3>
+							<h3 class="hny-title">예매 순위</h3>
 						</div>
 						<div class="headerhny-right text-lg-right">
-							<h4><a class="show-title" href="genre.html">Show all</a></h4>
+							<h4><a class="show-title" href="movies">전체 보기</a></h4>
 						</div>
 					</div>
 				</div>
@@ -178,18 +161,22 @@
 								<figure>
 									<img class="img-fluid" src="${mov.image_url }" >
 								</figure>
+								
+								<div id="age">
+									<img src="resources/img/theater/${mov.age_limit }.png"  style="position: absolute; top: 7px; right: 7px; width: 35px; height: 35px;"/>
+								</div>
 								<div class="box-content">
-									<span class="post">${mov.ranking } 위</span>
-									<span class="post" style="width: 30%"><span class="fa-regular fa-clock" >${mov.running_time } 분  </span> </span>
+									<h1 class="post" style="color: #eee;">${mov.ranking } </h1>
+									<span class="post" style="width: 30%"><span class="fa-regular fa-clock" >${mov.running_time } 분 $ </span> </span>
 									<span class="post" >상세보기</span>
 									
 								</div>
 							</a>
 						</div>
 						<h3> <a class="title-gd" href="genre.html">${mov.title_kor }</a></h3>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+						<p id="description">${mov.description }</p>
 						<div class="button-center text-center mt-4">
-							<a href="#" class="btn watch-button">예매하기</a>
+							<a href="ticket" class="btn watch-button">예매하기</a>
 						</div>
 
 					</div>
@@ -259,7 +246,7 @@
 	//슬라이더 스크립트
 	$(document).ready(function () {
 		$('.owl-one').owlCarousel({
-			stagePadding:340,
+			stagePadding:430,
 			loop: true,
 			margin: 20,
 			nav: true,

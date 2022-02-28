@@ -23,4 +23,5 @@ public interface MainDao {
 	public void insertAllActor(HashMap<String, Object> actor);
 	public void insertMovie(MoviesDto moviesDto);
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
+	public void rankInit();
 }

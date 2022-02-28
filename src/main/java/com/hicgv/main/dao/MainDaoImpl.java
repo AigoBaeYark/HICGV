@@ -72,5 +72,11 @@ public class MainDaoImpl implements MainDao{
 	@Override
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank) {
 		sqlSession.update(nameSpace+".updateDailyRank",updateMovieRank);
+	}
+
+
+	@Override
+	public void rankInit() {
+		sqlSession.update(nameSpace+".rankInit");
 	};
 }

@@ -15719,6 +15719,21 @@ button.owl-next {
   left: 0;
 }
 
+.item #description{
+		display: block;
+        color: black;
+        font-weight: bolder !important;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2 ;
+        -webkit-box-orient: vertical;
+}
+
 .w3l-grids .box16:after {
   content: "";
   height: 100%;

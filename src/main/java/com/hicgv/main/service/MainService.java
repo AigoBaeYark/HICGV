@@ -28,5 +28,6 @@ public interface MainService {
 	public void insertAllActor(HashMap<String, Object> resultMap);
 	public void insertMovie(MoviesDto moviesDto);
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
+	public void rankInit();
 	
 }

@@ -103,11 +103,13 @@
 			.nav_menu > li:nth-child(2) > h2{left:80px}
 			.nav_menu > li:nth-child(3) > h2{left:160px}
 			.nav_menu > li:nth-child(4) > h2{left:240px}
-			.nav_menu > li:nth-child(5) > h2{left:240px}
-			.nav_menu > li:last-child > h2{left:240px}
+ 			.nav_menu > li:nth-child(5) > h2{left:320px;} 
+			/* .nav_menu > li:last-child > h2{left:240px} */
 
 			.nav_menu > li > h2{position:absolute; top:7px}
 			.nav_menu > li > h2 > a{font-weight:500; font-size:16px; color:#222; line-height:1.500em}
+			.nav_menu > li:nth-child(5) > h2 > a{color: #df0e62;}
+			
 			/* .nav_menu > li > h2 > a:hover{text-decoration:underline} */
 			.nav_menu > li > h2 > a strong{font-weight:700; color:#2041e3}
 				.nav_overMenu{display:none; position:relative; margin-bottom:8px; padding:25px 0 0 25px}
@@ -157,10 +159,11 @@
 		.nav.fixed .contents .nav_menu > li:nth-child(2) > h2{left:200px}
 		.nav.fixed .contents .nav_menu > li:nth-child(3) > h2{left:280px}
 		.nav.fixed .contents .nav_menu > li:nth-child(4) > h2{left:360px}
-		.nav.fixed .contents .nav_menu > li:nth-child(5) > h2{left:455px}
+		.nav.fixed .contents .nav_menu > li:nth-child(5) > h2{left:455px;}
 /* 		.nav.fixed .contents .nav_menu > li:last-child > h2{left:550px} */
  		.nav.fixed .contents .nav_menu > li > h2 > a{color:#fff}
 		.nav.fixed .contents .nav_menu > li > h2 > a strong{color:#fff}
+		.nav.fixed .contents .nav_menu > li:nth-child(5) > h2 > a{color:#6e1a1a;}
 		.nav.fixed .contents .totalSearch_wrap:before,
 		.nav.fixed .contents .totalSearch_wrap:after{background-color:#000; opacity:0.2}
 		.nav.fixed .contents .totalSearch_wrap label input[type="text"]{color:#fff; background-color:transparent}
