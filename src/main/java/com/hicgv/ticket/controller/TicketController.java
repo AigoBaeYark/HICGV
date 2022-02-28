@@ -1,5 +1,6 @@
 package com.hicgv.ticket.controller;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -217,15 +219,24 @@ public class TicketController {
 	
 	}
 	
-	@RequestMapping(value = "/payTtest") //@@맵핑명 안 써서 오류
-	public String goPay(HttpServletRequest request, Model model) {
+	@RequestMapping(value ="/payTtest", method = RequestMethod.GET) //@@맵핑명 안 써서 오류
+	public String goPay(HttpServletRequest request,HttpServletResponse response, Model model) {
 		System.out.println("======= < pass by goPay() > =======");
 		
+		
+		String minute = request.getParameter("minute");
+		System.out.println("locid : " + minute);
+		
+		String seatsDis = request.getParameter("seatsDis");
+		System.out.println("locid : " + seatsDis);
+		
+		String movieid = request.getParameter("movieid");
+		System.out.println("locid : " + movieid);
 		
 		
 /*		System.out.println("seatsDis : "+ seatsDis);
 */		
-		String movieid = request.getParameter("movieid");
+/*		String movieid = request.getParameter("movieid");
 		System.out.println("movieid : "+movieid); 
 		String theaterid = request.getParameter("theaterid");
 		System.out.println("theaterid : "+theaterid);
@@ -235,7 +246,7 @@ public class TicketController {
 		System.out.println("tday : "+tday);
 		String hour = request.getParameter("hour");
 		System.out.println("hour : "+hour);
-		String minute = request.getParameter("minute");
+		String minute = (String) request.getAttribute("minute");
 		System.out.println("minute : "+minute);
 		String schedule_id = request.getParameter("schedule_id");
 		System.out.println("schedule_id : "+schedule_id); //예약 내역을 가져오기 위함
@@ -246,7 +257,7 @@ public class TicketController {
 		String numberDis = request.getParameter("numberDis"); //선택좌석수
 		System.out.println("numberDis : "+request.getParameter("numberDis"));
 		String priceDis = request.getParameter("priceDis"); //결제예정금액
-		System.out.println("priceDis : "+request.getParameter("priceDis"));
+		System.out.println("priceDis : "+request.getParameter("priceDis"));*/
 		
 		//String seatsDis	= request.getParameter(name)
 		
@@ -254,15 +265,15 @@ public class TicketController {
 		
 		
 		
-		HashMap<String, String> sendDataMap = new HashMap<String, String>();
+		/*HashMap<String, String> sendDataMap = new HashMap<String, String>();
 		sendDataMap.put("movieid", movieid);
 		sendDataMap.put("theaterid", theaterid);
 		sendDataMap.put("locid", locid);
 		sendDataMap.put("tday", tday);
 		sendDataMap.put("hour", hour);
-		sendDataMap.put("minute", minute);
+		sendDataMap.put("minute", minute);*/
 		
-		return "redirect:ticketseat";
+		return "redirect:ticket";
 		
 	}
 	
