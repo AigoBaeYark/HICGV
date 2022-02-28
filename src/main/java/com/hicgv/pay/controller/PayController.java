@@ -59,6 +59,6 @@ public class PayController {
 		
 		model.addAttribute("seat",strArray);
 		
-		return "ticket/ticketseat3";
+		return "ticket/ticketseat";
 	}
 }

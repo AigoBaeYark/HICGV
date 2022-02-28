@@ -72,6 +72,10 @@
 		AND TO_CHAR(START_DATE, 'hh') = #{hour } AND TO_CHAR(START_DATE, 'mi') = #{minute }
 	</select>
 	
+	<select  id="getSeat" parameterType="String" resultType="PayDto">
+		SELECT SEAT FROM HICGV_PAY WHERE THEATER_SCHEDULE_ID=#{schedule_id}
+	</select>
+	
 
 </mapper> 
  

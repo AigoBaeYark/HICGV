@@ -3,6 +3,7 @@ package com.hicgv.ticket.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hicgv.movies.dto.MoviesDto;
+import com.hicgv.pay.dto.PayDto;
 import com.hicgv.theater.dto.TheaterDto;
 import com.hicgv.ticket.dao.TicketDao;
 import com.hicgv.ticket.dto.TLocationDto;
@@ -100,6 +102,7 @@ public class TicketServiceImpl implements TicketService {
 			timeMap.put("max_seat", ticketListDto.getMax_seat()); // 좌석수
 			timeMap.put("running_time", ticketListDto.getRunning_time()); // 러닝타임
 			timeMap.put("movie_id", ticketListDto.getMovie_id());	//영화 ID
+			timeMap.put("schedule_id", ticketListDto.getTheater_schedule_id());	//영화 ID
 
 			System.out.println("year : " + year);
 			System.out.println("month : " + month);
@@ -114,6 +117,7 @@ public class TicketServiceImpl implements TicketService {
 			System.out.println("movie_id : " + ticketListDto.getMovie_id());
 			System.out.println("Location_id : " + ticketListDto.getLocation_id());
 			System.out.println("Theater_id : " + ticketListDto.getTheater_id());
+			System.out.println("schedule_id : " + ticketListDto.getTheater_schedule_id());
 
 			timeListMap.add(timeMap);
 		}
@@ -183,6 +187,8 @@ public class TicketServiceImpl implements TicketService {
 			timeMap2.put("theater_id", ticketListDto.getTheater_id()); // 상영지역ID
 			timeMap2.put("running_time", ticketListDto.getRunning_time()); // 러닝타임
 			timeMap2.put("title_kor", ticketListDto.getTitle_kor()); // 영화명(국문)
+			timeMap2.put("schedule_id", ticketListDto.getTheater_schedule_id()); // 상영시간 ID
+			timeMap2.put("tday", ticketListDto.getDay()); // 날짜
 
 			System.out.println("year2 : " + year);
 			System.out.println("month2 : " + month);
@@ -205,5 +211,13 @@ public class TicketServiceImpl implements TicketService {
 
 		}
 		return timeListMap;
+	}
+
+	@Override
+	public List<PayDto> getSeat(String schedule_id) {
+		
+		
+		
+		return dao.getSeat(schedule_id);
 	}
 }

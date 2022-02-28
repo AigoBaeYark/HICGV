@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hicgv.movies.dto.MoviesDto;
+import com.hicgv.pay.dto.PayDto;
 import com.hicgv.theater.dto.TheaterDto;
 /*import com.hicgv.theater.dto.TheaterDto;
 import com.hicgv.theater.dto.TimeInfoDto;
@@ -68,6 +69,12 @@ public class TicketDaoImpl implements TicketDao{
 		}
 		
 		return (ArrayList<TicketListDto>) dto; //@@nameSpace뒤에 .getSelectMovieInfo를 써야했는데 .getTicketday를 써서 오류
+	}
+
+	@Override
+	public List<PayDto> getSeat(String schedule_id) {
+
+		return sqlSession.selectList(nameSpace+".getSeat",schedule_id);
 	}
 
 

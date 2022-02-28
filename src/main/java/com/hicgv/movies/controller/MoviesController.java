@@ -41,9 +41,7 @@ public class MoviesController {
 		model.addAttribute("dateviewer", moviesService.getDateViewer());
 		model.addAttribute("poster", moviesService.getMoviePoster());
 	
-		
-	/*movielist받기 api, 크롤링*/
-			
+	/*movielist받기 api, 크롤링*/		
 		return "movies/movies";	
 	
 	}

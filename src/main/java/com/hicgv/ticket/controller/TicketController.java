@@ -3,6 +3,7 @@ package com.hicgv.ticket.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hicgv.movies.dto.MoviesDto;
+import com.hicgv.pay.dao.PayDao;
+import com.hicgv.pay.dto.PayDto;
 import com.hicgv.theater.dto.TheaterDto;
 import com.hicgv.ticket.dao.TicketDao;
 import com.hicgv.ticket.dto.TLocationDto;
@@ -133,6 +138,7 @@ public class TicketController {
 				System.out.println("getdate day : "+timeMaplist.get("day"));
 				System.out.println("getdate location_id : "+timeMaplist.get("location_id"));
 				System.out.println("getdate theater_id : "+timeMaplist.get("theater_id"));
+				System.out.println("getdate schedule_id : "+timeMaplist.get("schedule_id"));
 			}
 		
 			model.addAttribute("ticketday",timeListMap);
@@ -144,6 +150,8 @@ public class TicketController {
 	@RequestMapping("/ticketseat")
 	public String getSeat(HttpServletRequest request, Model model) {
 		System.out.println("======= < pass by ticketseat() > =======");
+		
+		
 		
 		String movieid = request.getParameter("movieid");
 		System.out.println("movieid : "+movieid); 
@@ -157,9 +165,11 @@ public class TicketController {
 		System.out.println("hour : "+hour);
 		String minute = request.getParameter("minute");
 		System.out.println("minute : "+minute);
+		String schedule_id = request.getParameter("schedule_id");
+		System.out.println("schedule_id : "+schedule_id); //예약 내역을 가져오기 위함
+		
 		//String startmovtime = request.getParameter("sTime"); //hour+minute
-		
-		
+			
 		HashMap<String, String> sendDataMap = new HashMap<String, String>();
 		sendDataMap.put("movieid", movieid);
 		sendDataMap.put("theaterid", theaterid);
@@ -167,6 +177,7 @@ public class TicketController {
 		sendDataMap.put("tday", tday);
 		sendDataMap.put("hour", hour);
 		sendDataMap.put("minute", minute);
+		
 		//sendDataMap.put("sTime", startmovtime); //hour+minute
 		
 		ArrayList<Map<String, Object>> timeListMap = ticketService.getSelectMovieInfo(sendDataMap);
@@ -178,9 +189,24 @@ public class TicketController {
 			System.out.println("ticketseat minute : "+timeMaplist.get("minute"));
 			System.out.println("ticketseat endTime : "+timeMaplist.get("endTime"));
 			System.out.println("ticketseat tday : "+timeMaplist.get("tday"));
+			System.out.println("ticketseat schedule : "+timeMaplist.get("schedule_id"));
 			//System.out.println("ticketseat startmovtime : "+timeMaplist.get("startmovtime"));
 			}
 		
+		List<PayDto> payDto =  ticketService.getSeat(schedule_id);
+		
+		
+		String str = "";
+		String[] strArray;
+		
+		
+		//jsp에서 수정하고 뿌리기 편하게 str로 변환해서 보내줌
+		for (int i = 0; i < payDto.size(); i++) {
+			str += payDto.get(i).getSeat() + ",";
+		}
+		strArray = str.split(",");
+		
+		model.addAttribute("seat", strArray);
 		model.addAttribute("ticketseat",timeListMap);
 		
 		
@@ -188,7 +214,55 @@ public class TicketController {
 		//pay에서 모델 값을 가져와야할 것 같음
 		
 		return "ticket/ticketseat";
+	
+	}
+	
+	@RequestMapping(value = "/payTtest") //@@맵핑명 안 써서 오류
+	public String goPay(HttpServletRequest request, Model model) {
+		System.out.println("======= < pass by goPay() > =======");
 		
+		
+		
+/*		System.out.println("seatsDis : "+ seatsDis);
+*/		
+		String movieid = request.getParameter("movieid");
+		System.out.println("movieid : "+movieid); 
+		String theaterid = request.getParameter("theaterid");
+		System.out.println("theaterid : "+theaterid);
+		String locid = request.getParameter("locid");
+		System.out.println("locid : "+locid);
+		String tday = request.getParameter("tday");
+		System.out.println("tday : "+tday);
+		String hour = request.getParameter("hour");
+		System.out.println("hour : "+hour);
+		String minute = request.getParameter("minute");
+		System.out.println("minute : "+minute);
+		String schedule_id = request.getParameter("schedule_id");
+		System.out.println("schedule_id : "+schedule_id); //예약 내역을 가져오기 위함
+		
+		
+		String seatsDis2 = request.getParameter("seatsDis"); //선택좌석명
+		System.out.println("seatsDis : "+request.getParameter("seatsDis"));
+		String numberDis = request.getParameter("numberDis"); //선택좌석수
+		System.out.println("numberDis : "+request.getParameter("numberDis"));
+		String priceDis = request.getParameter("priceDis"); //결제예정금액
+		System.out.println("priceDis : "+request.getParameter("priceDis"));
+		
+		//String seatsDis	= request.getParameter(name)
+		
+		
+		
+		
+		
+		HashMap<String, String> sendDataMap = new HashMap<String, String>();
+		sendDataMap.put("movieid", movieid);
+		sendDataMap.put("theaterid", theaterid);
+		sendDataMap.put("locid", locid);
+		sendDataMap.put("tday", tday);
+		sendDataMap.put("hour", hour);
+		sendDataMap.put("minute", minute);
+		
+		return "redirect:ticketseat";
 		
 	}
 	

@@ -40,153 +40,158 @@
 <!-- <img src="/cgv/resources/img/ticket/banner.jpg" alt="좌석뒷배경" >  -->
 
 <body onload="onLoaderFunc()">
-<div id="bannerjsp">
-    <h1>Movie Seat Selection</h1>
-    <div class="container">
-
-        <div class="w3ls-reg">
-            <!-- input fields -->
-            <div class="inputForm">
-                <h2>인원/좌석선택</h2>
-                <div class="mr_agilemain">
-                    <div class="Numseats">
-                        <label> 인원수
-                            <span>*</span>
-                        </label>
-                        <input type="number" id="Numseats" required min="1">
-                    </div>
-                    <div class="TicketPrice">
-                        <input type="hidden" id="TicketPrice" value="9000" required>
-                    </div>
-                </div>
-                
-                <div class="col-6">
-			    <!-- 영화정보를 넘어오게 해야함 -->
-			    <c:forEach items="${ticketseat }" var="seat">
-					<h2> 선택정보 </h2>
-					<p> ${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name } &nbsp; | &nbsp; ${seat.room_name }  <br>
-					  ${seat.year }. ${seat.month }. ${seat.day }  &nbsp;  ${seat.hour }:${seat.minute } ~ ${seat.endHour }:${seat.endMinute } </p>
-					</c:forEach> 
+<form action="payTtest" method="get">
+	<div id="bannerjsp">
+	    <h1>Movie Seat Selection</h1>
+	    <div class="container">
+	
+	        <div class="w3ls-reg">
+	            <!-- input fields -->
+	            <div class="inputForm">
+	                <h2>인원/좌석선택</h2>
+	                <div class="mr_agilemain">
+	                    <div class="Numseats">
+	                        <label> 인원수
+	                            <span>*</span>
+	                        </label>
+	                        <input type="number" id="Numseats" required min="1">
+	                    </div>
+	                    <div class="TicketPrice">
+	                        <input type="hidden" id="TicketPrice" value="9000" required>
+	                    </div>
+	                </div>
+	                
+	                <div class="col-6">
+				    <!-- 영화정보를 넘어오게 해야함 -->
+				    <c:forEach items="${ticketseat }" var="seat">
+						<h2> 선택정보 </h2>
+						<p> ${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name } &nbsp; | &nbsp; ${seat.room_name }  <br>
+						  ${seat.year }. ${seat.month }. ${seat.day }  &nbsp;  ${seat.hour }:${seat.minute } ~ ${seat.endHour }:${seat.endMinute } </p>
+						</c:forEach> 
+					</div>
+	            </div>
+	           
+	            <button type="button" onclick="takeData()">Start Selecting</button>
+	            
+	            
+	            <!-- //input fields -->
+	            <!-- seat availabilty list -->
+	            <ul class="seat_w3ls">
+	                <li class="smallBox greenBox">현재선택좌석</li>
+	
+	                <li class="smallBox redBox">예매완료좌석</li>
+	
+	                <li class="smallBox emptyBox">선택가능좌석</li>
+	            </ul>
+	            
+	            
+	            
+	            <!-- screen 화면 -->
+	             <div class="screen">
+	                    <h2 class="wthree">Screen</h2>
+	              </div>
+	                
+	             <!-- seat availabilty list -->
+	            <!-- seat layout -->   
+	            <div class="seatStructure txt-center" style="overflow-x:auto;">
+	                <table id="seatsBlock">
+	                    <p id="notification"></p>
+	                    <tr>
+	                        <td></td>
+	                        <td>1</td>
+	                        <td>2</td>
+	                        <td>3</td>
+	                        <td>4</td>
+	                        <td>5</td>
+	                        <td></td>
+	                        <td>6</td>
+	                        <td>7</td>
+	                        <td>8</td>
+	                        <td>9</td>
+	                        <td>10</td>
+	                        <td>11</td>
+	                        <td>12</td>
+	                    </tr>
+	
+		        <div id="seatSelect">
+					<c:forEach begin="1" end="12" var="i">
+						<tr>
+							<td><c:if test="${i eq 1}">
+								<c:set value="A" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 2}">
+								<c:set value="B" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 3}">
+								<c:set value="C" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 4}">
+								<c:set value="D" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 5}">
+								<c:set value="E" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 6}">
+								<c:set value="F" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 7}">
+								<c:set value="G" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 8}">
+								<c:set value="H" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 9}">
+								<c:set value="I" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 10}">
+								<c:set value="J" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 11}">
+								<c:set value="K" var="seatInit"></c:set>
+							</c:if> <c:if test="${i eq 12}">
+								<c:set value="L" var="seatInit"></c:set>
+							</c:if> ${seatInit}</td>
+								<c:forEach begin="1" end="12" var="j">
+							<td class="bookable"><label for="seat${(i-1)*15 + j}">
+								<input type="checkBox" class="seats" name="${seatInit}${j}"
+									id="seat${(i-1)*15 + j}" value="${seatInit}${j}">
+								</label></td>
+							<c:if test="${j eq 5}">
+								<td></td>
+							</c:if>
+													
+							</c:forEach>
+						</tr>
+					</c:forEach>
 				</div>
-            </div>
-           
-            <button onclick="takeData()">Start Selecting</button>
-            
-            
-            <!-- //input fields -->
-            <!-- seat availabilty list -->
-            <ul class="seat_w3ls">
-                <li class="smallBox greenBox">현재선택좌석</li>
-
-                <li class="smallBox redBox">예매완료좌석</li>
-
-                <li class="smallBox emptyBox">선택가능좌석</li>
-            </ul>
-            
-            
-            
-            <!-- screen 화면 -->
-             <div class="screen">
-                    <h2 class="wthree">Screen</h2>
-              </div>
-                
-             <!-- seat availabilty list -->
-            <!-- seat layout -->   
-            <div class="seatStructure txt-center" style="overflow-x:auto;">
-                <table id="seatsBlock">
-                    <p id="notification"></p>
-                    <tr>
-                        <td></td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td></td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                        <td>10</td>
-                        <td>11</td>
-                        <td>12</td>
-                    </tr>
-
-	        <div id="seatSelect">
-				<c:forEach begin="1" end="12" var="i">
-					<tr>
-						<td><c:if test="${i eq 1}">
-							<c:set value="A" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 2}">
-							<c:set value="B" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 3}">
-							<c:set value="C" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 4}">
-							<c:set value="D" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 5}">
-							<c:set value="E" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 6}">
-							<c:set value="F" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 7}">
-							<c:set value="G" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 8}">
-							<c:set value="H" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 9}">
-							<c:set value="I" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 10}">
-							<c:set value="J" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 11}">
-							<c:set value="K" var="seatInit"></c:set>
-						</c:if> <c:if test="${i eq 12}">
-							<c:set value="L" var="seatInit"></c:set>
-						</c:if> ${seatInit}</td>
-							<c:forEach begin="1" end="12" var="j">
-						<td class="bookable"><label for="seat${(i-1)*15 + j}">
-							<input type="checkBox" class="seats" name="${seatInit}${j}"
-								id="seat${(i-1)*15 + j}" value="${seatInit}${j}">
-							</label></td>
-						<c:if test="${j eq 5}">
-							<td></td>
-						</c:if>
-												
-						</c:forEach>
-					</tr>
-				</c:forEach>
-			</div>
-          </table>
-
-               
-                <button onclick="updateTextArea()">Confirm Selection</button>
-                <a href="pay"> *결제하기(임시로 만듦)* </a>
-                 
-                
-            </div>
-            <!-- //seat layout -->
-            <!-- details after booking displayed here -->
-            <div class="displayerBoxes txt-center" style="overflow-x:auto;">
-                <table class="Displaytable w3ls-table" width="100%">
-                    <tr>
-                        <th>선택좌석명</th>
-                        <th>선택좌석수</th>
-                        <th>결제예정금액(단가*인원 식 넣을까 생각중)</th>
-                    </tr>
-                    <tr>
-                       <td>
-                            <textarea id="seatsDisplay"></textarea>
-                        </td>
-                        <td>
-                            <textarea id="numberDisplay"></textarea>
-                        </td>
-                         <td>
-                            <textarea id="priceDisplay"></textarea>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <!-- //details after booking displayed here -->
-        </div>
-    </div>
-</div>
+	          </table>
+					<%-- moviesdetailview?movie_id=${dv.movieCd } --%>
+	               
+	                <button type="button" onclick="updateTextArea()">Confirm Selection</button>
+	                <input type="submit" value="*결제하기(임시로 만듦)*" />  
+	                 
+	                
+	            </div>
+	            <!-- //seat layout -->
+	            <!-- details after booking displayed here -->
+	            <div class="displayerBoxes txt-center" style="overflow-x:auto;">
+	                <table class="Displaytable w3ls-table" width="100%">
+	                    <tr>
+	                        <th>선택좌석명</th>
+	                        <th>선택좌석수</th>
+	                        <th>결제예정금액</th>
+	                    </tr>
+	                    <tr>
+	                       <td>
+	                       		<input type="hidden" name="seatsDis"  /> 
+	                            <textarea  id="seatsDisplay"></textarea>
+	                        </td>
+	                        <td>
+	                        	 <input type="hidden" name="numberDis"  />
+	                            <textarea  id="numberDisplay"></textarea>
+	                        </td>
+	                         <td>
+	                        	 <input type="hidden" name="priceDis"  /> 
+	                            <textarea  id="priceDisplay"></textarea>
+	                        </td>
+	                    </tr>
+	                </table>
+	            </div>
+	            <!-- //details after booking displayed here -->
+	        </div>
+	    </div>
+	</div>
+</form>
     <!-- js -->
     <script src="js/ticket/jquery-2.2.3.min.js"></script>
     <!-- //js -->
@@ -200,6 +205,19 @@
 		</c:forEach>;
     
         function onLoaderFunc() { 
+        	
+        	  for (var i = 0; i < list.length; i++) { // 이미 예매된 좌석 선택 불가 
+      			for (var j = 1; j < $("input:checkbox[class='seats']").length + 1; j++) {
+      				if (list[i] == $("input:checkbox[id='seat" + j + "']").val()) {
+      					$("input:checkbox[id='seat" + j + "']").parents("td").attr(
+      							"class", "selected");
+      					$("input:checkbox[id='seat" + j + "']").attr('disabled',true);
+      					$("input:checkbox[id='seat" + j + "']").addClass('selected');
+      				}
+      			}
+      		} 
+        	
+        	
             $(".seatStructure *").prop("disabled", true);
             $(".displayerBoxes *").prop("disabled", true);
         }
@@ -213,20 +231,14 @@
                 document.getElementById("notification").innerHTML =
                     "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>좌석을 선택해주세요 :)</b>";
             }
-             for (var i = 0; i < list.length; i++) { // 이미 예매된 좌석 선택 불가 
-    			for (var j = 1; j < $("input:checkbox[class='seats']").length + 1; j++) {
-    				if (list[i] == $("input:checkbox[id='seat" + j + "']").val()) {
-    					alert(list[i]);
-    					$("input:checkbox[id='seat" + j + "']").parents("td").attr(
-    							"class", "selected");
-    					$("input:checkbox[id='seat" + j + "']").attr('disabled',true);
-    					$("input:checkbox[id='seat" + j + "']").addClass('selected');
-    				}
-    			}
-    		} 
+           
         }
 
-
+		
+        $("input[type=submit]").on('click', function() {
+        	$('form').prop('disabled', false);
+		})
+        
         function updateTextArea() {
 
             if ($("input:checked").length == ($("#Numseats").val())) {
@@ -245,8 +257,32 @@
 
                 //Displaying 
                 $('#seatsDisplay').val(allSeatsVals);
+                $('input[name=seatsDis]').val(allSeatsVals);
+                alert($('input[name=seatsDis]').val());
                 $('#numberDisplay').val(allNumberVals);
+                $('input[name=numberDis]').val(allNumberVals);
+                alert($('input[name=numberDis]').val());
                 $('#priceDisplay').val(allPriceVals*allNumberVals);
+                $('input[name=priceDis]').val(allPriceVals*allNumberVals);
+                alert($('input[name=priceDis]').val());                
+                $('input[type=submit]').attr('disabled',false);
+                
+               /*  $.ajax({
+                	type : "get",
+                	URL: "payTtest",
+                	data:{
+                		'seatsDis' :  $('input[name=seatsDis]').val()
+                	},
+                	success: function (data) {
+						console.log(data)
+						alert(data)
+					},error : function(data) {
+						console.log(data)
+						alert(data)
+					}
+                	
+                }) */
+                
             } else {
                 alert("Please select " + ($("#Numseats").val()) + " seats")
             }

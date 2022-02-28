@@ -48,16 +48,18 @@ a.btn{
 <c:choose>
 
 <c:when test="${fn:length(ticketday) == 0 }">
-<img ismap>
-
+	<span><img src="resources/img/ticket/no_movie2.png" alt="해당정보없음2" width="30" height="30" /> 상영하는 시간이 없습니다<img src="resources/img/ticket/no_movie2.png" alt="찡그린이모지2" width="30" height="30" /></span>
+	
 </c:when>
 
 <c:otherwise>
 <div class="tickettimes-select">
+
 	<ul>
       <li>
       	<div class="sel-times">
       		<c:forEach items="${ticketday }" var="tday">	
+      		스케줄 ${tday.schedule_id }
 				<c:if test="${tday.day eq 15 }">
 					<ul>
 						<li>
@@ -78,7 +80,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
+					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }&schedule_id=${tday.schedule_id }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
@@ -113,7 +115,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
+					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }&schedule_id=${tday.schedule_id }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
@@ -143,7 +145,7 @@ a.btn{
 					          	${tday.running_time } 분
 					           </span>
 					           <br>
-					          <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }" class="btn"> 
+					          <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }&schedule_id=${tday.schedule_id }" class="btn"> 
 					           <span>
 					           <div class="starttime">
 					           <em> ${tday.hour } : ${tday.minute }</em>
