@@ -286,45 +286,4 @@ public class CustomerController {
 
 		return "/customer/loginForm";
 	}
-//================================관리자페이지===================================
-	/*@RequestMapping("/getcustomerList")
-	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
-		System.out.println("=========pass by customerList()=============");
-
-		
-		//paging
-		String strPage=request.getParameter("page");
-		System.out.println("strPage1 : "+strPage);
-		if(strPage==null)
-			strPage="1";
-		System.out.println("strPage2 : "+strPage);
-		
-		int page=Integer.parseInt(strPage);
-		searchVO.setPage(page);
-		
-		
-		ADao dao=Session.getMapper(ADao.class);*/
-	//totcnt
-	/*	int total=dao.selectCustomerTotCount();
-		searchVO.pageCalculate(total);
-		
-		
-		System.out.println("Totpage : "+total);
-		System.out.println("clickPage : "+strPage);
-		System.out.println("pageStart : "+searchVO.getPageStart());
-		System.out.println("pageEnd : "+searchVO.getPageEnd());
-		System.out.println("pageTot : "+searchVO.getTotPage());
-		System.out.println("rowStart : "+searchVO.getRowStart());
-		System.out.println("rowEnd : "+searchVO.getRowEnd());
-		
-		int rowStart=searchVO.getRowStart();
-		int rowEnd=searchVO.getRowEnd();
-		
-		ArrayList<AdminDto> list=dao.list(rowStart,rowEnd);
-		
-		model.addAttribute("list",list);
-		model.addAttribute("totRowCnt",total);
-		model.addAttribute("searchVO",searchVO);*/
-	/*	return "/customer/customerList";
-	}*/
-}
+	}

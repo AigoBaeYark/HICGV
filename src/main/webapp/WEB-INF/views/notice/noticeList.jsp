@@ -11,19 +11,51 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
 <title>Insert title here</title>
+
+<style>
+a {
+	color: white;
+}
+
+</style>
+
 </head>
 <body>
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 
-	<h3 align="center">noticeList.jsp || 공지사항</h3>
-<form action="noticelist"><h2><button type="submit">공지사항</button></h2></form>
+	<h3 align="center">공지사항</h3>
 
 	<div class="table-responsive">
 		<table class="table" style="text-align: center;">
-
-
+		<div>
+			<c:choose>
+				<c:when test="${no }">
+					<input type="checkbox" name="searchType" value="btitle" checked />
+				</c:when>
+				<c:otherwise>
+					<input type="checkbox" name="searchType" value="btitle" />
+				</c:otherwise>
+			</c:choose>
+			<label>등록번호 </label>
+			<c:choose>
+				<c:when test="${title }">
+					<input type="checkbox" name="searchType" value="bcontent" checked />
+				</c:when>
+				<c:otherwise>
+					<input type="checkbox" name="searchType" value="bcontent" />
+				</c:otherwise>
+			</c:choose>
+			<label>제목</label> <input type="text" name="sk" style="width: 150px;"
+				maxlength="50" value="" /> <input type="submit" name="btn_search"
+				value="검색" />
+				<div><!-- <form action="noticeWriteForm" method="post"> -->
+				<button type="submit" class="btn btn-primary"><a href="noticeWriteForm?id=${id }">새글작성</a></button><!-- </form> -->
+				</div>
+		</div>
+		<div style="margin: 30px;"></div>
+	</form>
 			<tr>
 				<th>글번호</th>
 				<th>작성자</th>
@@ -43,7 +75,7 @@
 			
 		</table>
 	</div>
-	TotCnt : ${totRowCnt }
+	총 글 개수 : ${totRowCnt }
 	<br />
 	<form id="form1" name="form1" action="" method="post">
 		<c:if test="${searchVO.totPage>1 }">
@@ -67,29 +99,7 @@
 				<a href="noticeList?page=${searchVO.totPage }">[마지막]</a>
 			</c:if>
 		</c:if>
-		<div>
-			<c:choose>
-				<c:when test="${name }">
-					<input type="checkbox" name="searchType" value="btitle" checked />
-				</c:when>
-				<c:otherwise>
-					<input type="checkbox" name="searchType" value="btitle" />
-				</c:otherwise>
-			</c:choose>
-			<label>이름</label>
-			<c:choose>
-				<c:when test="${id }">
-					<input type="checkbox" name="searchType" value="bcontent" checked />
-				</c:when>
-				<c:otherwise>
-					<input type="checkbox" name="searchType" value="bcontent" />
-				</c:otherwise>
-			</c:choose>
-			<label>아이디</label> <input type="text" name="sk" style="width: 150px;"
-				maxlength="50" value="" /> <input type="submit" name="btn_search"
-				value="검색" />
-		</div>
-	</form>
+
 
 
 	<div style="clear: both;">

@@ -30,33 +30,34 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public NoticeDto noticeView(String nbo) {
+	public NoticeDto noticeView(int no) {
 		
-		return dao.noticeView(nbo);
+		return dao.noticeView(no);
 	}
 
 	@Override
-	public void noticeDelete(String id) {
+	public void noticeDelete(int no) {
 		
-		dao.noticeDelete(id);
+		dao.noticeDelete(no);
 	}
 
 	@Override
 	public void noticeModify(NoticeDto noticeDto) {
 		System.out.println("============ServiceImpl noticeModify================");
+		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("writer", noticeDto.getWriter());		
 		map.put("no", noticeDto.getNo());		
 		map.put("title", noticeDto.getTitle());		
 		map.put("content", noticeDto.getContent());		
-		map.put("hit", noticeDto.getHit());		
 		
-		System.out.println("map id :" + map.get("id"));		
-		System.out.println("map nickname :" + map.get("nickname"));
-		System.out.println("map date_birth :" + map.get("date_birth"));
-		System.out.println("map location :" + map.get("location"));
-		System.out.println("map gender :" + map.get("gender"));
+		System.out.println("map writer :" + map.get("writer"));		
+		System.out.println("map nickname :" + map.get("no"));
+		System.out.println("map no :" + map.get("title"));
+		System.out.println("map content :" + map.get("content"));
+		
 		
 		dao.noticeModify(noticeDto);
 		
@@ -64,8 +65,25 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void noticeWrite(NoticeDto noticeDto) {
-		// TODO Auto-generated method stub
+		System.out.println("============ServiceImpl noticeWrite================");
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("writer", noticeDto.getWriter());
+		map.put("no", noticeDto.getNo());
+		map.put("ncreate_at", noticeDto.getNcreate_at());
+		map.put("title", noticeDto.getTitle());
+		map.put("content", noticeDto.getContent());
+		map.put("hit", noticeDto.getHit());
+		
+		System.out.println("map writer : " + map.get("writer"));
+		System.out.println("map title : " + map.get("title"));
+		System.out.println("map no : " + map.get("no"));
+		System.out.println("map ncreate_at : " + map.get("ncreate_at"));
+		System.out.println("map content : " + map.get("content"));
+		System.out.println("map hit : " + map.get("hit"));
+
+		dao.noticeWrite(noticeDto);
 	}
 	
 }
