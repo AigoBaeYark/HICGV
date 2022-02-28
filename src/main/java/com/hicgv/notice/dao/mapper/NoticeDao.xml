@@ -15,4 +15,26 @@
 		SELECT COUNT(*)
 		FROM HICGV_NOTICE
 	</select>
+	<select id="noticeView" parameterType="Integer" resultType="NoticeDto">
+		SELECT * FROM HICGV_NOTICE
+		WHERE NO=#{no }
+	</select>
+	<update id="noticeModify" parameterType="NoticeDto">
+		UPDATE HICGV_NOTICE
+		SET
+		WRITER = #{writer }, TITLE = #{title } ,CONTENT = #{content }
+		WHERE NO
+		= #{no }
+	</update>
+	<delete id="noticeDelete" parameterType="Integer">
+		DELETE FROM HICGV_NOTICE
+		WHERE NO = #{no}
+	</delete>
+	<insert id="noticeWrite" parameterType="NoticeDto">
+		INSERT INTO
+		HICGV_NOTICE
+		VALUES(#{writer},SEQ_NO.nextval,sysdate,#{title},
+		#{content},#{hit})
+		
+	</insert>
 </mapper>

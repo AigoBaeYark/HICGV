@@ -5,26 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="resources/css/reset.css" />
+<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 <title>Insert title here</title>
-
-
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
-
+	
 	<div class="wrap-login">
 		<div class="sect-login">
 			<div class="login-top">
 				<h2 align="center">로그인</h2>
-
-		
-
 			</div>
 			<div class="box-login">
 				<h3 class="hidden">회원 로그인</h3>

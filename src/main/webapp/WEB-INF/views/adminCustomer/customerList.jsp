@@ -18,7 +18,8 @@
 	</div>
 
 	<h3>customerList.jsp || ${id }님 환영합니다.</h3>
-<form action="noticeList"><h2><button type="submit">공지사항</button></h2></form>
+<!-- <form action="noticeList"><h2><button type="submit">공지사항</button></h2></form> -->
+<h2><button type="submit"><a href="noticeList?=${id }">공지사항</a></button></h2>
 	<form action="getcustomerList">
 		<th colspan="3"><button type="submit">회원정보조회</button></th>
 		<br /> 자세한 고객정보를 확인하려면 아이디를 클릭해주세요.

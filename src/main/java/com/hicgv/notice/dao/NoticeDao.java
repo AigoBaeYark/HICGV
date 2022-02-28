@@ -9,9 +9,11 @@ public interface NoticeDao {
 
 	public ArrayList<NoticeDto> noticelist();
 
-	public NoticeDto noticeView(String nbo);
+	public NoticeDto noticeView(int no);
 
-	public void noticeDelete(String id);
+	public void noticeDelete(int no);
 
 	public void noticeModify(NoticeDto noticeDto);
+	
+	public void noticeWrite(NoticeDto noticeDto); 
 }

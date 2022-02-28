@@ -45,26 +45,21 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public NoticeDto noticeView(String nbo) {
+	public NoticeDto noticeView(int no) {
 		System.out.println("==========noticeDaoImpl contentView============");
-		System.out.println("nbo :" + nbo);
+		System.out.println("no :" + no);
 		// System.out.println("id:" + session.getAttribute("id"));
 		Map<String, Object> Map = new HashMap<String, Object>();
-		Map.put("nbo", nbo);
+		Map.put("no", no);	//여러개 보낼때 주로 맵 사용
 		// AdminDao adminDao =sqlSession.selectOne(id);
-		NoticeDto noticeDto = sqlSession.selectOne(nameSpace + ".contentView", Map);
+		NoticeDto noticeDto = sqlSession.selectOne(nameSpace + ".noticeView", no);
 		return noticeDto;
 	}
 
 	@Override
-	public void noticeDelete(String id) {
+	public void noticeDelete(int no) {
 
-		Map<String, String> Map = new HashMap<String, String>();
-		Map.put("id", id);
-
-		System.out.println("id :" + Map.get("id"));
-
-		sqlSession.delete(nameSpace + ".noticeDelete", Map);
+		sqlSession.delete(nameSpace + ".noticeDelete", no);
 
 	}
 
@@ -74,6 +69,11 @@ public class NoticeDaoImpl implements NoticeDao {
 
 		sqlSession.update(nameSpace + ".noticeModify", noticeDto);
 
+	}
+
+	@Override
+	public void noticeWrite(NoticeDto noticeDto) {
+		sqlSession.insert(nameSpace + ".noticeWrite", noticeDto);
 	}
 
 }

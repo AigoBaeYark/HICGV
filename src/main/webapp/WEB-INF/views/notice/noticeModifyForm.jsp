@@ -42,6 +42,14 @@ table.board_view td {
 a {
 	color: white;
 }
+input{
+height: 100px;
+width: 80%;
+}
+th{
+font-size: 20px;
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -62,32 +70,33 @@ a {
 				</colgroup>
 
 				<tbody>
-					<tr>						
-						<th>NO.${noticeView.no}</th>
-						<td colspan="2"><text>${noticeView.title}</text></td>
+				<form action="noticeModify" method="post">
+					<tr>
+						<th>NO.${noticeMotify.no} <input type="hidden" name="no" value="${noticeMotify.no}"/></th>
+						<td colspan="2"><input type="text" name="title" value="${noticeMotify.title}" /></td>
 						<th>작성시간</th>
-						<td><text>${noticeView.ncreate_at}</text></td>
+						<td>${noticeMotify.ncreate_at}</td>
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td colspan="2"><text>${noticeView.writer}</text></td>
+						<td colspan="2"><input type="text" name="writer" value="${noticeMotify.writer}" /></td>
 						<th>조회수</th>
-						<td><text>${noticeView.hit}</text></td>
+						<td>${noticeMotify.hit}</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td colspan="4"><br /><text>${noticeView.title}</text><br /><br />
-						<text>${noticeView.content}</text></td>
+						<td colspan="4"><br />
+						<input type="text" name="content" value="${noticeMotify.content}" /></td>
 					</tr>
 				</tbody>
 			</table>
 			<div style="margin-top: 20px;">
-			<button type="button" class="btn btn-primary"><a href="noticeList">목록으로</a></button>
-			<button type="button" class="btn btn-primary"><a href="noticeModifyForm?no=${noticeView.no }">수정하기</a></button>
-			<button type="button" class="btn btn-primary"><a href="noticeDelete?no=${noticeView.no }">삭제하기</a></button>
+			<button type="submit" class="btn btn-primary">저장</button>
+			<button type="button" class="btn btn-primary"><a href="noticeList">취소</a></button>
 			</div>
 		</div>
 	</div>
+	</form>
 	</table>
 </body>
 </html>
