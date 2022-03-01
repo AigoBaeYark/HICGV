@@ -15,8 +15,10 @@
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
 
-<div style="margin-bottom: 200px; margin-top: 60px; position: relative; left: 120px; top: 20px;">
-<form action="theaterAdmin" class="container">
+<div style="margin-bottom: 200px; margin-top: 60px; position: relative; left: 280px; border: 2px solid blue;
+    width: 670px;
+    height: 300px;">
+<form action="theaterAdmin" class="container" style="position: relative; left: 60px; top: 20px;">
 <div class="row g-3 align-items-center">
   <div class="col-auto">
     <label for="inputPassword6" class="col-form-label" >movieId</label>
@@ -56,7 +58,7 @@ startDate <br />
 </div>
 
 <!-- 해당 날짜에 상영되는 영화리스트 ajax로 가져오기 위한 div -->
-<div id="moviesList" style="float: right; position: relative; bottom: 430px; right: 550px;"></div>
+<div id="moviesList" style="float: right; position: relative; bottom: 520px; right: 500px;"></div>
 
 <script>
 

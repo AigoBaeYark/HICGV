@@ -219,39 +219,6 @@ public class TicketController {
 	
 	}
 	
-	@RequestMapping(value ="/payTtest", method = RequestMethod.GET) //@@맵핑명 안 써서 오류
-	public String goPay(HttpServletRequest request,HttpServletResponse response, Model model) {
-		System.out.println("======= < pass by goPay() > =======");
-		
-		
-		String movie_id = request.getParameter("movie_id");
-		System.out.println("movie_id : " + movie_id);
-		
-		String location_name = request.getParameter("location_name");
-		System.out.println("location_name : " + location_name);
-		
-		String location_id = request.getParameter("location_id");
-		System.out.println("location_name : " + location_id);
-		
-		String schedule_id = request.getParameter("schedule_id");
-		System.out.println("schedule_id : " + schedule_id);
-		
-		String seat = request.getParameter("seat");
-		System.out.println("seat : "+seat);
-		
-		String person = request.getParameter("person");
-		System.out.println("person : "+person);
-		
-		String seat_price = request.getParameter("seat_price");
-		System.out.println("seat_price : "+seat_price);
-		
-		String start_date = request.getParameter("start_date");
-		System.out.println("seat_price : "+start_date);
-		
-		
-		return "redirect:ticket";
-		
-	}
 	
 	
 	

@@ -109,11 +109,11 @@
       <img style="margin-top: 20px;" src="https://adimg.cgv.co.kr/images/202203/Morbius/980x90.jpg" alt="" />
    </div>
     <div class="day" style="margin-top: 60px;">
-	   	 <c:forEach items="${scheduleDate2 }" var="sch2" varStatus="i">
+	   	 <c:forEach items="${scheduleDate }" var="sch" varStatus="i">
    	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> &nbsp;&nbsp;
 	       <i class="fa-regular fa-calendar"></i>
-	        <strong>${sch2.schdto[i.index ].start_date }&nbsp;${sch2.day_kor }</strong>
-	        <input type="hidden" class="hiddenDate" value="${sch2.schdto[i.index ].start_date }"/>
+	        <strong>${sch.schdto[i.index ].start_date }&nbsp;${sch.day_kor }</strong>
+	        <input type="hidden" class="hiddenDate" value="${sch.schdto[i.index ].start_date }"/>
      </a>
 	     </c:forEach>
      </div>

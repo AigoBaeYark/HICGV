@@ -73,8 +73,7 @@ public class TheaterController {
 		model.addAttribute("theater", theaterService.getTheaterInfo());
 		model.addAttribute("img", theaterService.getImg(locId));
 		model.addAttribute("locInfo", theaterService.getLocationInfo(locId));
-		model.addAttribute("scheduleDate",theaterService.getScheduleDate());
-		model.addAttribute("scheduleDate2",schMapList);
+		model.addAttribute("scheduleDate",schMapList);
 		
 		return "theater/theater";
 
