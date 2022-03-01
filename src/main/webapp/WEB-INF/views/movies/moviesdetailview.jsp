@@ -7,10 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
 
-<div style="z-index: 0;">
-	<c:import url="../common/header.jsp"></c:import>
-</div>
-
+<c:import url="../common/header.jsp"></c:import>
 
 <link rel="stylesheet" href="resources/css/movies/moviesdetailview.css" />
 <title>hicgv/moviesdetailview</title> 
@@ -18,7 +15,7 @@
 <body>
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
-        
+        $ 안에 이름 들 부터 수정해야함, css꾸미기, 내용이 별로 없어서 API내 정보들 끌어올예정
 		<!-- Contents Area -->
 		 <div id="contents" class="">
          
@@ -41,6 +38,7 @@
         <div class="title"> 
             <strong>${moviesdv.title_kor }</strong>
             
+            <!-- 영화신규내역적기 -->
             <em class="round brown"><span>예매중</span></em>
             <em class="round red"><span>D-8</span></em>
             <p>${moviesdv.title_eng }</p>
@@ -69,10 +67,6 @@
                 <dd class="on">${moviesdv.opening_date}</dd>
             </dl>
         </div>
-      <!--   <span class="screentype">
-                <a href="#" class="imax" title="IMAX 상세정보 바로가기" data-regioncode="07">IMAX</a>
-                <a href="#" class="forDX" title="4DX 상세정보 바로가기" data-regioncode="4D14">4DX</a>  
-        </span> -->
 
 	
         <span class="like">
@@ -82,7 +76,7 @@
 </div><!-- .sect-base -->
  <div class="cols-content" id="menu">
         <div class="col-detail">
-            <!-- 메뉴가 선택되면 a 에 title="선택" 이라고 넣는다 -->
+            <!-- 메뉴 클릭시 해당라인으로 이동 -->
             <ul class="tab-menu">
                 <li class="on"><a href="#intro"><p>줄거리 </p></a></li>             
                 <li><a href="#trailer"><p>트레일러 </p></a> </li>

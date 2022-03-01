@@ -12,17 +12,16 @@
 <script src="resources/js/main/owl.carousel.js"></script>
 <script src="resources/js/main/main.js"></script>
 <script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
-<c:import url="../common/header.jsp"></c:import>
 <title>hicgv/movies</title>
 </head>
 <body>
 
-
-
-
+<div style="height: 300px;">
+<c:import url="../common/header.jsp"></c:import>
+</div> 
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
-        10위까지만 자를예정, 00세관람가 로고부착
+        
         <!-- Contents Area -->
 		 <div id="contents" class="">
 		 
@@ -43,6 +42,7 @@
 				<!--Horizontal Tab-->
 				<div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list hor_1">
+						<li class="resp-tab-item hor_1 resp-tab-active" aria-controls="hor_1_tab_item-0" role="tab" style="background-color: white; border-color: rgb(193, 193, 193);">Recent Movies</li>
 						
 						<div class="clear"></div>
 					</ul>
@@ -53,25 +53,28 @@
 								<div class="col-lg-4 new-relise-gd mt-lg-0 mt-0">
 									<div class="slider-info">		
 										<div class="img-circle">
-											<a href="moviesdetailview?movie_id=${mov.movie_id }">
+											<a href="moviesdetailview">
 												<img src="${mov.image_url }" class="img-fluid" alt="author image">
 											</a>
 										</div>
 										<div class="message">
 											<strong class="rank">No.${mov.ranking }</strong>
-											<a class="author-book-title">${mov.title_kor }</a>
+											<a class="author-book-title" href="moviesdetailview?movie_id=${mov.movie_id }">${mov.title_kor }</a>
+											<p>00</p>
 											<span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span> <!-- 이거 수정해야됨 -->
 											
 											<h4> <span class="post">
 												
 													<div class="box-contents">
 														<a href="moviesdetailview?movie_id=${mov.movie_id }">
-															<strong class="title">상세보기</strong>
+															<strong class="title">${mov.title_kor }</strong>
 														</a>
 													</div>
+													<c:forEach items="${dateviewer }" var="dv">
 													<div class="txt-info">
-														 <strong>open : ${mov.opening_date } </strong>
-													</div>
+														 <strong> ${dv.openDt } </strong>
+													 </div>
+													 </c:forEach>
 													 <div class="like"> 
 														<a class="link-reservation" href="ticket">예매</a>
 													 </div> 

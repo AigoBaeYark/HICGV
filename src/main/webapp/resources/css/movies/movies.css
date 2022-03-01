@@ -63,15 +63,13 @@ ol li {
 	width: 197px;
 }
 
+
 /* forEach 시작 */
 .box-image {
     position: relative;
     width: 197px;
     min-height: 272px;
     margin-bottom: 10px;
-}
-.wrap-movie-chart .box-contents {
-    height: 93px;
 }
 
 script {
@@ -84,7 +82,7 @@ script {
     display: block;
 	height: 28px;
 	margin-bottom: 4px;
-	color: #ffffff;
+	color: blue;
 	font-size: 19px;
 	text-align: center;
 	line-height: 28px
@@ -127,8 +125,7 @@ script {
 }
 
 
-/* Showz_Movie */
-/* 무비차트 큰틀 */
+/* !!무비차트 큰틀!! */
 .pb-5, .py-5 {
     padding-bottom: 3rem !important;
 }
@@ -146,7 +143,55 @@ script {
     box-sizing: border-box;
 }
 
+@media (min-width: 992px)
+.mt-lg-0, .my-lg-0 {
+    margin-top: 0 !important;
+}
 
+.w3l-albums .slider-info {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    background-color: var(--theme-lite);
+    border-radius: 6px;
+    /* padding: 20px; */
+    align-items: center;
+    margin-top: 30px;
+    border: 1px solid var(--theme-border);
+}
+
+.w3l-albums .img-circle {
+    display: inline-block;
+    overflow: hidden;
+    background: #f3f6f9;
+    position: relative;
+}
+
+/* 하트이모지 */
+.w3l-albums .message {
+    padding-right: 20px;
+}
+
+/* 글자크기 */
+.w3l-albums a.author-book-title {
+    color: var(--theme-title);
+    font-size: 13px;
+    line-height: 20px;
+    display: inline-block;
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+
+.w3l-albums h4 .post {
+    display: block;
+    padding: 0px 0;
+    font-size: 13px;
+    color: var(--theme-para);
+}
 
 
 
