@@ -111,7 +111,7 @@
 		WHERE ID LIKE #{id} AND PASSWORD LIKE #{password}
 
 	</select>
-	<select id="grade" resultType="String">
+	<select id="grade" resultType="Integer">
 		SELECT
 		GRADE
 		FROM HICGV_CUSTOMER

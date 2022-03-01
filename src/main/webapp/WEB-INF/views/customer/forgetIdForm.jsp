@@ -61,7 +61,7 @@
 			<button type="submit" class="btn btn-default">입력</button>
 			<button type="button" class="btn btn-default"><a href="loginForm">취소</a></button>
 		</form>
-		 회원님의 아이디는 ${getid }입니다.
+		<%--  회원님의 아이디는 ${id }입니다. --%>
 	</div>
 
 <div style="clear: both;">

@@ -48,26 +48,8 @@ public interface CustomerDao {
 	
 	public String nickname(String id, String password);
 	
-	public String grade(String id, String password);
-	
-	//public String img(String id, String password);
+	public int grade(String id, String password);
 	
 	public CustomerDto getCustomerDto(String id);	
 	
-//=====================================관리자모드==========================================================
-/*	
-	public LinkedList<CustomerDto> customerList(int start,int end);
-	
-	public void adminWrite(String bName,
-			
-			String bTitle, String bContent);
-	
-	public CustomerDto contentView(String id);
-	
-	public void adminDelete(String bid);
-	
-	public void adminModify(String bid, String bName, String bTitle, String bContent);
-	
-	public int selectBoardTotCount();*/
-
 }

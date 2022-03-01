@@ -69,6 +69,10 @@ public class CustomerController {
 			if (customerService.loginCheck(id, password).equals("관리자 로그인 성공")) {
 				System.out.println("관리자로 로그인 되었습니다.");
 				session.setAttribute("id", id);
+				//관리자일 경우 id, grade 세션에 담음
+			int grade = customerService.getgrade(id, password);
+				session.setAttribute("grade",grade);
+				System.out.println("grade :"+grade);
 				return "/adminCustomer/customerList";
 			}
 			System.out.println("정상적으로 로그인이 되었습니다.");
@@ -283,7 +287,7 @@ public class CustomerController {
 		customerService.forgetId(phone_number, date_birth);
 		
 		System.out.println(customerService.forgetId(phone_number, date_birth));
-
+		model.addAttribute("id",customerService.forgetId(phone_number, date_birth));
 		return "/customer/loginForm";
 	}
 	}

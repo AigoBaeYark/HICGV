@@ -10,51 +10,54 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>resetPwForm.jsp</title>
+<div style="height: 300px;">
+		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+	</div>
+
 <style type="text/css">
 .container {
-	width: 600px;
-	margin-top: 10%;
-	margin-bottom: 10%;
+	width:700px;
+	/* margin-top: 5%; */
+	margin-bottom: 5%;
 }
 
 .form-group {
 	width: 600px;
 }
 
-.h1 {
-	font-size: 15px;
-}
+/* .h1 {
+	font-size: 10px;
+}  */
 </style>
 
 
 
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
-
-	<div class="container">
+		<div class="container">
 		<!--container 시작  -->
 		
 		<form action="resetPw" method="post">
-			<h1 class="h1" align="center"> ${id } 님 반갑습니니다. 비밀번호를 재설정해주세요.</h1>
+			<div class="h1" align="center" style="font-size: 25px; margin-bottom: 10px;"> ${id } 님 반갑습니니다. 비밀번호를 재설정해주세요.</div>
 			<input type="hidden" name = "id" value="${id }"/>
-			<div class="form-group">
-				<label for="exampleInputPassword1">비밀번호를 입력하세요.</label> <input
+			<div align="center">
+			<div class="form-group" align="left">
+				<label for="exampleInputPassword1">비밀번호를 입력하세요.</label> <input style=""
 					name="newPw" type="password" class="form-control"
 					id="exampleInputPassword1" placeholder="new password" onkeyup="onChangepw()" required>
 			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail1">비밀번호를 다시 입력하세요.</label> <input
+			<div class="form-group" align="left">
+				<label for="exampleInputEmail1">비밀번호를 다시 한 번 입력하세요.</label> <input
 					name="newPwConfirm" type="password" class="form-control"
 					id="exampleInputEmail1" placeholder="new password " onkeyup="onChangeCkpw()" required>
 			</div>
 			
 			<input type="button" name = "submitBtn" class="btn btn-default" onclick="checkedd()" value="저장"/>
-			<button type="button" class="btn btn-default">
-				<a href="home"></a>취소
+			
+			<button type="button" class="btn btn-default">			
+				<a href="loginForm">취소</a>
 			</button>
+			</div>
 		</form>
 	</div>
 	<!--container 끝  -->

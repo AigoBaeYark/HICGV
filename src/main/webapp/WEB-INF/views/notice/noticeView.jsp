@@ -4,12 +4,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//Dth HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dth">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/reset.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+<link rel="stylesheet" href="resources/css/customer/notify.css" />
+<link rel="stylesheet" href="resources/css/customer/notify.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="resources/js/customer/notify.js"></script>
+<script src="resources/js/customer/notify.min.js"></script>
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <title>Insert title here</title>
 <style>
 table.board_view {
@@ -45,12 +48,11 @@ a {
 </style>
 </head>
 <body>
-	<h3 align="center">
-		noticeView.jsp에서는 관리자로 로그인 시 공지작성/수정/삭제 가능 <br /> 일반회원일 경우 수정삭제글쓰기 기능
-		제한
-	</h3>
-
-	<div align="center">
+	
+	<div align="center" style= "margin-top: 100px; font-size: 50px; margin-bottom: 30px;">
+			공지사항
+			</div>
+	<div align="center" style="margin-bottom: 50px;">
 		<div style="width: 800px;">
 			<table class="board_view">
 				<caption>상세보기</caption>
@@ -90,4 +92,7 @@ a {
 	</div>
 	</table>
 </body>
+<div style="clear: both;">
+		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+	</div>
 </html>
