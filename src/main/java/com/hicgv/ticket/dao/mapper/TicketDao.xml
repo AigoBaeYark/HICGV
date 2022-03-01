@@ -69,7 +69,7 @@
 		ON S.MOVIE_ID = M.MOVIE_ID
 		WHERE S.MOVIE_ID = #{movieid } AND T.THEATER_ID=#{theaterid } AND
 		L.LOCATION_ID= #{locid } AND TO_CHAR(START_DATE,'dd') = #{tday }
-		AND TO_CHAR(START_DATE, 'hh') = #{hour } AND TO_CHAR(START_DATE, 'mi') = #{minute }
+		AND TO_CHAR(START_DATE, 'hh24') = #{hour } AND TO_CHAR(START_DATE, 'mi') = #{minute }
 	</select>
 	
 	<select  id="getSeat" parameterType="String" resultType="PayDto">

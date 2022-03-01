@@ -126,7 +126,7 @@
 	</div>
 	
 		<div class="fixedBtn_wrap">
-	        <a href="" class="btn_fixedTicketing">예매하기</a>
+	        <a href="ticket" class="btn_fixedTicketing">예매하기</a>
 	        
 	        <a class="btn_gotoTop" style="cursor: pointer;"><img src="${path }/resources/img/main/gotoTop.png" alt="최상단으로 이동" ></a>
 	    </div>	

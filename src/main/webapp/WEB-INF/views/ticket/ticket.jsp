@@ -191,6 +191,8 @@
 				console.log($(this).children('input').val()); //콘솔에 맞게 입력되었는지 확인 후 
 				movieCd = $(this).children('input').val(); //값 지정해주기
 				console.log('값넣음 '+movieCd);
+				
+				
 			})
 			
 			//지역 누른 밸류 가져오기 

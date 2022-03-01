@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 
 <div class="sect-showtimes" >
    <ul style="margin-top: 20px;">
@@ -17,7 +19,7 @@
             		<img src="/cgv/resources/img/theater/12세관람가.png" width="21" height="21" />
             	</c:if>
             	<c:if test="${dto.age_limit eq '15세관람가'}">
-            		<img src="/cgv/resources/img/theater/15세관람가.png" width="21" height="21" />
+            		<img src="${path }/resources/img/theater/15세관람가.png" width="21" height="21" />
             	</c:if>
             	<c:if test="${dto.age_limit eq '18세관람가'}">
             		<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" />

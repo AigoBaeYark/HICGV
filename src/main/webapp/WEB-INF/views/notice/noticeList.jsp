@@ -90,7 +90,7 @@
 <div>
 
 				
-		<%if(session.getAttribute("id") != null){ %>
+		<%if(session.getAttribute("grade") != null){ %>
 		<div align="center" style="margin-bottom: 10px;">
 				<button type="submit" class="btn btn-primary" style="width: 150px; height: 50px;">
 				<a style="color: white;" href="noticeWriteForm?id=${id }">새글작성</a></button><!-- </form> -->
