@@ -14,7 +14,7 @@
 		<div class="list-group" id="dateTab" role="tablist">
 			<div class="row justify-content-around">
 				<c:forEach items="${week }" var="day">
-					 <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day${day.day }" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day${day.day }"  >
+					 <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day${day.day }" data-bs-toggle="list" href="#list-day" role="tab" aria-controls="list-day${day.day }"  >
 					 	${day.month }월 ${day.day }  ${day.day_kor } <input type="hidden" class="hiddenDate" value="${day.day }"/>
 		 			</a>
 				</c:forEach>

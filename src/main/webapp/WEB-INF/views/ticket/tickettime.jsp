@@ -4,44 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<style>
-a.btn{
-    display:block;
-    width:80px;
-    line-height:10px;
-    text-align:center;
-    background-color:navy;
-    color:white;
-    font-size: 1em;
-}
 
-.starttime {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.starttime .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color:#18BAF8;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: -5px;
-  left: 105%;
-}
-
-.starttime:hover .tooltiptext {
-  visibility: visible;
-}
-
-</style>
 
 
 

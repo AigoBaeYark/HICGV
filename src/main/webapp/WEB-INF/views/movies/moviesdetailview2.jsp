@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<c:import url="../common/header.jsp"></c:import>
-<link rel="stylesheet" href="resources/css/main/style-starter.css" />
-<link rel="stylesheet" href="resources/css/movies/moviesdetailview.css" />
+<link rel="stylesheet" href="resources/css/reset.css" />
 
+<c:import url="../common/header.jsp"></c:import>
+
+<link rel="stylesheet" href="resources/css/movies/moviesdetailview.css" />
 <title>hicgv/moviesdetailview</title> 
 </head>
 <body>
@@ -22,66 +23,79 @@
 
 <!-- 실컨텐츠 시작 -->
 <div class="wrap-movie-detail" id="select_main">
-<div class="w3l-ab-grids py-5">
-		<div class="container py-lg-4">
-			<input type="hidden" name="movie_id" value="${moviesdv.movie_id }"/>
-			<div class="row ab-grids-sec align-items-center">
-				<div class="col-lg-6 ab-right">
-					<img class="img-fluid" src="${moviesdv.image_url }" style="width: 100%">
-				</div>
-				<div class="col-lg-6 ab-left pl-lg-4 mt-lg-0 mt-5">
-					<h3 class="hny-title">${moviesdv.title_kor }</h3>
-					<p class="mt-3">${moviesdv.description }</p>
-					<p> 연령 : ${moviesdv.age_limit }, &nbsp; 러닝타임 : ${moviesdv.running_time }, &nbsp; 제작국가 : ${moviesdv.nation }</p>
-					<p> 개봉 : ${moviesdv.opening_date}</p>
-					<div class="ready-more mt-4">
-						<a href="ticket" class="btn read-button">예매하기 <span class="fa fa-angle-double-right ml-2" aria-hidden="true"></span></a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="w3l-counter-stats-info text-center">
-				<div class="stats_left">
-					<div class="counter_grid">
-						<div class="icon_info">
-							<a href="#trailer">
-							<p class="counter">트레일러</p>
-							<h4>바로가기</h4>
-							</a>		
-						</div>
-					</div>
-				</div>
-				<div class="stats_left">
-					<div class="counter_grid">
-						<div class="icon_info">
-							<a href="#poster">
-							<p class="counter">스틸컷</p>
-							<h4>바로가기</h4>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="stats_left">
-					<div class="counter_grid">
-						<div class="icon_info">
-							<a href="#">
-							<p class="counter">5063</p>
-							<h4>Year of Use</h4>
-							</a>		
-						</div>
-					</div>
-				</div>
-			</div>
 
-		</div>
-	</div>
- 
- 
+<h3>영화상세</h3>
+<input type="hidden" name="movie_id" value="${moviesdv.movie_id }"/>
+<div class="sect-base-movie">
+    <h3><strong>${moviesdv.title_kor }</strong>기본정보</h3>
+    <div class="box-image">
+         <span class="thumb-image"> 
+             <img src="${moviesdv.image_url }" alt="포스터 새창" onerror="errorImage(this)"/>
+             <span class="ico-grade grade-${moviesdv.age_limit }"> ${moviesdv.age_limit }</span>
+         </span>  
+    </div>
+    <div class="box-contents">
+        <div class="title"> 
+            <strong>${moviesdv.title_kor }</strong>
+            
+            <!-- 영화신규내역적기 -->
+            <em class="round brown"><span>예매중</span></em>
+            <em class="round red"><span>D-8</span></em>
+            <p>${moviesdv.title_eng }</p>
+        </div>
+        <div class="score"> 
+            <strong class="percent">예매율&nbsp;<span>${moviesdv.booking_rate }</span></strong>
+        </div>
+        <!-- 떨어지는 얘 이전 요소에 class=on을 넣는다 -->
+        <div class="spec">
+            <dl>
+                <dt>감독 :&nbsp;</dt>
+                <!-- <dd><a href="/movies/persons/?pidx=122739">박성후</a></dd> -->
+                	<dd>${director.name_kor }</dd> 
+                <dd></dd>
+				
+                <dt>&nbsp;/ 배우 :&nbsp;</dt>
+                <c:forEach items="${actor }" var="actor">
+                <dd>${actor.name_kor }</dd> 
+				</c:forEach>
+
+                <dt>장르 :&nbsp;${moviesdv.genre }</dt> 
+                <dd></dd>
+                <dt>&nbsp;/ 기본 :&nbsp;</dt>
+                <dd class="on">${moviesdv.age_limit },&nbsp;${moviesdv.running_time },&nbsp;${moviesdv.nation }</dd>
+                <dt>개봉 :&nbsp;</dt>
+                <dd class="on">${moviesdv.opening_date}</dd>
+            </dl>
+        </div>
+
+	
+        <span class="like">
+            <a class="link-reservation" href="ticket">예매</a> 
+        </span>
+    </div>
+</div><!-- .sect-base -->
+ <div class="cols-content" id="menu">
+        <div class="col-detail">
+            <!-- 메뉴 클릭시 해당라인으로 이동 -->
+            <ul class="tab-menu">
+                <li class="on"><a href="#intro"><p>줄거리 </p></a></li>             
+                <li><a href="#trailer"><p>트레일러 </p></a> </li>
+                <li> <a href="#poster"><p>스틸컷</p></a></li>
+            </ul>
+            
+            <a id="intro"></a>
+            <br><br><br>
+            <p>줄거리</p>
+			<div class="sect-story-movie">
+               ${moviesdv.description }
+            </div>
+ 		</div>
+ </div>
 <!-- 트레일러시작 -->
 	<a id="trailer"></a> 
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
-                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more">+이모지</a>
+                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more" href="trailer.aspx?midx=85603">더보기</a>
                 </div>
            <c:forEach items="${trailer }" var="tra">
                 <ul>
@@ -114,7 +128,7 @@
 		<a id="poster"></a> 
 		<div class="sect-stillcut">
                 <div class="heading">
-                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more">+이모지</a>
+                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more" href="still-cut.aspx?midx=85603">더보기</a>
                 </div>
              <c:forEach items="${poster }" var="pos"> <!-- items="poster" 로 써서 오류남 -->
                 <div class="slider-wrap">
@@ -127,26 +141,7 @@
                     </div>  
             	</div><!-- .sect-stillcut -->
 			</c:forEach>
-		</div>
-		
-		<a id="내용추가할거넣기이"></a> 
-		<div class="sect-stillcut">
-                <div class="heading">
-                    <h4>내용추가할거넣기이</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more">+이모지</a>
-                </div>
-             <%-- <c:forEach items="${내용추가할거넣기이 }" var="pos"> --%> <!-- items="poster" 로 써서 오류남 -->
-                <div class="slider-wrap">
-                    <div class="" id="still_motion">
-                        <div class="item-wrap">
-                            <div class="item">
-                               <%--  ${movieApi.rankOldAndNew } --%>
-                            </div>
-                        </div>
-                    </div>  
-            	</div><!-- .sect-stillcut -->
-			<%-- </c:forEach> --%>
-		</div>
-		
+	</div>
 
 	</div>
 	</div>

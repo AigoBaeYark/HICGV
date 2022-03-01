@@ -165,3 +165,143 @@ input, select, img {
     font: 0/0 a;
     zoom: 1;
 }
+
+
+/* !!소개메인!!  */
+.pb-5, .py-5 {
+    padding-bottom: 3rem !important;
+}
+.pt-5, .py-5 {
+    padding-top: 3rem !important;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@media (min-width: 992px)
+.container {
+    max-width: 100%;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 사진이미지 */
+.img-fluid {
+    width: 450px;
+    height: 700px;
+}
+}
+img {
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -o-border-radius: 6px;
+    -moz-border-radius: 6px;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.w3l-counter-stats-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    grid-gap: 30px;
+    margin-top: 56px;
+}
+
+.w3l-counter-stats-info .counter_grid {
+    border: 2px solid var(--theme-blue);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.w3l-counter-stats-info p {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--theme-title);
+    margin-bottom: 10px;
+}
+
+/* 제목 */
+.mt-5, .my-5 {
+    margin-top: 3rem !important;
+}
+
+@media (max-width: 992px)
+h3.hny-title, h3.hny-title.two {
+    font-size: 30px;
+    line-height: 40px;
+}
+h3.hny-title, h3.hny-title.two {
+    font-size: 26px;
+    line-height: 36px;
+    color: var(--theme-title);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* 영화소개란 */
+.mt-3, .my-3 {
+    margin-top: 1rem !important;
+}
+
+body p {
+    line-height: 26px;
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* 예매버튼라인 */
+.mt-4, .my-4 {
+    margin-top: 1.5rem !important;
+}
+
+/* 예매버튼 */
+.read-button {
+    padding: 0px 30px;
+    color: var(--theme-white);
+    height: 52px;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 50px;
+    text-transform: capitalize;
+    font-weight: 600;
+    transition: 0.3s ease-in;
+    border-radius: 6px;
+    background-color: #D0283D;
+    border: 2px solid #FF879F;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.ml-2, .mx-2 {
+    margin-left: 0.5rem !important;
+}
+
+
+

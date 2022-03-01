@@ -5229,7 +5229,7 @@ keyframes progress-bar-stripes { 0%{
 	z-index: 2;
 	color: #fff;
 	background-color: #212529;
-	border-color: #212529
+	border-color: #212529;
 }
 
 .list-group-item+.list-group-item {

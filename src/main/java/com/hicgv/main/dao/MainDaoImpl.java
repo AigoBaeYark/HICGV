@@ -95,5 +95,15 @@ public class MainDaoImpl implements MainDao{
 		
 		return  movieWeekList;
 		
+	}
+
+
+	@Override
+	public ArrayList<MoviesDto> searchNormal(String parameter) {
+		
+		List<MoviesDto> moviesDtos = new ArrayList<MoviesDto>();
+		moviesDtos = sqlSession.selectList(nameSpace+".searchNormal",parameter);
+		
+		return (ArrayList<MoviesDto>) moviesDtos;
 	};
 }

@@ -294,7 +294,7 @@ body {
 h1 {
     font-size: 2.9em;
     text-transform: uppercase;
-    color: #fff;
+    color: #D0283D;
     font-weight: 600;
     text-shadow: 4px 3px 1px rgba(0, 0, 0, 0.22);
     letter-spacing: 2px;
@@ -628,11 +628,3 @@ input[type=checkbox].selected:before {
 
 
 
-/* seat 뒷배경 삽입 */
-#bannerjsp { /* 이거 안 됨ㅠ 나중에 수정 */
-  border: 1px solid black;
-  background-image: url('../img/ticket/banner.jpg');
-  background-size: 100px 80px;
-  background-repeat: no-repeat;
-  padding: 15px;
-}

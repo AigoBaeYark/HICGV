@@ -15,14 +15,22 @@
 
 <title>ticket/ticket</title>
 </head>
+<style>
+.list-group-item.active{
+	background-color: #B8272C;
+	border-color: white;
+}
+
+</style>
+
 <body>
 
 <!-- 아래 JSTL추가수정  -->
 <!-- Contaniner -->
-	<div id="contaniner"  class=""><!-- 배경이미지가 없을 경우 class 삭제  -->
+	<div id="contaniner"  class=""  ><!-- 배경이미지가 없을 경우 class 삭제  -->
         
 		<!-- Contents Area -->
-		<div id="contents" class="">
+		<div id="contents" class="seatimg" style="background-image: url(resources/img/ticket/seatimg.jpg)">
         #ticketseat, pay 참고하고 싶으면 주술회전-서울-강남-16일 9:30 버튼 클릭#
         
         <!-- SECTION -->
@@ -30,30 +38,29 @@
 			<div id="sec">
 				<div id="secMain">
 					<div class="row" id="secSelect">
-				
 						<div class="col-3 " >
-						<p style="text-align: center;">영화1 </p> <i class="fa-duotone fa-camera-movie"></i>
+						<h3>영화 </h3> 
 						<ul class=" list-group" style="flex-direction: column;max-height: 320px;margin-bottom: 10px; overflow: scroll;">
 						<c:forEach items="${moviesList }" var="tic">
-					    <li class=" list-group-item" id="MovieTab" role="tablist" >
+					    <!-- <li class=" list-group-item" id="MovieTab" role="tablist" > -->
 					      <a class="list-group-item list-group-item-action list-group-item-movie" id="list-movie" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
 					      <input type="hidden" value="${tic.movie_id }"/>
 					      <span class="ico-grade grade-${tic.age_limit }">${tic.age_limit}</span> 
 					      <span style="margin-left: 15px;" id="movieTitle">${tic.title_kor }</span></a>
-					    </li>
+					   <!--  </li> -->
 					    </c:forEach>
 					    </ul>
 					  </div>
 					  
 					 			          
 					  <div class="col-2">
-					  <p style="text-align: center;">지역2-1</p>
+					  <h3>지역</h3>
 					  <!-- 지역 -->
 					  <div class="list-group" id="locTap" role="tablist">
 					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
 					      <c:forEach items="${local }" var="loc">
 					      <a class="list-group-item list-group-item-action list-group-item-local" id="list-seoul" data-bs-toggle="list" href="#list-seoul" role="tab" aria-controls="movieTitle">
-					      	<input type="hidden"  value="${loc.theater_id }"/>${loc.theater_loc } </a>
+					      	<input type="hidden" value="${loc.theater_id }"/>${loc.theater_loc } </a>
 					   	</c:forEach>
 					    </div>
 					    </div>
@@ -61,7 +68,7 @@
 					  
 					  
 					 <div class="col-2">
-					 <p style="text-align: center;">상영관2-2</p>
+					 <h3 >상영관</h3>
 					 <!-- 상영관 -->
 					 <!-- 지역 클릭시 상영관 생성 -->
 						<c:forEach items="${theaterlocal }" var="theloc">
@@ -121,12 +128,11 @@
 					  </div>				  
 					    
 					  <div class="col-2">
-					  <p style="text-align: center;">날짜선택3</p>
-					  <p style="text-align: center;">2022년</p>
-					  <p style="text-align: center;">2월</p>
-					  
+					  <h3 >날짜선택</h3>
 					  <div class="list-group" id="dateTab" role="tablist">
-					    <!-- <div class="row justify-content-around"> 이거 추가하면 검은색으로 바뀜
+					  
+					<!--  weeklist에 dateTab을 생성하여 실행
+					<div class="row justify-content-around"> 이거 추가하면 검은색으로 바뀜
 					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
 					      15(화)<input type="hidden" class="hiddenDate" value="15"/></a>
 					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
@@ -139,7 +145,7 @@
 
 
 						<div class="col-3"> 
-						<p style="text-align: center;">시간선택4</p>
+						<h3>시간선택</h3>
 					    <div class="tab-content" id="nav-tabContent listLoc"> 	
 							<div class="tab-pane fade show active" id="timeList" role="tabpanel" aria-labelledby="list-time">
 							
@@ -147,9 +153,7 @@
 							<div id="tickettime">
    				
   							</div>
-
 					      <hr> 
-					   
 					    </div>
 					  </div>
 					  </div>
@@ -173,7 +177,7 @@
 		            })
 		            $(this).addClass('active');
 				
-				$(this).siblings().append('movie');
+				//$(this).siblings().append('movie');
 				//$(this).addClass('active') 
 				console.log($(this).children('#movieTitle').text());//타이틀 가져오기
 				console.log($(this).children('input').val()); //콘솔에 맞게 입력되었는지 확인 후 

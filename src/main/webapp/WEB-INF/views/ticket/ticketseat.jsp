@@ -38,13 +38,13 @@
 	crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
-<link rel="stylesheet" href="resources/css/ticket/ticketseat.css" />
 <link rel="stylesheet"
 	href="resources/css/ticket/jquery.seat-charts.css" />
-<link rel="stylesheet" href="resources/css/ticket/font-awesome.css" />
 <link
 	href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
 	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/ticket/font-awesome.css" />
+<link rel="stylesheet" href="resources/css/ticket/ticketseat.css" />
 <!-- //fonts -->
 </head>
 
@@ -85,7 +85,7 @@
 								<label> 인원수 <span>*</span>
 								</label> <input type="number" id="Numseats" required min="1">
 							</div>
-														<input type="hidden" name="movieid" value="무비아이디" />
+							<input type="hidden" name="movieid" value="무비아이디" />
 							
 							<div class="TicketPrice">
 								<input type="hidden" id="TicketPrice" value="9000" required>
@@ -96,19 +96,29 @@
 							<!-- 영화정보를 넘어오게 해야함 -->
 							<c:forEach items="${ticketseat }" var="seat">
 								<h2>선택정보</h2>
-								<input type="hidden" value="${seat.minute }" name="minute" />
 
 								<p>
 									${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name }
 									&nbsp; | &nbsp; ${seat.room_name } <br> ${seat.year }.
 									${seat.month }. ${seat.day } &nbsp; ${seat.hour }:${seat.minute }
 									~ ${seat.endHour }:${seat.endMinute }
+										
+									<!-- pay쪽으로 보낼 정보들 -->
+									<input type="hidden" value="${seat.movie_id }" name="movie_id"  />
+									<input type="hidden" value="${seat.location_name }" name="location_name"  />
+									<input type="hidden" value="${seat.schedule_id }" name="schedule_id"  />
+									<input type="hidden" value="${seat.location_id }" name="location_id"  />
+									<input type="hidden" value="${seat.title_kor }" name="title_kor"  />
+									<input type="hidden" value="${seat.start_date }" name="start_date"  />		
 								</p>
 							</c:forEach>
+							
+							<input type="hidden" name="theater_schedule_id" />
+							
 						</div>
 					</div>
 
-					<button type="button" onclick="takeData()">Start Selecting</button>
+					<button type="button" onclick="takeData()">확인</button>
 
 
 					<!-- //input fields -->
@@ -194,8 +204,7 @@
 						</table>
 						<%-- moviesdetailview?movie_id=${dv.movieCd } --%>
 
-						<button type="button" onclick="updateTextArea()">Confirm
-							Selection</button>
+						<button type="button" onclick="updateTextArea()">좌석지정</button>
 						<input type="submit" value="*결제하기(임시로 만듦)*" />
 
 
@@ -210,11 +219,11 @@
 								<th>결제예정금액</th>
 							</tr>
 							<tr>
-								<td><input type="hidden" name="seatsDis" /> <textarea
+								<td><input type="hidden" name="seat" /> <textarea
 										id="seatsDisplay" class="result" ></textarea></td>
-								<td><input type="hidden" name="numberDis" /> <textarea
+								<td><input type="hidden" name="person" /> <textarea
 										id="numberDisplay" class="result" ></textarea></td>
-								<td><input type="hidden" name="priceDis"  /> <textarea
+								<td><input type="hidden" name="seat_price"  /> <textarea
 										id="priceDisplay" class="result" ></textarea></td>
 							</tr>
 						</table>
@@ -295,14 +304,14 @@
 
 				//Displaying 
 				$('#seatsDisplay').val(allSeatsVals);
-				$('input[name=seatsDis]').val(allSeatsVals);
-				alert($('input[name=seatsDis]').val());
+				$('input[name=seat]').val(allSeatsVals);
+				alert($('input[name=seat]').val());
 				$('#numberDisplay').val(allNumberVals);
-				$('input[name=numberDis]').val(allNumberVals);
-				alert($('input[name=numberDis]').val());
+				$('input[name=person]').val(allNumberVals);
+				alert($('input[name=person]').val());
 				$('#priceDisplay').val(allPriceVals * allNumberVals);
-				$('input[name=priceDis]').val(allPriceVals * allNumberVals);
-				alert($('input[name=priceDis]').val());
+				$('input[name=seat_price]').val(allPriceVals * allNumberVals);
+				alert($('input[name=seat_price]').val());
 				$('input[type=submit]').attr('disabled', false);
 
 				/*  $.ajax({

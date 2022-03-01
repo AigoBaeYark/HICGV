@@ -343,6 +343,20 @@ public class MainController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("adminMenuView")
+	public String adminMenuView() {
+		return "common/adminMenuList";
+	}
+	
+	@RequestMapping("searchMovieName")
+	public String searchNormalResultView(Model model, HttpServletRequest req) {
+		System.out.println("searchNormal" + req.getParameter("query"));
+		ArrayList<MoviesDto> searchList = mainService.searchNormal(req.getParameter("query"));
+		model.addAttribute("searchResult",searchList);
+		
+		return "common/searchNormalList";
+	}
 
 
 }

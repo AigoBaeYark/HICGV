@@ -31,5 +31,6 @@ public interface MainService {
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
 	public void rankInit();
 	public LinkedList<HashMap<String, String>> getmovieDay(String movie_id, String location_id);
+	public ArrayList<MoviesDto> searchNormal(String parameter);
 	
 }

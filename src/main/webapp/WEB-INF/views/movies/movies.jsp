@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:import url="../common/header.jsp"></c:import>
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/movies/movies.css" />
 <link rel="stylesheet" href="resources/css/main/style-starter.css" />
@@ -12,7 +13,7 @@
 <script src="resources/js/main/owl.carousel.js"></script>
 <script src="resources/js/main/main.js"></script>
 <script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
-<c:import url="../common/header.jsp"></c:import>
+
 <title>hicgv/movies</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
 
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
-        10위까지만 자를예정, 00세관람가 로고부착
+        
         <!-- Contents Area -->
 		 <div id="contents" class="">
 		 
@@ -58,7 +59,10 @@
 											</a>
 										</div>
 										<div class="message">
+										<c:if test="${mov.ranking <= 10 }">
 											<strong class="rank">No.${mov.ranking }</strong>
+										</c:if>
+											
 											<a class="author-book-title">${mov.title_kor }</a>
 											<span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span> <!-- 이거 수정해야됨 -->
 											

@@ -45,7 +45,7 @@
 				
 				<!-- 로그인 상태면 로그아웃 버튼만 보이게 -->
 				<%if(session.getAttribute("id")==null) {%>                  
-	            <li><a href="loginForm" class="hi-icon hi-icon-locked" id="set-1"><img src="${path }/resources/img/main/loginPassword.png"  alt="로그인"><span>로그인</span></a></li>
+	            <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
 	            <li><a href="joinForm"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
 	            <%} else {%>  
 	              <li><a href="logout"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그아웃</span></a></li>
@@ -102,13 +102,13 @@
 	  			</li>
 	  			<%-- <%if(session.getAttribute("grade") != null) { %> --%>
 	  			<li>
-	  				<h2><a href="" style="font-weight: 700;">관리자 메뉴</a></h2>
+	  				<h2><a href="adminMenuView" style="font-weight: 700;">관리자 메뉴</a></h2>
 	  				<dl class="nav_overMenu">
 	  					<dt><h2><a href="" style="color: #df0e62; ">관리자 메뉴</a></h2></dt>
-	  					 <dd><h3><a href="">유저 관리</a></h3></dd>
-	  					 <dd><h3><a href="">극장 및 상영관리</a></h3></dd>
+	  					 <dd><h3><a href="getcustomerList">유저 관리</a></h3></dd>
+	  					 <dd><h3><a href="theaterAdmin">극장 및 상영관리</a></h3></dd>
 	  					 <dd><h3><a href="moviesAdmin">영화</a></h3></dd>
-	  					 <dd><h3><a href="">스토어</a></h3></dd>
+	  					 <dd><h3><a href="storeAdmin">스토어</a></h3></dd>
 	  				</dl>
 	  			</li>
 	  			<%-- <%} %> --%>
@@ -249,36 +249,18 @@
 
     //통합검색
     function goSearch($objKeyword) {
-
+		
         if ($objKeyword.val() == "") {
             alert("검색어를 입력해 주세요");
             $objKeyword.focus();
             return false;
         }
-
-        location = "/search/?query=" + escape($objKeyword.val());
+		alert($objKeyword.val());
+		var keyword=$objKeyword.val();
+        location.href = "searchMovieName?query=" + keyword;
     }
 
-    //검색 입력창 클릭 시 광고값 reset
-    $('#header_keyword').on('click', function () {
-        $(this).attr('placeholder', '');
-        $('#header_ad_keyword').val('');
-    });
-
-    //상단 키워드 광고 (S)
-    function AdSearchExt(txt, SearchText) {
-        $('#header_keyword').attr('placeholder', txt);
-        $('#header_ad_keyword').val(SearchText);
-    }
-
-    function hdIcoSet(left, sh) { }
-    //상단 키워드 광고 (E)
-
-    //상단광고닫기
-    function hideCgvTopAd() {
-        $(".cgv-ad-wrap").hide();
-        $('#wrap_main_notice').parent('div').css('top', 280);
-    }
+  
 
 </script>
 

@@ -12,7 +12,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class GetDateViewer {
+public class GetMovieApi {
 
 	// 영화진흥위원회 Api 사용
 	// 일일 관람객 URL
@@ -22,7 +22,7 @@ public class GetDateViewer {
 	public String today;
 	
 
-	public ArrayList<Map<String, String>> getDateViewer(String today) { //생성자였는데 바꿈 (생성자면 리턴을 못 만드니까)
+	public ArrayList<Map<String, String>> getMovieApi(String today) { //생성자였는데 바꿈 (생성자면 리턴을 못 만드니까)
 		// 일별관람객을 가져오고싶은 날짜 입력
 		this.today = today.toString();
 		String res = getOpenTodayViewer(getApiUrl());
