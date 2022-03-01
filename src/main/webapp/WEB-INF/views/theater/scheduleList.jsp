@@ -7,7 +7,8 @@
       <li>
          <div class="col-times">
             <c:forEach items="${movieInfo }" var="dto">
-            <div class="info-movie">
+            <div class="info-movie" style="border: 2px solid blue; padding-left: 120px;
+    			padding-top: 20px; width: 90%;">
             	<c:if test="${dto.age_limit eq '전체관람가'}">
 			   		<img src="/cgv/resources/img/theater/전체관람가.PNG" width="21" height="21" />
             	</c:if>
