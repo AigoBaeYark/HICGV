@@ -23,6 +23,15 @@
 
 </style>
 
+<%if (session.getAttribute("id") == null){ %>
+	<script type="text/javascript">
+	window.onload = function(){
+		alert('비회원은 예매가 불가능합니다.')
+		alert('메인페이지로 넘어갑니다.')
+		location.href = "main";
+	}
+	</script>
+<%} %>
 <body>
 
 <!-- 아래 JSTL추가수정  -->

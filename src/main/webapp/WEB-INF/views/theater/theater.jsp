@@ -14,10 +14,11 @@
 </head>
 <body>
 <div id="contents"> 
+<%if( session.getAttribute("grade") != null) { %>
 <a href="theaterAdmin" style="border: 2px solid red;">theaterAdmin</a>
 <i class="fa-solid fa-heart"></i>
 <a href="pay?userId=1&theater_schedule_id=1000" style="border: 2px solid red;">pay</a>
-
+<%} %>
 <div class="row" id="theaterName">
   <div class="col-4">
     <div class="list-group" id="list-tab" role="tablist">

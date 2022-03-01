@@ -11,16 +11,16 @@
             <div class="info-movie" style="border-top: 1px solid #ccc; padding-left: 150px;
     			padding-top: 20px; width: 90%;">
             	<c:if test="${dto.age_limit eq '전체관람가'}">
-			   		<img src="/cgv/resources/img/theater/전체관람가.PNG" width="21" height="21" />
+			   		<img src="/cgv/resources/img/theater/전체관람가.png" width="21" height="21" />
             	</c:if>
             	<c:if test="${dto.age_limit eq '12세관람가'}">
-            		<img src="/cgv/resources/img/theater/12세관람가.PNG" width="21" height="21" />
+            		<img src="/cgv/resources/img/theater/12세관람가.png" width="21" height="21" />
             	</c:if>
             	<c:if test="${dto.age_limit eq '15세관람가'}">
-            		<img src="/cgv/resources/img/theater/15세관람가.PNG" width="21" height="21" />
+            		<img src="/cgv/resources/img/theater/15세관람가.png" width="21" height="21" />
             	</c:if>
             	<c:if test="${dto.age_limit eq '18세관람가'}">
-            		<img src="/cgv/resources/img/theater/18세관람가.PNG" width="21" height="21" />
+            		<img src="/cgv/resources/img/theater/18세관람가.png" width="21" height="21" />
             	</c:if>
 	            
                 <a href="moviesdetailview?movie_id=${dto.movie_id }" target="_parent">

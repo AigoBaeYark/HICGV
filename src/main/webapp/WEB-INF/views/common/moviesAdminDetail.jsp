@@ -58,7 +58,6 @@
 				alert('이미 등록된 영화입니다.');
 			}else if (checkID == 0) {
 				oEditors.getById['description'].exec("UPDATE_CONTENTS_FIELD", []);
-				alert('descri');
 				//validation 검증
 				
 				//폼 submit

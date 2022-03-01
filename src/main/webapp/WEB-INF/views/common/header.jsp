@@ -52,7 +52,7 @@
 	            <%} %>
 	            
 	            <li><a href="myCGV"><img src="${path }/resources/img/main/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
-	            <li><a href="https://www.cgv.co.kr/support/default.aspx"><img src="${path }/resources/img/main/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
+	            <li><a href="noticeList"><img src="${path }/resources/img/main/loginCustomer.png" alt="공지사항"><span>공지사항</span></a></li>
 	        </ul>
 	    </div>
 	</div>
@@ -100,7 +100,7 @@
 	                   
 	                </dl>
 	  			</li>
-	  			<%-- <%if(session.getAttribute("grade") != null) { %> --%>
+	  			<% if(session.getAttribute("grade") != null) { %>
 	  			<li>
 	  				<h2><a href="adminMenuView" style="font-weight: 700;">관리자 메뉴</a></h2>
 	  				<dl class="nav_overMenu">
@@ -111,7 +111,7 @@
 	  					 <dd><h3><a href="storeAdmin">스토어</a></h3></dd>
 	  				</dl>
 	  			</li>
-	  			<%-- <%} %> --%>
+	  			<%} %> 
 	        </ul>
 	        <div class="totalSearch_wrap">
 	            <label for="totalSearch">

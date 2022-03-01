@@ -60,7 +60,7 @@
 											</a>
 										</div>
 										<div class="message">
-										<c:if test="${mov.ranking <= 10 }">
+										<c:if test="${mov.ranking <= 10  && mov.ranking != 0 }">
 											<strong class="rank">No.${mov.ranking }</strong>
 										</c:if>
 											

@@ -14,7 +14,6 @@
 <body>
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
-        $ 안에 이름 들 부터 수정해야함, css꾸미기, 내용이 별로 없어서 API내 정보들 끌어올예정
 		<!-- Contents Area -->
 		 <div id="contents" class="">
          
