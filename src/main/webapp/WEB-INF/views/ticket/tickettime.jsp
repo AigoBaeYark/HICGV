@@ -22,8 +22,7 @@
       <li>
       	<div class="sel-times">
       		<c:forEach items="${ticketday }" var="tday">	
-      		스케줄 ${tday.schedule_id }
-				<c:if test="${tday.day eq 15 }">
+      		
 					<ul>
 						<li>
 							<span> 
@@ -52,72 +51,8 @@
 					        </span></a>
 						</li>
 					</ul> 
-				</c:if> 
-				<!-- 
-				머릿속 정리해보기!
-				: 영화 -> 지역 -> 상영관 -> 날짜를 클릭 하면 위에 값들이 
-				4번 시간선택란에 떠야함
-				 -->	
-	
-				<c:if test="${tday.day eq 16 }">
-					<ul>
-						<li>
-							<span> 
-					           ${tday.room_name } 
-					           </span>
-					           | <span>
-					           ${tday.location_name }
-					           </span>
-					           |
-					           <span>
-					           ${tday.max_seat } 석
-					           </span>  
-					           <br>
-					           | 러닝타임 :
-					           <span>
-					          	${tday.running_time } 분
-					           </span>
-					           <br>
-					           <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }&schedule_id=${tday.schedule_id }" class="btn"> 
-					           <span>
-					           <div class="starttime">
-					           <em> ${tday.hour } : ${tday.minute }</em>
-					           <span class="tooltiptext">예매하기이동</span>
-					           </div>
-					        </span></a>
-						</li>
-					</ul> 
-				</c:if> 
-
-				<c:if test="${tday.day eq 17 }">
-					<ul>
-						<li>
-							<span> 
-					           ${tday.room_name } 
-					           </span>
-					           | <span>
-					           ${tday.location_name }
-					           </span>
-					           |
-					           <span>
-					           ${tday.max_seat } 석 
-					           </span>
-					           <br>
-					           | 러닝타임 :
-					           <span>
-					          	${tday.running_time } 분
-					           </span>
-					           <br>
-					          <a href="ticketseat?movieid=${tday.movie_id }&theaterid=${tday.theater_id }&locid=${tday.location_id }&tday=${tday.day }&hour=${tday.hour }&minute=${tday.minute }&schedule_id=${tday.schedule_id }" class="btn"> 
-					           <span>
-					           <div class="starttime">
-					           <em> ${tday.hour } : ${tday.minute }</em>
-					           <span class="tooltiptext">예매하기이동</span>
-					           </div>
-					        </span></a>
-						</li>
-					</ul> 
-				</c:if> 
+				
+				
 				
 				<c:if test="${tday.day eq null }">
 					<ul>

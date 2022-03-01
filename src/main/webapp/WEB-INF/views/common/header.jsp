@@ -59,7 +59,7 @@
 	
 		<div class="nav">
 	    <div class="contents">
-	        <h1><a href="main" tabindex="-1"><img src="" alt="CGV"></a></h1>
+	        <h1><a href="main" tabindex="-1"><img src="${path }/resources/img/main/logoWhite.png" alt="CGV"></a></h1>
 	        <ul class="nav_menu" style="margin-bottom: 0rem; padding-left: 0;">
 	            <li>
 	                <h2><a href="movies">영화</a></h2>

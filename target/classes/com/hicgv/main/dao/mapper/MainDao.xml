@@ -69,7 +69,7 @@
 	<select  id="searchNormal" resultType = "MoviesDto">
 		SELECT * 
 		FROM HICGV_MOVIE
-		WHERE TITLE_KOR LIKE '%'+ #{parameter} +'%'
+		WHERE TITLE_KOR LIKE '%'||#{parameter}||'%'
 	</select>
 
 	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 
