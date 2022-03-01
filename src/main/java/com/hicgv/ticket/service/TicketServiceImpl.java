@@ -191,6 +191,7 @@ public class TicketServiceImpl implements TicketService {
 			timeMap2.put("title_kor", ticketListDto.getTitle_kor()); // 영화명(국문)
 			timeMap2.put("schedule_id", ticketListDto.getTheater_schedule_id()); // 상영시간 ID
 			timeMap2.put("tday", ticketListDto.getDay()); // 날짜
+			timeMap2.put("tday", ticketListDto.getRoom_name()); // 날짜
 
 			System.out.println("year2 : " + year);
 			System.out.println("month2 : " + month);

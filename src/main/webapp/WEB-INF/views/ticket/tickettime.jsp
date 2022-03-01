@@ -4,10 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-
-
-
 <c:choose>
 
 <c:when test="${fn:length(ticketday) == 0 }">
@@ -22,7 +18,7 @@
       <li>
       	<div class="sel-times">
       		<c:forEach items="${ticketday }" var="tday">	
-      		
+      		스케줄 ${tday.schedule_id }
 					<ul>
 						<li>
 							<span> 
@@ -51,9 +47,12 @@
 					        </span></a>
 						</li>
 					</ul> 
-				
-				
-				
+				<!-- 
+				머릿속 정리해보기!
+				: 영화 -> 지역 -> 상영관 -> 날짜를 클릭 하면 위에 값들이 
+				4번 시간선택란에 떠야함
+				 -->	
+
 				<c:if test="${tday.day eq null }">
 					<ul>
 						<li>

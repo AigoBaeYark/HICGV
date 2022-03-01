@@ -108,12 +108,12 @@
    <div>
       <img style="margin-top: 20px;" src="https://adimg.cgv.co.kr/images/202203/Morbius/980x90.jpg" alt="" />
    </div>
-    <div class="day" style="margin-top: 20px; margin-left: 50px;">
-	   	 <c:forEach items="${scheduleDate }" var="date">
-   	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> &nbsp;&nbsp;&nbsp;
+    <div class="day" style="margin-top: 60px;">
+	   	 <c:forEach items="${scheduleDate }" var="sch" varStatus="i">
+   	 <a href="theaterTimeList?locId=${locInfo.location_id }" class="selTime"> &nbsp;&nbsp;
 	       <i class="fa-regular fa-calendar"></i>
-	        <strong>${date.start_date }</strong>
-	        <input type="hidden" class="hiddenDate" value="${date.start_date }"/>
+	        <strong>${sch.schdto[i.index ].start_date }&nbsp;${sch.day_kor }</strong>
+	        <input type="hidden" class="hiddenDate" value="${sch.schdto[i.index ].start_date }"/>
      </a>
 	     </c:forEach>
      </div>
@@ -123,7 +123,7 @@
    </div>
    
  <div class="sect-guide">
-	    <ul style="margin-top: 10px;">
+	    <ul style="margin-top: 40px;">
 	       <li>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다. <br />
 		   	   * 입장 지연에 따른 관람 불편을 최소화하기 위해 영화는 10분 후 상영이 시작됩니다.</li>
 	    </ul>
@@ -146,13 +146,14 @@
          var url_href=window.location.href;
          var url=new URL(url_href);
          var locId=url.searchParams.get('locId');
+         var theaterId=url.searchParams.get('theaterId');
          
          if(locId == null)
             locId = '101';
           
          $.ajax({
             type : "GET",
-            url : "theaterTimeList?date="+date+"&locId="+locId,
+            url : "theaterTimeList?date="+date+"&theaterId="+theaterId+"&locId="+locId,
             contentType: "application/json; charset=UTF-8",
             success : function(data) { // 가로 안에 있는 data는 컨트롤러에서 return받은 값
                console.log(data);

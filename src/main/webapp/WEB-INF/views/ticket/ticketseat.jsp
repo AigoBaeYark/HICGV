@@ -110,6 +110,7 @@
 									<input type="hidden" value="${seat.location_id }" name="location_id"  />
 									<input type="hidden" value="${seat.title_kor }" name="title_kor"  />
 									<input type="hidden" value="${seat.start_date }" name="start_date"  />		
+									<input type="hidden" value="${seat.room_name }" name="room_name"  />		
 								</p>
 							</c:forEach>
 							

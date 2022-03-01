@@ -172,7 +172,7 @@
 </button>
 <div style="float: right; margin-top: 10px;">
 <label>결제하실 금액 : </label>
-<span id="tot_price">${payInfo.tot_price }원</span>
+<span id="tot_price">${seat_price }원</span>
 </div>
 </div>
 </div>
@@ -198,31 +198,31 @@
                     <tbody>
                         <tr id="movie_name">
                             <th scope="row">영화명</th>
-                            <td>${payInfo.title_kor }</td>
+                            <td>${title_kor }</td>
                         </tr>
                         <tr id="theater">
                             <th scope="row">극장</th>
-                            <td id="theater">${payInfo.location_name }</td>
+                            <td id="theater">${location_name }</td>
                         </tr>
                         <tr id="screen">
                             <th scope="row">상영관</th>
-                            <td>${payInfo.room_name }</td>
+                            <td>${room_name }</td>
                         </tr>
                         <tr id="movie_date">
                             <th scope="row">일시</th>
-                            <td>${payInfo.start_date }</td>
+                            <td>${start_date }</td>
                         </tr>
                         <tr id="people">
                             <th scope="row">인원</th>
-                            <td>일반 ${payInfo.person }명</td>
+                            <td>일반 ${person }명</td>
                         </tr>
                         <tr id="seat">
                             <th scope="row">좌석</th>
-                            <td>${payInfo.seat }</td>
+                            <td>${seat }</td>
                         </tr>
 	                    <tr id="payment_price">
 	                        <th scope="row">결제금액</th>
-	                        <td><span class="price">${payInfo.tot_price }</span>원</td>
+	                        <td><span class="price">${seat_price }</span>원</td>
 	                    </tr>
 	                    <tr id="payment_method">
 	                        <th scope="row">결제수단</th>
@@ -243,13 +243,31 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <a href="modifyPayInfo"><button type="button" class="btn btn-primary" >결제하기</button></a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+			결제하기
+		</button>
       </div>
     </div>
   </div>
 </div>
 
-<div id="payPage"></div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">결제완료</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        	결제가 완료되었습니다. <br></br> 예매내역은 MYCGV에서 확인가능합니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="location.href='main.html'" class="btn btn-primary">메인으로</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 var hicgv_coupon_cnt = "${payInfo.hicgv_coupon }";
@@ -257,7 +275,7 @@ var vip_coupon_cnt = "${payInfo.vip_coupon }";
 var hicgv_coupon_price = 3000;
 var vip_coupon_price = 9000;
 
-var tot_price = "${payInfo.tot_price }";
+var tot_price = "${seat_price }";
 
 
 // 쿠폰이 없을 때 select 비활성화시키기
@@ -298,12 +316,6 @@ $('input:checkbox[id=pointAllCheck]').on('click', function() {
 			$('#tot_price').text(result);
 			$('span.price').text(result);
 		}
-		
-		/* if(tot_price < 0){
-		$('#tot_price').text(0);
-		$('span#userPoint').text(point - tot_price);
-
-		} */
 	}
 })
 

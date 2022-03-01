@@ -67,7 +67,7 @@ public class TheaterDaoImpl implements TheaterDao{
 		schDto.setStart_date(startDate);
 		System.out.println("======= << TheaterDaoImpl.setScheduleInfo() >> =======");
 		System.out.println("locationId : " + schDto.getLocation_id());
-		System.out.println("roomId : " +schDto.getTheaterRoom_id());
+		System.out.println("roomId : " +schDto.getTheater_room_id());
 		System.out.println("movieId : " + schDto.getMovie_id());
 		System.out.println("Start_date : " + schDto.getStart_date());
 		
@@ -91,4 +91,18 @@ public class TheaterDaoImpl implements TheaterDao{
 		return (ArrayList<ScheduleDto>) dto;
 	}
 	
+	@Override
+	public ArrayList<LocationDto> selLocation() {
+		System.out.println("======= << TheaterDaoImpl.selLocation() >> =======");
+		List<LocationDto> dto = sqlSession.selectList(nameSpace+".selLocation");
+		return (ArrayList<LocationDto>) dto;
+	}
+
+	@Override
+	public ArrayList<LocationDto> selRoom() {
+		System.out.println("======= << TheaterDaoImpl.selRoom() >> =======");
+		List<LocationDto> dto = sqlSession.selectList(nameSpace+".selRoom");
+		return (ArrayList<LocationDto>) dto;
+	}
+
 }

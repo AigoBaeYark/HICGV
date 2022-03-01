@@ -15,7 +15,10 @@
 	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 </div>
 
-<form action="theaterAdmin" class="container">
+<div style="margin-bottom: 200px; margin-top: 60px; position: relative; left: 280px; border: 2px solid blue;
+    width: 670px;
+    height: 300px;">
+<form action="theaterAdmin" class="container" style="position: relative; left: 60px; top: 20px;">
 <div class="row g-3 align-items-center">
   <div class="col-auto">
     <label for="inputPassword6" class="col-form-label" >movieId</label>
@@ -29,81 +32,71 @@
     </span>
   </div>
 </div>
+<div style="margin-top: 10px;">
 locationName
-<select id="location_id" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px; height: 9%">
-  <option value="101">HICGV강남</option>
-  <option value="102">HICGV명동</option>
-  <option value="103">HICGV구로</option>
-  <option value="104">HICGV홍대</option>
-  <option value="105">HICGV송파</option>
-  <option value="106">HICGV김포</option>
-  <option value="107">HICGV이천</option>
-  <option value="108">HICGV용인</option>
-  <option value="109">HICGV평촌</option>
-  <option value="110">HICGV계양</option>
-  <option value="111">HICGV주안</option>
-  <option value="112">HICGV연수</option>
-  <option value="113">HICGV강릉</option>
-  <option value="114">HICGV원주</option>
-  <option value="115">HICGV춘천</option>
-  <option value="116">HICGV대전</option>
-  <option value="117">HICGV세종</option>
-  <option value="118">HICGV청주</option>
+<select id="location_id" class="form-select" name="location_id" aria-label="Default select example" style="width: 200px; height: 4%">
+  <c:forEach items="${selLoc }" var="selLoc">
+  <option value="${selLoc.location_id }">${selLoc.location_name }</option>
+  </c:forEach>
 </select>
-
-theaterRoomName 
-<select id="theaterRoom_id" class="form-select" name="theaterRoom_id" aria-label="Default select example" style="width: 200px; height: 9%;">
-  <option value="1">강남1관</option>
-  <option value="2">강남2관</option>
-  <option value="3">강남3관</option>
-  <option value="4">명동1관</option>
-  <option value="5">명동2관</option>
-  <option value="6">명동3관</option>
-  <option value="7">구로1관</option>
-  <option value="8">구로2관</option>
-  <option value="9">구로3관</option>
-</select>
-
-startDate
-<input id="start_date" name="start_date" type="datetime-local" required/>
-<input type="submit" id="submitBtn" value="입력" />
-
-</form>
-
-
-
-<div id="moviesList" style="float: right;">
-
 </div>
+<div style="margin-top: 10px;">
+theaterRoomName 
+<select id="theater_room_id" class="form-select" name="theater_room_id" aria-label="Default select example" style="width: 200px; height: 5%;" >
+  <c:forEach items="${selRoom }" var="selRoom">
+  <option key="default-empty" hidden>상영관을 선택해주세요.</option>
+  <option class="theater_room_id-option"  value="${selRoom.location_id }" value2="${selRoom.theater_room_id }" hidden=true >${selRoom.room_name }  </option>
+  </c:forEach>
+</select>
+</div>
+<div style="margin-top: 10px;">
+startDate <br />
+<input id="start_date" name="start_date" type="datetime-local" required/>
+<input type="button" id="insertBtn" value="입력" />
+</div>
+</form>
+</div>
+
+<!-- 해당 날짜에 상영되는 영화리스트 ajax로 가져오기 위한 div -->
+<div id="moviesList" style="float: right; position: relative; bottom: 520px; right: 500px;"></div>
 
 <script>
 
-	
-
 	$(function() {
-		$('#submitBtn').click(function() {
-			var locationId=$("#location_id option:selected").val();
-			var roomId=$("#theaterRoom_id option:selected").val();
+		$('#insertBtn').click(function() {
 			var movieId=document.getElementById('movie_id').value;
+			var locationId=$("#location_id option:selected").val();
+			var roomId=$("#theater_room_id option:selected").val();
 			var startDate=document.getElementById('start_date').value;
+			var theater_room_id = $("#theater_room_id option:selected").attr('value2');
+	
 			if (locationId!=null && roomId!=null && movieId!=null && startDate!=null) {
-			alert(movieId);
-			alert(locationId);
-			alert(roomId);
-			alert(startDate);
+		
 			location.href="theaterInsertAdmin?movie_id="+movieId
-					+"&location_id="+locationId+"&theaterRoom_id="+roomId+"&start_date="+startDate;
+					+"&location_id="+locationId+"&theater_room_id="+theater_room_id+"&start_date="+startDate;
 				
 				return true;
-				
 			} else {
+				
 				return false; 
 			}
 		})
 	})	
 	
-	$(document).ready(
-		function() {
+	$('#location_id').on('click', function (){
+		var selectedId1 = $("#location_id").val();		
+			$('.theater_room_id-option').each( function() {
+				console.log($(this).val());
+				$(this).attr("hidden",true);
+				if($(this).val()== selectedId1 ){
+					$(this).attr("hidden",false);
+					console.log($(this).children("input[type=hidden]").val())
+				}
+			})
+	})
+	
+	$(document).ready( function() {
+			
 			$("input").keyup(function() {
 				var movieId=document.getElementById('movie_id').value;
 				if (movieId.length>=8) {
@@ -116,8 +109,8 @@ startDate
 					contentType: "application/json; charset=UTF-8",
 					success : function(movieInfo) {
 						$('#moviesList').append(
-							"<ul><li><img src="+movieInfo.image_url 
-							+" style='width: 200px; height: 270px' /></li><li>MOVIE_ID :"
+							"<ul><li><img src='"+movieInfo.image_url 
+							+"' style='width: 200px; height: 270px' /></li><li>MOVIE_ID :"
 							+movieInfo.movie_id 
 							+"</li><li>TITLE_KOR : "+movieInfo.title_kor 
 							+"</li><li>OPENING_DATE : "+movieInfo.opening_date 
