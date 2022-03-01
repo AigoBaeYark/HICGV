@@ -224,54 +224,30 @@ public class TicketController {
 		System.out.println("======= < pass by goPay() > =======");
 		
 		
-		String minute = request.getParameter("minute");
-		System.out.println("locid : " + minute);
+		String movie_id = request.getParameter("movie_id");
+		System.out.println("movie_id : " + movie_id);
 		
-		String seatsDis = request.getParameter("seatsDis");
-		System.out.println("locid : " + seatsDis);
+		String location_name = request.getParameter("location_name");
+		System.out.println("location_name : " + location_name);
 		
-		String movieid = request.getParameter("movieid");
-		System.out.println("locid : " + movieid);
+		String location_id = request.getParameter("location_id");
+		System.out.println("location_name : " + location_id);
 		
-		
-/*		System.out.println("seatsDis : "+ seatsDis);
-*/		
-/*		String movieid = request.getParameter("movieid");
-		System.out.println("movieid : "+movieid); 
-		String theaterid = request.getParameter("theaterid");
-		System.out.println("theaterid : "+theaterid);
-		String locid = request.getParameter("locid");
-		System.out.println("locid : "+locid);
-		String tday = request.getParameter("tday");
-		System.out.println("tday : "+tday);
-		String hour = request.getParameter("hour");
-		System.out.println("hour : "+hour);
-		String minute = (String) request.getAttribute("minute");
-		System.out.println("minute : "+minute);
 		String schedule_id = request.getParameter("schedule_id");
-		System.out.println("schedule_id : "+schedule_id); //예약 내역을 가져오기 위함
+		System.out.println("schedule_id : " + schedule_id);
 		
+		String seat = request.getParameter("seat");
+		System.out.println("seat : "+seat);
 		
-		String seatsDis2 = request.getParameter("seatsDis"); //선택좌석명
-		System.out.println("seatsDis : "+request.getParameter("seatsDis"));
-		String numberDis = request.getParameter("numberDis"); //선택좌석수
-		System.out.println("numberDis : "+request.getParameter("numberDis"));
-		String priceDis = request.getParameter("priceDis"); //결제예정금액
-		System.out.println("priceDis : "+request.getParameter("priceDis"));*/
+		String person = request.getParameter("person");
+		System.out.println("person : "+person);
 		
-		//String seatsDis	= request.getParameter(name)
+		String seat_price = request.getParameter("seat_price");
+		System.out.println("seat_price : "+seat_price);
 		
+		String start_date = request.getParameter("start_date");
+		System.out.println("seat_price : "+start_date);
 		
-		
-		
-		
-		/*HashMap<String, String> sendDataMap = new HashMap<String, String>();
-		sendDataMap.put("movieid", movieid);
-		sendDataMap.put("theaterid", theaterid);
-		sendDataMap.put("locid", locid);
-		sendDataMap.put("tday", tday);
-		sendDataMap.put("hour", hour);
-		sendDataMap.put("minute", minute);*/
 		
 		return "redirect:ticket";
 		

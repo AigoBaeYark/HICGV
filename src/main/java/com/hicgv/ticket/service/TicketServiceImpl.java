@@ -180,12 +180,14 @@ public class TicketServiceImpl implements TicketService {
 			timeMap2.put("endMinute", endMinute);
 			
 
+			timeMap2.put("start_date",ticketListDto.getStart_date()); // 'n'관
 			timeMap2.put("room_name", ticketListDto.getRoom_name()); // 'n'관
 			timeMap2.put("location_name", ticketListDto.getLocation_name()); // 상영관이름
 			timeMap2.put("location_id", ticketListDto.getLocation_id()); // 상영관ID
 			timeMap2.put("max_seat", ticketListDto.getMax_seat()); // 좌석수
 			timeMap2.put("theater_id", ticketListDto.getTheater_id()); // 상영지역ID
 			timeMap2.put("running_time", ticketListDto.getRunning_time()); // 러닝타임
+			timeMap2.put("movie_id", ticketListDto.getMovie_id()); // 영화 고유 아이디
 			timeMap2.put("title_kor", ticketListDto.getTitle_kor()); // 영화명(국문)
 			timeMap2.put("schedule_id", ticketListDto.getTheater_schedule_id()); // 상영시간 ID
 			timeMap2.put("tday", ticketListDto.getDay()); // 날짜

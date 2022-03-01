@@ -45,7 +45,7 @@
 				
 				<!-- 로그인 상태면 로그아웃 버튼만 보이게 -->
 				<%if(session.getAttribute("id")==null) {%>                  
-	            <li><a href="loginForm" class="hi-icon hi-icon-locked" id="set-1"><img src="${path }/resources/img/main/loginPassword.png"  alt="로그인"><span>로그인</span></a></li>
+	            <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
 	            <li><a href="joinForm"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
 	            <%} else {%>  
 	              <li><a href="logout"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그아웃</span></a></li>

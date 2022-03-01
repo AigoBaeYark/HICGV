@@ -89,7 +89,7 @@ public class getMoviesCrawlFinal {
 	private static final String MOVIELISTURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
 	private static final String MOVIEINFOURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
 	private static final String ACTORSURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json";
-	private static final String MOVIEAPIKEY2 = "8c88363d7a07a5572ce618bb71149e90";
+	private static final String MOVIEAPIKEY2 = "8c88363d7a07a5572ce618bb71149e90";	// 영화 배우들 갱신할때만 사용 - 하루 3천회 제한 때문
 	private static final String MOVIEAPIKEY = "bddfb4542fc6932260fc641a8e03c6d3";
 
 	// 네이버
