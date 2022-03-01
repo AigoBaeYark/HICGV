@@ -32,7 +32,7 @@
 				<div class="col-lg-6 ab-left pl-lg-4 mt-lg-0 mt-5">
 					<h3 class="hny-title">${moviesdv.title_kor }</h3>
 					<p class="mt-3">${moviesdv.description }</p>
-					<p> 연령 : ${moviesdv.age_limit }, &nbsp; 러닝타임 : ${moviesdv.running_time }, &nbsp; 제작국가 : ${moviesdv.nation }</p>
+					<p> 연령 : ${moviesdv.age_limit }, &nbsp; 러닝타임 : ${moviesdv.running_time }분 </p>
 					<p> 개봉 : ${moviesdv.opening_date}</p>
 					<div class="ready-more mt-4">
 						<a href="ticket" class="btn read-button">예매하기 <span class="fa fa-angle-double-right ml-2" aria-hidden="true"></span></a>
@@ -41,6 +41,16 @@
 			</div>
 			
 			<div class="w3l-counter-stats-info text-center">
+				<div class="stats_left">
+					<div class="counter_grid">
+						<div class="icon_info">
+							<a href="#actor">
+							<p class="counter">감독/배우</p>
+							<h4>바로가기</h4>
+							</a>		
+						</div>
+					</div>
+				</div>
 				<div class="stats_left">
 					<div class="counter_grid">
 						<div class="icon_info">
@@ -61,16 +71,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="stats_left">
-					<div class="counter_grid">
-						<div class="icon_info">
-							<a href="#">
-							<p class="counter">5063</p>
-							<h4>Year of Use</h4>
-							</a>		
-						</div>
-					</div>
-				</div>
 			</div>
 
 		</div>
@@ -78,6 +78,25 @@
  
  
 <!-- 트레일러시작 -->
+	<a id="actor"></a> 
+		<div class="sect-stillcut">
+                <div class="heading">
+                    <h4>감독/배우</h4><span class="count"><strong id="stillcut_current"></strong></span><a class="link-more">+이모지</a>
+                </div> 
+                <div class="slider-wrap">
+                    <div class="" id="still_motion">
+                        <div class="item-wrap">
+                            <div class="item">
+                               	감독 : ${moviesdv.director } <br>
+                               	배우 : ${moviesdv.actor }
+                            </div>
+                        </div>
+                    </div>  
+            	</div>
+		</div>
+
+
+
 	<a id="trailer"></a> 
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
@@ -116,36 +135,24 @@
                 <div class="heading">
                     <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more">+이모지</a>
                 </div>
+                <div id="poster-wrap" style="overflow-x: scroll; display: flex;">
+                
              <c:forEach items="${poster }" var="pos"> <!-- items="poster" 로 써서 오류남 -->
-                <div class="slider-wrap">
-                    <div class="" id="still_motion">
-                        <div class="item-wrap">
-                            <div class="item">
-                                <img src="${pos.movie_poster_url }" alt="${pos.movie_poster_id }" onerror="errorImage(this)" />
+                <div  style="">
+                    <div  id="still_motion">
+                        <div >
+                            <div class="item" style="">
+                                <img src="${pos.movie_poster_url }" alt="${pos.movie_poster_id }" onerror="errorImage(this)" style="width: 100%"/>
+            	&nbsp;
                             </div>
                         </div>
                     </div>  
             	</div><!-- .sect-stillcut -->
 			</c:forEach>
+			</div>
 		</div>
 		
-		<a id="내용추가할거넣기이"></a> 
-		<div class="sect-stillcut">
-                <div class="heading">
-                    <h4>내용추가할거넣기이</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more">+이모지</a>
-                </div>
-             <%-- <c:forEach items="${내용추가할거넣기이 }" var="pos"> --%> <!-- items="poster" 로 써서 오류남 -->
-                <div class="slider-wrap">
-                    <div class="" id="still_motion">
-                        <div class="item-wrap">
-                            <div class="item">
-                               <%--  ${movieApi.rankOldAndNew } --%>
-                            </div>
-                        </div>
-                    </div>  
-            	</div><!-- .sect-stillcut -->
-			<%-- </c:forEach> --%>
-		</div>
+		
 		
 
 	</div>

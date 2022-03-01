@@ -77,12 +77,11 @@
 
 				<div class="w3ls-reg">
 					<!-- input fields -->
-					<div class="inputForm">
+					<div class="inputForm" style="display: flex;">
 					
-						<h2>인원/좌석선택</h2>
 						<div class="mr_agilemain">
 							<div class="Numseats">
-								<label> 인원수 <span>*</span>
+								<label>인원 수 입력 <span>*</span>
 								</label> <input type="number" id="Numseats" required min="1">
 							</div>
 							<input type="hidden" name="movieid" value="무비아이디" />
@@ -95,7 +94,7 @@
 						<div class="col-6">
 							<!-- 영화정보를 넘어오게 해야함 -->
 							<c:forEach items="${ticketseat }" var="seat">
-								<h2>선택정보</h2>
+								<h2 style="color: #fff;">선택정보</h2>
 
 								<p>
 									${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name }
@@ -118,7 +117,7 @@
 						</div>
 					</div>
 
-					<button type="button" onclick="takeData()">확인</button>
+					
 
 
 					<!-- //input fields -->
@@ -129,6 +128,8 @@
 						<li class="smallBox redBox">예매완료좌석</li>
 
 						<li class="smallBox emptyBox">선택가능좌석</li>
+						
+						<button type="button" onclick="takeData()" style=" left: 650px; top: 165px;">확인</button>
 					</ul>
 
 
@@ -202,10 +203,10 @@
 								</c:forEach>
 							</div>
 						</table>
-						<%-- moviesdetailview?movie_id=${dv.movieCd } --%>
+						
 
 						<button type="button" onclick="updateTextArea()">좌석지정</button>
-						<input type="submit" value="*결제하기(임시로 만듦)*" />
+						<br><input type="submit" value="결제하기" />
 
 
 					</div>
