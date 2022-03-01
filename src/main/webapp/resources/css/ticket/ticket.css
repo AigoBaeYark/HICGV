@@ -2,6 +2,15 @@ body{
 	background-color: #fcfcf0;
 }
 
+.seatimg{
+	/*  적용안되서 인라인에다가 삽입
+	background-image:url("resources/img/ticket/seatimg.jpg"); */
+	max-width: 100%;
+	background-size: 1000px 600px;
+    background-repeat: no-repeat;
+}
+
+
 /* section */
 #sec{
 	/* width: 70%; */
@@ -9,6 +18,7 @@ body{
 	height: 400px;
 	/* background-color: #fef8dc; */
 	background-color: white;
+	opacity: 0.75;
 	margin: 50px auto;
 	/* border: 5px;
 	border-style: solid; */
@@ -141,4 +151,55 @@ body{
     margin: 30px 0;
 }
 
+/* <------------------------박스들제목(?)-------------------------> */
+h3{
+	font-size: 2.9em;
+    text-transform: uppercase;
+    color: #D0283D;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0.8em 1vw 0.9em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
 
+
+
+/* <------------------------티켓타임-------------------------> */
+
+a.btn{
+    display:block;
+    width:80px;
+    line-height:10px;
+    text-align:center;
+    background-color:#B8272C;
+    color:white;
+    font-size: 1em;
+}
+
+.starttime {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.starttime .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color:#B89EAA;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.starttime:hover .tooltiptext {
+  visibility: visible;
+}

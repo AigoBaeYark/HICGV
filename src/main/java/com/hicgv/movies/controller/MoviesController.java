@@ -38,7 +38,7 @@ public class MoviesController {
 		System.out.println("========= < pass by movies() > =========");
 
 		model.addAttribute("movies",moviesService.getMoviesList()); 
-		model.addAttribute("dateviewer", moviesService.getDateViewer());
+		
 		model.addAttribute("poster", moviesService.getMoviePoster());
 	
 	/*movielist받기 api, 크롤링*/		
@@ -58,11 +58,14 @@ public class MoviesController {
 		//영화상세정보
 		model.addAttribute("moviesdv",moviesService.getMoviesDailyViewer(movie_id));  
 		
+		//api내 정보
+		model.addAttribute("movieApi", moviesService.getMovieApi());
+		
 		//영화배우정보
-		model.addAttribute("actor", moviesService.getActors(movie_id));
+		//model.addAttribute("actor", moviesService.getActors(movie_id));
 		
 		//감독정보
-		model.addAttribute("director", moviesService.getDirector(movie_id));
+		//model.addAttribute("director", moviesService.getDirector(movie_id));
 		
 		//트레일러
 		for (MovieTrailerDto movieTrailerDto : moviesService.getTrailer(movie_id)) {

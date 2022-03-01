@@ -16,7 +16,7 @@ import com.hicgv.movies.dto.MovieDirectorDto;
 import com.hicgv.movies.dto.MoviePosterDto;
 import com.hicgv.movies.dto.MovieTrailerDto;
 import com.hicgv.movies.dto.MoviesDto;
-import com.hicgv.movies.util.GetDateViewer;
+import com.hicgv.movies.util.GetMovieApi;
 import com.hicgv.movies.util.GetMoivePoster;
 
 @Service
@@ -32,8 +32,8 @@ public class MoviesServiceImpl implements MoviesService{
 	}
 	
 	@Override
-	public ArrayList<Map<String, String>> getDateViewer() {
-		GetDateViewer getDateViewer = new GetDateViewer(); //겟데이터뷰에 생성자 없애서 여기 공란
+	public ArrayList<Map<String, String>> getMovieApi() {
+		GetMovieApi getDateViewer = new GetMovieApi(); //겟데이터뷰에 생성자 없애서 여기 공란
 		
 		SimpleDateFormat day = new SimpleDateFormat("yyyyMMdd");
 		
@@ -45,7 +45,7 @@ public class MoviesServiceImpl implements MoviesService{
         String strDay = day.format(cal.getTime());
 		
 		
-		return getDateViewer.getDateViewer(strDay);
+		return getDateViewer.getMovieApi(strDay);
 	}
 
 	@Override

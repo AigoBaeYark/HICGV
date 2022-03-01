@@ -22,7 +22,4 @@ public interface MoviesDao {
 	public int postercnt(String movie_id); //포스터갯수
 	
 	
-	
-	// public ArrayList<MovieTrailerDto> movieTrailer(String movie_id); --추후추가예정
-	
 }

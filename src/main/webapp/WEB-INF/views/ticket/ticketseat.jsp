@@ -38,13 +38,13 @@
 	crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
-<link rel="stylesheet" href="resources/css/ticket/ticketseat.css" />
 <link rel="stylesheet"
 	href="resources/css/ticket/jquery.seat-charts.css" />
-<link rel="stylesheet" href="resources/css/ticket/font-awesome.css" />
 <link
 	href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
 	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/ticket/font-awesome.css" />
+<link rel="stylesheet" href="resources/css/ticket/ticketseat.css" />
 <!-- //fonts -->
 </head>
 
@@ -85,7 +85,7 @@
 								<label> 인원수 <span>*</span>
 								</label> <input type="number" id="Numseats" required min="1">
 							</div>
-														<input type="hidden" name="movieid" value="무비아이디" />
+							<input type="hidden" name="movieid" value="무비아이디" />
 							
 							<div class="TicketPrice">
 								<input type="hidden" id="TicketPrice" value="9000" required>
@@ -102,17 +102,14 @@
 									&nbsp; | &nbsp; ${seat.room_name } <br> ${seat.year }.
 									${seat.month }. ${seat.day } &nbsp; ${seat.hour }:${seat.minute }
 									~ ${seat.endHour }:${seat.endMinute }
-									
-									
+										
 									<!-- pay쪽으로 보낼 정보들 -->
 									<input type="hidden" value="${seat.movie_id }" name="movie_id"  />
 									<input type="hidden" value="${seat.location_name }" name="location_name"  />
 									<input type="hidden" value="${seat.schedule_id }" name="schedule_id"  />
 									<input type="hidden" value="${seat.location_id }" name="location_id"  />
 									<input type="hidden" value="${seat.title_kor }" name="title_kor"  />
-									<input type="hidden" value="${seat.start_date }" name="start_date"  />
-							
-										
+									<input type="hidden" value="${seat.start_date }" name="start_date"  />		
 								</p>
 							</c:forEach>
 							
@@ -121,7 +118,7 @@
 						</div>
 					</div>
 
-					<button type="button" onclick="takeData()">Start Selecting</button>
+					<button type="button" onclick="takeData()">확인</button>
 
 
 					<!-- //input fields -->
@@ -207,8 +204,7 @@
 						</table>
 						<%-- moviesdetailview?movie_id=${dv.movieCd } --%>
 
-						<button type="button" onclick="updateTextArea()">Confirm
-							Selection</button>
+						<button type="button" onclick="updateTextArea()">좌석지정</button>
 						<input type="submit" value="*결제하기(임시로 만듦)*" />
 
 
