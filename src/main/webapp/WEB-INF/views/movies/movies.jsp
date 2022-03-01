@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:import url="../common/header.jsp"></c:import>
 <link rel="stylesheet" href="resources/css/reset.css" />
-<link rel="stylesheet" href="resources/css/movies/movies.css" />
 <link rel="stylesheet" href="resources/css/main/style-starter.css" />
+<link rel="stylesheet" href="resources/css/movies/movies.css" />
 <script src="resources/js/main/easyResponsiveTabs.js"></script>
 <script src="resources/js/main/owl.carousel.js"></script>
 <script src="resources/js/main/main.js"></script>

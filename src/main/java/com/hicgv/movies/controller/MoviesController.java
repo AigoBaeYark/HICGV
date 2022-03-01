@@ -115,22 +115,7 @@ public class MoviesController {
 	
 	
 	
-	
-	/*스틸컷*/
 
-	
-//	/*배우 상세보기는 아직 하지말긩*/
-//		
-//	}
-//	
-	
-	
-	
-	/*model.addAttribute("moviesdetailview", dao.moviesDetailview(movie_id));
-	model.addAttribute(trailer, dao.movieTrailer(movie_id));
-	model.addAttribute(cut, arg1);
-	model.addAttribute(actor, arg1);
-	model.addAttribute(director, arg1); --트레일러 추후 추가예정 */
 	
 	
 }

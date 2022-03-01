@@ -81,7 +81,7 @@
 					
 						<div class="mr_agilemain">
 							<div class="Numseats">
-								<label>인원 수 입력 <span>*</span>
+								<label>인원선택 <span>*</span>
 								</label> <input type="number" id="Numseats" required min="1">
 							</div>
 							<input type="hidden" name="movieid" value="무비아이디" />
@@ -97,9 +97,9 @@
 								<h2 style="color: #fff;">선택정보</h2>
 
 								<p>
-									${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name }
-									&nbsp; | &nbsp; ${seat.room_name } <br> ${seat.year }.
-									${seat.month }. ${seat.day } &nbsp; ${seat.hour }:${seat.minute }
+									${seat.title_kor } &nbsp;  <br> 
+									${seat.location_name } &nbsp; | &nbsp; ${seat.room_name } <br> 
+									${seat.year }.${seat.month }. ${seat.day } &nbsp; ${seat.hour }:${seat.minute }
 									~ ${seat.endHour }:${seat.endMinute }
 										
 									<!-- pay쪽으로 보낼 정보들 -->
@@ -284,7 +284,7 @@
 		}
 
 		$("input[type=submit]").on('click', function() {
-			alert('확인');
+			alert('결제페이지로 이동합니다.');
 			//$('input').attr('disabled',false);
 		})
 

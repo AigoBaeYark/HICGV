@@ -18,7 +18,7 @@ body{
 	height: 400px;
 	/* background-color: #fef8dc; */
 	background-color: white;
-	opacity: 0.75;
+	opacity: 0.9;
 	margin: 50px auto;
 	/* border: 5px;
 	border-style: solid; */
@@ -147,11 +147,11 @@ h3{
     text-transform: uppercase;
     color: #D0283D;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-align: center;
     margin: 0.8em 1vw 0.9em;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 

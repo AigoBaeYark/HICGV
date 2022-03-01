@@ -202,10 +202,10 @@ input, select, img {
 
 /* 사진이미지 */
 .img-fluid {
-    width: 450px;
-    height: 700px;
+    width: 160px;
+    height: 300px;
 }
-}
+
 img {
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -221,8 +221,8 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
-    grid-gap: 30px;
-    margin-top: 56px;
+    grid-gap: 20px;
+    margin-top: 20px;
 }
 
 .w3l-counter-stats-info .counter_grid {
@@ -231,6 +231,9 @@ img {
     text-align: center;
     border-radius: 6px;
     cursor: pointer;
+    height: 110px;
+    line-height: 80px;
+    
 }
 
 .w3l-counter-stats-info p {
