@@ -163,8 +163,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public String grade(String id, String password) {
-		return null;
+	public int grade(String id, String password) {
+		Map<String, String> Map =new HashMap<String, String>();
+		Map.put("id", id);
+		Map.put("password", password);
+		return sqlSession.selectOne(nameSpace + ".grade",Map);
 	}
 
 	@Override

@@ -8,42 +8,53 @@
 <link rel="stylesheet" href="resources/css/reset.css" />
 <title>Insert title here</title>
 </head>
+<div style="height: 300px;">
+	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+</div>
 <body>
 
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
-	<div style="margin: 50px">
-		<!-- customerDelete 시작 -->
-		<div style="border: solid; 1 px; margin: 10px;">
-			<div>
-				<h1>ICGV웹사이트의 회원탈퇴에 동의하시겠습니까?</h1>
-				<div>
-					<h3>HICGV 회원 탈퇴하시면 해당 웹사이트의 이용이 중지됩니다.</h3>
-					<div>탈퇴를 신중하게 생각하시고 진행해주세요.</div>
-					<div>
-						<form action="delete">
-						<div>
-						${id }님 회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.
-						</div>
-						<div>
-						아이디 <input type="text" name="id" /> <br />
-						비밀번호 <input type="password" name="password" /> <br />
-						</div>
-							<input type="submit" value="회원탈퇴"/>
-						</form>
-						<form action="home" method="post">
-							<button type="submit">취소</button>
-						</form>
-					</div>
-				</div>
+<div align="center">
+	<div class="wrap-login">
+		<div class="sect-login">
+			<div class="login-top">
+				<h2 align="center" class="login">회원탈퇴</h2>
 			</div>
+			<div class="box-login">
+				<h3 class="hidden">회원탈퇴</h3>
+				<h1>HICGV웹사이트의 회원탈퇴에 동의하시겠습니까?</h1>
+				<div>${id }님 회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.</div>
+				<form action="delete" method="post">
+					<div style="margin-top: 10px; margin-bottom: 10px;">
+						<h5 align="center" style="font-size: 20px;"></h5>
+					</div>
+					<div class="login">
+						<div style="margin: 5px;">
+							<input type="text" id="" name="id"
+								style="height: 50px; width: 80%; border-radius: 15px; background-color: rgba(194, 240, 240);"
+								placeholder="아이디를 입력해주세요" pattern="{3,19}">
 
+						</div>
+						<div style="margin: 5px;">
+							<input type="password" id="" name="password"
+								style="height: 50px; width: 80%; border-radius: 15px; background-color: rgba(194, 240, 240);"
+								placeholder="패스워드를 입력해주세요">
+						</div>
+					</div>					
+					<div class="loginbtn" align="center" style="margin-top: 10px;">
+						<button type="submit" class="btn btn-primary" name="loginBtn"
+							style="width: 30%;">회원탈퇴</button>
+					</div>										
+				</form>
+				<form action="main">
+				<div class="loginbtn" align="center" style="margin-top: 10px;">
+						<button type="submit" class="btn btn-primary" name="loginBtn"
+							style="width: 30%;">취소</button>
+					</div>
+					</form>
+			</div>
 		</div>
 	</div>
-	<!-- customerDelete 끝 -->
-
-
+</div>
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
 	</div>

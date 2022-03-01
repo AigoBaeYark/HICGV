@@ -11,25 +11,15 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
 <title>Insert title here</title>
-
-<style>
-a {
-	color: white;
-}
-
-</style>
-
-</head>
-<body>
-	<div style="height: 300px;">
+	<div style="height: 250px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
 
-	<h3 align="center">공지사항</h3>
 
-	<div class="table-responsive">
-		<table class="table" style="text-align: center;">
-		<div>
+</head>
+<body>
+
+	<h3 align="center">공지사항</h3>
 			<c:choose>
 				<c:when test="${no }">
 					<input type="checkbox" name="searchType" value="btitle" checked />
@@ -50,10 +40,9 @@ a {
 			<label>제목</label> <input type="text" name="sk" style="width: 150px;"
 				maxlength="50" value="" /> <input type="submit" name="btn_search"
 				value="검색" />
-				<div><!-- <form action="noticeWriteForm" method="post"> -->
-				<button type="submit" class="btn btn-primary"><a href="noticeWriteForm?id=${id }">새글작성</a></button><!-- </form> -->
-				</div>
-		</div>
+	<div class="table-responsive">
+		<table class="table" style="text-align: center;">
+		
 		<div style="margin: 30px;"></div>
 	</form>
 			<tr>
@@ -76,7 +65,6 @@ a {
 		</table>
 	</div>
 	총 글 개수 : ${totRowCnt }
-	<br />
 	<form id="form1" name="form1" action="" method="post">
 		<c:if test="${searchVO.totPage>1 }">
 			<c:if test="${searchVO.page>1 }">
@@ -99,8 +87,15 @@ a {
 				<a href="noticeList?page=${searchVO.totPage }">[마지막]</a>
 			</c:if>
 		</c:if>
+<div>
 
-
+				
+		
+		<div align="center" style="margin-bottom: 10px;">
+				<button type="submit" class="btn btn-primary" style="width: 150px; height: 50px;">
+				<a style="color: white;" href="noticeWriteForm?id=${id }">새글작성</a></button><!-- </form> -->
+				</div>
+</div>
 
 	<div style="clear: both;">
 		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>

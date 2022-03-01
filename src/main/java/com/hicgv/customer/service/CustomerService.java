@@ -33,5 +33,6 @@ public interface CustomerService {
 	public String getAnswer(String answer);
 	
 	public String forgetId(String phone_number, String date_birth);
-
+	public int getgrade(String id, String password);
+	
 }

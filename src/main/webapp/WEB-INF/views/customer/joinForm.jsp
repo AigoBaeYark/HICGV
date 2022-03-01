@@ -8,27 +8,27 @@
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
 <title>Insert title here</title>
-</head>
-<body>
-
-
-
 	<div style="height: 300px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	<div align="center" style="width: 600px; position: relative; left: 600px;">
+</head>
+<body>
+
+	<div align="center"
+		style="width: 600px; position: relative; left: 600px;">
 		<div>
 			<div>
-
 				<form action="joinCustomer" class="row g-3" method="post">
-				<!-- name을 dto의 필드명과 동일하게 -->
+					<!-- name을 dto의 필드명과 동일하게 -->
 					<div class="wrap wd668">
 						<div class="container">
 							<div class="form_txtInput">
 								<h2 class="sub_tit_txt">회원가입</h2>
 								<p class="exTxt">
-									회원정보 수정 시 아이디는 변경이 불가능합니다. <br />
-								</p>
+								<div class="exform_txt">
+									<span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span>
+								</div>
+
 								<div class="join_form">
 									<table>
 										<colgroup>
@@ -40,7 +40,6 @@
 												<th><span>아이디</span></th>
 												<td><input type="text" name="id"
 													placeholder="사용할 아이디를 입력하세요."></td>
-												<td><input type="button" value="중복확인" /></td>
 											</tr>
 											<tr>
 												<th><span>비밀번호</span></th>
@@ -74,24 +73,17 @@
 											<tr>
 												<th><span>질문</span></th>
 												<td><input type="text" name="question"
-													placeholder="질문을 입력해주세요.ex)가장 좋아하는 색상은?"></td>
+													placeholder="ex) 가장 좋아하는 색상은?"></td>
 											</tr>
 											<tr>
 												<th><span>답</span></th>
 												<td><input type="text" name="answer"
-													placeholder="답을 입력해주세요.ex)파랑"></td>
+													placeholder="ex) 파랑"></td>
 											</tr>
 											<tr class="email">
 												<th><span>이메일</span></th>
-												<td><input type="text" name="email" class="email"
-													placeholder="">
-													</td>
-											</tr>
-											<tr>
-												<th><span>인증번호 확인</span></th>
-												<td><span><input type="text" class="send_number"
-													placeholder="10:00"></span><a href="javascript:;"
-													class="btn_confirm">인증번호 확인</a></td>
+												<td><input type="text" name="email"
+													placeholder="ooo@naner.com"></td>
 											</tr>
 											<tr>
 												<th><span>휴대폰 번호</span></th>
@@ -100,9 +92,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<div class="exform_txt">
-										<span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span>
-									</div>
+
 								</div>
 								<!-- join_form E  -->
 								<div class="agree_wrap">
@@ -131,7 +121,7 @@
 					</div>
 					<!-- container E -->
 
-					<div align="center" style="margin-top: 10px; margin-bottom: 10px;">
+					<div align="center" style="margin-top: 10px; margin-bottom: 50px;">
 						<div>
 							<button type="submit" class="btn btn-primary">회원가입</button>
 							<!-- <button type="submit">

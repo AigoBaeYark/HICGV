@@ -10,27 +10,29 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet">
+<div style="height: 220px;">
+	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+</div>
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="height: 300px;">
-		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-	</div>
-
-	<h3>customerList.jsp || ${id }님 환영합니다.</h3>
-<!-- <form action="noticeList"><h2><button type="submit">공지사항</button></h2></form> -->
-<h2><button type="submit"><a href="noticeList?=${id }">공지사항</a></button></h2>
+	<h3 align="center">${id }님 환영합니다.</h3>
+		<div class="" align="right" style="margin-top: 10px; margin-right: 5%; margin-bottom: 10px; ">
+			<button type="submit" class="btn btn-primary" style="width: 20%; "><a style="color: white;" href="noticeList?=${id }">공지사항</a></button>
+		</div>
+		
+	</form>
 	<form action="getcustomerList">
-		<th colspan="3"><button type="submit">회원정보조회</button></th>
-		<br /> 자세한 고객정보를 확인하려면 아이디를 클릭해주세요.
+		<div class="" align="right" style="margin-top: 10px; margin-right: 5%; margin-bottom: 10px; ">
+			<button type="submit" class="btn btn-primary" style="width: 20%;">회원정보조회</button>
+		</div>
+		
 	</form>
 
-	<div class="table-responsive">
+	<div class="table-responsive" style="margin-bottom: 10%;">
 		<table class="table">
-
-
-			<tr>
-				<th>user_id(가입순서)</th>
+			<tr align="center">
+				<th>회원번호</th>
 				<th>아이디</th>
 				<th>이름</th>
 				<th>연락처</th>
@@ -44,13 +46,10 @@
 				<th>질문</th>
 				<th>답</th>
 			</tr>
-			<%-- <c:forEach begin="1" end="10"> --%>
 			<c:forEach items="${list }" var="dto">
 				<tr>
 					<td>${dto.user_id }</td>
-					<td>
-					<a href="customerView?id=${dto.id }">${dto.id }</a>				
-					</td>
+					<td><a href="customerView?id=${dto.id }">${dto.id }</a></td>
 					<td>${dto.name }</td>
 					<td>${dto.phone_number }</td>
 					<td>${dto.nickname }</td>
@@ -90,7 +89,7 @@
 				<a href="customerList?page=${searchVO.totPage }">[마지막]</a>
 			</c:if>
 		</c:if>
-		<div>
+		<div style="margin-bottom: 5%;">
 			<c:choose>
 				<c:when test="${name }">
 					<input type="checkbox" name="searchType" value="btitle" checked />
@@ -115,8 +114,8 @@
 	</form>
 
 
-	<div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
 </body>
+<div style="clear: both;">
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+</div>
 </html>

@@ -5,43 +5,51 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/reset.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
+<link rel="stylesheet" href="resources/css/customer/notify.css" />
+<link rel="stylesheet" href="resources/css/customer/notify.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="resources/js/customer/notify.js"></script>
+<script src="resources/js/customer/notify.min.js"></script>
+<link rel="stylesheet" href="resources/css/customer/customer.css" />
 <title>Insert title here</title>
 
 
 </head>
 <body>
-<div style="height: 300px;">
-	<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
-</div>
+	<div align="center">
+		<form action="resetPwForm" method="post">
+			<div align="center" style="width: 50%; margin-top: 30px;">
+				<div class="form-group" style="font-size: 30px; margin-top: 50px;">
+					${id }님 질문에 알맞은 답을 입력하세요.
+				</div>
+				<div align="center" style="font-size: 20px; margin: 30px;">${question }</div>
 
+				<div style="margin: 5px;">
+					<input type="text" id="" name="answer"
+						style="height: 50px; width: 80%; border-radius: 15px; background-color: rgba(194, 240, 240);"
+						placeholder="답을 입력해주세요">
+				</div>
+				<div class="form-group" style="margin-bottom: 50px">
 
-<form action="resetPwForm" method="post">
-  <div class="form-group">
-    <label for="exampleInputPassword1">***** ${id }님 질문에 알맞은 답을 입력하세요. *****</label> <br /> 
-    <label for="">************ ${question } *************</label>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">답을 입력해주세요</label>
-    <input name="answer" type="text" class="form-control" id="exampleInputEmail1" placeholder="답을 입력해주세요">
-  </div>
-  <div class="form-group">
-
-	<input type="hidden" name = "id" value="${id }"/> <!--히든값을 주면 화면에서 표시되지 않음  -->
-  <button type="submit" class="btn btn-default">입력</button>
-  <button type="button" class="btn btn-default"><a href="home"></a>취소</button>
-  </div>
-</form>
-
+					<input type="hidden" name="id" value="${id }" />
+					<!--히든값을 주면 화면에서 표시되지 않음  -->
+					<button type="submit" class="btn btn-default" name="loginBtn">입력</button>
+					<button type="button" class="btn btn-default" name="loginBtn">
+						<a href="home"></a>취소
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
 
 
 </body>
-	<div style="clear: both;">
-		<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
-	</div>
+<div style="clear: both;">
+	<c:import url="/WEB-INF/views/common/footer.jsp"></c:import>
+</div>
 
 
 

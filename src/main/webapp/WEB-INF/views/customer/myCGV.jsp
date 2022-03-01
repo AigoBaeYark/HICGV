@@ -8,121 +8,172 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="resources/css/reset.css" />
 <link rel="stylesheet" href="resources/css/customer/customer.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Insert title here</title>
 
 </head>
-<style>
-</style>
 <body>
-	<div style="height: 300px;">
+	<div style="height: 200px;">
 		<c:import url="/WEB-INF/views/common/header.jsp"></c:import>
 	</div>
-	
-	<%-- <%CustomerDto dto = (CustomerDto) session.getAttribute("dto");%>
-	
-	<%=dto.getId() %> 님 안녕하세요 --%>
-	
-	<div><!--container 시작--> 
-	<div class="container-top">
-		<!--myCGV container-top 시작  -->
-		<div align="center"  style="margin-top: 50px;">
-		<h1 align="center" style="font-size: 50px;">HICGV_myCGV!!</h1>
-		<!-아이디 고객등급 div 시작-->
-					<div style="width: 500px; border: solid 1px;margin-top: 10px; font-size: 20px;">
-						<!--아이디 시작  -->
-						HICGV에 오신것을 환영합니다.
+	<style>
+div#s_left {
+	width: 200px;
+	height: 700px;
+	background-color: yellow;
+}
+
+.person_info_top {
+	font-size: 30px;
+	background-image: linear-gradient(to bottom, rgb(239, 239, 233 ),
+		rgba(239, 239, 233, 0.37));
+	height: 80px;
+	margin-top: 15px;
+}
+
+.person_info_down {
+	height: 300px;
+	/* border: solid 1px; */
+	width: 80%;
+	margin-left: 20%;
+}
+
+.name_info {
+	position: static;
+	width: 500px;
+	height: 50px;
+	margin-top: 50px;
+	margin-left: 30px;
+	float: left;
+	border-bottom: 1px solid blue;
+	font-size: 25px;
+}
+
+.grade_info {
+	width: 500px;
+	height: 30px;
+	margin-top: 10px;
+	margin-left: 30px;
+	font-size: 20px;
+}
+
+.container-down-left {
+	background-image: linear-gradient(to bottom, rgb(239, 239, 233 ),
+		rgba(239, 239, 233, 0.37));
+}
+.person_info_down{
+background-image: linear-gradient(to bottom, rgb(239, 239, 233 ),
+		rgba(239, 239, 233, 0.37));
+}
+.downcontainer-wrap{
+background-image: linear-gradient(to bottom, rgb(239, 239, 233 ),
+		rgba(239, 239, 233, 0.37));
+}
+.container-down-center{
+background-image: linear-gradient(to bottom, rgb(239, 239, 233 ),
+		rgba(239, 239, 233, 0.37));
+}
+</style>
+	<div style="width: 90%;margin-left: 80px;">
+		<!--container 시작-->
+		<div class="container-top" style="background-image: url(/cgv/resources/img/customer/popcon.jpg);">
+			<!--myCGV container-top 시작  -->
+			<div align="center" class="person_info_top">HICGV_myCGV에서 고객님의
+				소중한 정보를 확인하고 수정할 수 있습니다.</div>
+
+			<!--myCGV personinfo 시작  -->
+			<div class="person_info_down">
+
+				<div id="personinfo">
+					<!--myCGV personinfo-img 시작  / 프로필 사진 고객이름 아이디 고객등급-->
+					<div id="personinfo-img "
+						style="width: 200px; height: 200px; float: left; margin-left: 100px; margin-top: 50px;'">
+						<!--이미지div시작  -->
+						<img src="..." alt="프로필" class="img-thumbnail">
 					</div>
-					<!--이름 닉네임 끝  -->
-		</div>
-		
-		<!--myCGV personinfo 시작  -->
-		<div style="height:300px; margin: 50px; border: solid 1px;">
-			
-			<div id="personinfo" >
-				<!--myCGV personinfo-img 시작  / 프로필 사진 고객이름 아이디 고객등급-->
-				<div id="personinfo-img "
-						style="width: 200px; height: 200px; border: solid 1px; float: left; margin-left: 100px; margin-top: 50px;'">
-					<!--이미지div시작  -->
-					<img src="" alt="프로필.img" class="img-circle">
+					<!--이미지div끝 -->
+					<div>
+
+						<div style="float: left;">
+							<div align="left" class="name_info">
+								<!--등급div시작  -->
+								${myCGV.name }님 (아이디: ${id }) 닉네임:${myCGV.nickname }
+							</div>
+
+							<div align="left" class="grade_info">
+								<!--등급div시작  -->
+								고객님은 일반회원입니다.
+							</div>
+							<!--등급div끝  -->
+						</div>
+					</div>
+					<!-아이디 고객등급 div 끝-->
 				</div>
-				<!--이미지div끝 -->
+				<!--myCGV personinfo-sect 끝  -->
+			</div>
+			<!--myCGV personinfo 끝  -->
+		</div>
+		<!--myCGV container-top 끝  -->
+
+		<div id="downcontainer-wrap">
+			<!--myCGVcontainer-down 시작  -->
+			<!--myCGVcontainer-down-left 시작  -->
+			<div class="container-down-left"
+				style="height: 350px; width: 250px; float: left;">
 				<div>
-					
-					<div style="float: left;">
-					<div align="left" style="position:static; width: 500px; height:30px; margin-top: 50px; margin-left:30px ;float: left; border-bottom: 1px solid blue;">
-						<!--등급div시작  -->
-						${myCGV.name }님 (아이디: ${id }) 닉네임:${myCGV.nickname }
+					<div align="left" style="margin-left: 50px">
+						<!--회원정보 수정 / 회원탈퇴 div 시작 -->
+						<br />
+						<form action="modifyForm" method="post">
+							<button type="submit" class="btn btn-default">개인정보 변경</button>
+						</form>
+						<button type="submit" class="btn btn-default">
+							<a href="customerDeleteForm?id=${id }">회원탈퇴</a>
+						</button> <br />
+						<button type="submit" class="btn btn-default">
+							<a href="noticeList?=${id }">공지사항</a>
+						</button>
+
+
+
 					</div>
-		
-					<div align="left" style="width: 500px; height:30px; margin-top: 10px; margin-left:30px ;">
-						<!--등급div시작  -->
-						고객님은 일반회원입니다.
-					</div>
-					<!--등급div끝  -->
-					</div>
+					<!--회원정보 수정 / 회원탈퇴 div 끝 -->
+
+
 				</div>
-				<!-아이디 고객등급 div 끝-->
+
 			</div>
-			<!--myCGV personinfo-sect 끝  -->
-		</div>
-		<!--myCGV personinfo 끝  -->
-	</div>
-	<!--myCGV container-top 끝  -->
+			<!--myCGVcontainer-down-left 끝  -->
 
-	<div id="downcontainer-wrap">
-		<!--myCGVcontainer-down 시작  -->
-		<!--myCGVcontainer-down-left 시작  -->
-		<div class="container-down-left"
-			style="border: 1px solid; height: 350px; width: 250px;float: left;">
-			<div>
-			<div align="left" style="margin-left: 50px">
-				<!--회원정보 수정 / 회원탈퇴 div 시작 -->
-				<br />
-				<form action="modifyForm" method="post">
-				<button type="submit">개인정보 변경</button>
-				</form>				
-				<button type="submit">
-					<a href="customerDeleteForm?id=${id }">회원탈퇴</a>
-				</button>
-				<form action="logout">
-					<button type="submit">로그아웃</button>
-				</form>
-				<a href="">Q&A</a>
-				<br />
-				<a href="">공지사항</a>
-				
-			</div>
-			<!--회원정보 수정 / 회원탈퇴 div 끝 -->
-			
-			
-			</div>
+			<!--myCGVcontainer-down-center 시작-->
+			<div class="container-down-center"
+				style="width: 800px; float: left; margin-left: 50px; background-image: url(/cgv/resources/img/customer/film.jpg);">
 
-		</div>
-		<!--myCGVcontainer-down-left 끝  -->
-
-		<!--myCGVcontainer-down-center 시작-->
-		<div class="container-down-center"
-			style="border: solid; 1 px; width:800px; float: left; margin-left: 50px;">
-
-			<!--나의 예매내역/내가본영화 container 시작  -->
-			<div style="margin: 30px;">
-				<!--나의예매확인 버튼div 시작 -->
-				<div style="float: left; width: 200px; height: 200px;margin-left: 50px;">
-				<button type="submit" style="border: 1px solid; width: 150px; height: 150px">나의 예매내역</button>
-				</div><!--나의예매확인 버튼div 끝 -->
-				<div style="float: left;width: 200px; height: 200px;margin-left: 100px;">
-				<button style="border: 1px solid; width: 150px; height: 150px">내가본영화</button>
+				<!--나의 예매내역/내가본영화 container 시작  -->
+				<div style="margin: 30px;" >
+					<!--나의예매확인 버튼div 시작 -->
+					<div style="position:inherit;">
+					<div style="float:left; width: 200px; height: 200px; margin-left: 20px;background-image: url(/cgv/resources/img/customer/movieicon.jpg);">	</div>
+					<div style="float:left; width: 200px; height: 200px; margin-left: 100px;background-image: url(/cgv/resources/img/customer/watch.jpg); margin-left: 120px;">
+						
+					</div>
+					</div>
+				<!--나의예매확인 버튼div 끝 -->
+				<div>
+					<button class="btn btn-info" style="width: 150px; height: 50px; margin-left: 63px;">내가본영화</button>
+					<button type="submit" class="btn btn-info" style="width: 150px; height: 50px; margin-left: 140px;">나의 예매내역</button>
+					</div>	
 				</div>
+				<!--나의 예매내역/내가본영화 container 시작  -->
+
+
 			</div>
-			<!--나의 예매내역/내가본영화 container 시작  -->
-			
-			
+			<!--myCGVcontainer-down-center 끝-->
 		</div>
-		<!--myCGVcontainer-down-center 끝-->
+		<!--myCGVcontainer-down 끝  -->
 	</div>
-	<!--myCGVcontainer-down 끝  -->
-</div><!--container 끝-->
+	<!--container 끝-->
 
 
 	</div>

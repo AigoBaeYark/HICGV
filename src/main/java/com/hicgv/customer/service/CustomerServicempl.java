@@ -187,6 +187,9 @@ public class CustomerServicempl implements CustomerService {
 		
 		return dao.forgetId(phone_number, date_birth);
 	}
+	public int getgrade(String id, String password) {
+		return dao.grade(id, password);
+	}
 	/*@Override
 	public LinkedList<CustomerDto> customerList(int start,int end) {
 		
