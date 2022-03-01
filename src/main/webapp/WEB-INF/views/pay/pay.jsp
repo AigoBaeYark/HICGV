@@ -298,12 +298,6 @@ $('input:checkbox[id=pointAllCheck]').on('click', function() {
 			$('#tot_price').text(result);
 			$('span.price').text(result);
 		}
-		
-		/* if(tot_price < 0){
-		$('#tot_price').text(0);
-		$('span#userPoint').text(point - tot_price);
-
-		} */
 	}
 })
 

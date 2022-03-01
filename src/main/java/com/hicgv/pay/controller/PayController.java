@@ -20,6 +20,7 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
+	// DB pay테이블 가져오기
 	@RequestMapping("/pay")
 	public String reserve(HttpServletRequest request, Model model) {
 		System.out.println("======= << pay >> =======");
@@ -33,18 +34,14 @@ public class PayController {
 	
 		return "pay/pay";
 	}
+	// 좌석번호 넘기기
 	@RequestMapping("/getSeat")
 	public String getSeat(HttpServletRequest request, Model model) {
-		
-		//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기//좌석번호 넘기기
 		
 		System.out.println("======= << getSeat >> =======");
 		String theaterScheduleId="1000";
 		
 		System.out.println("theaterScheduleId : "+theaterScheduleId);
-		
-		String str = "";
-		String[] strArray;
 		
 		List<PayDto> payList =  payService.getSeat(theaterScheduleId);
 		

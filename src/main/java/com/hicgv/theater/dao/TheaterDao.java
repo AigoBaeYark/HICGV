@@ -14,4 +14,6 @@ public interface TheaterDao {
    public void setScheduleInfo(ScheduleDto scheduleDto);
    public MoviesInfoDto getMoviesList(String movieId);
    public ArrayList<ScheduleDto> getScheduleDate();
+	public ArrayList<LocationDto> selLocation();
+	public ArrayList<LocationDto> selRoom();
 }

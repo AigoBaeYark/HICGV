@@ -1,8 +1,12 @@
 package com.hicgv.theater.service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -50,6 +54,7 @@ public class TheaterServiceImpl implements TheaterService {
 			day = selectDate.substring(8, 10);
 			hour = selectDate.substring(11, 13);
 			minute = selectDate.substring(14, 16);
+			
 			System.out.println("startTime : " + selectDate);
 
 			// 상영 종료시간 계산
@@ -98,6 +103,7 @@ public class TheaterServiceImpl implements TheaterService {
 			timeMap.put("max_seat", moviesInfoDto.getMax_seat());
 			timeMap.put("movie_id", moviesInfoDto.getMovie_id());
 
+
 			timeListMap.add(timeMap);
 		}
 
@@ -125,6 +131,13 @@ public class TheaterServiceImpl implements TheaterService {
 
 	}
 
-	
+	@Override
+	public ArrayList<LocationDto> selLocation() {
+		return dao.selLocation();
+	}
 
+	@Override
+	public ArrayList<LocationDto> selRoom() {
+		return dao.selRoom();
+	}
 }

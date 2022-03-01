@@ -44,7 +44,7 @@
    
     <insert id="setScheduleInfo" parameterType="ScheduleDto">
    		INSERT INTO HICGV_THEATER_SCHEDULE VALUES
-   		(THEATER_SCHEDULE_ID_SEQ.NEXTVAL,#{movie_id},#{theaterRoom_id},TO_DATE(#{start_date},'YYYY-MM-DD HH24:MI'),#{location_id})
+   		(THEATER_SCHEDULE_ID_SEQ.NEXTVAL,#{movie_id},#{theater_room_id},TO_DATE(#{start_date},'YYYY-MM-DD HH24:MI'),#{location_id})
     </insert>
     
     <select id="getMoviesList" resultType="MoviesInfoDto" parameterType="String">
@@ -56,6 +56,20 @@
     	SELECT TO_CHAR(START_DATE,'YYYYMMDD')AS START_DATE FROM HICGV_THEATER_SCHEDULE
 		GROUP BY TO_CHAR(START_DATE,'YYYYMMDD')
 		ORDER BY START_DATE
+    </select>
+    <select id="selLocation" resultType="LocationDto">
+    	SELECT DISTINCT R.LOCATION_ID,LOCATION_NAME
+		FROM HICGV_THEATER_ROOM R
+		LEFT JOIN HICGV_THEATER_LOCATION L
+		ON R.LOCATION_ID = L.LOCATION_ID 
+		ORDER BY LOCATION_NAME
+    </select>
+    <select id="selRoom" resultType="LocationDto">
+    	SELECT THEATER_ROOM_ID,ROOM_NAME,R.LOCATION_ID
+		FROM HICGV_THEATER_ROOM R
+		LEFT JOIN HICGV_THEATER_LOCATION L
+		ON R.LOCATION_ID = L.LOCATION_ID 
+		ORDER BY ROOM_NAME
     </select>
 </mapper>
 
