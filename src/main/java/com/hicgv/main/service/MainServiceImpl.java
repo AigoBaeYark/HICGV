@@ -133,5 +133,10 @@ public class MainServiceImpl  implements MainService{
 		return weekMapList;
 	}
 
+	@Override
+	public ArrayList<MoviesDto> searchNormal(String parameter) {
+		return mainDao.searchNormal(parameter);
+	}
+
 	
 }

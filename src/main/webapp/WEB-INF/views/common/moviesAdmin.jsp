@@ -13,6 +13,31 @@
 </head>
 <body>
 
+<style>
+#my-spinner {
+	width: 100%; height: 100%;
+	top: 0; left: 0;
+	display: none;
+	opacity: .6;
+	background: silver; 
+	position: fixed;
+}
+#my-spinner div {
+	width: 100%; height: 100%;
+	display: table;
+}
+#my-spinner span {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+#my-spinner img {
+	background: white;
+	padding: 1em;
+	border-radius: .7em;
+}
+</style>
+
 
 	<div id="contents" style="margin: 0 auto;">
 		<!-- 네이버와 영화진흥위원회 두번 거쳐서 검색해서 중복되는 내용만 나옴 (모든영화는 안나올 듯?) -->
@@ -50,11 +75,21 @@
 
 	</div>
 
-
+<div id='my-spinner'>
+	<div><span>
+		<img src='//cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif'>
+	</span></div>
+</div>
 
 	<script type="text/javascript">
 		
-	
+	$(document)
+	.ajaxStart(function () {
+		$('#my-spinner').show();
+	})
+	.ajaxStop(function () {
+		$('#my-spinner').hide();
+	});
 	
 		$(function() {
 			$('#searchBtn').click(searchTitle);

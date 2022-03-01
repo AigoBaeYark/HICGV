@@ -26,4 +26,5 @@ public interface MainDao {
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
 	public void rankInit();
 	public List<String> getMovieDay(String movie_id, String location_id);
+	public ArrayList<MoviesDto> searchNormal(String parameter);
 }
