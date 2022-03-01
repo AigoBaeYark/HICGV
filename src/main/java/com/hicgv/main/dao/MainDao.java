@@ -3,6 +3,7 @@ package com.hicgv.main.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -24,4 +25,5 @@ public interface MainDao {
 	public void insertMovie(MoviesDto moviesDto);
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
 	public void rankInit();
+	public List<String> getMovieDay(String movie_id, String location_id);
 }

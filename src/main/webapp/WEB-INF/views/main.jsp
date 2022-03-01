@@ -163,7 +163,7 @@
 								</figure>
 								
 								<div id="age">
-									<img src="resources/img/theater/${mov.age_limit }.png"  style="position: absolute; top: 7px; right: 7px; width: 35px; height: 35px;"/>
+									<img src="${path }/resources/img/theater/${mov.age_limit }.png"  style="position: absolute; top: 7px; right: 7px; width: 35px; height: 35px;"/>
 								</div>
 								<div class="box-content">
 									<h1 class="post" style="color: #eee;">${mov.ranking } </h1>
@@ -173,10 +173,10 @@
 								</div>
 							</a>
 						</div>
-						<h3> <a class="title-gd" href="genre.html">${mov.title_kor }</a></h3>
+						<h3> <a class="title-gd" href="moviesdetailview?movie_id=${movie_id }">${mov.title_kor }</a></h3>
 						<p id="description">${mov.description }</p>
 						<div class="button-center text-center mt-4">
-							<a href="ticket" class="btn watch-button">예매하기</a>
+							<a href="ticket?movie_id=${mov.movie_id }" class="btn watch-button">예매하기</a>
 						</div>
 
 					</div>

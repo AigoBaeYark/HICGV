@@ -59,6 +59,13 @@
 		SET RANKING = 99
 	</update>
 	
+	<select  id="getMovieDay" parameterType="HashMap" resultType="String">
+		
+		SELECT TO_CHAR(START_DATE,'YYYYMMDD')
+		FROM HICGV_THEATER_SCHEDULE WHERE MOVIE_ID = #{movie_id } AND LOCATION_ID = #{location_id }
+	
+	</select>
+	
 	<!-- <insert> insert hicgv_movie(movie_id,rank, title_kor) values(#{param3, 
 		#{param1}, #{param2}) </insert> -->
 

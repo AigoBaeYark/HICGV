@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import com.hicgv.main.dao.MainDao;
@@ -319,10 +321,27 @@ public class MainController {
 	@RequestMapping("updateDailyRank")
 	public String updateDailyRank() {
 		getMoviesCrawlFinal crawlFinal = new getMoviesCrawlFinal();
-		mainService.rankInit();
-		mainService.updateDailyRank(crawlFinal.updateMovieRank());
+		mainService.rankInit();	//랭크를 전부 99로 초기화
+		mainService.updateDailyRank(crawlFinal.updateMovieRank());	//10위권까지만 랭크
 		
 		return "redirect:common/moviesAdmin";
+	}
+	
+	//티켓 컨트롤러로 옮겨야 함
+	@RequestMapping("weekList")
+	@ResponseBody
+	public ModelAndView weekList(HttpServletRequest req, @RequestParam String movie_id, @RequestParam String location_id) {
+		System.out.println("weekList : "+movie_id+" locID : "+location_id);
+		
+		List<HashMap<String, String>> week = new LinkedList<HashMap<String, String>>();
+		week = mainService.getmovieDay(movie_id, location_id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/weeklist");
+		mv.addObject("week",week);
+		
+		return mv;
+		
 	}
 
 

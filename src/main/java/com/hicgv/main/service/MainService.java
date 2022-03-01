@@ -3,6 +3,7 @@ package com.hicgv.main.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,6 @@ public interface MainService {
 	public void insertMovie(MoviesDto moviesDto);
 	public void updateDailyRank(LinkedList<HashMap<String, String>> updateMovieRank);
 	public void rankInit();
+	public LinkedList<HashMap<String, String>> getmovieDay(String movie_id, String location_id);
 	
 }

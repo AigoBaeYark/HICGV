@@ -30,17 +30,21 @@
 			<div id="sec">
 				<div id="secMain">
 					<div class="row" id="secSelect">
-						<div class="col-3">
+				
+						<div class="col-3 " >
 						<p style="text-align: center;">영화1 </p> <i class="fa-duotone fa-camera-movie"></i>
+						<ul class=" list-group" style="flex-direction: column;max-height: 320px;margin-bottom: 10px; overflow: scroll;">
 						<c:forEach items="${moviesList }" var="tic">
-					    <div class="row justify-content-around " id="MovieTab" role="tablist">
+					    <li class=" list-group-item" id="MovieTab" role="tablist" >
 					      <a class="list-group-item list-group-item-action list-group-item-movie" id="list-movie" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
 					      <input type="hidden" value="${tic.movie_id }"/>
 					      <span class="ico-grade grade-${tic.age_limit }">${tic.age_limit}</span> 
 					      <span style="margin-left: 15px;" id="movieTitle">${tic.title_kor }</span></a>
-					    </div>
+					    </li>
 					    </c:forEach>
+					    </ul>
 					  </div>
+					  
 					 			          
 					  <div class="col-2">
 					  <p style="text-align: center;">지역2-1</p>
@@ -122,15 +126,15 @@
 					  <p style="text-align: center;">2월</p>
 					  
 					  <div class="list-group" id="dateTab" role="tablist">
-					    <div class="row justify-content-around"> <!-- 이거 추가하면 검은색으로 바뀜 -->
+					    <!-- <div class="row justify-content-around"> 이거 추가하면 검은색으로 바뀜
 					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
 					      15(화)<input type="hidden" class="hiddenDate" value="15"/></a>
 					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
 					      16(수)<input type="hidden" class="hiddenDate" value="16"/></a>
 					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day17" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >
 					      17(목)<input type="hidden" class="hiddenDate" value="17"/></a>
-					    </div>			
-					   </div>
+					    </div>	 -->		
+					   </div> 
 					  </div>
 
 
@@ -154,7 +158,7 @@
 				
 		</section>   
 		 		 
-		 	<script>
+		 <script>
 		 	var movieCd = "";	//영화코드
 		 	var theaterId = ""; //지역코드
 		 	var locId = ""; 	//영화관 id
@@ -333,35 +337,29 @@
 					console.log($(this).text());
 					console.log($(this).children().val());
 					locId = $(this).children('input').val()
-				}
-			})
 					
-		
-		 	//날짜가져오기 
-			 $('.list-group-item-date').click(function() {
-				 //(날짜 선택 중복 방지)
-				 $('.list-group-item-date').each( function(i) {
-					 
-		               $(this).removeClass('active');
-		            })
-		            $(this).addClass('active');
-				 
-				if((movieCd == '' || movieCd == null)  || (theaterId == '' || theaterId == null) || (locId == '' || locId == null)){
-					alert('상영관을 선택하세요');
-					$(this).removeClass('active');
-				}else{
-				$(this).addClass('active').siblings().removeClass('active');
-				console.log($(this).text());
-				console.log($(this).children().val());
+					$.ajax({
+						type: 'get',
+						url: 'weekList',
+						data: {
+							'movie_id' : movieCd,
+							'location_id' : locId
+						},
+						success: function(data) {
+							$('#dateTab').html(data);
+						},
+						error: function (data) {
+							alert(data + "실패");
+						}
+					})
 				}
+				
+				
 			})
-			
-	
-		
+				
 			
 			$(function() {
-				$('.list-group-item-date').on('click', tickettime);
-				
+				$('.list-group-item-date').on('click', tickettime);	
 			});
 			
 			function tickettime() {
@@ -390,6 +388,27 @@
 					}
 			    }); 
 			}
+			
+			
+			//날짜가져오기 
+			 $('.list-group-item-date').click(function() {
+				 alert('날짜선택');
+				 //(날짜 선택 중복 방지)
+				 $('.list-group-item-date').each( function(i) {
+					 	
+		               $(this).removeClass('active');
+		            })
+		            $(this).addClass('active');
+				 
+				if((movieCd == '' || movieCd == null)  || (theaterId == '' || theaterId == null) || (locId == '' || locId == null)){
+					alert('상영관을 선택하세요');
+					$(this).removeClass('active');
+				}else{
+				$(this).addClass('active').siblings().removeClass('active');
+				console.log($(this).text());
+				console.log($(this).children().val());
+				}
+			})
 				
 			
 	</script>

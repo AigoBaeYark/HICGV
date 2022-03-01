@@ -10,13 +10,15 @@
 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/layout.css" />
 <link rel="stylesheet" href="${path }/resources/css/main/jquery-ui-1.10.4.custom.min.css" />
-<link rel="styleSheet" src="${path }/resources/css/font-awesome.min" crossorigin="anonymous"></script>
-
+<link rel="styleSheet" href="${path }/resources/css/font-awesome.min.css" crossorigin="anonymous" />
+<link rel="styleSheet" href="${path }/resources/css/hoverEffectComp.css" crossorigin="anonymous" />
+<link rel="styleSheet" href="${path }/resources/css/hoverEffectDefault.css" crossorigin="anonymous" />
 <script src="${path }/resources/js/main/jquery-1.10.2.min.js" ></script>
 <script src="${path }/resources/js/main/jquery-ui-1.10.4.custom.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/7bb79fa442.js" crossorigin="anonymous"></script>
+<script src="${path }/resources/js/hoverEffect.js" ></script>
 
 <script src="${path }/resources/js/main/movieDetail.js"  ></script>
 <script src="${path }/resources/js/main/daterangepicker.js"  ></script>
@@ -43,7 +45,7 @@
 				
 				<!-- 로그인 상태면 로그아웃 버튼만 보이게 -->
 				<%if(session.getAttribute("id")==null) {%>                  
-	            <li><a href="loginForm"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
+	            <li><a href="loginForm" class="hi-icon hi-icon-locked" id="set-1"><img src="${path }/resources/img/main/loginPassword.png"  alt="로그인"><span>로그인</span></a></li>
 	            <li><a href="joinForm"><img src="${path }/resources/img/main/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
 	            <%} else {%>  
 	              <li><a href="logout"><img src="${path }/resources/img/main/loginPassword.png" alt="로그인"><span>로그아웃</span></a></li>
@@ -117,7 +119,7 @@
 	                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword" value="">
 	            </label>
 	            <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
-	            <iframe src="./영화 그 이상의 감동. CGV_files/main@Search_txt.html" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+	            <iframe src="" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
 	           
 	        </div>
 	    </div>

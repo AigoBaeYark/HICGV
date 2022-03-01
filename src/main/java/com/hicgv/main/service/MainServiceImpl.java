@@ -1,11 +1,17 @@
 package com.hicgv.main.service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.print.DocFlavor.STRING;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +104,33 @@ public class MainServiceImpl  implements MainService{
 	@Override
 	public void rankInit() {
 		mainDao.rankInit();
+	}
+
+	@Override
+	public LinkedList<HashMap<String, String>> getmovieDay(String movie_id, String location_id) {
+		
+		LinkedList<HashMap<String, String>> weekMapList = new LinkedList<HashMap<String,String>>();
+		for (String day : mainDao.getMovieDay(movie_id,location_id)) {
+			
+			HashMap<String, String> subDay = new HashMap<String, String>();
+			subDay.put("year", day.substring(0,4));
+			subDay.put("month", day.substring(4,6));
+			subDay.put("day", day.substring(6,8));
+			
+			LocalDate date = LocalDate.of(Integer.parseInt(subDay.get("year").toString()), Integer.parseInt(subDay.get("month").toString()), Integer.parseInt(subDay.get("day")));
+			System.out.println("요일? " +date);
+			DayOfWeek dayOfWeek = date.getDayOfWeek();
+			
+			System.out.println("요일?? "+dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.KOREAN));
+			
+			subDay.put("day_kor", dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.KOREAN));
+			
+			weekMapList.add(subDay);
+			
+		}
+		
+		
+		return weekMapList;
 	}
 
 	

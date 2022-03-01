@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -78,5 +79,21 @@ public class MainDaoImpl implements MainDao{
 	@Override
 	public void rankInit() {
 		sqlSession.update(nameSpace+".rankInit");
+	}
+
+
+	@Override
+	public List<String> getMovieDay(String movie_id, String location_id) {
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("movie_id", movie_id);
+		map.put("location_id", location_id);
+		
+		List<String> movieWeekList = sqlSession.selectList(nameSpace+".getMovieDay",map);
+		for (String string : movieWeekList) {
+			System.out.println("날짜 : "+string);
+		}
+		
+		return  movieWeekList;
+		
 	};
 }

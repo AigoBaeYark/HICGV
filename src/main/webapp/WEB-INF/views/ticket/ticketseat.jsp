@@ -238,7 +238,6 @@
 		</c:forEach>;
 
 		function onLoaderFunc() {
-
 			for (var i = 0; i < list.length; i++) { // 이미 예매된 좌석 선택 불가 
 				for (var j = 1; j < $("input:checkbox[class='seats']").length + 1; j++) {
 					if (list[i] == $("input:checkbox[id='seat" + j + "']")
