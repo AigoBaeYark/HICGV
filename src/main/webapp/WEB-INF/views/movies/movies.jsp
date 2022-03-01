@@ -55,6 +55,7 @@
 									<div class="slider-info">		
 										<div class="img-circle">
 											<a href="moviesdetailview?movie_id=${mov.movie_id }">
+												<img src="resources/img/theater/${mov.age_limit }.png" style="position: absolute; width: 25px; height: 25px;">
 												<img src="${mov.image_url }" class="img-fluid" alt="author image">
 											</a>
 										</div>
@@ -64,7 +65,7 @@
 										</c:if>
 											
 											<a class="author-book-title">${mov.title_kor }</a>
-											<span class="ico-grade grade-${mov.age_limit }">${mov.age_limit}</span> <!-- 이거 수정해야됨 -->
+											
 											
 											<h4> <span class="post">
 												

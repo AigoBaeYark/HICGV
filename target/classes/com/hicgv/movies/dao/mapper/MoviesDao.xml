@@ -7,8 +7,7 @@
 <mapper namespace="com.hicgv.movies.dao.MoviesDao">
 	<select id="movies" resultType="MoviesDto">
 		SELECT * FROM HICGV_MOVIE ORDER BY RANKING 
-		<!-- SELECT * FROM HICGV_MOVIE where RANKING <=10 ORDER BY RANKING -->
-	</select> <!-- ## sql문 뒤에 ; 꼭 빼기 !! 안 뺴서 500오류 -->
+	</select> <!-- @@ sql문 뒤에 ; 꼭 빼기 !! 안 뺴서 500오류 -->
 	<!-- 해당영화경로불러오기, 영화정보가져오기 sql코드  -->
 	<select id="moviesdv" parameterType="String" resultType="MoviesDto">
 		<!-- Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->

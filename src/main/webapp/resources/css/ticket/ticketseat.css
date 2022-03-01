@@ -267,7 +267,7 @@ body {
 .w3ls-reg {
     width: 700px;
     margin: 0 5vw;
-    background: #FCE5BC;
+    background: #242020;
     padding: 3.5vw;
     box-sizing: border-box;
     display: flex;
@@ -401,12 +401,12 @@ h2.wthree {
 
 .greenBox::before {
     content: "";
-    background: blue;
+    background: green;
 }
 
 .redBox::before {
     content: "";
-    background: #c0c0c0;
+    background: red;
 }
 
 .emptyBox::before {
@@ -483,12 +483,12 @@ input[type=checkbox]:before {
 }
 
 input[type=checkbox]:checked:before {
-    background-color: blue;
+    background-color: green;
     font-size: 15px;
 }
 
 input[type=checkbox].selected:before {
-    background-color: #c0c0c0;
+    background-color: red;
     font-size: 15px;
 }
 

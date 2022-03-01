@@ -54,44 +54,34 @@ body{
 
 
 
- /* 등급 아이콘 */
-/* .ico-grade {
-	display: block;
-	position: absolute;
-	left: 5px;
-	top: 5px;
-	width: 21px;
-	height: 21px;
-	background:
-		url(https://img.cgv.co.kr/R2014/images/sprite/sprite_icon.png)
-		no-repeat;
-	font-style: normal;
-	font-variant-ligatures: normal;
-	font-variant-caps: normal;
-	font-variant-numeric: normal;
-	font-variant-east-asian: normal;
-	font-weight: normal;
-	font-stretch: normal;
-	font-size: 0px;
-	line-height: 0;
-	font-family: a;
+/* 등급 아이콘 */
+.ico-grade {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    font: 0/0 a;
+    zoom: 1;
 }
 
-.ico-grade.grade-전체 {
-    background-position: -30px 0;
+.ico-grade.grade-전체관람가 {
+	background-image: url(/cgv/resources/img/theater/전체관람가.png);
 }
 
-.ico-grade.grade-12세 {
-	background-position: -51px 0;
+.ico-grade.grade-12세관람가 {
+	background-image: url(/cgv/resources/img/theater/12세관람가.png);
 }
 
-.ico-grade.grade-15세 {
-	background-position: -72px 0;
+.ico-grade.grade-15세관람가 {
+	background-image: url(/cgv/resources/img/theater/15세관람가.png);
 }
 
-.ico-grade.grade-19세 {
-	background-position: -90px 0;
-}  */
+.ico-grade.grade-18세관람가 {
+	background-image: url(/cgv/resources/img/theater/18세관람가.png);
+}
+
 
 /* <------------------------좌석예약-------------------------> */
 .screen {

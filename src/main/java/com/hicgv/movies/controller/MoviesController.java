@@ -40,8 +40,7 @@ public class MoviesController {
 		model.addAttribute("movies",moviesService.getMoviesList()); 
 		
 		model.addAttribute("poster", moviesService.getMoviePoster());
-	
-	/*movielist받기 api, 크롤링*/		
+			
 		return "movies/movies";	
 	
 	}

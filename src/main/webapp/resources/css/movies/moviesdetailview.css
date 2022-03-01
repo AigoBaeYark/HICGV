@@ -26,26 +26,26 @@ strong {
     top: 5px;
     width: 21px;
     height: 21px;
-    background: url(../images/sprite/sprite_icon.png) no-repeat;
     font: 0/0 a;
     zoom: 1;
 }
 
-.ico-grade.grade-전체 {
-    background-position: -30px 0;
+.ico-grade.grade-전체관람가 {
+	background-image: url(resources/img/theater/전체관람가.png);
 }
 
-.ico-grade.grade-12세 {
-	background-position: -51px 0;
+.ico-grade.grade-12세관람가 {
+	background-image: url(resources/img/theater/12세관람가.png);
 }
 
-.ico-grade.grade-15세 {
-	background-position: -72px 0;
+.ico-grade.grade-15세관람가 {
+	background-image: url(resources/img/theater/15세관람가.png);
 }
 
-.ico-grade.grade-19세 {
-	background-position: -90px 0;
+.ico-grade.grade-19세관람가 {
+	background-image: url(resources/img/theater/19세관람가.png);
 }
+
 /* 영화소개박스 */
 [class|="sect-base"][class$="movie"] .box-contents {
     width: 765px;

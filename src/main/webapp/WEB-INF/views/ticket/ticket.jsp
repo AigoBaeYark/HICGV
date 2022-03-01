@@ -31,7 +31,6 @@
         
 		<!-- Contents Area -->
 		<div id="contents" class="seatimg" style="background-image: url(resources/img/ticket/seatimg.jpg)">
-        #ticketseat, pay 참고하고 싶으면 주술회전-서울-강남-16일 9:30 버튼 클릭#
         
         <!-- SECTION -->
 		<section>
@@ -45,7 +44,7 @@
 					    <!-- <li class=" list-group-item" id="MovieTab" role="tablist" > -->
 					      <a class="list-group-item list-group-item-action list-group-item-movie" id="list-movie" data-bs-toggle="list" href="#list-movie" role="tab" aria-controls="list-movie">
 					      <input type="hidden" value="${tic.movie_id }"/>
-					      <span class="ico-grade grade-${tic.age_limit }">${tic.age_limit}</span> 
+					      <img src="resources/img/theater/${tic.age_limit }.png" style="position: absolute; width: 25px; height: 25px;">
 					      <span style="margin-left: 15px;" id="movieTitle">${tic.title_kor }</span></a>
 					   <!--  </li> -->
 					    </c:forEach>
