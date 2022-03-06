@@ -10,17 +10,17 @@
 	</select> <!-- @@ sql문 뒤에 ; 꼭 빼기 !! 안 뺴서 500오류 -->
 	<!-- 해당영화경로불러오기, 영화정보가져오기 sql코드  -->
 	<select id="moviesdv" parameterType="String" resultType="MoviesDto">
-		<!-- Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->
+		<!-- @@Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->
 		SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=#{movie_id}	
 	</select>
 	<!-- 배우가져오는 sql코드 -->
-	<select id="actor" parameterType="String" resultType="MovieActorDto">
+	<!-- <select id="actor" parameterType="String" resultType="MovieActorDto">
 		SELECT * FROM HICGV_MOVIE_ACTOR WHERE MOVIE_ID=#{movie_id}
-	</select>
+	</select> -->
 	<!-- 감독가져오는 sql코드 -->
-	<select id="director" parameterType="String" resultType="MovieDirectorDto">
+	<!-- <select id="director" parameterType="String" resultType="MovieDirectorDto">
 		SELECT * FROM HICGV_MOVIE_DIRECTOR WHERE MOVIE_ID=#{movie_id}
-	</select>	
+	</select> -->	
 	<!-- 트레일러가져오는 sql코드 -->
 	<select id="trailer" parameterType="String" resultType="MovieTrailerDto">
 		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{movie_id}
@@ -34,8 +34,8 @@
 		SELECT * FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID=#{param1}
 	</select>
 	<!-- 포스터갯수가져오는 sql코드 -->
-	<select id="postercnt" resultType="Integer">
-		SELECT COUNT(*) FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID = #{param1}
+	<select id="postercnt" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID = #{movie_id}
 	</select>
 	
 	<insert id = "insertRefreshMovies">

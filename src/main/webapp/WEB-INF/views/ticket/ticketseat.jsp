@@ -209,7 +209,6 @@
 						<button type="button" onclick="updateTextArea()">좌석지정</button>
 						<br><input type="submit" value="결제하기" />
 
-
 					</div>
 					<!-- //seat layout -->
 					<!-- details after booking displayed here -->

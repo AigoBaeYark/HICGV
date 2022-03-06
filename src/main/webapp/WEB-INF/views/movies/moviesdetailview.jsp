@@ -94,7 +94,23 @@
 	</div>
  
  
-<!-- 트레일러시작 -->
+<!-- 소개시작 -->
+		<a id="description"></a> 
+		<div class="sect-stillcut">
+                <div class="heading">
+                    <h4>줄거리</h4>
+                </div> 
+                <div class="slider-wrap">
+                    <div class="" id="still_motion">
+                        <div class="item-wrap">
+                            <div class="item">
+                               	${moviesdv.description }
+                            </div>
+                        </div>
+                    </div>  
+            	</div>
+		</div>
+
 	<a id="actor"></a> 
 		<div class="sect-stillcut">
                 <div class="heading">
@@ -111,22 +127,7 @@
                     </div>  
             	</div>
 		</div>
-		
-		<a id="description"></a> 
-		<div class="sect-stillcut">
-                <div class="heading">
-                    <h4>줄거리</h4>
-                </div> 
-                <div class="slider-wrap">
-                    <div class="" id="still_motion">
-                        <div class="item-wrap">
-                            <div class="item">
-                               	${moviesdv.description }
-                            </div>
-                        </div>
-                    </div>  
-            	</div>
-		</div>
+	
 
 
 

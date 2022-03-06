@@ -63,12 +63,8 @@
 										<c:if test="${mov.ranking <= 10  && mov.ranking != 0 }">
 											<strong class="rank">No.${mov.ranking }</strong>
 										</c:if>
-											
 											<a class="author-book-title">${mov.title_kor }</a>
-											
-											
 											<h4> <span class="post">
-												
 													<div class="box-contents">
 														<a href="moviesdetailview?movie_id=${mov.movie_id }">
 															<strong class="title">상세보기</strong>
@@ -80,16 +76,13 @@
 													 <div class="like"> 
 														<a class="link-reservation" href="ticket">예매</a>
 													 </div> 
-													 
 												</span>
-
 												<span class="post fa fa-heart text-right"></span>
 											</h4>
 											</div>
+										</div> 
 										</div>
-										 
-										</div>
-										</c:forEach>	
+									</c:forEach>	
 											
 									</div>
 							</div>
@@ -105,6 +98,9 @@
    </div>         
  </div> 
  </div> 
+ 
+ 
+
  
  
 <c:import url="../common/footer.jsp"></c:import>

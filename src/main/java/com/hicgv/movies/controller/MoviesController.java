@@ -39,7 +39,7 @@ public class MoviesController {
 
 		model.addAttribute("movies",moviesService.getMoviesList()); 
 		
-		model.addAttribute("poster", moviesService.getMoviePoster());
+		//model.addAttribute("poster", moviesService.getMoviePoster());
 			
 		return "movies/movies";	
 	
@@ -58,7 +58,7 @@ public class MoviesController {
 		model.addAttribute("moviesdv",moviesService.getMoviesDailyViewer(movie_id));  
 		
 		//api내 정보
-		model.addAttribute("movieApi", moviesService.getMovieApi());
+		//model.addAttribute("movieApi", moviesService.getMovieApi());
 		
 		//영화배우정보
 		//model.addAttribute("actor", moviesService.getActors(movie_id));
