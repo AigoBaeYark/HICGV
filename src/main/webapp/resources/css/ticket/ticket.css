@@ -18,12 +18,12 @@ body{
 	height: 400px;
 	/* background-color: #fef8dc; */
 	background-color: white;
-	opacity: 0.75;
+	opacity: 0.9;
 	margin: 50px auto;
 	/* border: 5px;
 	border-style: solid; */
 	/* border-color: #e71a0f; */
-	border-radius: 3px;
+	border-radius: 1px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
 }
@@ -147,7 +147,7 @@ h3{
     text-transform: uppercase;
     color: #D0283D;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-align: center;
     margin: 0.8em 1vw 0.9em;
     font-family: 'Source Sans Pro', sans-serif;

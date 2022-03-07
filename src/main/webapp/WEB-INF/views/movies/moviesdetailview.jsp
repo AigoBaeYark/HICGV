@@ -15,13 +15,13 @@
 <!-- Contaniner -->
 	<div id="contaniner"  class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
 		<!-- Contents Area -->
-		 <div id="contents" class="">
+		 <div id="contents" class="" >
          
             <!-- Contents Start -->
 
 <!-- 실컨텐츠 시작 -->
-<div class="wrap-movie-detail" id="select_main">
-<div class="w3l-ab-grids py-5">
+<div class="wrap-movie-detail" id="select_main" >
+<div class="w3l-ab-grids py-5" style="background-color: #E5E7F1;">
 		<div class="container py-lg-4">
 			<input type="hidden" name="movie_id" value="${moviesdv.movie_id }"/>
 			<div class="row ab-grids-sec align-items-center">
@@ -30,9 +30,15 @@
 				</div>
 				<div class="col-lg-6 ab-left pl-lg-4 mt-lg-0 mt-5">
 					<h3 class="hny-title">${moviesdv.title_kor }</h3>
-					<p class="mt-3">${moviesdv.description }</p>
+					<h4 class="hny-title">${moviesdv.title_eng } </h4>
+					<br><br>
 					<p> 연령 : ${moviesdv.age_limit }, &nbsp; 러닝타임 : ${moviesdv.running_time }분 </p>
+					<p> 장르 : ${moviesdv.genre}</p>
 					<p> 개봉 : ${moviesdv.opening_date}</p>
+					<p> 총관람객 : ${moviesdv.audience_total }명, &nbsp; 금일관람객 : ${moviesdv.audience_today }명 </p>
+					
+					
+					
 					<div class="ready-more mt-4">
 						<a href="ticket" class="btn read-button">예매하기 <span class="fa fa-angle-double-right ml-2" aria-hidden="true"></span></a>
 					</div>
@@ -43,6 +49,17 @@
 				<div class="stats_left">
 					<div class="counter_grid">
 						<div class="icon_info">
+							<a href="#description">
+							<p class="counter">줄거리</p>
+							<h4>바로가기</h4>
+							</a>		
+						</div>
+					</div>
+				</div>
+				
+				<div class="stats_left">
+					<div class="counter_grid">
+						<div class="icon_info">
 							<a href="#actor">
 							<p class="counter">감독/배우</p>
 							<h4>바로가기</h4>
@@ -50,6 +67,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="stats_left">
 					<div class="counter_grid">
 						<div class="icon_info">
@@ -76,11 +94,27 @@
 	</div>
  
  
-<!-- 트레일러시작 -->
+<!-- 소개시작 -->
+		<a id="description"></a> 
+		<div class="sect-stillcut">
+                <div class="heading">
+                    <h4>줄거리</h4>
+                </div> 
+                <div class="slider-wrap">
+                    <div class="" id="still_motion">
+                        <div class="item-wrap">
+                            <div class="item">
+                               	${moviesdv.description }
+                            </div>
+                        </div>
+                    </div>  
+            	</div>
+		</div>
+
 	<a id="actor"></a> 
 		<div class="sect-stillcut">
                 <div class="heading">
-                    <h4>감독/배우</h4><span class="count"><strong id="stillcut_current"></strong></span><a class="link-more">+이모지</a>
+                    <h4>감독/배우</h4>
                 </div> 
                 <div class="slider-wrap">
                     <div class="" id="still_motion">
@@ -93,6 +127,7 @@
                     </div>  
             	</div>
 		</div>
+	
 
 
 

@@ -34,7 +34,7 @@ public class MoviesDaoImpl implements MoviesDao{
 		return sqlsession.selectOne(nameSpace+".moviesdv",movie_id);
 	}
 
-	@Override
+	/*@Override
 	public ArrayList<MovieActorDto> actor(String movie_id) {
 		List<MovieActorDto> dto =  sqlsession.selectList(nameSpace+".actor",movie_id);
 		return (ArrayList<MovieActorDto>) dto;
@@ -43,7 +43,7 @@ public class MoviesDaoImpl implements MoviesDao{
 	@Override
 	public MovieDirectorDto director(String movie_id) {
 		return sqlsession.selectOne(nameSpace+".director",movie_id);
-	}
+	}*/
 
 	@Override
 	public ArrayList<MovieTrailerDto> trailer(String movie_id) {

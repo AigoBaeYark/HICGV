@@ -31,7 +31,7 @@ public class MoviesServiceImpl implements MoviesService{
 		return dao.movies();
 	}
 	
-	@Override
+	/*@Override
 	public ArrayList<Map<String, String>> getMovieApi() {
 		GetMovieApi getDateViewer = new GetMovieApi(); //겟데이터뷰에 생성자 없애서 여기 공란
 		
@@ -54,14 +54,14 @@ public class MoviesServiceImpl implements MoviesService{
 		getMoviePoster.getMoviePoster();
 		
 		return null;
-	}
+	}*/
 
 	@Override
 	public MoviesDto getMoviesDailyViewer(String movie_id) {
 		return dao.moviesdv(movie_id);
 	}
 
-	@Override
+	/*@Override
 	public ArrayList<MovieActorDto> getActors(String movie_id) {
 		return dao.actor(movie_id);
 	}
@@ -69,7 +69,7 @@ public class MoviesServiceImpl implements MoviesService{
 	@Override
 	public MovieDirectorDto getDirector(String movie_id) {
 		return dao.director(movie_id);
-	}
+	}*/
 	
 	@Override
 	public ArrayList<MovieTrailerDto> getTrailer(String movie_id){

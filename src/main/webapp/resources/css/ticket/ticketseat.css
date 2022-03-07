@@ -313,7 +313,7 @@ h2 {
 }
 
 .mr_agilemain {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     width: 100%;
 }

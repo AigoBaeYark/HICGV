@@ -136,7 +136,7 @@
 					  </div>				  
 					    
 					  <div class="col-2">
-					  <h3 >날짜선택</h3>
+					  <h3 >날짜</h3>
 					  <div class="list-group" id="dateTab" role="tablist">
 					  
 					<!--  weeklist에 dateTab을 생성하여 실행
@@ -205,7 +205,7 @@
 				//지역을 선택하면 안의 input에서 value를 가져옴
 				//가져온 value에 해당하는   
 				//hidden 속성 없애기 or display = true 해야함
-				// +) hidden으로 하면 공간은 그대론데 사라지는거라 display:none  <-> block로 구현해보기
+				// +) hidden으로 하면 공간은 그대론데 사라지는거라 display:none  <-> block로 구현해야함
 				
 				if(movieCd == '' || movieCd == null){
 					alert('영화를 선택하세요');
