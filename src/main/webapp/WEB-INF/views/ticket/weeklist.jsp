@@ -24,7 +24,7 @@
 </c:choose>
 
 <script type="text/javascript">
-var m = movieCd;
+
 //날짜가져오기 
 	$('.list-group-item-date').click(function() {
 		console.log(movieCd);

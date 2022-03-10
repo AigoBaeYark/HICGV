@@ -25,7 +25,7 @@
 
 <%if (session.getAttribute("id") == null){ %>
 	<script type="text/javascript">
-	window.onload = function(){
+	window.onload = function(){ //웹브라우저 내의 모든 요소가 준비가 되어야 실행
 		alert('비회원은 예매가 불가능합니다.')
 		alert('메인페이지로 넘어갑니다.')
 		location.href = "main";
@@ -180,19 +180,19 @@
 			//영화 누른 밸류 가져오기  
 			$('.list-group-item-movie').click(function() {
 				//(영화 선택 중복 방지)
-				$('.list-group-item-movie').each( function(i) {
+				$('.list-group-item-movie').each( function() {
 		               $(this).removeClass('active');
-		            })
-		            $(this).addClass('active');
+		            })//모두삭제
+		            $(this).addClass('active');//클릭한 객체
 				
 				//$(this).siblings().append('movie');
 				//$(this).addClass('active') 
 				console.log($(this).children('#movieTitle').text());//타이틀 가져오기
+				//$(this).children('#movieTitle').text('선택');
 				console.log($(this).children('input').val()); //콘솔에 맞게 입력되었는지 확인 후 
 				movieCd = $(this).children('input').val(); //값 지정해주기
 				console.log('값넣음 '+movieCd);
-				
-				
+					
 			})
 			
 			//지역 누른 밸류 가져오기 

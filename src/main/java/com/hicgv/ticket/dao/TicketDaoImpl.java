@@ -49,7 +49,7 @@ public class TicketDaoImpl implements TicketDao{
 
 	@Override
 	public ArrayList<TicketListDto> getTicketday(HashMap<String, String> sendDataMap) {
-		List<TicketListDto> dto = new ArrayList<TicketListDto>();
+		List<TicketListDto> dto = new ArrayList<TicketListDto>(); //상영관이 여러개 있을 수 있어서
 		dto = sqlSession.selectList(nameSpace+".getTicketday",sendDataMap);
 		System.out.println("sendData(DaoImpl) : "+sqlSession.selectList(nameSpace+".getTicketday",sendDataMap).size());
 		for (TicketListDto ticketListDto : dto) {
