@@ -52,23 +52,6 @@
 
 <body onload="onLoaderFunc()">
 
-<%-- <form action="payTtest">
-
-		<c:forEach items="${ticketseat }" var="seat">
-		<h2>선택정보</h2>
-		<input type="text" name="minute"  value="${seat.minute }" />
-		<input type="text" name="hour" value="${seat.hout }" />
-		<input type="submit" name="locid" value="${seat.location_id }"/>
-		<p>
-			${seat.title_kor } &nbsp; | &nbsp; ${seat.location_name } &nbsp; |
-			&nbsp; ${seat.room_name } <br> ${seat.year }. ${seat.month }.
-			${seat.day } &nbsp; ${seat.hour }:${seat.minute } ~ ${seat.endHour }:${seat.endMinute }
-		</p>
-		</c:forEach>
-
-</form> --%>
-
-
 
 	<form action="payTtest" method="get">
 		<div id="bannerjsp">
@@ -78,14 +61,14 @@
 				<div class="w3ls-reg">
 					<!-- input fields -->
 					<div class="inputForm" style="display: flex;">
-					
+
 						<div class="mr_agilemain">
 							<div class="Numseats">
 								<label>인원선택 <span>*</span>
 								</label> <input type="number" id="Numseats" required min="1">
 							</div>
 							<input type="hidden" name="movieid" value="무비아이디" />
-							
+
 							<div class="TicketPrice">
 								<input type="hidden" id="TicketPrice" value="9000" required>
 							</div>
@@ -97,28 +80,30 @@
 								<h2 style="color: #fff;">선택정보</h2>
 
 								<p>
-									${seat.title_kor } &nbsp;  <br> 
-									${seat.location_name } &nbsp; | &nbsp; ${seat.room_name } <br> 
-									${seat.year }.${seat.month }. ${seat.day } &nbsp; ${seat.hour }:${seat.minute }
-									~ ${seat.endHour }:${seat.endMinute }
-										
+									${seat.title_kor } &nbsp; <br> ${seat.location_name }
+									&nbsp; | &nbsp; ${seat.room_name } <br> ${seat.year }.${seat.month }.
+									${seat.day } &nbsp; ${seat.hour }:${seat.minute } ~
+									${seat.endHour }:${seat.endMinute }
+
 									<!-- pay쪽으로 보낼 정보들 -->
-									<input type="hidden" value="${seat.movie_id }" name="movie_id"  />
-									<input type="hidden" value="${seat.location_name }" name="location_name"  />
-									<input type="hidden" value="${seat.schedule_id }" name="schedule_id"  />
-									<input type="hidden" value="${seat.location_id }" name="location_id"  />
-									<input type="hidden" value="${seat.title_kor }" name="title_kor"  />
-									<input type="hidden" value="${seat.start_date }" name="start_date"  />		
-									<input type="hidden" value="${seat.room_name }" name="room_name"  />		
+									<input type="hidden" value="${seat.movie_id }" name="movie_id" />
+									<input type="hidden" value="${seat.location_name }"
+										name="location_name" /> <input type="hidden"
+										value="${seat.schedule_id }" name="schedule_id" /> <input
+										type="hidden" value="${seat.location_id }" name="location_id" />
+									<input type="hidden" value="${seat.title_kor }"
+										name="title_kor" /> <input type="hidden"
+										value="${seat.start_date }" name="start_date" /> <input
+										type="hidden" value="${seat.room_name }" name="room_name" />
 								</p>
 							</c:forEach>
-							
+
 							<input type="hidden" name="theater_schedule_id" />
-							
+
 						</div>
 					</div>
 
-					
+
 
 
 					<!-- //input fields -->
@@ -129,8 +114,9 @@
 						<li class="smallBox redBox">예매완료좌석</li>
 
 						<li class="smallBox emptyBox">선택가능좌석</li>
-						
-						<button type="button" onclick="takeData()" style=" left: 650px; top: 165px;">확인</button>
+
+						<button type="button" onclick="takeData()"
+							style="left: 650px; top: 165px;">확인</button>
 					</ul>
 
 
@@ -184,30 +170,36 @@
 											</c:if> <c:if test="${i eq 9}">
 												<c:set value="I" var="seatInit"></c:set>
 											</c:if> <c:if test="${i eq 10}">
-												<c:set value="J" var="seatInit"></c:set>
+												<c:set value="J" var="seatInit">
+												</c:set>
 											</c:if> <c:if test="${i eq 11}">
 												<c:set value="K" var="seatInit"></c:set>
 											</c:if> <c:if test="${i eq 12}">
 												<c:set value="L" var="seatInit"></c:set>
 											</c:if> ${seatInit}</td>
 										<c:forEach begin="1" end="12" var="j">
-											<td class="bookable"><label for="seat${(i-1)*15 + j}">
-													<input type="checkBox" class="seats" name="${seatInit}${j}"
-													id="seat${(i-1)*15 + j}" value="${seatInit}${j}">
+											<td class="bookable"><label for="seat${(i-1)*12 + j}">
+													<!-- 좌석생성 --> <input type="checkBox" class="seats"
+													name="${seatInit}${j}" id="seat${(i-1)*12 + j}"
+													value="${seatInit}${j}">
 											</label></td>
 											<c:if test="${j eq 5}">
+												<!-- 5번칸이 끝나면 한칸 띄우기 -->
 												<td></td>
 											</c:if>
+
+
 
 										</c:forEach>
 									</tr>
 								</c:forEach>
 							</div>
 						</table>
-						
+
 
 						<button type="button" onclick="updateTextArea()">좌석지정</button>
-						<br><input type="submit" value="결제하기" />
+						<br>
+						<input type="submit" value="결제하기" />
 
 					</div>
 					<!-- //seat layout -->
@@ -221,11 +213,11 @@
 							</tr>
 							<tr>
 								<td><input type="hidden" name="seat" /> <textarea
-										id="seatsDisplay" class="result" ></textarea></td>
+										id="seatsDisplay" class="result"></textarea></td>
 								<td><input type="hidden" name="person" /> <textarea
-										id="numberDisplay" class="result" ></textarea></td>
-								<td><input type="hidden" name="seat_price"  /> <textarea
-										id="priceDisplay" class="result" ></textarea></td>
+										id="numberDisplay" class="result"></textarea></td>
+								<td><input type="hidden" name="seat_price" /> <textarea
+										id="priceDisplay" class="result"></textarea></td>
 							</tr>
 						</table>
 					</div>
@@ -234,8 +226,8 @@
 			</div>
 		</div>
 	</form>
-	
-	
+
+
 	<!-- js -->
 	<!-- //js -->
 	<!-- script for seat selection -->
@@ -253,7 +245,7 @@
 					if (list[i] == $("input:checkbox[id='seat" + j + "']")
 							.val()) {
 						$("input:checkbox[id='seat" + j + "']").parents("td")
-								.attr("class", "selected");
+								.attr("class", "selected"); //해당하는 값의 부모td만
 						$("input:checkbox[id='seat" + j + "']").attr(
 								'disabled', true);
 						$("input:checkbox[id='seat" + j + "']").addClass(
@@ -265,8 +257,8 @@
 			$(".seatStructure *").prop("disabled", true);
 			//$(".displayerBoxes *").prop("disabled", true);
 			$(".result").each(function() {
-					$(this).attr('readonly','readonly');
-				})
+				$(this).attr('readonly', 'readonly');
+			}) //박스값 수정 방지
 		}
 
 		function takeData() {
@@ -275,8 +267,7 @@
 			} else {
 				$(".inputForm *").prop("disabled", false);
 				$(".seatStructure *").prop("disabled", false);
-				
-				
+
 				document.getElementById("notification").innerHTML = "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>좌석을 선택해주세요 :)</b>";
 			}
 
@@ -304,8 +295,8 @@
 				});
 
 				//Displaying 
-				$('#seatsDisplay').val(allSeatsVals);
-				$('input[name=seat]').val(allSeatsVals);
+				$('#seatsDisplay').val(allSeatsVals); //박스안에 나타내기위함
+				$('input[name=seat]').val(allSeatsVals); //PAY로 넘기기 위함
 				alert($('input[name=seat]').val());
 				$('#numberDisplay').val(allNumberVals);
 				$('input[name=person]').val(allNumberVals);
@@ -341,8 +332,8 @@
 
 		$(":checkbox").click(function() {
 			if ($("input:checked").length == ($("#Numseats").val())) {
-				$(":checkbox").prop('disabled', true);
-				$(':checked').prop('disabled', false);
+				$(":checkbox").prop('disabled', true); //모든좌석
+				$(':checked').prop('disabled', false); //선택된좌석(초록좌석)
 			} else {
 				$(":checkbox").prop('disabled', false);
 			}

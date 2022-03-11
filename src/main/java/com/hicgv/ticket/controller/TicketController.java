@@ -201,11 +201,14 @@ public class TicketController {
 		
 		//jsp에서 수정하고 뿌리기 편하게 str로 변환해서 보내줌
 		for (int i = 0; i < payDto.size(); i++) {
-			str += payDto.get(i).getSeat() + ",";
+			
+			
+			
+			str += payDto.get(i).getSeat() + ","; 
 		}
 		strArray = str.split(",");
 		
-		model.addAttribute("seat", strArray);
+		model.addAttribute("seat", strArray); //예매된 좌석
 		model.addAttribute("ticketseat",timeListMap);
 		
 		

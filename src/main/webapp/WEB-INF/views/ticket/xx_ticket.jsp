@@ -146,7 +146,7 @@
 							<p style="text-align: center;">날짜선택3</p>
 							<p style="text-align: center;">2022년</p>
 							<p style="text-align: center;">2월</p>
-							<%-- <c:forEach items="${ticketday }" var="ticd"> --%>
+							
 							<div class="list-group" id="dateTab" role="tablist">
 								<div class="row justify-content-around">
 									<!-- 이거 추가하면 검은색으로 바뀜 -->

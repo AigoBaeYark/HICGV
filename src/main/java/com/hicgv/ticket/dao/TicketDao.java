@@ -28,8 +28,6 @@ public interface TicketDao {
 	public ArrayList<TicketListDto> getSelectMovieInfo(HashMap<String, String> sendDataMap);
 	public List<PayDto> getSeat(String schedule_id);
 	
-	/*티켓예약배너*/
 	
-	/*public TicketListDto */
 	
 }

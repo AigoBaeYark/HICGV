@@ -344,8 +344,8 @@
 		            $(this).addClass('active');
 				
 				if((movieCd == '' || movieCd == null) || (theaterId == '' || theaterId == null)){
-					alert('지역을 선택하세요');
-					$(this).removeClass('active');
+					/* alert('지역을 선택하세요');
+					$(this).removeClass('active'); */
 				}else{
 					$(this).addClass('active').siblings().removeClass('active');
 					console.log($(this).text());
@@ -372,7 +372,7 @@
 			})
 				
 			
-			$(function() {
+			/* $(function() {
 				$('.list-group-item-date').on('click', tickettime);	
 			});
 			
@@ -415,14 +415,14 @@
 		            $(this).addClass('active');
 				 
 				if((movieCd == '' || movieCd == null)  || (theaterId == '' || theaterId == null) || (locId == '' || locId == null)){
-					alert('상영관을 선택하세요');
-					$(this).removeClass('active');
+					 alert('상영관을 선택하세요');
+					$(this).removeClass('active'); 
 				}else{
 				$(this).addClass('active').siblings().removeClass('active');
 				console.log($(this).text());
 				console.log($(this).children().val());
 				}
-			})
+			}) */
 				
 			
 	</script>
