@@ -11,11 +11,7 @@ import com.hicgv.movies.dto.MoviesDto;
 
 public interface MoviesService {
 	public ArrayList<MoviesDto> getMoviesList();
-	//public ArrayList<Map<String, String>> getMovieApi();
-	//public String getMoviePoster();
 	public MoviesDto getMoviesDailyViewer(String movie_id);
-	//public ArrayList<MovieActorDto> getActors(String movie_id);
-	//public MovieDirectorDto getDirector(String movie_id);
 	public ArrayList<MovieTrailerDto> getTrailer(String movie_id);
 	public int getTrailercnt(String movie_id);
 	public ArrayList<MoviePosterDto> getPoster(String movie_id);

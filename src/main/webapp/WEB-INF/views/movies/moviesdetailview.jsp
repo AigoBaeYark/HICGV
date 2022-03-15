@@ -134,7 +134,7 @@
 	<a id="trailer"></a> 
 	<div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
                 <div class="heading">
-                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more">+이모지</a>
+                    <h4>트레일러</h4><span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">${trailercnt }건</span><a class="link-more"></a>
                 </div>
            <c:forEach items="${trailer }" var="tra">
                 <ul>
@@ -167,7 +167,7 @@
 		<a id="poster"></a> 
 		<div class="sect-stillcut">
                 <div class="heading">
-                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more">+이모지</a>
+                    <h4>스틸컷</h4><span class="count"><strong id="stillcut_current"></strong>${postercnt }건</span><a class="link-more"></a>
                 </div>
                 <div id="poster-wrap" style="overflow-x: scroll; display: flex;">
                 
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>  
-            	</div><!-- .sect-stillcut -->
+            	</div>
 			</c:forEach>
 			</div>
 		</div>

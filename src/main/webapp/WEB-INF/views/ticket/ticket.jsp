@@ -139,15 +139,7 @@
 					  <h3 >날짜</h3>
 					  <div class="list-group" id="dateTab" role="tablist">
 					  
-					<!--  weeklist에 dateTab을 생성하여 실행
-					<div class="row justify-content-around"> 이거 추가하면 검은색으로 바뀜
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day15" data-bs-toggle="list" href="#list-day15" role="tab" aria-controls="list-day15"  >
-					      15(화)<input type="hidden" class="hiddenDate" value="15"/></a>
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day16" data-bs-toggle="list" href="#list-day16" role="tab" aria-controls="list-day16"  >
-					      16(수)<input type="hidden" class="hiddenDate" value="16"/></a>
-					      <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day17" data-bs-toggle="list" href="#list-day17" role="tab" aria-controls="list-day17"  >
-					      17(목)<input type="hidden" class="hiddenDate" value="17"/></a>
-					    </div>	 -->		
+					<!--  weeklist에 dateTab을 생성하여 실행  -->		
 					   </div> 
 					  </div>
 
@@ -370,59 +362,7 @@
 				
 				
 			})
-				
-			
-			/* $(function() {
-				$('.list-group-item-date').on('click', tickettime);	
-			});
-			
-			function tickettime() {
-				var getdate = $(this).children('input.hiddenDate').val();  //hiddenDate 닐짜값 가져오기
-				console.log("getdate : " + getdate);
-				$.ajax({
-			        type : "GET",
-			        url : "getdate",
-			        contentType: "application/json; charset=UTF-8",
-			        data : {
-			        	'movieCd' : movieCd,
-			        	'theaterId' : theaterId,
-			        	'locId' : locId,
-			        	'date' : getdate
-			        },
-			        success : function(mv) {
-			        	$("#tickettime").html(mv);
-					},
-			        error : function(mv) {
-			        	
-			        	for ( var i = 0 in mv){
-			        		console.log(mv[i].day); 
-			        	}
-						
-						alert('에러');
-					}
-			    }); 
-			}
-			
-			
-			//날짜가져오기 
-			 $('.list-group-item-date').click(function() {
-				 alert('날짜선택');
-				 //(날짜 선택 중복 방지)
-				 $('.list-group-item-date').each( function(i) {
-					 	
-		               $(this).removeClass('active');
-		            })
-		            $(this).addClass('active');
-				 
-				if((movieCd == '' || movieCd == null)  || (theaterId == '' || theaterId == null) || (locId == '' || locId == null)){
-					 alert('상영관을 선택하세요');
-					$(this).removeClass('active'); 
-				}else{
-				$(this).addClass('active').siblings().removeClass('active');
-				console.log($(this).text());
-				console.log($(this).children().val());
-				}
-			}) */
+
 				
 			
 	</script>

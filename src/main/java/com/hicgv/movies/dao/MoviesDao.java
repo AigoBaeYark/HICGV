@@ -15,8 +15,6 @@ public interface MoviesDao {
 	
 	/*영화상세보기란*/
 	public MoviesDto moviesdv(String movie_id); //무비차트에서 상세페이지로가기, 상세페이지내용
-	//public ArrayList<MovieActorDto> actor(String movie_id); //배우이름란 (movieactor)
-	//public MovieDirectorDto director(String movie_id); //감독이름란
 	public ArrayList<MovieTrailerDto> trailer(String movie_id); //트레일러영상
 	public int trailercnt(String movie_id); //트레일러영상갯수
 	public ArrayList<MoviePosterDto> poster(String movie_id); //포스터

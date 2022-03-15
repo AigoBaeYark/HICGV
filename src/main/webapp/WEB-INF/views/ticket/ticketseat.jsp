@@ -26,11 +26,7 @@
 <!-- //Custom-Stylesheet-Links -->
 <!--fonts -->
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="resources/css/theater/boot.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -38,11 +34,8 @@
 	crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/reset.css" />
-<link rel="stylesheet"
-	href="resources/css/ticket/jquery.seat-charts.css" />
-<link
-	href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
-	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/ticket/jquery.seat-charts.css" />
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/ticket/font-awesome.css" />
 <link rel="stylesheet" href="resources/css/ticket/ticketseat.css" />
 <!-- //fonts -->
@@ -87,14 +80,12 @@
 
 									<!-- pay쪽으로 보낼 정보들 -->
 									<input type="hidden" value="${seat.movie_id }" name="movie_id" />
-									<input type="hidden" value="${seat.location_name }"
-										name="location_name" /> <input type="hidden"
-										value="${seat.schedule_id }" name="schedule_id" /> <input
-										type="hidden" value="${seat.location_id }" name="location_id" />
-									<input type="hidden" value="${seat.title_kor }"
-										name="title_kor" /> <input type="hidden"
-										value="${seat.start_date }" name="start_date" /> <input
-										type="hidden" value="${seat.room_name }" name="room_name" />
+									<input type="hidden" value="${seat.location_name }" name="location_name" /> 
+									<input type="hidden" value="${seat.schedule_id }" name="schedule_id" /> 
+									<input type="hidden" value="${seat.location_id }" name="location_id" />
+									<input type="hidden" value="${seat.title_kor }" name="title_kor" /> 
+									<input type="hidden" value="${seat.start_date }" name="start_date" /> 
+									<input type="hidden" value="${seat.room_name }" name="room_name" />
 								</p>
 							</c:forEach>
 
@@ -306,21 +297,6 @@
 				alert($('input[name=seat_price]').val());
 				$('input[type=submit]').attr('disabled', false);
 
-				/*  $.ajax({
-				 	type : "get",
-				 	URL: "payTtest",
-				 	data:{
-				 		'seatsDis' :  $('input[name=seatsDis]').val()
-				 	},
-				 	success: function (data) {
-						console.log(data)
-						alert(data)
-					},error : function(data) {
-						console.log(data)
-						alert(data)
-					}
-				 	
-				 }) */
 
 			} else {
 				alert("Please select " + ($("#Numseats").val()) + " seats")

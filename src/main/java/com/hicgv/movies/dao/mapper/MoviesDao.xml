@@ -13,14 +13,6 @@
 		<!-- @@Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->
 		SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=#{movie_id}	
 	</select>
-	<!-- 배우가져오는 sql코드 -->
-	<!-- <select id="actor" parameterType="String" resultType="MovieActorDto">
-		SELECT * FROM HICGV_MOVIE_ACTOR WHERE MOVIE_ID=#{movie_id}
-	</select> -->
-	<!-- 감독가져오는 sql코드 -->
-	<!-- <select id="director" parameterType="String" resultType="MovieDirectorDto">
-		SELECT * FROM HICGV_MOVIE_DIRECTOR WHERE MOVIE_ID=#{movie_id}
-	</select> -->	
 	<!-- 트레일러가져오는 sql코드 -->
 	<select id="trailer" parameterType="String" resultType="MovieTrailerDto">
 		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{movie_id}
@@ -50,25 +42,7 @@
 	
 	
 			
-			
-	
-
-
-
-
-
-
-
-
-
-	<!-- <select id="movieTrailer" resultType="com.hicgv.movies.dto.MovieTrailerDto"> 
-		select * from movieTrailer where moive_id = #{param1} 트레일러예시 </select> 추후추가예정 -->
-
-
-
-
-
-
+		
 
 
 </mapper> 
