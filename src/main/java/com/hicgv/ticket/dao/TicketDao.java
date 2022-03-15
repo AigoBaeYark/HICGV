@@ -21,7 +21,7 @@ public interface TicketDao {
 	public ArrayList<MoviesDto> ticket(); //영화리스트
 	public ArrayList<TheaterDto> getLocal(); //지역리스트
 	public ArrayList<TLocationDto> getTheaterLocal(); //영화관리스트
-	public ArrayList<TicketListDto> getTicketday(HashMap<String, String> sendDataMap); //상영관리스트
+	public ArrayList<TicketListDto> getSelectDate(HashMap<String, String> sendDataMap); //상영관리스트
 	public ArrayList<TicketListDto> getSelectMovieInfo(HashMap<String, String> sendDataMap); //좌석예매리스트
 	public List<PayDto> getSeat(String schedule_id); //이미결제된좌석
 	

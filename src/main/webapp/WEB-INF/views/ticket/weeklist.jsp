@@ -15,7 +15,7 @@
 			<div class="row justify-content-around">
 				<c:forEach items="${week }" var="day">
 					 <a href="getdate" class="list-group-item list-group-item-action  list-group-item-date" id="list-day${day.day }" data-bs-toggle="list" href="#list-day" role="tab" aria-controls="list-day${day.day }"  >
-					 	${day.month }월 ${day.day }  ${day.day_kor } <input type="hidden" class="hiddenDate" value="${day.day }"/>
+					 	${day.month }월 ${day.day }일  ${day.day_kor } <input type="hidden" class="hiddenDate" value="${day.day }"/>
 		 			</a>
 				</c:forEach>
 			</div>
@@ -44,17 +44,16 @@
 		console.log($(this).children().val());
 		}
 	})
+	
 	$(function() {
 		$('.list-group-item-date').on('click', tickettime);	
 	});
 
 	function tickettime() {
-	
-	
 		var getdate = $(this).children('input.hiddenDate').val();  //hiddenDate 닐짜값 가져오기
 		console.log("getdate : " + getdate);
 		$.ajax({
-	        type : "GET",
+	        type : "get",
 	        url : "getdate",
 	        contentType: "application/json; charset=UTF-8",
 	        data : {

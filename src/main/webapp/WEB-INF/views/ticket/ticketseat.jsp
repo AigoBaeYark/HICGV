@@ -41,10 +41,7 @@
 <!-- //fonts -->
 </head>
 
-<!-- <img src="/cgv/resources/img/ticket/banner.jpg" alt="좌석뒷배경" >  -->
-
 <body onload="onLoaderFunc()">
-
 
 	<form action="payTtest" method="get">
 		<div id="bannerjsp">
@@ -193,8 +190,7 @@
 						<input type="submit" value="결제하기" />
 
 					</div>
-					<!-- //seat layout -->
-					<!-- details after booking displayed here -->
+					
 					<div class="displayerBoxes txt-center" style="overflow-x: auto;">
 						<table class="Displaytable w3ls-table" width="100%">
 							<tr>
@@ -225,8 +221,8 @@
 	<script>
 		var seatCount = 0;
 		var list = [];
-		<c:forEach items="${seat }" var="seats">
-		list.push("${seats }");
+		<c:forEach items="${soldoutseat }" var="soseat">
+		list.push("${soseat }");
 		console.log(list)
 		</c:forEach>;
 
@@ -246,7 +242,6 @@
 			}
 
 			$(".seatStructure *").prop("disabled", true);
-			//$(".displayerBoxes *").prop("disabled", true);
 			$(".result").each(function() {
 				$(this).attr('readonly', 'readonly');
 			}) //박스값 수정 방지
@@ -266,19 +261,15 @@
 
 		$("input[type=submit]").on('click', function() {
 			alert('결제페이지로 이동합니다.');
-			//$('input').attr('disabled',false);
 		})
 
 		function updateTextArea() {
-
 			if ($("input:checked").length == ($("#Numseats").val())) {
-				//$(".seatStructure *").prop("disabled", true);
-
 				var allSeatsVals = [];
 				var allNumberVals = [];
 				var allPriceVals = [];
 
-				//Storing in Array
+				//배열에 저장
 				allPriceVals.push($("#TicketPrice").val());
 				allNumberVals.push($("#Numseats").val());
 				$('#seatsBlock :checked').each(function() {
@@ -286,20 +277,15 @@
 				});
 
 				//Displaying 
-				$('#seatsDisplay').val(allSeatsVals); //박스안에 나타내기위함
-				$('input[name=seat]').val(allSeatsVals); //PAY로 넘기기 위함
-				alert($('input[name=seat]').val());
+				$('#seatsDisplay').val(allSeatsVals); 
+				$('input[name=seat]').val(allSeatsVals);
 				$('#numberDisplay').val(allNumberVals);
 				$('input[name=person]').val(allNumberVals);
-				alert($('input[name=person]').val());
 				$('#priceDisplay').val(allPriceVals * allNumberVals);
 				$('input[name=seat_price]').val(allPriceVals * allNumberVals);
-				alert($('input[name=seat_price]').val());
 				$('input[type=submit]').attr('disabled', false);
-
-
 			} else {
-				alert("Please select " + ($("#Numseats").val()) + " seats")
+				alert(($("#Numseats").val()) + "명의 인원을 선택해주세요.")
 			}
 		}
 		function myFunction() {

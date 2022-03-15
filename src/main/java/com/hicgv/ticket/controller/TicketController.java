@@ -32,6 +32,7 @@ public class TicketController {
 		model.addAttribute("moviesList", ticketService.getMoviesList());
 		
 		/*2)지역선택*/
+		
 		//2-1) 지역(도별)
 		for (TheaterDto theaterDto : ticketService.getLocal()) {
 			System.out.println("getLocal : "+theaterDto.getTheater_loc());
@@ -137,14 +138,13 @@ public class TicketController {
 		String str = "";
 		String[] strArray;
 		
-		
 		//jsp에서 수정하고 뿌리기 편하게 str로 변환해서 보내줌
 		for (int i = 0; i < payDto.size(); i++) {
 			str += payDto.get(i).getSeat() + ","; 
 		}
 		strArray = str.split(",");
 		
-		model.addAttribute("seat", strArray); //예매된 좌석
+		model.addAttribute("soldoutseat", strArray); //예매된 좌석
 		model.addAttribute("ticketseat",timeListMap);
 		
 		//pay에서 모델 값을 가져와야할 것 같음

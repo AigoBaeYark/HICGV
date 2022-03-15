@@ -28,7 +28,7 @@
 		<!--@@ id명칭을 수정하는 중 gettheaterLocal로 잘못써서 오류남 -->
 
 	<!-- 영화 상영관 선택 -->
-	<select id="getTicketday" parameterType="Map" resultType="TicketListDto">
+	<select id="getSelectDate" parameterType="Map" resultType="TicketListDto">
 		SELECT
 		S.THEATER_SCHEDULE_ID, S.MOVIE_ID, M.TITLE_KOR, M.AGE_LIMIT,
 		T.THEATER_ID ,T.THEATER_LOC, L.LOCATION_ID, L.LOCATION_NAME,
