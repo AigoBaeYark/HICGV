@@ -6,43 +6,65 @@
 
 <mapper namespace="com.hicgv.movies.dao.MoviesDao">
 	<select id="movies" resultType="MoviesDto">
-		SELECT * FROM HICGV_MOVIE ORDER BY RANKING 
+		SELECT MOVIE_ID
+			 , RANKING
+			 , TITLE_KOR
+			 , OPENING_DATE
+			 , AGE_LIMIT
+		     , IMAGE_URL
+		FROM HICGV_MOVIE 
+		ORDER BY RANKING 
 	</select> <!-- @@ sql문 뒤에 ; 꼭 빼기 !! 안 뺴서 500오류 -->
 	<!-- 해당영화경로불러오기, 영화정보가져오기 sql코드  -->
 	<select id="moviesdv" parameterType="String" resultType="MoviesDto">
 		<!-- @@Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->
-		SELECT * FROM HICGV_MOVIE WHERE MOVIE_ID=#{movie_id}	
+		SELECT movie_id
+			 , IMAGE_URL
+			 , TITLE_KOR
+			 , TITLE_ENG
+			 , AGE_LIMIT 
+			 , RUNNING_TIME
+			 , GENRE
+			 , OPENING_DATE
+			 , AUDIENCE_TOTAL
+			 , AUDIENCE_TODAY
+			 , DESCRIPTION
+			 , DIRECTOR
+			 , ACTOR
+		FROM HICGV_MOVIE 
+		WHERE MOVIE_ID=#{movie_id}	
 	</select>
 	<!-- 트레일러가져오는 sql코드 -->
 	<select id="trailer" parameterType="String" resultType="MovieTrailerDto">
-		SELECT * FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID=#{movie_id}
+		SELECT MOVIE_TRAILER_ID
+		 	 , MOVIE_ID
+			 , TRAILER_TITLE
+			 , TRAILER_URL
+			 , TRAILER_IMAGE_URL
+		FROM HICGV_MOVIE_TRAILER 
+		WHERE MOVIE_ID=#{movie_id}
 	</select>
 	<!-- 트레일러갯수가져오는 sql코드 -->
 	<select id="trailercnt" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM HICGV_MOVIE_TRAILER WHERE MOVIE_ID = #{movie_id}
+		SELECT COUNT(MOVIE_TRAILER_ID) 
+		FROM HICGV_MOVIE_TRAILER 
+		WHERE MOVIE_ID = #{movie_id}
 	</select>
 	<!-- 포스터가져오는 sql코드 -->
 	<select id="poster" resultType="MoviePosterDto">
-		SELECT * FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID=#{param1}
+		SELECT MOVIE_POSTER_ID
+			 , MOVIE_ID
+			 , MOVIE_POSTER_URL 
+		FROM HICGV_MOVIE_POSTER 
+		WHERE MOVIE_ID=#{param1}
 	</select>
 	<!-- 포스터갯수가져오는 sql코드 -->
 	<select id="postercnt" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM HICGV_MOVIE_POSTER WHERE MOVIE_ID = #{movie_id}
+		SELECT COUNT(MOVIE_POSTER_ID) 
+		FROM HICGV_MOVIE_POSTER 
+		WHERE MOVIE_ID = #{movie_id}
 	</select>
-	
-	<insert id = "insertRefreshMovies">
-		insert hicgv_movies values(#{param1})
-	</insert>
-	
-	<update id = "refreshRank">
-		update hicgv_movies
-		on rank = #{param1} <!-- api에서 가져온 랭크 -->
-		where movie_id = #{param2} <!-- api에서 가져온 코드 -->
-	</update>
-	
-	
-			
-		
+
 
 
 </mapper> 

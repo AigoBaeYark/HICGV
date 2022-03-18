@@ -2,10 +2,7 @@ package com.hicgv.movies.dao;
 
 import java.util.ArrayList;
 
-import com.hicgv.movies.dto.MovieActorDto;
-import com.hicgv.movies.dto.MovieDirectorDto;
 import com.hicgv.movies.dto.MoviePosterDto;
-import com.hicgv.movies.dto.MovieSystemDto;
 import com.hicgv.movies.dto.MovieTrailerDto;
 import com.hicgv.movies.dto.MoviesDto;
 

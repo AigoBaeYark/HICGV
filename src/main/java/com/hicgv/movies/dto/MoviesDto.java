@@ -1,7 +1,5 @@
 package com.hicgv.movies.dto;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 

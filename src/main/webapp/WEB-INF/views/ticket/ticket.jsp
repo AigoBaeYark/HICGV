@@ -76,9 +76,9 @@
 					  
 					  
 					 <div class="col-2">
-					 <h3 >상영관</h3>
-					 <!-- 상영관 -->
-					 <!-- 지역 클릭시 상영관 생성 -->
+					 <h3 >극장</h3>
+					 <!-- 극장 -->
+					 <!-- 지역 클릭시 극장 생성 -->
 						<c:forEach items="${theaterlocal }" var="theloc">
 					    <div class="row justify-content-around theaterId-${theloc.theater_id }" id="theaterId-${theloc.theater_id }" role="tablist"  style="display: none;"> 
 					      <c:if test="${theloc.theater_id eq 1 }">
@@ -177,10 +177,7 @@
 		            })//모두삭제
 		            $(this).addClass('active');//클릭한 객체
 				
-				//$(this).siblings().append('movie');
-				//$(this).addClass('active') 
 				console.log($(this).children('#movieTitle').text());//타이틀 가져오기
-				//$(this).children('#movieTitle').text('선택');
 				console.log($(this).children('input').val()); //콘솔에 맞게 입력되었는지 확인 후 
 				movieCd = $(this).children('input').val(); //값 지정해주기
 				console.log('값넣음 '+movieCd);
@@ -193,7 +190,7 @@
 				//영화관 값 없음  or 지역 값 없음 -> 영화관 선택 안 됨
 				//영화관 값 없음  or 지역 값 없음 or 영화관 값 없음 -> 날짜 선택 안 됨
 				
-				//상영관을 전부 히든 or display=none
+				//극장을 전부 히든 or display=none
 				//지역을 선택하면 안의 input에서 value를 가져옴
 				//가져온 value에 해당하는   
 				//hidden 속성 없애기 or display = true 해야함
@@ -327,9 +324,9 @@
 			})
 			
 
-			//상영관 누른 밸류 가져오기  
+			//극장 누른 밸류 가져오기  
 			$('.list-group-item-theater').click(function() {
-				//(상영관 선택 중복 방지)
+				//(극장 선택 중복 방지)
 				$('.list-group-item-theater').each( function(i) {
 		               $(this).removeClass('active');
 		            })
@@ -353,9 +350,6 @@
 						},
 						success: function(data) {
 							$('#dateTab').html(data);
-						},
-						error: function (data) {
-							alert(data + "실패");
 						}
 					})
 				}

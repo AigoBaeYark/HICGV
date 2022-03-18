@@ -167,7 +167,8 @@
 											</c:if> ${seatInit}</td>
 										<c:forEach begin="1" end="12" var="j">
 											<td class="bookable"><label for="seat${(i-1)*12 + j}">
-													<!-- 좌석생성 --> <input type="checkBox" class="seats"
+													<!-- 좌석생성 --> 
+											<input type="checkBox" class="seats"
 													name="${seatInit}${j}" id="seat${(i-1)*12 + j}"
 													value="${seatInit}${j}">
 											</label></td>
@@ -199,16 +200,15 @@
 								<th>결제예정금액</th>
 							</tr>
 							<tr>
-								<td><input type="hidden" name="seat" /> <textarea
-										id="seatsDisplay" class="result"></textarea></td>
-								<td><input type="hidden" name="person" /> <textarea
-										id="numberDisplay" class="result"></textarea></td>
-								<td><input type="hidden" name="seat_price" /> <textarea
-										id="priceDisplay" class="result"></textarea></td>
+								<td> <input type="hidden" name="seat" />  
+									<textarea id="seatsDisplay" class="result"></textarea></td>
+								<td><input type="hidden" name="person" /> 
+									<textarea id="numberDisplay" class="result"></textarea></td>
+								<td><input type="hidden" name="seat_price" /> 
+									<textarea id="priceDisplay" class="result"></textarea></td>
 							</tr>
 						</table>
 					</div>
-					<!-- //details after booking displayed here -->
 				</div>
 			</div>
 		</div>
