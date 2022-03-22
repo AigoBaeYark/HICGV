@@ -166,12 +166,14 @@
 												<c:set value="L" var="seatInit"></c:set>
 											</c:if> ${seatInit}</td>
 										<c:forEach begin="1" end="12" var="j">
-											<td class="bookable"><label for="seat${(i-1)*12 + j}">
-													<!-- 좌석생성 --> 
-											<input type="checkBox" class="seats"
-													name="${seatInit}${j}" id="seat${(i-1)*12 + j}"
-													value="${seatInit}${j}">
-											</label></td>
+											<td class="bookable">
+												<label for="seat${(i-1)*12 + j}">
+														<!-- 좌석생성 --> 
+												<input type="checkBox" class="seats"
+														name="${seatInit}${j}" id="seat${(i-1)*12 + j}"
+														value="${seatInit}${j}">
+												</label>
+											</td>
 											<c:if test="${j eq 5}">
 												<!-- 5번칸이 끝나면 한칸 띄우기 -->
 												<td></td>
