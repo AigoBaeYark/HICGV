@@ -17,8 +17,7 @@
 	</select> <!-- @@ sql문 뒤에 ; 꼭 빼기 !! 안 뺴서 500오류 -->
 	<!-- 해당영화경로불러오기, 영화정보가져오기 sql코드  -->
 	<select id="moviesdv" parameterType="String" resultType="MoviesDto">
-		<!-- @@Dto를 Dao로 써서 Invalid bound statement (not found): 오류 뜸 -->
-		SELECT movie_id
+		SELECT MOVIE_ID
 			 , IMAGE_URL
 			 , TITLE_KOR
 			 , TITLE_ENG

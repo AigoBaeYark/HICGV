@@ -229,12 +229,12 @@
 		</c:forEach>;
 
 		function onLoaderFunc() {
-			for (var i = 0; i < list.length; i++) { // 이미 예매된 좌석 선택 불가 
+			for (var i = 0; i < list.length; i++) {  
 				for (var j = 1; j < $("input:checkbox[class='seats']").length + 1; j++) {
 					if (list[i] == $("input:checkbox[id='seat" + j + "']")
 							.val()) {
 						$("input:checkbox[id='seat" + j + "']").parents("td")
-								.attr("class", "selected"); //해당하는 값의 부모td만
+								.attr("class", "selected"); 
 						$("input:checkbox[id='seat" + j + "']").attr(
 								'disabled', true);
 						$("input:checkbox[id='seat" + j + "']").addClass(
@@ -246,7 +246,7 @@
 			$(".seatStructure *").prop("disabled", true);
 			$(".result").each(function() {
 				$(this).attr('readonly', 'readonly');
-			}) //박스값 수정 방지
+			}) 
 		}
 
 		function takeData() {
